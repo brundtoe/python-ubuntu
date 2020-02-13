@@ -1,0 +1,24 @@
+import sys, os, shutil
+import argparse
+from moduler.fileOperations import fetch_config
+
+def smbcredentials(user, password):
+    text = f'user={user}\npassword={password}\n'
+    filename = f'/home/{user}/.smbcredentials'
+    with open(filename,'w') as fout:
+        fout.write(text)
+    shutil.chown(filename,user,user)
+    os.chmod(filename,0o600)
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-pwd',type=str, help='Character to multiply', default='',
+                        dest= 'password')
+    args = parser.parse_args()
+
+    if not args.password:
+        sys.exit('Der skal overføres et password')
+
+    filename = '../config/config.ini'
+    user = fetch_config(filename)['Common']['user']
+    smbcredentials(user, args.password)
