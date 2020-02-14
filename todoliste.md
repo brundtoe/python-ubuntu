@@ -1,6 +1,5 @@
 # Opgaveliste
 
-
 ændring af print ved exception, 
 
 except Exception as err
@@ -10,10 +9,14 @@ except Exception as err
 
 ## install php
 
-script 05-install_php.sh
+Installationen skaber mapperne /etc/php/7.3/cli cgi der hver indeholder php.ini, der skal opdateres 
 
-kan downloade og verificere composer
+og mods-available med xdebug.ini
 
+installationen af xdebug skaber en default xdebug.ini som blot indeholder aktivering af **zend_extension=xdebug.so**. Dvs. at øvrige parametre er default. Der er automatisk skabt link herfra til cgi, cli og fpm ./conf.d/320-xdebug.ini.
+
+todo: hvilke af mine egne parametre er reelt defualt værdierne
+ 
 todo: kan opdatere en php.ini fil afventer, at der eksekveres et eksempel, hvor php er installeret
 
 todo juster opdatering af install_php.update_php_ini() så den tager en tuple med path til php.ini eksempelvis cli og cgi med date.time og intl.error
