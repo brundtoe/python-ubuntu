@@ -15,7 +15,6 @@ Installationen skaber mapperne /etc/php/7.3/cli cgi der hver indeholder php.ini,
 
 .. todo juster opdatering af install_php.update_php_ini() så den tager en tuple med path til php.ini eksempelvis cli og cgi med date.time og intl.error
 
-
 **installationen af php-xdebug** opretter en /etc/php/7.3/mods_available/xdebug.ini
 
 **xdebug.ini** indeholder blot aktivering af **zend_extension=xdebug.so**. Dvs. at øvrige parametre er default. Der er automatisk skabt link herfra til cgi, cli og fpm ./conf.d/320-xdebug.ini.
@@ -25,6 +24,13 @@ Se mine **xdebug vejledninger**
 .. todo hvilke af mine egne parametre er reelt default værdierne
 
 .. todo config.ini i dette projekt er til vagrant og docker instanser, hvad er standard for alm maskiner.
+
+.. todo kan nodejs installeres ved fra scriptet at hente
+
+   - key
+   - source_string
+
+   derefter kan opdatering foregå som for mongodb m.fl.
 
 ## automatisering af de manuelle processer
 

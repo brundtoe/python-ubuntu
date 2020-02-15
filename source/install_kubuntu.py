@@ -186,9 +186,9 @@ try:
     version = configs['Common']['php-version']
     srcfile = '../config/xdebug.ini'
     config_xdebug(version,srcfile)
-# todo se install_php-ini.py for manglende funktionalitet
-    ini_files = ['../infile/php.ini']
-    update_inifiles(ini_files)
+    php_components = ['cli', 'cgi', 'fpm']
+    version = configs['Common']['php-version']
+    update_inifiles(php_components, version)
 except Exception as err:
     print('Der opstod fejl ved installation af php')
     print(err)
