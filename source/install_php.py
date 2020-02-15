@@ -43,7 +43,7 @@ def install_composer(url, sha256url, user):
 
 def config_xdebug(version, srcfile):
     dstdir = f'/etc/php/{version}/mods-available'
-    dstfile = f'{dstdir}/xdebug.ini'
+    dstfile = f'{dstdir}/xdebug_docker.ini'
     if not os.path.exists(dstdir):
         os.makedirs(dstdir)
     try:
@@ -95,9 +95,8 @@ if __name__ == '__main__':
 
         print('konfiguration af XDebug')
         version = configs['Common']['php-version']
-        srcfile = '../config/xdebug.ini'
+        srcfile = '../config/xdebug_host.ini'
         config_xdebug(version, srcfile)
-        # todo se install_php-ini.py for manglende funktionalitet
         print('Opdatering af php.ini filerne')
         php_components = ['cli', 'cgi', 'fpm']
         version = configs['Common']['php-version']

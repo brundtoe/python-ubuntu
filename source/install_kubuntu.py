@@ -184,8 +184,10 @@ try:
 
     print('konfiguration af XDebug')
     version = configs['Common']['php-version']
-    srcfile = '../config/xdebug.ini'
+    xdebug_host = configs['Common']['xdebug-host']
+    srcfile = f'../config/{xdebug_host}'
     config_xdebug(version,srcfile)
+    print('Konfiguration af php.ini')
     php_components = ['cli', 'cgi', 'fpm']
     version = configs['Common']['php-version']
     update_inifiles(php_components, version)
