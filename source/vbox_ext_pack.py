@@ -13,8 +13,8 @@ def vbox_ext_pack(url,vbox_version):
         res = subprocess.run(cmd, stdout=subprocess.PIPE)
         version = re.search('^\d{1,}\.\d{1,}\.\d{1,}',res.stdout.decode('utf-8'))
 
-        if version != vbox_version:
-            print(f'Opdater vbox_ext_pack i config.ini til {version} og prøv igen')
+        if version.group(0) != vbox_version:
+            print(f'Opdater vbox_ext_pack i config.ini til {version.group(0)} og prøv igen')
             exit(2)
     except Exception as err:
         print('Kan ikke kontrollere VirtualBox installationen - Er VirtualBox Installeret?')
