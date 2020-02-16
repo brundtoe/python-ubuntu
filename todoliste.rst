@@ -37,13 +37,26 @@ Python udgaven af find VirtualBox versionen via VBoxManage::
 
 Efter installation af VirtualBox Extension Package findes Guest additions i **/usr/share/virtualbox/VBoxGuestAdditions.iso**
 
+- Det er kun i mappen demos at modulet **requests** er anvendt. Derfor kan installationen udføres, når repo er clonet til maskinen, der skal installeres og konfigureres
+
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
 
-- forsøg at lave nendestående uden anvendelse af modulet **request** idet det så er muligt at undvære dette modul hvorefter det ikke er nødvendigt at foretage forberedende installation på et image men **install_kubuntu.py** kan eksekveres umiddelbart.
-
-- tjek resten af vejledninger -> linuxinstall for yderligere opgaver, der skal automatiseres
+   - smartgit
+   - freefilesync
+   - visual studio code
+   - nosqlbooster
+   - postmann
+   - mysql-server
+   - .vimrc
+   - vagrant
+   - packer
+   - laravel/homestead
+   - docker konfiguration (build af images og provisionering af databaser)
 
 - tjek også projekt devops puppet scripts herunder også yaml filerne og filerne med diverse config filer
+
+   - anvendes som inspiration til at lave vagrnat instanser som provisioneres med python scripts.
+     eksempelvis en nginx og en javascript instans
 
 - evt anvendelse af jinja2 templates
 
