@@ -4,7 +4,30 @@ Opgaveliste
 automatisering af de manuelle processer
 =======================================
 
-- **virtualbox**, der må være en CLI cmd som installerer en guest addition
+- **VBoxManage** er det CLI som anvendes til administraiton af en VirtualBox installation. Den har samme versionsummer som VirtualBox, som findes med::
+
+   **VBoxManage --version | awk -Fr '{print $1}'
+
+.. caution:: Ovenstående fejler hvis der anvendes dobbelt gnyffer "{print $1}"
+
+Denne model for at finde et versionsnummer er følsom overfor udviklerens ændirnger af et program og kan ikke generaliseres men skal for hvert program tjekkes i terminalen før der kan skrives et program.
+
+Scriptet **demos/is_installed.py** viser hvordan det kan gøres.
+
+.. caution:: kommandoen **apt** viser en warning om, at den ikke har et stabilt interface, når den anvendes i script. Forsøg har vist, at awk ikke fungerer med output fra **apt**
+
+   Husk i øvrigt at awk behandler hver linje i output, Derfor bør grep anvendes til at finde den relevante linje, inden et flerlinje putput pipes gennem awk.
+
+Python udgaven af find VirtualBox versionen via VBoxManage::
+
+   cmd = 'VBoxManage --version'
+   res = subprocess.run(cmd, stdout=subprocess.PIPE, shell=True)
+   version = re.search('\d{1,2}\.\d{1,2}\.\d{1,2}',res.stdout.decode('utf-8'))
+   print(version.group(0))
+
+.. note:: awk kan ikke anvende syntaksen med \\d men skal i stedet anvnede [0-9].
+
+
 
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
 
