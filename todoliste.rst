@@ -1,6 +1,14 @@
 Opgaveliste
 ===========
 
+nodejs
+------
+Bliver ikke installret i den nyere udgave fordi nodejs allerede er installeret på Kubuntu.
+
+- kan løses ved som afslutning på installationen at udføre en apt update && apt upgrade scriptet **apt_update.py**
+
+
+
 automatisering af de manuelle processer
 =======================================
 
@@ -27,7 +35,7 @@ Python udgaven af find VirtualBox versionen via VBoxManage::
 
 .. note:: awk kan ikke anvende syntaksen med \\d men skal i stedet anvnede [0-9].
 
-
+Efter installation af VirtualBox Extension Package findes Guest additions i **/usr/share/virtualbox/VBoxGuestAdditions.iso**
 
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
 
