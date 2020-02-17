@@ -53,19 +53,19 @@ Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-
 
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
 
-   - postmann
-   - mysql-server
-   - .vimrc
    - vagrant
    - packer
+   - mysql-server
    - laravel/homestead
    - visual studio code
    - docker konfiguration (build af images og provisionering af databaser)
 
-.. todo: install_jetbrains og freefilesync skal ændre owner til {user} og mode til 775
+.. todo install_jetbrains og freefilesync skal ændre owner til {user} og mode til 775
+.. todo kan install_postmann og freefilsync refaktoreres med en fælles kerne
 .. todo opret mappen /home/{user}/programs
-.. todo flyt jetbrains-toolbox og freefilesync til /home/{user}/programs
-.. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for freefilesyn og nosqlbooster
+.. todo kopier .vimrc -> /home/{user}/.vimrc
+.. todo flyt jetbrains-toolbox og freefilesync  og postman til /home/{user}/programs
+.. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for freefilesyn og nosqlbooster samt postman
 .. todo puppet_repo_install og install_smartgit skal anvende scriptet for smartgit og scriptet skal downloade til /tmp
 .. todo alle downloads bør anvende requests, så det sikres at evt. ændriner som medfører redirects ikke medfører fejl.
 

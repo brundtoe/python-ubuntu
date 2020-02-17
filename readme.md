@@ -58,6 +58,9 @@ følgende er ikke indarbejdet i **install_kubuntu.py**
 <td></td>
 <td></td>
 </tr>
-
+<tr>
+<td>install_postman</td>
+<td></td>
+</tr>
 </table>
 
