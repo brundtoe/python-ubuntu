@@ -7,6 +7,27 @@ from moduler.sha256sum import hash_file
 from install_programs import install_programs
 from moduler.download_file import fetch_file
 
+def install_php(configs):
+    print('Installation af PHP moduler')
+    programs = configs['php.install']
+    options = configs['Common']['install_options']
+    install_programs(programs, options)
+
+    print('Installation af Composer')
+    url = configs['composer']['repo']
+    sha256url = configs['composer']['sha256']
+    user = configs['Common']['user']
+    install_composer(url, sha256url, user)
+
+    print('konfiguration af XDebug')
+    version = configs['Common']['php-version']
+    xdebug_host = configs['Common']['xdebug-host']
+    srcfile = f'../config/{xdebug_host}'
+    config_xdebug(version, srcfile)
+    print('Konfiguration af php.ini')
+    php_components = ['cli', 'cgi', 'fpm']
+    version = configs['Common']['php-version']
+    update_inifiles(php_components, version)
 
 def install_composer(url, sha256url, user):
     composerfile = '../outfile/composer'
@@ -82,25 +103,7 @@ if __name__ == '__main__':
     configs = fetch_config(filename)
 
     try:
-        print('Installation af PHP moduler')
-        programs = configs['php.install']
-        options = configs['Common']['install_options']
-        install_programs(programs, options)
-
-        print('Installation af Composer')
-        url = configs['composer']['repo']
-        sha256url = configs['composer']['sha256']
-        user = configs['Common']['user']
-        install_composer(url, sha256url, user)
-
-        print('konfiguration af XDebug')
-        version = configs['Common']['php-version']
-        srcfile = '../config/xdebug_host.ini'
-        config_xdebug(version, srcfile)
-        print('Opdatering af php.ini filerne')
-        php_components = ['cli', 'cgi', 'fpm']
-        version = configs['Common']['php-version']
-        update_inifiles(php_components, version)
+        install_php(configs)
     except Exception as err:
         print('Der opstod fejl ved installation af php')
         print(err)

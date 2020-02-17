@@ -180,28 +180,9 @@ except Exception as err:
 else:
     print('apt-get installation af ekstra software udført')
 
-from install_php import install_composer, config_xdebug, update_inifiles
+from install_php import install_php
 try:
-    print('Installation af PHP moduler')
-    programs = configs['php.install']
-    options = configs['Common']['install_options']
-    install_programs(programs,options)
-
-    print('Installation af Composer')
-    url = configs['composer']['repo']
-    sha256url = configs['composer']['sha256']
-    user = configs['Common']['user']
-    install_composer(url,sha256url,user)
-
-    print('konfiguration af XDebug')
-    version = configs['Common']['php-version']
-    xdebug_host = configs['Common']['xdebug-host']
-    srcfile = f'../config/{xdebug_host}'
-    config_xdebug(version,srcfile)
-    print('Konfiguration af php.ini')
-    php_components = ['cli', 'cgi', 'fpm']
-    version = configs['Common']['php-version']
-    update_inifiles(php_components, version)
+    install_php(configs)
 except Exception as err:
     print('Der opstod fejl ved installation af php')
     print(err)
