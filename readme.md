@@ -27,17 +27,20 @@ Der anvendes extended parsing, da definitioner fra afsnit Common anvendes i øvr
     
 Herefter kan følgende installeres  
 
-- vbox_ext_pack.py udføres manuelt hvis virtualbox er installeret og udføres med **root**
+**Med root access**
+
+- vbox_ext_pack.py 
+
+**Uden root access**
 
 - install_jetbrains.py
+- install_vagrant.py
 - install_packer.py
 - install_postman.py
 - install_freefilesync.py
 
-.. important:: **det udføres uden root access**
-
-    
-# opgaver som pt udførs manuelt
+   
+# opgaver som pt udføres manuelt
 
 følgende er ikke indarbejdet i **install_kubuntu.py**
 

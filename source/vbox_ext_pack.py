@@ -22,7 +22,7 @@ def vbox_ext_pack(url,vbox_version):
 
     local_filename = url.split('/')[-1]
 
-    outfile = f'../outfile/{local_filename}'
+    outfile = f'/tmp/{local_filename}'
 
     try:
 

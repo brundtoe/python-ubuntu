@@ -12,4 +12,6 @@ def install_postman(configs):
     fetch_archive(url,user,program,version)
 
 
-
+if __name__ == '__main__':
+    configs = fetch_config('../config/config.ini')
+    install_postman(configs)
