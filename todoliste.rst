@@ -53,13 +53,7 @@ Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-
 
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
 
-   - packer
-   - mysql-server
-   - laravel/homestead
-   - visual studio code
-   - docker konfiguration (build af images og provisionering af databaser)
-
-.. todo install_jetbrains og freefilesync skal ændre owner til {user} og mode til 775
+.. todo install_jetbrains og freefilesync og packer skal ændre owner til {user} og mode til 775
 .. todo kan install_postmann og freefilsync refaktoreres med en fælles kerne
 .. todo opret mappen /home/{user}/programs
 .. todo kopier .vimrc -> /home/{user}/.vimrc
@@ -68,13 +62,12 @@ Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-
 .. todo puppet_repo_install og install_smartgit skal anvende scriptet for smartgit og scriptet skal downloade til /tmp
 .. todo alle downloads bør anvende requests, så det sikres at evt. ændriner som medfører redirects ikke medfører fejl.
 .. todo refakotrering, så alle der downloader og installerer en .deb fil er ens (finde slettest ud fra config.ini
+.. todo refaktorerring så alle der downloader og pakker en targz eller zip fil ud er ens - pas på angivelse af pakke algoritmen **gztar** eller **zip**
 
-- tjek også projekt devops puppet scripts herunder også yaml filerne og filerne med diverse config filer
-
-   - anvendes som inspiration til at lave vagrnat instanser som provisioneres med python scripts.
-     eksempelvis en nginx og en javascript instans
-
-- evt anvendelse af jinja2 templates
+   - mysql-server konfiguration af root med pwd og en ny user (19.10 er skiftet til version 8.x)
+   - laravel/homestead
+   - visual studio code
+   - docker konfiguration (build af images og provisionering af databaser)
 
 anaconda jupiterlab eller spider
 ================================
