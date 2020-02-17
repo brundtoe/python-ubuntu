@@ -53,15 +53,7 @@ Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-
 
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
 
-.. todo: install_jetbrains og freefilesync skal ændre owner til {user}
-
-.. todo opret mappen /home/{user}/programs
-.. todo flyt jetbrains-toolbox og freefilesync til /home/{user}/programs
-
-
-   - smartgit
-   - freefilesync
-   - visual studio code
+   - smartgit https://www.syntevo.com/downloads/smartgit/smartgit-19_1_6.deb
    - nosqlbooster
    - postmann
    - mysql-server
@@ -69,7 +61,13 @@ Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-
    - vagrant
    - packer
    - laravel/homestead
+   - visual studio code
    - docker konfiguration (build af images og provisionering af databaser)
+
+.. todo: install_jetbrains og freefilesync skal ændre owner til {user}
+.. todo opret mappen /home/{user}/programs
+.. todo flyt jetbrains-toolbox og freefilesync til /home/{user}/programs
+.. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for freefilesyn og nosqlbooster
 
 - tjek også projekt devops puppet scripts herunder også yaml filerne og filerne med diverse config filer
 
