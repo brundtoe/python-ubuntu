@@ -1,24 +1,16 @@
-# installation af Google Chrome
+# installation af jetBrains ToolBox
 
-import sys,os, shutil
-from moduler.fileOperations import download_file, fetch_config
+from moduler.fileOperations import fetch_config, fetch_archive
 
-try:
-    configs = fetch_config('../config/config.ini')
+
+def install_jetbrains_toolbox(configs):
     url = configs['jetbrains.toolbox']['url']
     version = configs['Common']['jetbrains-toolbox']
     user = configs['Common']['user']
-    print(url)
-    outfile = download_file(url)
-    shutil.unpack_archive(outfile,f'/home/{user}/bin/','gztar')
-    # outdir = f'/home/{user}/Downloads/jetbrains-toolbox-{version}'
-    # src = f'/jetbrains-toolbox{outdir}'
-    # dst = f'/home/{user}/bin/jetbrains-toolbox'
-    # shutil.copyfile(src,dst)
-    # os.remove(outdir)
-except Exception as err:
-    sys.exit('Download af jetbrains toolbox er fejlet\n',err)
-else:
-    print('JetBrains toolbox er downloded og pakket ud')
+    program = 'JetBrains Toolbox'
+    fetch_archive(url,user,program,version)
 
 
+if __name__ == '__main__':
+    configs = fetch_config('../config/config.ini')
+    install_jetbrains_toolbox(configs)

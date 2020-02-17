@@ -1,8 +1,8 @@
-import subprocess
-import os
+import sys, os, shutil
 from urllib.request import urlopen
 from shutil import copyfileobj
 from tempfile import NamedTemporaryFile
+import requests
 
 from configparser import ConfigParser, ExtendedInterpolation
 
@@ -46,5 +46,20 @@ def addLine(filename, text):
         #print(f'filen {filename} er nu opdateret med {text}')
     return True
 
+def fetch_archive(url,user,program, version, format='gztar'):
+    print(url)
+    try:
+        req = requests.get(url, allow_redirects=True, stream=True)
 
+        outfile = f'/tmp/{url.split("/")[-1]}'
+        unpackedfile =  f'/home/{user}/programs'
+        with open(outfile, 'wb') as fd:
+            for chunk in req.iter_content(chunk_size=4096):
+                fd.write(chunk)
+        shutil.unpack_archive(outfile, unpackedfile, format)
+
+    except Exception as err:
+        sys.exit(f'Download af {program} version {version} er fejlet\n')
+    else:
+        print(f'programmet {program} version {version} er downloded og pakket ud')
 

@@ -25,6 +25,16 @@ Der anvendes extended parsing, da definitioner fra afsnit Common anvendes i øvr
     cd directory med instalationsscriptet
     sudo ./install_kubuntu.py
     
+Herefter kan følgende installeres  
+
+- install_jetbrains.py
+- install_packer.py
+- install_postman.py
+- install_freefilesync.py
+
+.. important:: det udføres uden root access
+    
+    
 # opgaver som pt udførs manuelt
 
 følgende er ikke indarbejdet i **install_kubuntu.py**
@@ -38,15 +48,7 @@ følgende er ikke indarbejdet i **install_kubuntu.py**
 <td>groups.py</td>
 <td>tilføj user til group (docker og vboxusers)</td>
 </tr>
-<tr>
-<td>install_jetbrains.py</td>
-<td>installation af jetbrains toolbox</td>
-</tr>
-<tr><td>install_freefilesync.py</td><td></td></tr>
-<tr><td>install_smartgit.py</td><td></td></tr>
-<tr><td>install_nosqlbooster.py</td><td></td></tr>
-<tr><td>install_postman.py</td><td></td></tr>
-<tr><td>install_vagrant.py</td><td></td></tr>
+
 <tr><td></td><td></td></tr>
 <tr><td></td><td></td></tr>
 <tr><td></td><td></td></tr>

@@ -37,28 +37,37 @@ Efter installation af VirtualBox Extension Package findes Guest additions i **/u
 
 - Det er kun i mappen demos at modulet **requests** er anvendt. Derfor kan installationen udføres, når repo er clonet til maskinen, der skal installeres og konfigureres
 
-**FreeFileSync** kræver en resuest som kan følge et redirect eksempelvis::
-
-   curl -O -L https://freefilesync.org/download/FreeFileSync_10.20_Linux.tar.gz
-
-Det er den letteste model, Python dok af standard library urllib er vanskelig til
-gængelig for at udlede hvordan en follow-redirect udføres
-
-Tredjeparts package **requests** følger default redirect
+**requests** er nødvendig for at der kan foretages follow_redirect ved download
 
 Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-history
 
-- vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
+download og udpakning af arkiver
+================================
 
-.. todo alle downloads skal foregå til /tmp
-.. todo kan install_postmann og freefilsync og packer refaktoreres med en fælles kerne
-.. todo install_jetbrains og freefilesync og packer skal ændre owner til {user} og mode til 775
-.. todo flyt jetbrains-toolbox og freefilesync og postman til /home/{user}/programs
-.. todo refaktorerring så alle der downloader og pakker en targz eller zip fil ud er ens - pas på angivelse af pakke algoritmen **gztar** eller **zip**
+- jetbrains toolbox
+- packer
+- postman
+- freefilesync
+
+Udføre uden anvendelse af root
+
+hvis der er behov for at disse kan eksekveres fra /home/{user}/bin så laves et link herfra til programmet.
+
+
+.. todo alle downloads skal foregå til /tmp og de to download_file må kunne refaktoreres til een
+
+   - install_php.py anvender moduler/download_file.py
+   - fileOperations indeholder en funktion download_file.py og fetch_archive
+
 .. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for freefilesyn og nosqlbooster samt postman
-.. todo puppet_repo_install og install_smartgit skal anvende scriptet for smartgit og scriptet skal downloade til /tmp
-.. todo refakotrering, så alle der downloader og installerer en .deb fil er ens (finde slettest ud fra config.ini
-.. todo alle downloads bør anvende requests, så det sikres at evt. ændriner som medfører redirects ikke medfører fejl.
+
+.. todo download debian .deb file og installer med dpkg skal anvende /tmp
+
+   - puppet_repo_install (fileoperations download_file)
+   - install_smartgit (anvender requests)
+   - install_vagrant (anvender requests, da der foretages redirect undervejs)
+
+.. todo udestående
 
    - mysql-server konfiguration af root med pwd og en ny user (19.10 er skiftet til version 8.x)
    - laravel/homestead
