@@ -53,6 +53,13 @@ Udføre uden anvendelse af root
 
 hvis der er behov for at disse kan eksekveres fra /home/{user}/bin så laves et link herfra til programmet.
 
+.. todo chown af et directory med undermapper
+
+- Se demos/chown.py
+- alternativ::
+
+   res = subprocess.run(['chown','-R','bent:bent','/home/bent/programs'])
+
 
 .. todo alle downloads skal foregå til /tmp og de to download_file må kunne refaktoreres til een
 
@@ -67,7 +74,7 @@ hvis der er behov for at disse kan eksekveres fra /home/{user}/bin så laves et 
    - install_smartgit (anvender requests)
    - install_vagrant (anvender requests, da der foretages redirect undervejs)
 
-.. todo udestående
+.. todo udestående - måske
 
    - mysql-server konfiguration af root med pwd og en ny user (19.10 er skiftet til version 8.x)
    - laravel/homestead

@@ -30,6 +30,7 @@ Herefter kan følgende installeres
 **Med root access**
 
 - vbox_ext_pack.py 
+- groups.py 
 
 **Uden root access**
 
@@ -38,6 +39,7 @@ Herefter kan følgende installeres
 - install_packer.py
 - install_postman.py
 - install_freefilesync.py
+
 
    
 # opgaver som pt udføres manuelt
