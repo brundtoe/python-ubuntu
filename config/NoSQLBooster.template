@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Icon[en_US]=/home/jackie/bin/image/NoSQLBooster.jpeg
+Name[en_US]=NoSQLBooster
+Exec=/home/jackie/bin/nosqlbooster4mongo-5.2.9.AppImage
+Comment[en_US]=NoSQLBooster for MongoDB
+Name=NoSQLBooster
+Comment=NoSQLBooster for MongoDB
+Icon=/home/jackie/bin/image/NoSQLBooster.jpeg
