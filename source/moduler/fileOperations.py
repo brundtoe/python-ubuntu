@@ -32,6 +32,7 @@ def download_file(url):
             copyfileobj(fsrc, fdst)
             return fdst.name
     except Exception as err:
+        print(err)
         raise os.error
 
 def addLine(filename, text):
