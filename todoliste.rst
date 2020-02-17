@@ -53,8 +53,6 @@ Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-
 
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
 
-   - smartgit https://www.syntevo.com/downloads/smartgit/smartgit-19_1_6.deb
-   - nosqlbooster
    - postmann
    - mysql-server
    - .vimrc
@@ -64,10 +62,12 @@ Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-
    - visual studio code
    - docker konfiguration (build af images og provisionering af databaser)
 
-.. todo: install_jetbrains og freefilesync skal ændre owner til {user}
+.. todo: install_jetbrains og freefilesync skal ændre owner til {user} og mode til 775
 .. todo opret mappen /home/{user}/programs
 .. todo flyt jetbrains-toolbox og freefilesync til /home/{user}/programs
 .. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for freefilesyn og nosqlbooster
+.. todo puppet_repo_install og install_smartgit skal anvende scriptet for smartgit og scriptet skal downloade til /tmp
+.. todo alle downloads bør anvende requests, så det sikres at evt. ændriner som medfører redirects ikke medfører fejl.
 
 - tjek også projekt devops puppet scripts herunder også yaml filerne og filerne med diverse config filer
 
