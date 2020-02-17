@@ -7,8 +7,6 @@ Bliver ikke installret i den nyere udgave fordi nodejs allerede er installeret p
 
 - kan løses ved som afslutning på installationen at udføre en apt update && apt upgrade scriptet **apt_update.py**
 
-
-
 automatisering af de manuelle processer
 =======================================
 
@@ -39,7 +37,27 @@ Efter installation af VirtualBox Extension Package findes Guest additions i **/u
 
 - Det er kun i mappen demos at modulet **requests** er anvendt. Derfor kan installationen udføres, når repo er clonet til maskinen, der skal installeres og konfigureres
 
+**FreeFileSync** kræver en resuest som kan følge et redirect eksempelvis::
+
+   curl -O -L https://freefilesync.org/download/FreeFileSync_10.20_Linux.tar.gz
+
+Det er den letteste model, Python dok af standard library urllib er vanskelig til
+gængelig for at udlede hvordan en follow-redirect udføres
+
+Tredjeparts package **requests** følger default redirect
+
+Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-history
+
+
+
+
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
+
+.. todo: install_jetbrains og freefilesync skal ændre owner til {user}
+
+.. todo opret mappen /home/{user}/programs
+.. todo flyt jetbrains-toolbox og freefilesync til /home/{user}/programs
+
 
    - smartgit
    - freefilesync

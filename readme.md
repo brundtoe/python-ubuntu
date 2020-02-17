@@ -20,6 +20,9 @@ Der anvendes extended parsing, da definitioner fra afsnit Common anvendes i øvr
 
 # Udfør installationen
 
+    sudo apt install -y python3-pip
+    sudo pip install request
+    cd directory med instalationsscriptet
     sudo ./install_kubuntu.py
     
 # opgaver som pt udførs manuelt
