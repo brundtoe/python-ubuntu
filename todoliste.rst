@@ -53,7 +53,6 @@ Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-
 
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
 
-   - vagrant
    - packer
    - mysql-server
    - laravel/homestead
@@ -68,6 +67,7 @@ Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-
 .. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for freefilesyn og nosqlbooster samt postman
 .. todo puppet_repo_install og install_smartgit skal anvende scriptet for smartgit og scriptet skal downloade til /tmp
 .. todo alle downloads bør anvende requests, så det sikres at evt. ændriner som medfører redirects ikke medfører fejl.
+.. todo refakotrering, så alle der downloader og installerer en .deb fil er ens (finde slettest ud fra config.ini
 
 - tjek også projekt devops puppet scripts herunder også yaml filerne og filerne med diverse config filer
 

@@ -42,25 +42,13 @@ følgende er ikke indarbejdet i **install_kubuntu.py**
 <td>install_jetbrains.py</td>
 <td>installation af jetbrains toolbox</td>
 </tr>
-<tr>
-<td>install_freefilesync.py</td>
-<td></td>
-</tr>
-<tr>
-<td>install_smartgit.py</td>
-<td></td>
-</tr>
-<tr>
-<td>install_nosqlbooster.py</td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>install_postman</td>
-<td></td>
-</tr>
+<tr><td>install_freefilesync.py</td><td></td></tr>
+<tr><td>install_smartgit.py</td><td></td></tr>
+<tr><td>install_nosqlbooster.py</td><td></td></tr>
+<tr><td>install_postman.py</td><td></td></tr>
+<tr><td>install_vagrant.py</td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
+<tr><td></td><td></td></tr>
 </table>
 
