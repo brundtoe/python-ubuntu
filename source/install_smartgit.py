@@ -24,7 +24,7 @@ if __name__ == '__main__':
        sys.exit('Script skal udføres med root access')
     configs = fetch_config('../config/config.ini')
     url = configs['syntevo.com']['url']
-    version = configs['Common']['freefilesync']
+    version = configs['Common']['smartgit']
     user = configs['Common']['user']
     print(url,user, version)
     install_smartgit(url,user,version)
