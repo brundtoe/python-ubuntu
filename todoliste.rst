@@ -48,21 +48,17 @@ Tredjeparts package **requests** følger default redirect
 
 Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-history
 
-
-
-
 - vejledninger -> linuxinstall -> installationsscript de **efterfølgende manuelle opgaver**
 
+.. todo alle downloads skal foregå til /tmp
+.. todo kan install_postmann og freefilsync og packer refaktoreres med en fælles kerne
 .. todo install_jetbrains og freefilesync og packer skal ændre owner til {user} og mode til 775
-.. todo kan install_postmann og freefilsync refaktoreres med en fælles kerne
-.. todo opret mappen /home/{user}/programs
-.. todo kopier .vimrc -> /home/{user}/.vimrc
-.. todo flyt jetbrains-toolbox og freefilesync  og postman til /home/{user}/programs
+.. todo flyt jetbrains-toolbox og freefilesync og postman til /home/{user}/programs
+.. todo refaktorerring så alle der downloader og pakker en targz eller zip fil ud er ens - pas på angivelse af pakke algoritmen **gztar** eller **zip**
 .. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for freefilesyn og nosqlbooster samt postman
 .. todo puppet_repo_install og install_smartgit skal anvende scriptet for smartgit og scriptet skal downloade til /tmp
-.. todo alle downloads bør anvende requests, så det sikres at evt. ændriner som medfører redirects ikke medfører fejl.
 .. todo refakotrering, så alle der downloader og installerer en .deb fil er ens (finde slettest ud fra config.ini
-.. todo refaktorerring så alle der downloader og pakker en targz eller zip fil ud er ens - pas på angivelse af pakke algoritmen **gztar** eller **zip**
+.. todo alle downloads bør anvende requests, så det sikres at evt. ændriner som medfører redirects ikke medfører fejl.
 
    - mysql-server konfiguration af root med pwd og en ny user (19.10 er skiftet til version 8.x)
    - laravel/homestead
