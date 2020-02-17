@@ -12,7 +12,7 @@ try:
     print(url)
     req = requests.get(url, allow_redirects=True, stream=True)
 
-    outfile = f'/home/bent/Downloads/{url.split("/")[-1]}'
+    outfile = f'/home/{user}/Downloads/{url.split("/")[-1]}'
 
     with open(outfile, 'wb') as fd:
         for chunk in req.iter_content(chunk_size=4096):
