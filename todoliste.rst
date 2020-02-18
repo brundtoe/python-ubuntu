@@ -70,16 +70,26 @@ script **source/desktopfile.py**
    - nosqlbooster,
    - postman
 
-og genererer xdebug.ini til brug for konfig af XDebug afhænig af om det er et host miljø eller en guest (vbox image skabt med vagrant)
+.. note:: Når KDE anvendes som GUI så kan man
 
-   - xdebug.ini
+   - tilføje en fil herunder programmer til en aktivitet i en folder widget
+   - trække filen ud på dekstop og vælge at oprette en genvej/link
+   - på desktoppen højreklikke vælge create new og
 
-xdebug.ini
+      - basic link, som kan oprette link til fil eller mappe.
+      - link to applikation, som opretter et gnome desktop entry
+
+
+script **xdebug_ini.py** genererer xdebug.ini til brug for konfig af XDebug afhænig af om det er et host miljø eller en guest (vbox image skabt med vagrant)
 
 .. todo alle installationsscripts skal kunne udføres som selvstændige pgm med en
 
    - if __name__ == __main__
    - se input  hertil fra install_kubuntu
+
+.. todo samlet afprøvning og beskrivelse i readme filen af hvordan en konfiguration udføres.
+
+   - Herunder manuel oprettelse af desktop entries for at få input til scripts
 
 .. todo dokumentation
 
