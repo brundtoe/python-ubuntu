@@ -1,49 +1,38 @@
 # installation af VirtualBox Extension pack
-import os, sys, shlex, re
+import sys,os, shlex, re
 import subprocess
-from urllib.request import urlopen
-from shutil import copyfileobj, copyfile
-from tempfile import NamedTemporaryFile
-from moduler.fileOperations import fetch_config
+from moduler.fileOperations import fetch_config, download_file
 
 def vbox_ext_pack(url,vbox_version):
+
+    try:
+        if is_vbox_installed(vbox_version):
+            outfile = download_file(url)
+            cmd = shlex.split(f'VBoxManage extpack install --replace {outfile}')
+            res = subprocess.run(cmd)
+            if res.returncode != 0:
+                raise ValueError
+    except Exception as err:
+        print(err)
+        sys.exit(f'Exception: installation af VirtualBox Extension Pack fejlede')
+
+def is_vbox_installed(vbox_version):
 
     try:
         cmd = shlex.split('VBoxManage --version')
         res = subprocess.run(cmd, stdout=subprocess.PIPE)
         version = re.search('^\d{1,}\.\d{1,}\.\d{1,}',res.stdout.decode('utf-8'))
-
+        if version.group(0) == vbox_version:
+            return True
         if version.group(0) != vbox_version:
-            print(f'Opdater vbox_ext_pack i config.ini til {version.group(0)} og prøv igen')
-            exit(2)
+            sys.exit(f'Opdater vbox_ext_pack i config.ini til {version.group(0)} og prøv igen')
     except Exception as err:
-        print('Kan ikke kontrollere VirtualBox installationen - Er VirtualBox Installeret?')
-        exit(2)
-
-    local_filename = url.split('/')[-1]
-
-    outfile = f'/tmp/{local_filename}'
-
-    try:
-
-        with urlopen(url) as fsrc, NamedTemporaryFile(delete=False) as fdst:
-            copyfileobj(fsrc, fdst)
-            print(fdst.name)
-        copyfile(fdst.name,outfile)
-    except Exception as err:
-        print(f'Exception: download af {url} fejlede')
         print(err)
-        exit(1)
-
-    try:
-        cmd = shlex.split(f'VBoxManage extpack install --replace {outfile}')
-        res = subprocess.run(cmd)
-    except Exception as err:
-        print(f'Exception: Installation af {outfile} fejlede')
-        print(err)
-        exit(1)
+        sys.exit('Kan ikke kontrollere VirtualBox installationen - Er VirtualBox Installeret?')
 
 if __name__ == '__main__':
+    if os.geteuid() != 0:
+        sys.exit('Script skal udføres med root access')
     configs = fetch_config('../config/config.ini')
     url = configs['virtualbox.org']['extention_pack']
     vbox_version = configs['Common']['vbox_ext_pack']
