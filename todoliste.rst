@@ -81,6 +81,10 @@ hvis der er behov for at disse kan eksekveres fra /home/{user}/bin så laves et 
    - visual studio code
    - docker konfiguration (build af images og provisionering af databaser)
 
+.. todo dokumentation
+
+   - dokumentation med docstrings i de enkelte funktioner samt dok af parametrene
+
 anaconda jupiterlab eller spider
 ================================
 

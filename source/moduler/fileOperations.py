@@ -3,6 +3,7 @@ from urllib.request import urlopen
 from shutil import copyfileobj
 from tempfile import NamedTemporaryFile
 import requests
+import subprocess
 
 from configparser import ConfigParser, ExtendedInterpolation
 
@@ -63,3 +64,17 @@ def fetch_archive(url,user,program, version, format='gztar'):
     else:
         print(f'programmet {program} version {version} er downloded og pakket ud')
 
+def install_dpkg(url, version):
+   try:
+        req = requests.get(url, allow_redirects=True, stream=True)
+        outfile = f'/tmp/{url.split("/")[-1]}'
+        with open(outfile, 'wb') as fd:
+            for chunk in req.iter_content(chunk_size=4096):
+                fd.write(chunk)
+        subprocess.run(['dpkg','-i',outfile])
+   except Exception as err:
+        print(f'Download og installation af Vagrant version {version} er fejlet')
+        print(err)
+        exit(1)
+   else:
+    print(f'Vagrant {version} er installeret')
