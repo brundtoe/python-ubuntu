@@ -72,6 +72,11 @@ hvis der er behov for at disse kan eksekveres fra /home/{user}/bin så laves et 
    - if __name__ == __main__
    - se input  hertil fra install_kubuntu
 
+.. todo dokumentation
+
+   - dokumentation med docstrings i de enkelte funktioner samt dok af parametrene
+- alle funktioner skal afslutte med sys.exit('meddelelse')
+
 .. todo udestående - måske
 
    - mysql-server konfiguration af root med pwd og en ny user (19.10 er skiftet til version 8.x)
@@ -79,9 +84,6 @@ hvis der er behov for at disse kan eksekveres fra /home/{user}/bin så laves et 
    - visual studio code
    - docker konfiguration (build af images og provisionering af databaser)
 
-.. todo dokumentation
-
-   - dokumentation med docstrings i de enkelte funktioner samt dok af parametrene
 
 anaconda jupiterlab eller spider
 ================================

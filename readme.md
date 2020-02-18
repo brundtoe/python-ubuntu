@@ -30,7 +30,8 @@ Herefter kan følgende installeres
 **Med root access**
 
 - vbox_ext_pack.py 
-- groups.py 
+- groups.py
+- chown.py (ændrer rettigheder rekursivt for et directory)
 
 **Uden root access**
 
