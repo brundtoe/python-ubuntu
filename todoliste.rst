@@ -64,13 +64,17 @@ Jinja2 templates
 ================
 Jinja2 anvendes  som template funktion, der producerer desktop entries til
 
+script **source/desktopfile.py**
+
    - freefilesync,
    - nosqlbooster,
    - postman
 
-og genererer xdebug.ini til brug for konfig af XDebug afhønig af om det er et host miljø eller en guest (vbox image skabt med vagrant eller docker)
+og genererer xdebug.ini til brug for konfig af XDebug afhænig af om det er et host miljø eller en guest (vbox image skabt med vagrant)
 
    - xdebug.ini
+
+xdebug.ini
 
 .. todo alle installationsscripts skal kunne udføres som selvstændige pgm med en
 
