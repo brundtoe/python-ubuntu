@@ -60,19 +60,17 @@ hvis der er behov for at disse kan eksekveres fra /home/{user}/bin så laves et 
 
    res = subprocess.run(['chown','-R','bent:bent','/home/bent/programs'])
 
+.. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for
 
-.. todo alle downloads skal foregå til /tmp og de to download_file må kunne refaktoreres til een
+   - freefilesync,
+   - nosqlbooster,
+   - postman
+   - xdebug.ini
 
-   - install_php.py anvender moduler/download_file.py
-   - fileOperations indeholder en funktion download_file.py og fetch_archive
+.. todo alle installationsscripts skal kunne udføres som selvstændige pgm med en
 
-.. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for freefilesyn og nosqlbooster samt postman
-
-.. todo download debian .deb file og installer med dpkg skal anvende /tmp
-
-   - puppet_repo_install (fileoperations download_file)
-   - install_smartgit (anvender requests)
-   - install_vagrant (anvender requests, da der foretages redirect undervejs)
+   - if __name__ == __main__
+   - se input  hertil fra install_kubuntu
 
 .. todo udestående - måske
 
