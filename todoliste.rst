@@ -60,11 +60,16 @@ hvis der er behov for at disse kan eksekveres fra /home/{user}/bin så laves et 
 
    res = subprocess.run(['chown','-R','bent:bent','/home/bent/programs'])
 
-.. todo der skal med jinja2 eller tilsvarende laves en template med desktopfiles for
+Jinja2 templates
+================
+Jinja2 anvendes  som template funktion, der producerer desktop entries til
 
    - freefilesync,
    - nosqlbooster,
    - postman
+
+og genererer xdebug.ini til brug for konfig af XDebug afhønig af om det er et host miljø eller en guest (vbox image skabt med vagrant eller docker)
+
    - xdebug.ini
 
 .. todo alle installationsscripts skal kunne udføres som selvstændige pgm med en

@@ -5,7 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/source" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/source/moduler" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (installation)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (python-ubuntu)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
