@@ -35,34 +35,13 @@ Python udgaven af find VirtualBox versionen via VBoxManage::
 
 Efter installation af VirtualBox Extension Package findes Guest additions i **/usr/share/virtualbox/VBoxGuestAdditions.iso**
 
-- Det er kun i mappen demos at modulet **requests** er anvendt. Derfor kan installationen udføres, når repo er clonet til maskinen, der skal installeres og konfigureres
-
 **requests** er nødvendig for at der kan foretages follow_redirect ved download
 
 Ref. https://requests.readthedocs.io/en/master/user/quickstart/#redirection-and-history
 
-download og udpakning af arkiver
-================================
-
-- jetbrains toolbox
-- packer
-- postman
-- freefilesync
-
-Udføre uden anvendelse af root
-
-hvis der er behov for at disse kan eksekveres fra /home/{user}/bin så laves et link herfra til programmet.
-
-.. todo chown af et directory med undermapper
-
-- Se demos/chown.py
-- alternativ::
-
-   res = subprocess.run(['chown','-R','bent:bent','/home/bent/programs'])
-
 Jinja2 templates
 ================
-Jinja2 anvendes  som template funktion, der producerer desktop entries til
+Jinja2 anvendes som template funktion, der producerer desktop entries til
 
 script **source/desktopfile.py**
 
@@ -70,9 +49,8 @@ script **source/desktopfile.py**
    - nosqlbooster,
    - postman
 
-
-Desktop items
-=============
+Desktop items (KDE)
+===================
 
 .. note:: Når KDE anvendes som GUI så kan man
 
@@ -83,36 +61,31 @@ Desktop items
       - basic link, som kan oprette link til fil eller mappe.
       - link to applikation, som opretter et gnome desktop entry
 
+script xdebug_ini.py
+====================
 
-.. todo script som installerer freefilesync, nosqlbooster og postman skal også oprette desktop items.
+Genererer xdebug.ini til brug for konfig af XDebug afhænig af om det er et host miljø eller en guest (vbox image skabt med vagrant)
 
-
-    - images manlger i repositoriet er det .gitignore
-      
-script **xdebug_ini.py** genererer xdebug.ini til brug for konfig af XDebug afhænig af om det er et host miljø eller en guest (vbox image skabt med vagrant)
+Udestående opgaver
+==================
 
 .. todo alle installationsscripts skal kunne udføres som selvstændige pgm med en
 
-   - if __name__ == __main__
-   - se input  hertil fra install_kubuntu
    - #!/usr/bin/env python3
-
-.. todo samlet afprøvning og beskrivelse i readme filen af hvordan en konfiguration udføres.
-
-   - Herunder manuel oprettelse af desktop entries for at få input til scripts
+   - if __name__ == __main__
+   - se input  til **if** statement fra install_kubuntu
 
 .. todo dokumentation
 
    - dokumentation med docstrings i de enkelte funktioner samt dok af parametrene
 - alle funktioner skal afslutte med sys.exit('meddelelse')
 
-.. todo udestående - måske
+.. todo måske
 
    - mysql-server konfiguration af root med pwd og en ny user (19.10 er skiftet til version 8.x)
    - laravel/homestead
    - visual studio code
    - docker konfiguration (build af images og provisionering af databaser)
-
 
 anaconda jupiterlab eller spider
 ================================
@@ -121,8 +94,8 @@ anaconda jupiterlab eller spider
 
 - ryd op i mappen source/demos
 
-Opdater PyCharm
-===============
+.. todo Opdater PyCharm
+
 
 apt-key fingerprints
 ====================
@@ -136,16 +109,10 @@ viser oplysninger om docker key, kan placeres i repository.ini udføres og tjekk
 verifikation af donwlodede filer med sha256sum
 ==============================================
 
-Eksekvering af scripts fra CLI
-==============================
-
-Scripts skal hvor relevant kunne aktivers fra command line
-
 Tjek alle exceptions
 ====================
 
 - find Exceptions
-- lav custom exceptions
 
 testcases med unittest
 ======================
