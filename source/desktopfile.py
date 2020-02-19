@@ -16,13 +16,15 @@ def create_desktop_file(program, tmpl, user):
 
     outfile = f'/home/{user}/Desktop/{program}.desktop'
     output = template.render(user=user)
-    print(output)
+    # print(output)
     with open(outfile,'wt') as fout:
         fout.write(output)
 
 if __name__ == '__main__':
-    program = 'FreeFileSync'
-    #program = 'NoSQLBooster'
-    tmpl = f'{program}.jinja'
-    user = fetch_config('../config/config.ini')['Common']['user']
-    create_desktop_file(program, tmpl, user)
+    configs = fetch_config('../config/config.ini')
+    programs = configs['desktop.items']
+    user = configs['Common']['user']
+    for item in programs:
+        program = programs[item]
+        tmpl = f'{program}.jinja'
+        create_desktop_file(program, tmpl, user)
