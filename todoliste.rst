@@ -70,6 +70,10 @@ script **source/desktopfile.py**
    - nosqlbooster,
    - postman
 
+
+Desktop items
+=============
+
 .. note:: Når KDE anvendes som GUI så kan man
 
    - tilføje en fil herunder programmer til en aktivitet i en folder widget
@@ -80,12 +84,18 @@ script **source/desktopfile.py**
       - link to applikation, som opretter et gnome desktop entry
 
 
+.. todo script som installerer freefilesync, nosqlbooster og postman skal også oprette desktop items.
+
+
+    - images manlger i repositoriet er det .gitignore
+      
 script **xdebug_ini.py** genererer xdebug.ini til brug for konfig af XDebug afhænig af om det er et host miljø eller en guest (vbox image skabt med vagrant)
 
 .. todo alle installationsscripts skal kunne udføres som selvstændige pgm med en
 
    - if __name__ == __main__
    - se input  hertil fra install_kubuntu
+   - #!/usr/bin/env python3
 
 .. todo samlet afprøvning og beskrivelse i readme filen af hvordan en konfiguration udføres.
 

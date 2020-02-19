@@ -30,7 +30,7 @@ Herefter kan følgende installeres
 
 - vbox_ext_pack.py 
 - groups.py
-- chown.py (ændrer rettigheder rekursivt for et directory)
+
 
 **Uden root access**
 
@@ -39,7 +39,9 @@ Herefter kan følgende installeres
 - install_packer.py
 - install_postman.py
 - install_freefilesync.py
-- xdebug.ini
+- install_nosqlbooster.py
+
 - desktopfiles.py for FreeFileSync og NoSQLBooster
 
-
+**med root efter ovenstående**
+- chown.py (ændrer rettigheder rekursivt for et directory)

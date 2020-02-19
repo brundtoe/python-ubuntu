@@ -21,8 +21,8 @@ def create_desktop_file(program, tmpl, user):
         fout.write(output)
 
 if __name__ == '__main__':
-    #program = 'FreeFileSync'
-    program = 'NoSQLBooster'
+    program = 'FreeFileSync'
+    #program = 'NoSQLBooster'
     tmpl = f'{program}.jinja'
     user = fetch_config('../config/config.ini')['Common']['user']
     create_desktop_file(program, tmpl, user)

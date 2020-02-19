@@ -35,8 +35,8 @@ if __name__ == '__main__':
     user = fetch_config('../config/config.ini')['Common']['user']
     group = 'docker'
     ##add user to existing group
-    adduser(user,'cdrom')
-    # add user og gruppe
+    adduser(user,'vboxusers')
+    # modificer user 
     usermod(user,group)
 
 
