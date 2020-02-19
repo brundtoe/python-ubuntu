@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Installation af Composer, konfiguration af XDebug
 
 import sys, os, shutil
@@ -6,6 +7,7 @@ from moduler.fileOperations import fetch_config
 from moduler.sha256sum import hash_file
 from install_programs import install_programs
 from moduler.download_file import fetch_file
+from xdebug_ini import create_xdebug_ini
 
 def install_php(configs):
     print('Installation af PHP moduler')
@@ -22,8 +24,10 @@ def install_php(configs):
     print('konfiguration af XDebug')
     version = configs['Common']['php-version']
     xdebug_host = configs['Common']['xdebug-host']
-    srcfile = f'../config/{xdebug_host}'
+    create_xdebug_ini('xdebug.jinja',xdebug_host)
+    srcfile = f'../config/xdebug.ini'
     config_xdebug(version, srcfile)
+    
     print('Konfiguration af php.ini')
     php_components = ['cli', 'cgi', 'fpm']
     version = configs['Common']['php-version']
@@ -64,11 +68,12 @@ def install_composer(url, sha256url, user):
 
 def config_xdebug(version, srcfile):
     dstdir = f'/etc/php/{version}/mods-available'
-    dstfile = f'{dstdir}/xdebug_docker.ini'
-    if not os.path.exists(dstdir):
-        os.makedirs(dstdir)
+    dstfile = f'{dstdir}/xdebug.ini'
+
     try:
-        res = shutil.copyfile(srcfile, dstfile)
+        if not os.path.exists(dstdir):
+            os.makedirs(dstdir)
+        shutil.copyfile(srcfile, dstfile)
     except Exception as err:
         print(err)
         raise Exception
