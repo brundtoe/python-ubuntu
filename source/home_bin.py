@@ -15,6 +15,11 @@ def homebin(user):
 
     shutil.copyfile('../config/.vimrc',f'{home}/.vimrc')
 
+    dstdir = f'/home/{user}/bin/images'
+    srcdir = '../images'
+    if not os.path.exists(dstdir):
+        shutil.copytree(srcdir,dstdir)
+
 if __name__ == '__main__':
     filename = '../config/config.ini'
     configs = fetch_config(filename)

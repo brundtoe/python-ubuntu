@@ -3,7 +3,7 @@ Opgaveliste
 
 nodejs
 ------
-Bliver ikke installret i den nyere udgave fordi nodejs allerede er installeret på Kubuntu.
+Bliver ikke installeret i den nyere udgave fordi nodejs allerede er installeret på Kubuntu.
 
 - kan løses ved som afslutning på installationen at udføre en apt update && apt upgrade scriptet **apt_update.py**
 
