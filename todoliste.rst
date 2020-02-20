@@ -69,18 +69,7 @@ Genererer xdebug.ini til brug for konfig af XDebug afhænig af om det er et host
 Udestående opgaver
 ==================
 
-.. todo alle installationsscripts skal kunne udføres som selvstændige pgm med en
-
-   - #!/usr/bin/env python3
-   - if __name__ == __main__
-   - se input  til **if** statement fra install_kubuntu
-
-.. todo dokumentation
-
-   - dokumentation med docstrings i de enkelte funktioner samt dok af parametrene
-- alle funktioner skal afslutte med sys.exit('meddelelse')
-
-.. todo måske
+Opgaver som afventer at der bliver behov for scripts
 
    - mysql-server konfiguration af root med pwd og en ny user (19.10 er skiftet til version 8.x)
    - laravel/homestead
