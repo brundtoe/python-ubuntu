@@ -1,9 +1,17 @@
+#!/usr/bin/env python3
+#
 import os, shutil
 from moduler.fileOperations import fetch_config
 import requests
 
 def install_nosqlbooster(url, user, version):
-
+    """
+    Installation af NoSQLBooster
+    :param url: path til programmet
+    :param user: user account hvor installationen foregår
+    :param version: NoSQLBooster version
+    :return: void
+    """
     try:
         req = requests.get(url, allow_redirects=True, stream=True)
         outfile = f'/home/{user}/bin/{url.split("/")[-1]}'

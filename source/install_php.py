@@ -10,6 +10,11 @@ from moduler.download_file import fetch_file
 from xdebug_ini import create_xdebug_ini
 
 def install_php(configs):
+    """
+    Installation af PHP og PHP moduler, Composer og konfiguration af XDebug
+    :param configs: parametre fra config/config.ini
+    :return:
+    """
     print('Installation af PHP moduler')
     programs = configs['php.install']
     options = configs['Common']['install_options']

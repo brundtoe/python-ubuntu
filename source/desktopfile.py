@@ -1,5 +1,8 @@
+#!/usr/bin/env python3
+import sys
 from jinja2 import Environment, FileSystemLoader
 from moduler.fileOperations import fetch_config
+
 
 def create_desktop_file(program, tmpl, user):
     """
@@ -9,16 +12,21 @@ def create_desktop_file(program, tmpl, user):
     :param user:    user konto hvor desktop file skal placeres
     :return:        void
     """
-    file_loader = FileSystemLoader('../templates')
-    env = Environment(loader=file_loader)
+    try:
+        file_loader = FileSystemLoader('../templates')
+        env = Environment(loader=file_loader)
 
-    template = env.get_template(tmpl)
+        template = env.get_template(tmpl)
 
-    outfile = f'/home/{user}/Desktop/{program}.desktop'
-    output = template.render(user=user)
-    # print(output)
-    with open(outfile,'wt') as fout:
-        fout.write(output)
+        outfile = f'/home/{user}/Desktop/{program}.desktop'
+        output = template.render(user=user)
+        # print(output)
+        with open(outfile, 'wt') as fout:
+            fout.write(output)
+    except Exception as err:
+        print(err)
+        sys.exit('Kan ikke generere desktopfile for {program')
+
 
 if __name__ == '__main__':
     configs = fetch_config('../config/config.ini')

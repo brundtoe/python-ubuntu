@@ -1,9 +1,16 @@
+#!/usr/bin/env python3
+#
 # installation af Postman
 
 from moduler.fileOperations import fetch_config, fetch_archive
 
 
 def install_postman(configs):
+    """
+    Installation af Postman til test af REST API
+    :param configs: parametre fra config.ini
+    :return: void
+    """
 
     url = configs['postman.com']['url']
     user = configs['Common']['user']

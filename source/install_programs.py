@@ -1,20 +1,40 @@
-# tjek for installation
+#!/usr/bin/env python3
+#
 import sys, os, shlex
 import subprocess
 from moduler.fileOperations import fetch_config
 
+
 def is_installed(program):
+    """
+    Kontrol af om et progrma er installeret
+    :param program: programnavn
+    :return: True hvis installeret ellers False
+    """
     cmd = shlex.split(f"dpkg -s {program}")
     res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return res.returncode is 0
 
+
 def install_program(program, options):
-    """Installation af et enkelt program"""
+    """
+    Installation af et enkelt program
+    :param program: programnavn
+    :param options: optioner
+    :return: True hvis installationen er udført ellers False
+    """
     cmd = shlex.split(f"apt install {options} {program}")
-    res = subprocess.run(cmd, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+    res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return res.returncode is 0
 
+
 def install_programs(programs, options):
+    """
+    Installer et antal programmer
+    :param programs: fra en configparser fra config.ini
+    :param options: installationsoptioner fra config.ini
+    :return: void
+    """
     for program in programs:
         if is_installed(program):
             continue
@@ -28,6 +48,7 @@ def install_programs(programs, options):
         else:
             print('programmet', program, 'er installeret - returkode')
 
+
 if __name__ == '__main__':
     if os.geteuid() != 0:
         sys.exit('Scritet skal udføres  med root access')
@@ -35,4 +56,4 @@ if __name__ == '__main__':
     configs = fetch_config('../config/config.ini')
     programs = configs['programs']
     options = configs['Common']['install_options']
-    install_programs(programs,options)
+    install_programs(programs, options)

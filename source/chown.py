@@ -1,6 +1,9 @@
+#!/usr/bin/env python3
 import shutil
 import sys, os
-from moduler.fileOperations import  fetch_config
+from moduler.fileOperations import fetch_config
+
+
 # res = subprocess.run(['chown','-R','bent:bent','/home/bent/programs'])
 def change_owner(path, user):
     """
@@ -9,14 +12,18 @@ def change_owner(path, user):
     :param user: user som skal have rettighederne
     :return: void
     """
+    try:
+        for root, dirs, files in os.walk(path):
+            for momo in dirs:
+                dirname = os.path.join(root, momo)
+                shutil.chown(dirname, user, user)
+            for file in files:
+                filename = os.path.join(root, file)
+                shutil.chown(filename, user, user)
+    except Exception as err:
+        print(err)
+        sys.exit('Kan ikke ændre rettighederne')
 
-    for root, dirs, files in os.walk(path):
-        for momo in dirs:
-            dirname = os.path.join(root, momo)
-            shutil.chown(dirname, user, user)
-        for file in files:
-            filename = os.path.join(root, file)
-            shutil.chown(filename, user, user)
 
 if __name__ == '__main__':
     if os.geteuid() != 0:
@@ -24,4 +31,4 @@ if __name__ == '__main__':
     #
     user = fetch_config('../config/config.ini')['Common']['user']
     path = f'/home/{user}/programs'
-    change_owner(path,user)
+    change_owner(path, user)

@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+#
+# Installation af Vagrant
+#
 import sys,os
 import subprocess
 from moduler.fileOperations import fetch_config, install_dpkg
