@@ -28,6 +28,7 @@ requirements.txt indeholder pt.
 
 - requests og 
 - jinja2
+- Sphinx
     
 Herefter kan følgende installeres  
 
