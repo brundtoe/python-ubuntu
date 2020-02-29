@@ -9,8 +9,7 @@ def download_urllib(url, outfile):
     :return: true on success
     """
     try:
-        with urlopen(url) as response:
-            with open(outfile, "w+b") as f:
+        with urlopen(url) as response, open(outfile, "w+b") as f:
                 res = response.read()
                 f.write(res)
     except FileNotFoundError as err:
@@ -22,5 +21,6 @@ def download_urllib(url, outfile):
 
 if __name__ == "__main__":
     url = 'https://sphinxdoc.brundtoe.dk/esprimo.html'
-    outfile = "../../outfile/esprimo.html"
+    local_filename = url.split('/')[-1]
+    outfile = f'../../outfile/{local_filename}'
     download_urllib(url,outfile)
