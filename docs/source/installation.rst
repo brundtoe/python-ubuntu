@@ -140,6 +140,7 @@ Supplerende installationer
 ==========================
 Afhængig af maskinens avendelse kan følgende udføres **Uden root access**:
 
+- install_php.py
 - install_jetbrains.py
 - install_vagrant.py
 - install_packer.py
