@@ -7,6 +7,17 @@ Bliver ikke installeret i den nyere udgave fordi nodejs allerede er installeret 
 
 - kan løses ved som afslutning på installationen at udføre en apt update && apt upgrade scriptet **apt_update.py**
 
+
+mongodb
+-------
+service bliver ikke startet efter installationen fordi den er disabled
+
+der skal udføres::
+
+    sudo systemctl enabled mongod #enabler autostart ved boot
+    sudo systemctl start mongod
+    
+
 automatisering af de manuelle processer
 =======================================
 
@@ -31,7 +42,7 @@ Python udgaven af find VirtualBox versionen via VBoxManage::
    version = re.search('\d{1,2}\.\d{1,2}\.\d{1,2}',res.stdout.decode('utf-8'))
    print(version.group(0))
 
-.. note:: awk kan ikke anvende syntaksen med \\d men skal i stedet anvnede [0-9].
+.. note:: awk kan ikke anvende syntaksen med \\d men skal i stedet anvende [0-9].
 
 Efter installation af VirtualBox Extension Package findes Guest additions i **/usr/share/virtualbox/VBoxGuestAdditions.iso**
 
