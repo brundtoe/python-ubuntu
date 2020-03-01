@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys, os
-from fileOperations import addLine
+from moduler.fileOperations import addLine
 
 """
 Scriptet tilføjer fs.inotify.max_user_watches til 99-local.conf 

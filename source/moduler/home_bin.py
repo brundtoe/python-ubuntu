@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 #
 import os, shutil
-from fileOperations import fetch_config
-
 
 def homebin(user):
     """
@@ -21,16 +19,14 @@ def homebin(user):
         os.mkdir(programsdir, 0o755)
         shutil.chown(programsdir, user, user)
 
-    shutil.copyfile('../../config/.vimrc', f'{home}/.vimrc')
-
+        
+    try:
+        shutil.copyfile('../config/.vimrc', f'{home}/.vimrc')
+    except Exception as err:
+        print(err)
+        sys.exit('kan ikke kopiere .vimrc')
+        
     dstdir = f'/home/{user}/bin/images'
     srcdir = '../images'
     if not os.path.exists(dstdir):
         shutil.copytree(srcdir, dstdir)
-
-
-if __name__ == '__main__':
-    filename = '../../config/config.ini'
-    configs = fetch_config(filename)
-    user = configs['Common']['user']
-    homebin(user)

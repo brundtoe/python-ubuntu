@@ -3,7 +3,7 @@
 import sys, os
 import subprocess
 
-from fileOperations import download_file, fetch_config
+from moduler.fileOperations import download_file, fetch_config
 
 
 def puppet_repo(url):

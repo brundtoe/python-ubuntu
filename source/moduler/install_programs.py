@@ -2,7 +2,7 @@
 #
 import sys, os, shlex
 import subprocess
-from fileOperations import fetch_config
+from moduler.fileOperations import fetch_config
 
 
 def is_installed(program):

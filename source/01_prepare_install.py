@@ -87,6 +87,7 @@ try:
     user = configs['Common']['user']
     homebin(user)
 except Exception as err:
+    print(err)
     sys.exit(f'Der opstod fejl ved oprettelse af /home/{user}/bin')
 else:
     print(f'/home/{user}/bin er opdateret')

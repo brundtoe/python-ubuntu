@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys, os, shutil
-from fileOperations import fetch_config
+from moduler.fileOperations import fetch_config
 
 
 def add_mountpoints(user, mount_points):

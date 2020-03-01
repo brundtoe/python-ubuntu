@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 import sys, os
-from fileOperations import addLine, fetch_config
+from moduler.fileOperations import addLine, fetch_config
 
 
 def update_fstab(mount_string, mount_points, fstab):
