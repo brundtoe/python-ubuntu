@@ -10,6 +10,7 @@ Python Vejledninger
    :maxdepth: 2
    :caption: Contents:
 
+   installation
    download-files
 
 Indices and tables

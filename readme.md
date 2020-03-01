@@ -2,6 +2,8 @@
 
 Enkeltstående scripts til brug ved konfiguration af et Ubuntu eller Kubuntu image.
 
+Detaljer fremgår af dokumentationen i mappen docs.
+
 ## Forbered installationen
 
 - Der oprettes i mappen **infile** filen **.env.develop** med password til**wdmycloud**
@@ -21,8 +23,6 @@ Der anvendes ExtendedInterpolation i moduler/fetch_config
     cd /python-ubuntu
     sudo apt install -y python3-pip
     sudo pip install -r requirements.txt
-    cd source
-    sudo ./install_kubuntu.py
 
 requirements.txt indeholder pt. 
 
@@ -30,9 +30,14 @@ requirements.txt indeholder pt.
 - jinja2
 - Sphinx
     
-Herefter kan følgende installeres  
+Herefter kan følgende scripts udføres  
 
 **Med root access**
+
+* 01_prepare_install.py
+* 02_install_requirements
+* 03_install_repositories
+* 04_install_extra
 
 - vbox_ext_pack.py 
 - groups.py
