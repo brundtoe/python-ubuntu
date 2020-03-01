@@ -4,7 +4,7 @@ import sys, os
 from moduler.fileOperations import fetch_config
 
 
-# res = subprocess.run(['chown','-R','bent:bent','/home/bent/programs'])
+# res = subprocess.run(['chown','-R','jackie:jackie','/home/jackie/programs'])
 def change_owner(path, user):
     """
     Ændrer rettigheder rekursivt for et directory
