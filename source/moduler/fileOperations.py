@@ -31,7 +31,7 @@ def download_file(url):
         req = requests.get(url, allow_redirects=True, stream=True)
         outfile = f'/tmp/{url.split("/")[-1]}'
         with open(outfile, 'wb') as fd:
-            for chunk in req.iter_content(chunk_size=4096):
+            for chunk in req.iter_content(chunk_size=8192):
                 fd.write(chunk)
         return outfile
     except Exception as err:

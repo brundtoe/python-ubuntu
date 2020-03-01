@@ -46,7 +46,7 @@ def install_programs(programs, options):
             raise Exception
             sys.exit(f'Installation af {program} er fejlet')
         else:
-            print('programmet', program, 'er installeret - returkode')
+            print('programmet', program, 'er installeret')
 
 
 if __name__ == '__main__':

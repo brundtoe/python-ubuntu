@@ -5,7 +5,7 @@ import sys, os, shutil
 from fileinput import FileInput
 from moduler.fileOperations import fetch_config
 from moduler.sha256sum import hash_file
-from install_programs import install_programs
+from moduler.install_programs import install_programs
 from moduler.download_file import fetch_file
 from xdebug_ini import create_xdebug_ini
 
