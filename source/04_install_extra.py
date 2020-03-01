@@ -4,8 +4,7 @@
 #
 # Inden scriptet runnes oprettes i mappen infile filen -env med password til wdmycloud
 #
-import sys, os, shlex
-from subprocess import run
+import sys, os
 from moduler.fileOperations import fetch_config
 
 configs = ''
@@ -21,7 +20,7 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
-from install_programs import install_programs
+from moduler.install_programs import install_programs
 try:
     programs = configs['extra.programs']
     options = configs['Common']['install_options']

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 import sys, os
-from moduler.fileOperations import addLine, fetch_config
+from fileOperations import addLine, fetch_config
 
 
 def update_fstab(mount_string, mount_points, fstab):
@@ -26,7 +26,7 @@ if __name__ == '__main__':
     if os.geteuid() != 0:
         sys.exit('Scriptet skal udføres med root access')
 
-    filename = '../config/config.ini'
+    filename = '../../config/config.ini'
     configs = fetch_config(filename)
     mount_string = configs['Common']['mount_string']
     mount_points = configs['mount.points']

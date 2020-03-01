@@ -31,7 +31,7 @@ else:
     print(f'timezone er sat til {timezone}')
 
 
-from add_mountpoints import add_mountpoints
+from moduler.add_mountpoints import add_mountpoints
 try:
     user = configs['Common']['user']
     mount_points = configs[configs['Common']['host']]
@@ -50,7 +50,7 @@ except Exception as err:
 else:
     print('Mount points for wdmycloud er tilføjet')
 
-from smbcredentials import smbcredentials
+from moduler.smbcredentials import smbcredentials
 try:
     user = configs['Common']['user']
     filename = '../config/.env_develop'
@@ -61,7 +61,7 @@ except Exception as err:
 else:
     print('~/.smbcredentials er opdateret med mountpoint')
 
-from fstab_update import update_fstab
+from moduler.fstab_update import update_fstab
 try:
     mount_string = configs['Common']['mount_string']
     mount_points = configs['mount.points']
@@ -82,7 +82,7 @@ except Exception as err:
 else:
     print(f'{filename} er opdateret med {text}')
 
-from home_bin import homebin
+from moduler.home_bin import homebin
 try:
     user = configs['Common']['user']
     homebin(user)
@@ -91,7 +91,7 @@ except Exception as err:
 else:
     print(f'/home/{user}/bin er opdateret')
 
-from apt_update import apt_update
+from moduler.apt_update import apt_update
 try:
     apt_update()
 except Exception as err:

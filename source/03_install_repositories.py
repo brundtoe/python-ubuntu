@@ -20,7 +20,7 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
-from install_repo import install_repo
+from moduler.install_repo import install_repo
 try:
     url = configs['mongodb.org']['repo_key']
     program = 'mongodb'
@@ -62,7 +62,7 @@ except Exception as err:
 else:
     print(f'{program} repository er installeret')
 
-from puppet_repo_install import puppet_repo
+from moduler.puppet_repo_install import puppet_repo
 try:
     url = configs['puppetlabs.com']['repo']
     puppet_repo(url)
@@ -72,7 +72,7 @@ except Exception as err:
 else:
     print('Puppet repository er installeret')
 
-from nodejs_repo_install import nodejs_repo
+from moduler.nodejs_repo_install import nodejs_repo
 try:
     url = configs['nodejs.org']['repo']
     nodejs_repo(url)

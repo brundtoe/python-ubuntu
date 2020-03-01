@@ -3,7 +3,7 @@
 import sys, os
 import subprocess
 
-from moduler.fileOperations import download_file, fetch_config
+from fileOperations import download_file, fetch_config
 
 
 def puppet_repo(url):
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     if os.geteuid() != 0:
         sys.exit('Script skal udføres med root adgang')
     try:
-        configs = fetch_config('../config/config.ini')
+        configs = fetch_config('../../config/config.ini')
         url = configs['puppetlabs.com']['repo']
         puppet_repo(url)
         print('Puppet repository er installeret')

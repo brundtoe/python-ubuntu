@@ -2,7 +2,7 @@
 #
 import sys, os
 from subprocess import run
-from moduler.fileOperations import download_file
+from fileOperations import download_file
 
 
 def nodejs_repo(url):

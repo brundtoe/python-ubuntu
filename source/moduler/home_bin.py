@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 import os, shutil
-from moduler.fileOperations import fetch_config
+from fileOperations import fetch_config
 
 
 def homebin(user):
@@ -21,7 +21,7 @@ def homebin(user):
         os.mkdir(programsdir, 0o755)
         shutil.chown(programsdir, user, user)
 
-    shutil.copyfile('../config/.vimrc', f'{home}/.vimrc')
+    shutil.copyfile('../../config/.vimrc', f'{home}/.vimrc')
 
     dstdir = f'/home/{user}/bin/images'
     srcdir = '../images'
@@ -30,7 +30,7 @@ def homebin(user):
 
 
 if __name__ == '__main__':
-    filename = '../config/config.ini'
+    filename = '../../config/config.ini'
     configs = fetch_config(filename)
     user = configs['Common']['user']
     homebin(user)

@@ -2,8 +2,7 @@
 #
 import sys
 import subprocess
-from moduler.fileOperations import download_file
-
+from fileOperations import download_file
 
 def install_repo(url, program, content):
     """

@@ -2,7 +2,7 @@
 #
 import sys, os, shutil
 import argparse
-from moduler.fileOperations import fetch_config
+from fileOperations import fetch_config
 
 
 def smbcredentials(user, password):
@@ -29,6 +29,6 @@ if __name__ == '__main__':
     if not args.password:
         sys.exit('Der skal overføres et password')
 
-    filename = '../config/config.ini'
+    filename = '../../config/config.ini'
     user = fetch_config(filename)['Common']['user']
     smbcredentials(user, args.password)

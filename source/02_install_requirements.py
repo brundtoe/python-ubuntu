@@ -20,7 +20,7 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
-from apt_update import apt_update
+from moduler.apt_update import apt_update
 try:
     apt_update()
 except Exception as err:
@@ -28,7 +28,7 @@ except Exception as err:
 else:
     print('apt-get update og apt-get upgrade udført')
 
-from install_programs import install_programs
+from moduler.install_programs import install_programs
 try:
     programs = configs['programs']
     options = configs['Common']['install_options']
