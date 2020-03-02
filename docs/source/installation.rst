@@ -75,6 +75,16 @@ Repositoriet clones::
    cd sourcecode
    git clone git@github.com:brundtoe/python-ubuntu.git
 
+Python moduler installeres::
+
+   cd python-ubuntu
+   sudo apt install -y python3-pip
+   sudo pip3 install -r requirements.txt
+
+.. note:: Installation foretages med systemets default python installation.
+
+   Programudvikling foretages med virtuelle environments.
+
 Opdatering af konfigurationsfilen
 =================================
 Filen **config/config.ini** indeholder konfiguriatonsoplysninger, som anvendes i de enkelte scripts. Config.ini indlæses med Python modulet Configparser.
