@@ -11,87 +11,78 @@ vmware er ikke supporteret på Manjaro
 
 På Manjaro virtuelle maskiner anvendes kun docker ej virtualbox med vagrant. 
 
-Alternativet er at anvende den virutelle maskine med Manajro som host.
+Alternativet er at anvende den virtuelle maskine med Manajro som host.
 
 installation af sw foretages med Pacman
 
+- et programs dependencies findes i appen der anvendes til program adminsitratiopn og på archlinux.org/packages  
 
+hvad svarer til apt install -y
 
-Hvad hedder det i Manjaro
-- apt policy
-- apt get 
-- apt install
-- hvordan tjekkes om et program er installeret
-- et programs dependencies findes på archlinux.org/packages
-- hvad svarer til apt install -y
+pacman -S --noconfirm gcc installation uden confirmation anvendes i scripts
 
-    formentlig pacman -S --noconfirm gcc
-
-- pamac anvendes ved installation af AUR packages
 
 pacman -Syu # svarer til apt update && apt upgrade
 
 pacman Si <packagename> viser detaljeret info om en package
 
+    hvis pacman Si returnerer 1 så findes pakken ikke
+
 pacman -Qe [packagename] lister alle de explicit installerede packages
+
+pacman -S packagename installation
 
 hvis en pakke ikke er installeret returnerer pacman -Qe statuskode 1
 
 .. todo oplysningerne kan let filtreres med grep eller awk 
 
-Følgende findes i nye versioner på Manjaro
+- pamac manager eller pamac CLI anvendes ved installation af AUR packages
+
+- pamac -h viser optionerne
+
+
+Installation via script
+=======================
+
+Se Se filerne bash programs.sh og php.sh for hvilke programmer, der skal installeres
 
 - MongoDB findes grundet licens issues ikke i repository
     - https://stackoverflow.com/questions/59455725/install-mongodb-on-manjaro
 
-- VirtualBox 
-- Docker ce er blot Docker
-- docker-compose
-- Chromium
-- Puppet
-- Node.js
-- Apache
-- Nginx
-- Ansible
-- Vagrant
-- Packer
-- php modulerne er uden versionsnummer pt er det 7.4
-- php-xdebug er blot xdebug
-- sqlite3 er blot sqlite
-- python3 er blot python
-- pyton3-pip er blot python-pip
-- vscode
-
-Findes i AUR alternativ download
+Følgende Findes i AUR alternativ download
 
 - FreeFileSync
 - jetbrains toolbox
 - postman
 - nosqlbooster
-- virtualbox extension Pack
-- hplip
+- virtualbox extension Pack 
+- (se vc code på Komplett for installation af guest additions)
 - mysql-server er blot mysql (mariadb findes i repo extra)
 - openresty
+- hplip findes på extra i en minimal version
 
-
-Hvad anvendes i stedet for hvis nødvendigt
+Hvad anvendes - hvis nødvendigt - i stedet for nedenstående
 
 - g++
 - build-essential
-- gdebi
+- gdebi (Ikke relevant da det er debian pakke værktøj=)
 - libsqlite-dev
 - libmysqlclient-dev=
 - apt-transport-http (er det til nodejs download som er overflødig)
 - software-properties-common
 
+Konfigurationsfiler
+===================
 
 hvor findes
+
 - php config filer
 - apache config filer
 - nginx config filer
 - mongodb database og konfig
 
 Tjek i linux PyCharm vejl for konfig oplysninger o.lign. under
+
 - linux installation
 - databaser
 - udviklingsværktøjer
