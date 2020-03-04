@@ -156,9 +156,38 @@ Apache
     sudo systemctl start httpd
 
 - hvis man undlader enable så kan installationen leve ved siden af nginx som heller ikke må enables    
-    
-- nginx config filer
-- mongodb database og konfig
+
+.. todo: apache med php
+
+Nginx
+=====
+- konfig filer i /etc/nginx
+- docroot: /usr/share/nginx/html
+- php-fpm konfig findes i /etc/php
+
+.. todo: nginx med php
+
+mariadb og mysql-workbench
+==========================
+- mariadb skal startes med::
+
+    sudo systemctl start mariadb
+    sudo systemctl enable mariadb
+
+- Hvad er default password for root?
+
+
+MongoDB
+=======
+- installeres fra AUR
+
+Docker
+======
+- er installeret
+- skal startes med
+
+    sudo systemctl start docker
+    sudo sysdtemctl enable docker
 
 Afprøvninger
 ============
