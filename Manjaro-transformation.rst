@@ -15,7 +15,7 @@ Alternativet er at anvende den virtuelle maskine med Manajro som host.
 
 installation af sw foretages med Pacman
 
-- et programs dependencies findes i appen der anvendes til program adminsitratiopn og på archlinux.org/packages  
+- et programs dependencies findes i appen der anvendes til program administration og på archlinux.org/packages  
 
 hvad svarer til apt install -y
 
@@ -145,7 +145,18 @@ Udestående installationer
 - afprøvning af mariadb
 - evt intallation af mysql fra AUR
 
-- apache config filer
+Apache
+======
+- Det er standard installationen fra https://httpd.apache.org
+- Installationen findes i /etc/httpd hvor der er et sæt konfigurationsfiler
+- standard docroot er i /srv/http
+- serveren skal enables og startes
+
+    sudo systemctl enable httpd
+    sudo systemctl start httpd
+
+- hvis man undlader enable så kan installationen leve ved siden af nginx som heller ikke må enables    
+    
 - nginx config filer
 - mongodb database og konfig
 
