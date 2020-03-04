@@ -33,37 +33,39 @@ ca-certificates
 hplip-minimal
 mariadb
 mysql-workbench
-keepass
-filezilla
-bleachbit
 nodejs-lts-erbium
-chromium
-firefox
-gimp
-vlc
-code
 docker
 docker-compose
-chromium
-virtualbox
-puppet
-apache
-nginx
-ansible
-vagrant
-packer
+firefox
+#chromium
+#chromium
+#keepass
+#filezilla
+#bleachbit
+#gimp
+#vlc
+#code
+#virtualbox
+#puppet
+#ansible
+#vagrant
+#packer
 "
 
 set +e
 for package in $PACKAGES
 do
-    # pacman -Qi $package  > /dev/null 2>&1
-    pacman -S $package --noconfirm  > /dev/null 2>&1
-    if [ $? -ne "0" ]; then
-        printf "Package $package kan ikke installeres *****\n"
+
+    pack=${package:0:1}
+    if [ $pack = "#" ]; then
+        printf "fundet $package\n"
     else
-        printf "$package OK\n"
+        pacman -S $package --noconfirm > /dev/null 2>&1
+        if [ $? -ne "0" ]; then
+            printf "Package ${package:1} findes ikke *******\n"
+        else
+            printf "$package OK\n"
+        fi
     fi
-done
-set -e
+doneset -e
 
