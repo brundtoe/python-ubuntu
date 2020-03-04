@@ -58,9 +58,9 @@ set +e
 for package in $PACKAGES
 do
     # pacman -Qi $package  > /dev/null 2>&1
-    pacman -Si $package  > /dev/null 2>&1
+    pacman -S $package --noconfirm  > /dev/null 2>&1
     if [ $? -ne "0" ]; then
-        printf "Package $package findes ikke *****\n"
+        printf "Package $package kan ikke installeres *****\n"
     else
         printf "$package OK\n"
     fi

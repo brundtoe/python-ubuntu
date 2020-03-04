@@ -10,7 +10,7 @@ fi
 
 ## en række php-moduler findes som del af den af Arch Linux teamet kompilerede udgave af php
 
-#pacman -Syu --noconfirm
+pacman -Syu --noconfirm
 
 PACKAGES="php 
 php-cgi 
@@ -45,7 +45,7 @@ do
     if [ $pack = "#" ]; then
         printf "fundet $package\n"
     else    
-        pacman -Si $package > /dev/null 2>&1 
+        pacman -S $package --noconfirm > /dev/null 2>&1 
         if [ $? -ne "0" ]; then
             printf "Package ${package:1} findes ikke *******\n"
         else
