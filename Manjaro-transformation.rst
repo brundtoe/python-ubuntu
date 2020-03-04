@@ -1,4 +1,4 @@
-.. index:: Manjaro
+.. index: Manjaro
     :pair: Manjaro; Python
 
 ==========================
@@ -71,15 +71,89 @@ Hvad anvendes - hvis nødvendigt - i stedet for nedenstående
 - apt-transport-http (er det til nodejs download som er overflødig)
 - software-properties-common
 
+
+TODO Ændringer i Python scripts
+===============================
+
+01-prepare
+    - apt-update.py vil ikke fungere da Manjaro anvender pacman
+    - husk når der pulles så skal der oprettes en .env_develop med pwd til wdmycloud
+    - /home/{user}/bin skal tilføjes til ...
+02-installation
+    - bash scriptet programs.sh anvendes
+03-install repositories
+    - de pågældende repositories er opdateret i Manjaro
+    - ej relevant for Manjaro
+04-install-extra indgår i programs.sh
+    - ej relevant for Manjaro
+
+De resterende
+
+følgende indgår i bash script
+- packer
+- php 
+- vagrant
+
+Følgende installationsscripts kan udføres
+
+- jetbrains-toolbox
+- freefilesync
+- nosqlbooster
+- postman
+
+desktop items tilføjes med desktopfile.py
+
+- smartgit skal have et desktop item
+
+SmartGit Linux (tar.gz bundle)
+
+    unpack the downloaded file into a directory of your choice:
+    tar xzf <smartgit*.tar.gz>
+    start SmartGit: invoke bin/smartgit.sh
+    create SmartGit menu item: invoke
+    bin/add-menuitem.sh
+    remove SmartGit menu item: invoke
+    bin/remove-menuitem.sh
+
+afsluttende konfig
+- xdebug.ini
+- groups
+- desktopfile (Tilføj smartgit item og jinja2 template)
+- chown
+- vbox_ext_pack kun relevant for host ej for virtuel maskine
+
+DEBIAN_FRONTEND=nointeraction
+Indsættes foran eksempelvis sudo apt update    
+
 Konfigurationsfiler
 ===================
 
-hvor findes
+PHP
+- xdebug.ini findes i /etc/php/conf.d/xdebug.ini i host versionen. skal dog aktiveres da alle linjer er kommenteret ud
+- tilføj oprettelse af en index.php fil i /home/{user}/bin til brug for test af phpinfo
+- php config filer /etc/php/php.ini
+- der er tilsyneladende kun en config fil
+- php-pdo??
+- php-mysqli??
+- php-mariadb??
 
-- php config filer
+Udestående installationer
+=========================
+- mongodb
+- apache med php
+- nginx
+- afprøvning af mariadb
+- evt intallation af mysql fra AUR
+
 - apache config filer
 - nginx config filer
 - mongodb database og konfig
+
+Afprøvninger
+============
+- javascript projekter
+- php projekter
+- docker
 
 Tjek i linux PyCharm vejl for konfig oplysninger o.lign. under
 
