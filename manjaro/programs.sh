@@ -33,6 +33,8 @@ ca-certificates
 hplip-minimal
 mariadb
 mysql-workbench
+apache
+nginx
 nodejs-lts-erbium
 docker
 docker-compose

@@ -20,8 +20,6 @@ php-intl
 php-xsl
 xdebug
 composer
-apache
-nginx
 #php-cli
 #php-dom
 #php-mbstring
