@@ -229,3 +229,18 @@ Tjek i linux PyCharm vejl for konfig oplysninger o.lign. under
 - udviklingsværktøjer
 - webserver
 - docker
+
+Problem module har ikke en parent
+=================================
+ImportError: attempted relative import with no known parent package
+
+problemet opstår ikke i PyCharm, når run configuration tilføjer projektet til PYTHONPATH
+
+https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
+
+http://www.programmersought.com/article/5866305471/
+
+Fra https://docs.python.org/3.7/tutorial/modules.html#packages
+
+"Note that relative imports are based on the name of the current module. Since the name of the main module is always "__main__", modules intended for use as the main module of a Python application must always use absolute imports."
+
