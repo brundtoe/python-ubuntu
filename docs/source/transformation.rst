@@ -7,73 +7,65 @@ Transformation til Manjaro
 
 Manjaro anvendes i virtuelle maskiner (VMWare og VirtualBox) men ej på host
 
-vmware er ikke supporteret på Manjaro
+VMware er ikke supporteret på Manjaro
 
-På Manjaro virtuelle maskiner anvendes kun docker ej virtualbox med vagrant. 
+På Manjaro virtuelle maskiner anvendes kun Docker ej VirtualBox med Vagrant.
 
 Alternativet er at anvende den virtuelle maskine med Manajro som host.
 
-installation af sw foretages med Pacman
+Installation Pacman
+===================
 
-- et programs dependencies findes i appen der anvendes til program administration og på archlinux.org/packages  
+Et programs dependencies findes i appen, der anvendes til program administration og på archlinux.org/packages
 
-hvad svarer til apt install -y
+**Hent og udfør opdateringer**::
 
-pacman -S --noconfirm gcc installation uden confirmation anvendes i scripts
+    pacman -Syu
 
+.. important:: Systemet skal opdateres før enhver installation af sw packages!
 
-pacman -Syu # svarer til apt update && apt upgrade
+**Installation af en package**::
 
-pacman Si <packagename> viser detaljeret info om en package
+    pacman -S <packagename>
 
-    hvis pacman Si returnerer 1 så findes pakken ikke
+**Installation af uden bekræftelse**::
 
-pacman -Qe [packagename] lister alle de explicit installerede packages
+    pacman -S --noconfirm <packagename>
 
-pacman -S packagename installation
+**vis detaljeret info om en package**::
 
-hvis en pakke ikke er installeret returnerer pacman -Qe statuskode 1
+    pacman Si <packagename>
 
-.. todo oplysningerne kan let filtreres med grep eller awk 
+Hvis pacman Si returnerer 1 så findes pakken ikke
 
-- pamac manager eller pamac CLI anvendes ved installation af AUR packages
+**Vis alle de explicit installerede packages**::
 
-- pamac -h viser optionerne
+    pacman -Qe [packagename]
 
+Hvis en pakke ikke er installeret returnerer pacman -Qe statuskode 1
+
+Installation fra AUR
+====================
+AUR packages er brugergenererede BUILDS.
+
+Appen **Pamac Manager** eller pamac CLI anvendes ved installation af AUR packages
 
 Installation via script
 =======================
 
 Se Se filerne bash programs.sh og php.sh for hvilke programmer, der skal installeres
 
-- MongoDB findes grundet licens issues ikke i repository
+MongoDB findes grundet licens issues ikke i de officielle repositories men kun i **AUR**
     - https://stackoverflow.com/questions/59455725/install-mongodb-on-manjaro
 
-Følgende Findes i AUR alternativ download
+Python scripts
+==============
+Manjaro er en rullende Linux distibution, som opdateres med de nyeste frigivnde versioner af software packages.
 
-- FreeFileSync
-- jetbrains toolbox
-- postman
-- nosqlbooster
-- virtualbox extension Pack 
-- (se vc code på Komplett for installation af guest additions)
-- mysql-server er blot mysql (mariadb findes i repo extra)
-- openresty
-- hplip findes på extra i en minimal version
+Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen overflødige, da disse scripts anvendes for at registrere repositories for at hente nyere programversioner.
 
-Hvad anvendes - hvis nødvendigt - i stedet for nedenstående
-
-- g++
-- build-essential
-- gdebi (Ikke relevant da det er debian pakke værktøj=)
-- libsqlite-dev
-- libmysqlclient-dev=
-- apt-transport-http (er det til nodejs download som er overflødig)
-- software-properties-common
-
-
-TODO Ændringer i Python scripts
-===============================
+Følgende anvendes uændret
+    - config/config.ini afsnit [debian] hhv. [archlinux] angiver afsnit, som kun anvendes på respektive distributioner.
 
 01-prepare
     - apt-update.py vil ikke fungere da Manjaro anvender pacman
@@ -86,6 +78,32 @@ TODO Ændringer i Python scripts
     - ej relevant for Manjaro
 04-install-extra indgår i programs.sh
     - ej relevant for Manjaro
+
+
+**Følgende Findes i AUR alternativ download**
+
+- FreeFileSync
+- jetbrains toolbox
+- postman
+- nosqlbooster
+- virtualbox extension Pack 
+- (se vc code på Komplett for installation af guest additions)
+- mysql-server er blot mysql (mariadb findes i repo extra)
+- openresty
+- hplip findes på extra i en minimal version
+
+Hvad anvendes - hvis nødvendigt - i stedet for nedenstående:
+
+- g++
+- build-essential
+- gdebi (Ikke relevant da det er debian pakke værktøj=)
+- libsqlite-dev
+- libmysqlclient-dev=
+- apt-transport-http (er det til nodejs download som er overflødig)
+- software-properties-common
+
+
+
 
 De resterende
 
