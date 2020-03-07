@@ -64,21 +64,20 @@ Manjaro er en rullende Linux distibution, som opdateres med de nyeste frigivnde 
 
 Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen overflødige, da disse scripts anvendes for at registrere repositories for at hente nyere programversioner.
 
-Følgende anvendes uændret
-    - config/config.ini afsnit [debian] hhv. [archlinux] angiver afsnit, som kun anvendes på respektive distributioner.
+**config/config.ini**
+
+    - afsnit [debian] hhv. [archlinux] angiver afsnit, som kun anvendes på respektive distributioner.
 
 01-prepare
-    - apt-update.py vil ikke fungere da Manjaro anvender pacman
-    - husk når der pulles så skal der oprettes en .env_develop med pwd til wdmycloud
-    - /home/{user}/bin skal tilføjes til ...
+    - pacman anvendes i stedet for apt update && apt upgrade
+    - /home/{user}/bin tilføjes til PATH
+
 02-installation
     - bash scriptet programs.sh anvendes
 03-install repositories
-    - de pågældende repositories er opdateret i Manjaro
     - ej relevant for Manjaro
-04-install-extra indgår i programs.sh
+04-install-extra
     - ej relevant for Manjaro
-
 
 **Følgende Findes i AUR alternativ download**
 
@@ -86,9 +85,9 @@ Følgende anvendes uændret
 - jetbrains toolbox
 - postman
 - nosqlbooster
-- virtualbox extension Pack 
-- (se vc code på Komplett for installation af guest additions)
-- mysql-server er blot mysql (mariadb findes i repo extra)
+- virtualbox extension Pack anvendes på hosten med Virtualbox
+- (se vscode på Komplett for installation af guest additions i en Vbox manjaro gæst)
+- mysql-server er blot mysql (Der anvendes i stedet mariadb fra extra repositoriet)
 - openresty
 - hplip findes på extra i en minimal version
 
@@ -135,6 +134,7 @@ SmartGit Linux (tar.gz bundle)
 
 afsluttende konfig
 - xdebug.ini
+- php.ini (der er kun en inifil)
 - groups
 - desktopfile (Tilføj smartgit item og jinja2 template)
 - chown
@@ -151,9 +151,14 @@ PHP
 - tilføj oprettelse af en index.php fil i /home/{user}/bin til brug for test af phpinfo
 - php config filer /etc/php/php.ini
 - der er tilsyneladende kun en config fil
+
+- aktivering af moduler se wiki.archlinux.org
+
 - php-pdo??
 - php-mysqli??
 - php-mariadb??
+
+
 
 Udestående installationer
 =========================
@@ -194,6 +199,10 @@ mariadb og mysql-workbench
 
 - Hvad er default password for root?
 
+PHP
+===
+- php-ini
+- xdebug.ini
 
 MongoDB
 =======
