@@ -53,7 +53,13 @@ Appen **Pamac Manager** eller pamac CLI anvendes ved installation af AUR package
 Installation via script
 =======================
 
-Se Se filerne bash programs.sh og php.sh for hvilke programmer, der skal installeres
+Installation foretages med bash scripts:
+
+- programs.sh
+- php.sh
+- webserver.sh
+
+Denne ændring fra Ubuntu/Debian varianten anvendes fordi Manjaro/arch Linux kommer med opdaterede softwarepakker.
 
 MongoDB findes grundet licens issues ikke i de officielle repositories men kun i **AUR**
     - https://stackoverflow.com/questions/59455725/install-mongodb-on-manjaro
@@ -255,15 +261,6 @@ nginx startes med::
 nginx kan enables til at starte, når maskinen booter::
 
     sudo systemctl enable nignx
-
-.. todo konfiguration af apache og nginx evt indsættes i bash script som foretager installationen.
-
-    - evt et nyt bash script som installerer apache og nginx samt opdaterer respektive konfig filer
-
-    - der mangler script som udfører opdatering af http.conf
-    - kopierer config/nginx.conf
-    - kopierer config/php-fmp.conf
-
 
 
 Udestående konfigurationer

@@ -34,8 +34,6 @@ ca-certificates
 hplip-minimal
 mariadb
 mysql-workbench
-apache
-nginx
 nodejs-lts-erbium
 docker
 docker-compose
@@ -63,9 +61,8 @@ do
     if [ $pack = "#" ]; then
         printf "fundet $package\n"
     else
-        pacman -S $package --noconfirm > /dev/null 2>&1
-        if [ $? -ne "0" ]; then
-            printf "Package ${package:1} findes ikke *******\n"
+        if ! pacman -Qe $package; then
+            pacman -S $package --noconfirm > /dev/null 2>&1
         else
             printf "$package OK\n"
         fi
