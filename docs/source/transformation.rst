@@ -171,42 +171,104 @@ Initiering og oprettelse af user::
 
     I stedet anvendes på Manjaro Database View i JetBrains værktøjerne.
 
-Udestående konfigurationer
-==========================
-- apache med php
-- nginx
-- mongodb
 
-Apache
-======
+PHP-FPM
+=======
+Standard konfigurationen anvendes.
+
+php-fpm startes med::
+
+    sudo systemctl start php-fpm
+
+php-fpm kan enbales til at starte når maskien booter::
+
+    sudo systemctl enable php-fpm
+
+
+Apache httpd server
+===================
+Ref.
+
+- https://wiki.archlinux.org/index.php/Apache_HTTP_Server
 - Det er standard installationen fra https://httpd.apache.org
-- Installationen findes i /etc/httpd hvor der er et sæt konfigurationsfiler
-- standard docroot er i /srv/http
-- serveren skal enables og startes
 
-    sudo systemctl enable httpd
+Installationen findes i /etc/httpd
+    - /etc/httpd/modules indeholder httpd moduler
+    - /etc/httpd/conf/httpd.conf er den primære konfigruaitonssfil, som (kan) inkludere de øvrige konfigurationsfiler
+
+Standard docroot er i
+
+    - /srv/http
+
+serveren skal startes::
+
     sudo systemctl start httpd
 
-- hvis man undlader enable så kan installationen leve ved siden af nginx som heller ikke må enables    
+Hvis serveren skal køre når maskinen booter så udføres::
 
-.. todo: apache med php
+    sudo systemctl enable httpd
+
+.. caution:: Husk at enten anvendes Apache eller også anvendes Nginx
+
+Konfigurationen i **/etc/httpd/conf/httpd.conf** opdateres med::
+
+    ServerName 127.0.0.1:80
+
+    LoadModule proxy_module modules/mod_proxy.so
+    LoadModule proxy_fcgi_module modules/mod_proxy_fcgi.so
+
+i bunden af filen indsættes::
+
+    Include conf/extra/php-fpm.conf
+
+Filen **config/php-fpm.conf** kopieres til /etc/httpd/conf/extra/php-fpm.conf::
+
+    DirectoryIndex index.php index.html
+    <FilesMatch \.php$>
+        SetHandler "proxy:unix:/run/php-fpm/php-fpm.sock|fcgi://localhost/"
+    </FilesMatch>
+
+Genstart::
+
+    sudo systemctl start php-fpm
+    sudo systemctl restart apache
+
+Opret en fil /srv/http/index.php med **<?php phpinfo();**
+
+Browser på http://localhost/index.php
 
 Nginx
 =====
 - konfig filer i /etc/nginx
+- den primære konfig fil er /etc/nginx/nginx.conf
 - docroot: /usr/share/nginx/html
-- php-fpm konfig findes i /etc/php
+- php-fpm konfig findes i /etc/php.
 
-.. todo: nginx med php
+php-fpm aktiveres ved at kopiere **config/ningx.conf** til /etc/nginx/nginx.conf
+
+Opret en fil /usr/share/nginx/html/index.php med **<?php phpinfo();**
+
+nginx startes med::
+
+    sudo systemctl start nignx
+
+nginx kan enables til at starte, når maskinen booter::
+
+    sudo systemctl enable nignx
+
+.. todo konfiguration af apache og nginx evt indsættes i bash script som foretager installationen.
+
+    - evt et nyt bash script som installerer apache og nginx samt opdaterer respektive konfig filer
+
+    - der mangler script som udfører opdatering af http.conf
+    - kopierer config/nginx.conf
+    - kopierer config/php-fmp.conf
 
 
 
-
-
-PHP
-===
-- php-ini
-- xdebug.ini
+Udestående konfigurationer
+==========================
+- mongodb
 
 MongoDB
 =======
@@ -215,23 +277,19 @@ MongoDB
 Docker
 ======
 - er installeret
-- skal startes med
+
+Docker stares med::
 
     sudo systemctl start docker
+
+Hvis docker skal starte når maskinen booter::
+
     sudo sysdtemctl enable docker
 
 Afprøvninger
 ============
 - javascript projekter
 - php projekter
-- docker
-
-Tjek i linux PyCharm vejl for konfig oplysninger o.lign. under
-
-- linux installation
-- databaser
-- udviklingsværktøjer
-- webserver
 - docker
 
 Problem module har ikke en parent
@@ -246,5 +304,5 @@ http://www.programmersought.com/article/5866305471/
 
 Fra https://docs.python.org/3.7/tutorial/modules.html#packages
 
-"Note that relative imports are based on the name of the current module. Since the name of the main module is always "__main__", modules intended for use as the main module of a Python application must always use absolute imports."
+"Note that relative imports are based on the name of the current module. Since the name of the main module is always "__main__", **modules intended for use as the main module of a Python application must always use absolute imports.**"
 
