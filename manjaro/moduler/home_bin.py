@@ -29,3 +29,4 @@ def homebin(user):
     srcdir = '../images'
     if not os.path.exists(dstdir):
         shutil.copytree(srcdir, dstdir)
+        shutil.chown(dstdir, user, user)
