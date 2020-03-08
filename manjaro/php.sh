@@ -54,4 +54,4 @@ do
     fi
 done
 set -e
-
+printf "Det var så det!\n"

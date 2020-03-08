@@ -69,5 +69,6 @@ do
             printf "$package OK\n"
         fi
     fi
-doneset -e
-
+done
+set -e
+printf "Det var så det!\n"
