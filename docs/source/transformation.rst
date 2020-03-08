@@ -77,7 +77,14 @@ Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen
 03-install repositories
     - ej relevant for Manjaro
 04-install-extra
-    - ej relevant for Manjaro
+    - ej relevant for Manjaro indgår i scriptet programs.sh
+
+Øvrige anvendte scripts
+    - install_freeefilesync
+    - install_jetbrains_toolbox
+    - install_nosqlbooster
+    - install_postman
+    - desktopfile
 
 **Følgende Findes i AUR alternativ download**
 
@@ -85,6 +92,7 @@ Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen
 - jetbrains toolbox
 - postman
 - nosqlbooster
+- smartgit
 - virtualbox extension Pack anvendes på hosten med Virtualbox
 - (se vscode på Komplett for installation af guest additions i en Vbox manjaro gæst)
 - mysql-server er blot mysql (Der anvendes i stedet mariadb fra extra repositoriet)
@@ -101,72 +109,74 @@ Hvad anvendes - hvis nødvendigt - i stedet for nedenstående:
 - apt-transport-http (er det til nodejs download som er overflødig)
 - software-properties-common
 
-
-
-
-De resterende
-
-følgende indgår i bash script
-- packer
-- php 
-- vagrant
-
-Følgende installationsscripts kan udføres
-
-- jetbrains-toolbox
-- freefilesync
-- nosqlbooster
-- postman
-
-desktop items tilføjes med desktopfile.py
-
-- smartgit skal have et desktop item
-
-SmartGit Linux (tar.gz bundle)
-
-    unpack the downloaded file into a directory of your choice:
-    tar xzf <smartgit*.tar.gz>
-    start SmartGit: invoke bin/smartgit.sh
-    create SmartGit menu item: invoke
-    bin/add-menuitem.sh
-    remove SmartGit menu item: invoke
-    bin/remove-menuitem.sh
-
-afsluttende konfig
-- xdebug.ini
-- php.ini (der er kun en inifil)
+Afsluttende konfig
+==================
 - groups
-- desktopfile (Tilføj smartgit item og jinja2 template)
 - chown
 - vbox_ext_pack kun relevant for host ej for virtuel maskine
 
-DEBIAN_FRONTEND=nointeraction
-Indsættes foran eksempelvis sudo apt update    
+PHP Konfiguration
+=================
+Der er på Manjaro kun en enkelt php.ini fil og php versionen er ikke en del af filstien til konfigurationsfilerne
 
-Konfigurationsfiler
-===================
+- /etc/php/php.ini
+- /etc/php/conf.d/xdebug.ini
 
-PHP
-- xdebug.ini findes i /etc/php/conf.d/xdebug.ini i host versionen. skal dog aktiveres da alle linjer er kommenteret ud
-- tilføj oprettelse af en index.php fil i /home/{user}/bin til brug for test af phpinfo
-- php config filer /etc/php/php.ini
-- der er tilsyneladende kun en config fil
+ref. https://wiki.archlinux.org/index.php/PHP#Configuration
 
-- aktivering af moduler se wiki.archlinux.org
+Aktivering moduler ved at fjerne kommentarerne for::
 
-- php-pdo??
-- php-mysqli??
-- php-mariadb??
-
-
+    extension=pdo_mysql
+    extension=mysqli
+    extension=pdo_sqlite
+    extension=sqlite3
+    extension=intl
+    extension=xsl
 
 Udestående installationer
 =========================
-- mongodb
+- afprøvning af mariadb
 - apache med php
 - nginx
-- afprøvning af mariadb
-- evt intallation af mysql fra AUR
+- mongodb
+
+mariadb og mysql-workbench
+==========================
+MariaDB blev skabt som en fork af mysql, da Oracle opkøbte Sun Microsystems. MariaDB fungerer i hovedsagen som mysql.
+
+Indens mariadb service startes udføres::
+
+    sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+
+
+MariaDB skal startes med::
+
+    sudo systemctl start mariadb
+
+Hvis MariaDB skal starte når systemet booter::
+
+    sudo systemctl enable mariadb
+
+Anbefalet sikkerhed::
+
+    mysql_secure_installation
+
+.. note:: MariaDB prompter ikke for valideringsniveau for passwords, dvs. plugin validate_password findes ikke på MariaBD
+
+Initiering og oprettelse af user::
+
+    $ mysql -u root -p
+    ------------------
+    MariaDB> CREATE USER 'jackie'@'localhost' IDENTIFIED BY 'some_pass';
+    MariaDB> GRANT ALL PRIVILEGES ON *.* TO 'jackie'@'localhost';
+    MariaDB> FLUSH PRIVILEGES;
+    MariaDB> quit
+
+.. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB. Dv anvendelsen are begrænseet til Docker containere og Vagrant maskiner med en Debian like installation.
+
+    I stedet anvendes på Manjaro Database View i JetBrains værktøjerne.
+
+.. todo php.ini konfigureres med et bash script, der anvender sed i stedet for det bøvlede python script
 
 Apache
 ======
@@ -190,14 +200,9 @@ Nginx
 
 .. todo: nginx med php
 
-mariadb og mysql-workbench
-==========================
-- mariadb skal startes med::
 
-    sudo systemctl start mariadb
-    sudo systemctl enable mariadb
 
-- Hvad er default password for root?
+
 
 PHP
 ===
