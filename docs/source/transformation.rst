@@ -133,12 +133,7 @@ Aktivering moduler ved at fjerne kommentarerne for::
     extension=intl
     extension=xsl
 
-Udestående installationer
-=========================
-- afprøvning af mariadb
-- apache med php
-- nginx
-- mongodb
+Da php installeres af et bash script er konfig omlagt til at anvende GNU/Linux kommandoen **sed**, som forenkler opdateringen i forhold til Ubuntu/Debian udgaven.
 
 mariadb og mysql-workbench
 ==========================
@@ -176,7 +171,11 @@ Initiering og oprettelse af user::
 
     I stedet anvendes på Manjaro Database View i JetBrains værktøjerne.
 
-.. todo php.ini konfigureres med et bash script, der anvender sed i stedet for det bøvlede python script
+Udestående konfigurationer
+==========================
+- apache med php
+- nginx
+- mongodb
 
 Apache
 ======

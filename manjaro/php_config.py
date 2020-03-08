@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # konfiguration af XDebug og php.ini
 
-import sys, os, shutil
-from fileinput import FileInput
+import sys, os, shutil, shlex
+import subprocess
 from jinja2 import Environment, FileSystemLoader
 from moduler.fileOperations import fetch_config
 
@@ -10,12 +10,19 @@ from moduler.fileOperations import fetch_config
 def config_php(configs):
     print('konfiguration af XDebug')
     config_xdebug(configs)
+    #
     print('Konfiguration af php.ini')
-    ini_file = f'/etc/php/php.ini'
-    print(ini_file)
-    if not os.path.exists(ini_file):
-        raise
-    update_inifiles(ini_file)
+
+    try:
+        ini_file = f'/etc/php/php.ini'
+        conf = '../config/php_manjaro.ini'
+        cmd = shlex.split(f'sed -i -f {conf} {ini_file}')
+        res = subprocess.run(cmd)
+    except Exception as err:
+        print(err)
+        sys.exit('Opdatering af php.ini fejlede')
+    else:
+        print(f'{ini_file} er opdateret')
 
 
 def config_xdebug(configs):
@@ -56,23 +63,6 @@ def create_xdebug_ini(tmpl, xdebug_host=True):
     print(output)
     with open(outfile, 'wt') as fout:
         fout.write(output)
-
-
-def update_inifiles(ini_file):
-
-    try:
-        with FileInput(files=ini_file, inplace=True) as fin:
-            for line in fin:
-                if line.startswith(';date.timezone ='):
-                    print(line.replace(';date.timezone =', 'date.time.zone = UTC'), end='')
-                elif line.startswith(';intl.error_level'):
-                    print(line.replace(';intl.error_level', 'intl.error_level'), end='')
-                else:
-                    print(line, end='')
-    except Exception as err:
-        print('Opdatering af php.ini er fejlet')
-        exit(1)
-
 
 if __name__ == '__main__':
     if os.geteuid() != 0:
