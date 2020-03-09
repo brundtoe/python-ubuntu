@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 #
-import os, shutil
+import sys, os, shutil
+
 
 def homebin(user):
     """
@@ -24,9 +25,15 @@ def homebin(user):
     except Exception as err:
         print(err)
         sys.exit('kan ikke kopiere .vimrc')
-        
+
     dstdir = f'/home/{user}/bin/images'
     srcdir = '../images'
     if not os.path.exists(dstdir):
         shutil.copytree(srcdir, dstdir)
         shutil.chown(dstdir, user, user)
+
+    dstvimrc = f'/home/{user}/.vimrc'
+    srcvimrc = '../../config/.vimrc'
+    if not os.path.exists(dstvimrc):
+        shutil.copy(srcvimrc, dstvimrc)
+        shutil.chown(dstvimrc, user, user)
