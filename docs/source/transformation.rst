@@ -48,11 +48,19 @@ Hvis pacman Si returnerer 1 så findes pakken ikke
 
 Hvis en pakke ikke er installeret returnerer pacman -Qs statuskode 1
 
+Da pacman gemmer alle de gamle udgaver af downloadede psackages og det er en rullende distribution, så vokse pacman cache.
+
+**Oprydning med**::
+
+    paccache --remove
+
 Installation fra AUR
 ====================
 AUR packages er brugergenererede BUILDS.
 
-Appen **Pamac Manager** eller pamac CLI anvendes ved installation af AUR packages
+pamac CLI anvendes ved installation af AUR packages
+
+Se mere https://wiki.manjaro.org/index.php?title=Arch_User_Repository
 
 Installation på VMware image
 ============================
@@ -144,7 +152,7 @@ Hvis MariaDB skal starte når systemet booter::
 
 Anbefalet sikkerhed::
 
-    mysql_secure_installation
+    sudo mysql_secure_installation
 
 .. note:: MariaDB prompter ikke for valideringsniveau for passwords, dvs. plugin validate_password findes ikke på MariaBD
 
@@ -165,8 +173,6 @@ Initiering og oprettelse af user::
 PHP-FPM
 =======
 Standard konfigurationen anvendes.
-
-Filen **/usr/share/php/fpm.html viser serverens status, når den er startet
 
 php-fpm startes med::
 
