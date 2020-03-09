@@ -43,9 +43,9 @@ def install_programs(programs, options):
             continue
         res = install_program(pgm, options)
         if not res:
-            sys.exit(f'Installation af {program} er fejlet')
+            sys.exit(f'Installation af {pgm} er fejlet')
         else:
-            print('programmet', program, 'er installeret')
+            print('programmet', pgm, 'er installeret')
 
 
 if __name__ == '__main__':

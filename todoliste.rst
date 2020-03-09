@@ -18,12 +18,14 @@ der skal udføres::
     
 Udestående opgaver Kubuntu
 ==========================
-   - juster program instal, som skal have desktopfile, så den etableres sammen med program installationen.
+   - juster program install, som skal have desktopfile, så den etableres sammen med program installationen.
 
    - mysql-server (det er version 8) aktivering
+   - mongodb og nosqlbooster tjekkes
 
 .. note:: husk apache og nginx skal ikke være enabled
 
+   - php mangler enabling i php.ini filerne af en række moduler
    - Apache og php tilføjelserne samt konfig
    - php-fpm konfig og enable service php-fpm
    - Nginx samt konfig
