@@ -61,8 +61,9 @@ do
     if [ $pack = "#" ]; then
         printf "fundet $package\n"
     else
-        if ! pacman -Qe $package; then
+        if ! pacman -Qs "^$package" > /dev/null 2>&1; then
             pacman -S $package --noconfirm > /dev/null 2>&1
+            printf "$package er installeret\n"
         else
             printf "$package OK\n"
         fi
