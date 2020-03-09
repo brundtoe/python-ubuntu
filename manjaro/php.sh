@@ -40,18 +40,24 @@ set +e
 for package in $PACKAGES
 
 do
-
-    pack=${package:0:1}
-    if [ $pack = "#" ]; then
-        printf "fundet $package\n"
-    else
-       if ! pacman -Qs "^$package" > /dev/null 2>&1; then
-          pacman -S $package --noconfirm > /dev/null 2>&1
-          printf "Package ${package:1} findes ikke *******\n"
-        else
-          printf "$package OK\n"
-        fi
-    fi
+  pack=${package:0:1}
+  # pakker der ikke skal installeres
+  if [ $pack = "#" ]; then
+      printf "fundet $package\n"
+      continue
+  fi
+  # er pakken installeret
+  if pacman -Qs $package --noconfirm > /dev/null 2>&1; then
+    printf "Package $package er OK\n"
+    continue
+  fi
+  # installer pakken
+  if ! pacman -S $package --noconfirm > /dev/null 2>&1; then
+     printf "Package $package kan ikke installeres\n"
+  else
+    printf  "Package $package er installeret\n"
+  fi
 done
+
 set -e
 printf "Det var så det!\n"
