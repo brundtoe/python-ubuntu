@@ -152,12 +152,13 @@ Afhængig af maskinens avendelse kan følgende udføres **Uden root access**:
 
 - install_php.py
 - install_jetbrains.py
-- install_vagrant.py
-- install_packer.py
-- install_postman.py
 - install_freefilesync.py
 - install_nosqlbooster.py
-- desktopfiles.py (FreeFileSync, NoSQLBooster og Postman)
+- install_smartgit
+- install_postman.py
+- install_vagrant.py
+- install_packer.py
+- desktopfiles.py (FreeFileSync, NoSQLBooster, smartgit og Postman)
 
 **med root efter ovenstående**
 

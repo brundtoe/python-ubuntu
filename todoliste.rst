@@ -16,15 +16,30 @@ der skal udføres::
     sudo systemctl enabled mongod #enabler autostart ved boot
     sudo systemctl start mongod
     
-Udestående opgaver
-==================
+Udestående opgaver Kubuntu
+==========================
+   - juster program instal, som skal have desktopfile, så den etableres sammen med program installationen.
 
-Opgaver som afventer at der bliver behov for scripts
+   - mysql-server (det er version 8) aktivering
 
-   - mysql-server konfiguration af root med pwd og en ny user (19.10 er skiftet til version 8.x)
-   - laravel/homestead
-   - visual studio code
+.. note:: husk apache og nginx skal ikke være enabled
+
+   - Apache og php tilføjelserne samt konfig
+   - php-fpm konfig og enable service php-fpm
+   - Nginx samt konfig
+
+Udestående Kubuntu og Manjaro
+=============================
+
    - docker konfiguration (build af images og provisionering af databaser)
+
+Udenstående efterfølgende på Komplett eller Esprimo
+
+   - vagrant
+   - laravel/homestead
+
+
+
 
 Testcases med unittest
 ======================

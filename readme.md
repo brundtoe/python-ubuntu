@@ -55,3 +55,10 @@ Herefter kan følgende scripts udføres
 
 **med root efter ovenstående**
 - chown.py (ændrer rettigheder rekursivt for et directory)
+
+## mappen Manjaro
+
+Mappen indeholder scripts til installation på Manjaro
+
+Vejledning findes i mappen docs
+
