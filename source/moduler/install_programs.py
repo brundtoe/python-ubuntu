@@ -36,14 +36,13 @@ def install_programs(programs, options):
     :return: void
     """
     for program in programs:
-        if is_installed(program):
-            continue
         pgm = programs[program]
         if not pgm:
             pgm = program
+        if is_installed(pgm):
+            continue
         res = install_program(pgm, options)
         if not res:
-            raise Exception
             sys.exit(f'Installation af {program} er fejlet')
         else:
             print('programmet', program, 'er installeret')
