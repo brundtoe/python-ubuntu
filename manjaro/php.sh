@@ -44,12 +44,12 @@ do
     pack=${package:0:1}
     if [ $pack = "#" ]; then
         printf "fundet $package\n"
-    else    
-        pacman -S $package --noconfirm > /dev/null 2>&1 
-        if [ $? -ne "0" ]; then
-            printf "Package ${package:1} findes ikke *******\n"
+    else
+       if ! pacman -Qs "^$package" > /dev/null 2>&1; then
+          pacman -S $package --noconfirm > /dev/null 2>&1
+          printf "Package ${package:1} findes ikke *******\n"
         else
-            printf "$package OK\n"
+          printf "$package OK\n"
         fi
     fi
 done
