@@ -13,6 +13,10 @@ På Manjaro virtuelle maskiner anvendes kun Docker ej VirtualBox med Vagrant.
 
 Alternativet er at anvende den virtuelle maskine med Manajro som host.
 
+Manjaro er en rullende Linux distibution, som opdateres med de nyeste frigivne versioner af software packages.
+
+Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen overflødige, da disse scripts anvendes for at registrere repositories for at hente nyere programversioner.
+
 Installation Pacman
 ===================
 
@@ -50,76 +54,48 @@ AUR packages er brugergenererede BUILDS.
 
 Appen **Pamac Manager** eller pamac CLI anvendes ved installation af AUR packages
 
-Installation via script
-=======================
+Installation på VMware image
+============================
 
-Installation foretages med bash scripts:
+Forbered installationen:
+    - kontroller indstillingerne i config/fcnfig.ini
+    - udfør 01-prepare.py
 
-- programs.sh
-- php.sh
-- webserver.sh
+Installation af software foretages med bash scripts:
+    - programs.sh
+    - php.sh
+    - webserver.sh
 
-Denne ændring fra Ubuntu/Debian varianten anvendes fordi Manjaro/arch Linux kommer med opdaterede softwarepakker.
+Denne ændring fra Ubuntu/Debian varianten anvendes fordi Manjaro/Arch Linux kommer med opdaterede softwarepakker.
 
 MongoDB findes grundet licens issues ikke i de officielle repositories men kun i **AUR**
     - https://stackoverflow.com/questions/59455725/install-mongodb-on-manjaro
 
-Python scripts
-==============
-Manjaro er en rullende Linux distibution, som opdateres med de nyeste frigivnde versioner af software packages.
-
-Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen overflødige, da disse scripts anvendes for at registrere repositories for at hente nyere programversioner.
-
-**config/config.ini**
-
-    - afsnit [debian] hhv. [archlinux] angiver afsnit, som kun anvendes på respektive distributioner.
-
-01-prepare
-    - pacman anvendes i stedet for apt update && apt upgrade
-    - /home/{user}/bin tilføjes til PATH
-
-02-installation
-    - bash scriptet programs.sh anvendes
-03-install repositories
-    - ej relevant for Manjaro
-04-install-extra
-    - ej relevant for Manjaro indgår i scriptet programs.sh
-
-Øvrige anvendte scripts
+Installation af sw som downloades og pakkes ud i mappen **programs**
     - install_freeefilesync
     - install_jetbrains_toolbox
     - install_nosqlbooster
     - install_postman
     - desktopfile
 
-**Følgende Findes i AUR alternativ download**
-
-- FreeFileSync
-- jetbrains toolbox
-- postman
-- nosqlbooster
-- smartgit
-- virtualbox extension Pack anvendes på hosten med Virtualbox
-- (se vscode på Komplett for installation af guest additions i en Vbox manjaro gæst)
-- mysql-server er blot mysql (Der anvendes i stedet mariadb fra extra repositoriet)
-- openresty
-- hplip findes på extra i en minimal version
-
-Hvad anvendes - hvis nødvendigt - i stedet for nedenstående:
-
-- g++
-- build-essential
-- gdebi (Ikke relevant da det er debian pakke værktøj=)
-- libsqlite-dev
-- libmysqlclient-dev=
-- apt-transport-http (er det til nodejs download som er overflødig)
-- software-properties-common
+**Følgende findes i AUR som alternativ til download**
+    - FreeFileSync
+    - jetbrains toolbox
+    - postman
+    - nosqlbooster
+    - smartgit
+    - virtualbox extension Pack anvendes på hosten med Virtualbox
+    - (se vscode på Komplett for installation af guest additions i en Vbox manjaro gæst)
+    - mysql-server er blot mysql (Der anvendes i stedet mariadb fra extra repositoriet)
+    - openresty
+    - hplip findes på extra i en minimal version
 
 Afsluttende konfig
 ==================
-- groups
-- chown
-- vbox_ext_pack kun relevant for host ej for virtuel maskine
+Efter behov udføres:
+    - groups
+    - chown
+    - vbox_ext_pack kun relevant for host ej for virtuel maskine
 
 PHP Konfiguration
 =================
@@ -130,7 +106,13 @@ Der er på Manjaro kun en enkelt php.ini fil og php versionen er ikke en del af 
 
 ref. https://wiki.archlinux.org/index.php/PHP#Configuration
 
-Aktivering moduler ved at fjerne kommentarerne for::
+Konfigurationen udføres med::
+
+    php_config.py
+
+Der anvender konfigurationen i **config/php_manjaro.ini**
+
+Aktivering moduler ved med **sed** at fjerne kommentarerne for::
 
     extension=pdo_mysql
     extension=mysqli
@@ -141,11 +123,11 @@ Aktivering moduler ved at fjerne kommentarerne for::
 
 Da php installeres af et bash script er konfig omlagt til at anvende GNU/Linux kommandoen **sed**, som forenkler opdateringen i forhold til Ubuntu/Debian udgaven.
 
-mariadb og mysql-workbench
+MariaDB og mysql-workbench
 ==========================
 MariaDB blev skabt som en fork af mysql, da Oracle opkøbte Sun Microsystems. MariaDB fungerer i hovedsagen som mysql.
 
-Indens mariadb service startes udføres::
+Inden mariadb service startes udføres::
 
     sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
@@ -173,7 +155,7 @@ Initiering og oprettelse af user::
     MariaDB> FLUSH PRIVILEGES;
     MariaDB> quit
 
-.. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB. Dv anvendelsen are begrænseet til Docker containere og Vagrant maskiner med en Debian like installation.
+.. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB. Dv anvendelsen are begrænset til Docker containere og Vagrant maskiner med en Debian like installation.
 
     I stedet anvendes på Manjaro Database View i JetBrains værktøjerne.
 
@@ -186,10 +168,20 @@ php-fpm startes med::
 
     sudo systemctl start php-fpm
 
-php-fpm kan enbales til at starte når maskien booter::
+php-fpm kan enables til at starte, når maskinen booter::
 
     sudo systemctl enable php-fpm
 
+Installation af webservere
+==========================
+Scriptet **webserver.py** installerer og udfører konfiguration af Apache, Nginx.
+
+Der anvendes følgende konfigurationsfiler:
+    - httpd.conf
+    - php-fpm.conf
+    - nginx-conf
+    - index.html
+    - installationen opretter index.php
 
 Apache httpd server
 ===================
@@ -202,11 +194,9 @@ Installationen findes i /etc/httpd
     - /etc/httpd/modules indeholder httpd moduler
     - /etc/httpd/conf/httpd.conf er den primære konfigruaitonssfil, som (kan) inkludere de øvrige konfigurationsfiler
 
-Standard docroot er i
+Standard docroot er i **/srv/http**
 
-    - /srv/http
-
-serveren skal startes::
+Serveren skal startes::
 
     sudo systemctl start httpd
 
@@ -216,7 +206,7 @@ Hvis serveren skal køre når maskinen booter så udføres::
 
 .. caution:: Husk at enten anvendes Apache eller også anvendes Nginx
 
-Konfigurationen i **/etc/httpd/conf/httpd.conf** opdateres med::
+Konfigurationen i **/etc/httpd/conf/httpd.conf** aktiverer::
 
     ServerName 127.0.0.1:80
 
@@ -239,20 +229,16 @@ Genstart::
     sudo systemctl start php-fpm
     sudo systemctl restart apache
 
-Opret en fil /srv/http/index.php med **<?php phpinfo();**
-
-Browser på http://localhost/index.php
+Browser på http://localhost
 
 Nginx
 =====
-- konfig filer i /etc/nginx
-- den primære konfig fil er /etc/nginx/nginx.conf
+- Konfig filer i /etc/nginx
+- Den primære konfig fil er /etc/nginx/nginx.conf
 - docroot: /usr/share/nginx/html
 - php-fpm konfig findes i /etc/php.
 
 php-fpm aktiveres ved at kopiere **config/ningx.conf** til /etc/nginx/nginx.conf
-
-Opret en fil /usr/share/nginx/html/index.php med **<?php phpinfo();**
 
 nginx startes med::
 
@@ -262,6 +248,7 @@ nginx kan enables til at starte, når maskinen booter::
 
     sudo systemctl enable nignx
 
+Browser på http://localhost
 
 Udestående konfigurationer
 ==========================
