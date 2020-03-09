@@ -19,7 +19,7 @@ if ! pacman -Qs '^apache'; then
   cp $(pwd)/../config/php-fpm.conf /etc/httpd/conf/extra/.
   cp $(pwd)/../config/index.html /srv/http/index.html
   printf "<?php\n phpinfo();\n" | tee /srv/http/index.php
-  printf "Apache er installeret og konfigureret"
+  printf "Apache er installeret og konfigureret\n"
 else
   printf "Apache var allerede installeret\n"
 fi
@@ -28,7 +28,7 @@ if ! pacman -Qs '^nginx'; then
   pacman -S nginx --noconfirm > /dev/null 2>&1
   cp $(pwd)/../config/nginx.conf /etc/nginx/.
   printf "<?php\n phpinfo();\n" | tee /usr/share/nginx/html/index.php
-  printf "nginx er installeret og konfigureret"
+  printf "nginx er installeret og konfigureret\n"
 else
   printf "Nginx var allerede installeret\n"
 fi
