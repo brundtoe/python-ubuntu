@@ -42,11 +42,11 @@ Et programs dependencies findes i appen, der anvendes til program administration
 
 Hvis pacman Si returnerer 1 så findes pakken ikke
 
-**Vis alle de explicit installerede packages**::
+**Vis alle de installerede packages**::
 
-    pacman -Qe [packagename]
+    pacman -Qs [packagename]
 
-Hvis en pakke ikke er installeret returnerer pacman -Qe statuskode 1
+Hvis en pakke ikke er installeret returnerer pacman -Qs statuskode 1
 
 Installation fra AUR
 ====================
@@ -58,12 +58,13 @@ Installation på VMware image
 ============================
 
 Forbered installationen:
-    - kontroller indstillingerne i config/fcnfig.ini
+    - kontroller indstillingerne i config/config.ini
     - udfør 01-prepare.py
 
 Installation af software foretages med bash scripts:
     - programs.sh
     - php.sh
+    - php_config.py
     - webserver.sh
 
 Denne ændring fra Ubuntu/Debian varianten anvendes fordi Manjaro/Arch Linux kommer med opdaterede softwarepakker.
@@ -99,6 +100,9 @@ Efter behov udføres:
 
 PHP Konfiguration
 =================
+Konfigurationen udføres med::
+    - php_config.py
+
 Der er på Manjaro kun en enkelt php.ini fil og php versionen er ikke en del af filstien til konfigurationsfilerne
 
 - /etc/php/php.ini
@@ -106,9 +110,7 @@ Der er på Manjaro kun en enkelt php.ini fil og php versionen er ikke en del af 
 
 ref. https://wiki.archlinux.org/index.php/PHP#Configuration
 
-Konfigurationen udføres med::
 
-    php_config.py
 
 Der anvender konfigurationen i **config/php_manjaro.ini**
 
@@ -163,6 +165,8 @@ Initiering og oprettelse af user::
 PHP-FPM
 =======
 Standard konfigurationen anvendes.
+
+Filen **/usr/share/php/fpm.html viser serverens status, når den er startet
 
 php-fpm startes med::
 
