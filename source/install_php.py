@@ -7,7 +7,7 @@ from moduler.fileOperations import fetch_config
 from moduler.sha256sum import hash_file
 from moduler.install_programs import install_programs
 from moduler.download_file import fetch_file
-from xdebug_ini import create_xdebug_ini
+from moduler.xdebug_ini import create_xdebug_ini
 
 def install_php(configs):
     """
@@ -32,7 +32,7 @@ def install_php(configs):
     create_xdebug_ini('xdebug.jinja',xdebug_host)
     srcfile = f'../config/xdebug.ini'
     config_xdebug(version, srcfile)
-    
+
     print('Konfiguration af php.ini')
     php_components = ['cli', 'cgi', 'fpm']
     version = configs['Common']['php-version']
@@ -72,17 +72,13 @@ def install_composer(url, sha256url, user):
 
 
 def config_xdebug(version, srcfile):
-    dstdir = f'/etc/php/{version}/mods-available'
-    dstfile = f'{dstdir}/xdebug.ini'
-
-    try:
-        if not os.path.exists(dstdir):
-            os.makedirs(dstdir)
-        shutil.copyfile(srcfile, dstfile)
-    except Exception as err:
-        print(err)
-        raise Exception
-
+        dstdir = f'/etc/php/{version}/mods-available'
+        dstfile = f'{dstdir}/xdebug.ini'
+        try:
+            shutil.copyfile(srcfile, dstfile)
+        except Exception as err:
+            print(err)
+            sys.exit(f'kan ikke oprette {dstfile}')
 
 def update_inifiles(php_components, version):
     print('opdatering af php.ini')

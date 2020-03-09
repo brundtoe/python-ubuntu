@@ -30,5 +30,5 @@ def create_xdebug_ini(tmpl, xdebug_host=True):
 
 if __name__ == '__main__':
     tmpl = 'xdebug.jinja'
-    xdebug_host = fetch_config('../config/config.ini')['Common'].getboolean('xdebug-host')
+    xdebug_host = fetch_config('../../config/config.ini')['Common'].getboolean('xdebug-host')
     create_xdebug_ini(tmpl, xdebug_host)
