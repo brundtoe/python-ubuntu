@@ -46,11 +46,19 @@ def install_apache(configs):
         sys.exit(f'kan ikke oprette {dest}')
 
     try:
-        print('Apache genstartes')
-        subprocess.run(['systemctl', 'restart', 'apache2'])
+        print('Apache standses')
+        subprocess.run(['systemctl', 'stop', 'apache2'])
     except Exception as err:
         print(err)
-        sys.exit('Kan ikke genstarte Apache')
+        sys.exit('Kan ikke standse Apache')
+
+    try:
+        print('Apache disables')
+        subprocess.run(['systemctl', 'disable', 'apache2'])
+    except Exception as err:
+        print(err)
+        sys.exit('Kan ikke disable Apache')
+
 
 
 if __name__ == '__main__':
