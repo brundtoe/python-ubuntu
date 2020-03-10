@@ -13,9 +13,9 @@ service bliver ikke startet efter installationen fordi den er disabled
 
 der skal udføres::
 
-    sudo systemctl enabled mongod #enabler autostart ved boot
     sudo systemctl start mongod
-    
+    sudo systemctl enabled mongod #enabler autostart ved boot
+
 Udestående opgaver Kubuntu
 ==========================
    - mysql-server (det er version 8) aktivering
@@ -26,6 +26,8 @@ Udestående opgaver Kubuntu
    - Apache og php tilføjelserne samt konfig
    - php-fpm konfig og enable service php-fpm
    - Nginx samt konfig
+   - der skal være en opdateret mongodb conf fil som kopieres under installationen
+      - mongodb er standset og disabled når den er installeret
 
 Udestående på Manjaro
 =====================
