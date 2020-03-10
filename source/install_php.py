@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # Installation af Composer, konfiguration af XDebug
 
-import sys, os, shutil
+import sys, os, shutil, shlex
 from fileinput import FileInput
+import subprocess
 from moduler.fileOperations import fetch_config
 from moduler.sha256sum import hash_file
 from moduler.install_programs import install_programs
@@ -36,7 +37,7 @@ def install_php(configs):
     print('Konfiguration af php.ini')
     php_components = ['cli', 'cgi', 'fpm']
     version = configs['Common']['php-version']
-    update_inifiles(php_components, version)
+    config_php_ini(php_components, version)
 
 def install_composer(url, sha256url, user):
     composerfile = '../outfile/composer'
@@ -70,7 +71,6 @@ def install_composer(url, sha256url, user):
     os.chmod(dest, 0o755)
     shutil.chown(dest, user, user)
 
-
 def config_xdebug(version, srcfile):
         dstdir = f'/etc/php/{version}/mods-available'
         dstfile = f'{dstdir}/xdebug.ini'
@@ -80,26 +80,20 @@ def config_xdebug(version, srcfile):
             print(err)
             sys.exit(f'kan ikke oprette {dstfile}')
 
-def update_inifiles(php_components, version):
-    print('opdatering af php.ini')
+def config_php_ini(php_components, version):
+
     for component in php_components:
         ini_file = f'/etc/php/{version}/{component}/php.ini'
         print(ini_file)
-        if not os.path.exists(ini_file):
-            continue
+        conf = '../config/php_config.ini'
         try:
-            with FileInput(files=ini_file, inplace=True) as fin:
-                for line in fin:
-                    if line.startswith(';date.timezone ='):
-                        print(line.replace(';date.timezone =', 'date.time.zone = UTC'), end='')
-                    elif line.startswith(';intl.error_level'):
-                        print(line.replace(';intl.error_level', 'intl.error_level'), end='')
-                    else:
-                        print(line, end='')
+            cmd = shlex.split(f'sed -i -f {conf} {ini_file}')
+            res = subprocess.run(cmd)
         except Exception as err:
-            print('Opdatering af php.ini er fejlet')
-            exit(1)
-
+            print(err)
+            sys.exit('Opdatering af php.ini fejlede')
+        else:
+            print(f'{ini_file} er opdateret')
 
 if __name__ == '__main__':
     if os.geteuid() != 0:

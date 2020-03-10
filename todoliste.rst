@@ -18,30 +18,33 @@ der skal udføres::
     
 Udestående opgaver Kubuntu
 ==========================
-   - juster program install, som skal have desktopfile, så den etableres sammen med program installationen.
-
    - mysql-server (det er version 8) aktivering
    - mongodb og nosqlbooster tjekkes
 
 .. note:: husk apache og nginx skal ikke være enabled
 
-   - php mangler enabling i php.ini filerne af en række moduler
    - Apache og php tilføjelserne samt konfig
    - php-fpm konfig og enable service php-fpm
    - Nginx samt konfig
 
+Udestående på Manjaro
+=====================
+
+Ret installation af pgm der kræver desktop item svarende til kubuntu versionen.
+
+php_manjaro.ini skal erstattes af php_config.ini da opdatering af php.ini er ens på de to miljøer
+
 Udestående Kubuntu og Manjaro
 =============================
+
 
    - docker konfiguration (build af images og provisionering af databaser)
 
 Udenstående efterfølgende på Komplett eller Esprimo
+===================================================
 
    - vagrant
    - laravel/homestead
-
-
-
 
 Testcases med unittest
 ======================
