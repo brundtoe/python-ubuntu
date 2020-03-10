@@ -47,16 +47,23 @@ Installeres med Muon Package Manager eller
 
 .. note:: det er indsat i config.ini
 
-Udestående opgaver Kubuntu
-==========================
+webservere
+==========
 
-.. note:: husk apache og nginx skal ikke være enabled
+.. note:: Når apache2 og nignx installeres afsluttet med at standse og disable serverne for at undgå konflikter. De startes når de skal anvendes.
+
+Udenstående på kubuntu
+======================
 
    - php-fpm konfig og enable service php-fpm
    - Nginx samt konfig
 
 .. todo opdater docs installation.rst med ovenstående. modellen i bør være den samme som for manjaro
 
+xdebug.ini udestående kubuntu og manjaro
+========================================
+
+kan xdebug.ini som nginx.ini og desktop files kopieres direkte til destinationen i stedet for at mellemlande i mappen config?
 
 Udestående på Manjaro
 =====================
