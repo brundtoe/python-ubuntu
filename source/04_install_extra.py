@@ -4,7 +4,7 @@
 #
 # Inden scriptet runnes oprettes i mappen infile filen -env med password til wdmycloud
 #
-import sys, os
+import sys, os, shutil
 from moduler.fileOperations import fetch_config
 
 configs = ''
@@ -38,5 +38,14 @@ except Exception as err:
 else:
     print('apt-get installation af ekstra software udført')
 
+try:
+    srcfile = '../config/mongod.conf'
+    dstfile = '/etc/mongod.conf'
+    shutil.copy(srcfile,dstfile)
+except Exception as err:
+    print(err)
+    sys.exit(f'Kan ikke kopiere {srcfile} til {dstfile}')
+else:
+    print('MongoDB konfigurationsfil er kopieret')
 print('*' * 50)
 print('Installation af ekstra prorgammer er afsluttet')
