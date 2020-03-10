@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 #
 import os, shutil
-from moduler.fileOperations import fetch_config
 import requests
+from moduler.fileOperations import fetch_config
+from moduler.desktopfile import create_desktop_file
 
 def install_nosqlbooster(url, user, version):
     """
@@ -25,6 +26,9 @@ def install_nosqlbooster(url, user, version):
         print(err)
         exit(1)
     else:
+        program = 'NoSQLBooster'
+        tmpl = f'{program}.jinja'
+        create_desktop_file(program, tmpl, user)
         print(f'NoSQLBooster4MongoDB {version} er installeret')
 
 if __name__ == '__main__':

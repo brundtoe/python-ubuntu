@@ -25,11 +25,11 @@ def create_desktop_file(program, tmpl, user):
             fout.write(output)
     except Exception as err:
         print(err)
-        sys.exit('Kan ikke generere desktopfile for {program')
+        sys.exit(f'Kan ikke generere desktopfile for {program}')
 
 
 if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
+    configs = fetch_config('../../config/config.ini')
     programs = configs['desktop.items']
     user = configs['Common']['user']
     for item in programs:
