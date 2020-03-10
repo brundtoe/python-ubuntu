@@ -52,18 +52,14 @@ webservere
 
 .. note:: Når apache2 og nignx installeres afsluttet med at standse og disable serverne for at undgå konflikter. De startes når de skal anvendes.
 
-Udenstående på kubuntu
-======================
+.. note:: Apache anvender default konfig
 
-   - php-fpm konfig og enable service php-fpm
-   - Nginx samt konfig
+   Nginx anvendes med php-fpm, en standard konfig php-fpm og en opdateret udgave af /etc/nginx/sites-available/default.
+
+Opdatering af dokumentationen
+=============================
 
 .. todo opdater docs installation.rst med ovenstående. modellen i bør være den samme som for manjaro
-
-xdebug.ini udestående kubuntu og manjaro
-========================================
-
-kan xdebug.ini som nginx.ini og desktop files kopieres direkte til destinationen i stedet for at mellemlande i mappen config?
 
 Udestående på Manjaro
 =====================
@@ -71,6 +67,8 @@ Udestående på Manjaro
 installation af gnome-keyring og test mysql-workbench
 
 Ret installation af pgm der kræver desktop item svarende til kubuntu versionen.
+
+**xdebug.ini** Install_php skal opdateres så generering af xdebug.ini og kopiering til destinationen foregår på samme måde som for Kubuntu
 
 php_manjaro.ini skal erstattes af php_config.ini da opdatering af php.ini er ens på de to miljøer
 
@@ -101,15 +99,15 @@ ref. file:///home/jackie/SphinxDoc/source/webserver/Apache.html#oprettelse-af-vi
 
 Kubuntu nginx site konfiguration
 ================================
+Se eksempel i mappen devops-files
 
 Manjaro http site konfiguration
 ===============================
+Se eksempel i mappen devops-files og evt. i docker_standard
 
 Manjaro nginx site konfiguration
 ================================
-
-
-
+Se eksempel i mappen devops-files og evt. i docker_standard
 
 Udenstående efterfølgende på Komplett eller Esprimo
 ===================================================

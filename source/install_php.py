@@ -30,9 +30,8 @@ def install_php(configs):
     print('konfiguration af XDebug')
     version = configs['Common']['php-version']
     xdebug_host = configs['Common']['xdebug-host']
-    create_xdebug_ini('xdebug.jinja',xdebug_host)
-    srcfile = f'../config/xdebug.ini'
-    config_xdebug(version, srcfile)
+    dstfile = f'/etc/php/{version}/mods-available/xdebug.ini'
+    create_xdebug_ini('xdebug.jinja', dstfile,xdebug_host)
 
     print('Konfiguration af php.ini')
     php_components = ['cli', 'cgi', 'fpm']
@@ -71,15 +70,6 @@ def install_composer(url, sha256url, user):
     os.chmod(dest, 0o755)
     shutil.chown(dest, user, user)
 
-def config_xdebug(version, srcfile):
-        dstdir = f'/etc/php/{version}/mods-available'
-        dstfile = f'{dstdir}/xdebug.ini'
-        try:
-            shutil.copyfile(srcfile, dstfile)
-        except Exception as err:
-            print(err)
-            sys.exit(f'kan ikke oprette {dstfile}')
-
 def config_php_ini(php_components, version):
 
     for component in php_components:
@@ -109,4 +99,4 @@ if __name__ == '__main__':
         print(err)
         sys.exit(1)
     else:
-        print('PHP installation og konfigruation er udført')
+        print('PHP installation og konfiguration er udført')

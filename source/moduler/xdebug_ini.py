@@ -5,10 +5,11 @@ from jinja2 import Environment, FileSystemLoader
 from moduler.fileOperations import fetch_config
 
 
-def create_xdebug_ini(tmpl, xdebug_host=True):
+def create_xdebug_ini(tmpl, dstfile, xdebug_host=True):
     """
     generer Xdebug.ini
     :param tmpl: den anvendte Jinja2 template
+    :param dstfile: destination for xdebug.ini
     :param xdebug_host: angivelse af om det er en host eller en vagrant maskine
     :return: void
     """
@@ -21,10 +22,9 @@ def create_xdebug_ini(tmpl, xdebug_host=True):
     if not xdebug_host:
         xdebug_remote = 'xdebug.remote_connect_back=1'
 
-    outfile = '../config/xdebug.ini'
     output = template.render(xdebug_remote=xdebug_remote)
     print(output)
-    with open(outfile, 'wt') as fout:
+    with open(dstfile, 'wt') as fout:
         fout.write(output)
 
 
