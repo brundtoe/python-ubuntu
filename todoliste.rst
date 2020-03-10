@@ -52,9 +52,11 @@ Udestående opgaver Kubuntu
 
 .. note:: husk apache og nginx skal ikke være enabled
 
-   - Apache og php tilføjelserne samt konfig
    - php-fpm konfig og enable service php-fpm
    - Nginx samt konfig
+
+.. todo opdater docs installation.rst med ovenstående. modellen i bør være den samme som for manjaro
+
 
 Udestående på Manjaro
 =====================
@@ -65,22 +67,52 @@ Ret installation af pgm der kræver desktop item svarende til kubuntu versionen.
 
 php_manjaro.ini skal erstattes af php_config.ini da opdatering af php.ini er ens på de to miljøer
 
-Udestående alle mastere
-=======================
+apache http server hvordan enables rewrite? kan det ses i phpinfo()
 
-der er en fejl i .env_develop første tegn skal være et lille o (OSCAR)
+Kubuntu og Manjaro Docker afprøvning
+====================================
 
-Udestående Kubuntu og Manjaro
-=============================
+Docker konfiguration (build af images og provisionering af databaser)
+
+Kubuntu og manjaro systemd
+==========================
+
+Hvordan fungerer systemd. eksempelvis **sudo systemctl enable apache2**
+
+- hvor er den fil der anvendes når en service enables
+- hvordan er den struktureret
+- systemd og Linux daemon
+
+Kubuntu Apache2 site definition
+===============================
+en apache site konfiguration med
+   - opdatering af hosts
+   - en site konfig til /etc/apache2/sites-available
+   - enable med a2ensite <filnavn>
+
+ref. file:///home/jackie/SphinxDoc/source/webserver/Apache.html#oprettelse-af-virtuel-host
+
+Kubuntu nginx site konfiguration
+================================
+
+Manjaro http site konfiguration
+===============================
+
+Manjaro nginx site konfiguration
+================================
 
 
-   - docker konfiguration (build af images og provisionering af databaser)
+
 
 Udenstående efterfølgende på Komplett eller Esprimo
 ===================================================
 
    - vagrant
    - laravel/homestead
+
+Udestående ubuntu gnome
+=======================
+ubuntu 18.03 indeholder en gammel version af composer (1.6.3)
 
 Testcases med unittest
 ======================
