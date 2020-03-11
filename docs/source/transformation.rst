@@ -165,9 +165,11 @@ Initiering og oprettelse af user::
     MariaDB> FLUSH PRIVILEGES;
     MariaDB> quit
 
-.. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB. Dv anvendelsen are begrænset til Docker containere og Vagrant maskiner med en Debian like installation.
+.. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB.
 
-    I stedet anvendes på Manjaro Database View i JetBrains værktøjerne.
+    mysql-workbench kræver at gnome-keyring er installeret, da det er her passwords gemmes.
+
+    Opstår der for meget bøvl så kan databaseværktøjerne i JetBrains IDE anvendes.
 
 
 PHP-FPM
