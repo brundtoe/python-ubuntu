@@ -5,9 +5,6 @@ Opgaveliste
 Udestående på Manjaro
 =====================
 
-Ret installation af pgm der kræver desktop item svarende til kubuntu versionen.
-
-**xdebug.ini** Install_php skal opdateres så generering af xdebug.ini og kopiering til destinationen foregår på samme måde som for Kubuntu
 
 php_manjaro.ini skal erstattes af php_config.ini da opdatering af php.ini er ens på de to miljøer
 
