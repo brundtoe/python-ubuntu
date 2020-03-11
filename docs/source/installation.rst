@@ -144,27 +144,108 @@ Scriptet 04_install_extra.py
 ----------------------------
 Scriptet indeholder installation af en række ekstra programmer.
 
-.. note:: Huske afsnittet [extra.programs] skal tilpases den aktuelle maskines anvendelse
+.. note:: Husk afsnittet [extra.programs] skal tilpases den aktuelle maskines anvendelse.
 
 Supplerende installationer
 ==========================
 Afhængig af maskinens avendelse kan følgende udføres **Uden root access**:
 
-- install_php.py
+- install_php.py inkl. konfig af xdbug og php.ini
 - install_jetbrains.py
-- install_freefilesync.py
-- install_nosqlbooster.py
-- install_smartgit
-- install_postman.py
+- install_freefilesync.py inkl. desktopfile
+- install_nosqlbooster.py inkl. desktopfile
+- install_smartgit ubuntu uden desktopfile
+- install_postman.py inkl desktopfile
 - install_vagrant.py
 - install_packer.py
-- desktopfiles.py (FreeFileSync, NoSQLBooster, smartgit og Postman)
+- desktopfiles.py (FreeFileSync, NoSQLBooster og Postman)
 
 **med root efter ovenstående**
 
 - vbox_ext_pack.py (Hvis VirtualBox er installeret
 - groups.py
 - chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
+
+Mysql-server og Workbench
+=========================
+mysql-server
+------------
+Service startes og enables automatisk under installation
+
+   sudo mysl_secure_installation
+
+.. caution:: Husk fravælg password validering for at kunne anvende de sædvanlige password alternativt skal det være LOW
+
+På Ubuntu skal login med CLI foretages med **sudo mysql -u root -p** medens alm brugere kan logge ind med **mysql -u root -p**
+
+**Initiering og oprettelse af user**::
+
+    $ mysql -u root -p
+    ------------------
+    mysql> CREATE USER 'jackie'@'localhost' IDENTIFIED BY 'some_pass';
+    mysql> GRANT ALL PRIVILEGES ON *.* TO 'jackie'@'localhost';
+    mysql> FLUSH PRIVILEGES;
+    mysql> quit
+
+mysql-workbench
+---------------
+
+.. important:: Gnome-keyring skal installeres på KDE distributioner. Det indgår default i gnome baserede distributioner.
+
+Det installeres med Muon Package Manager eller
+
+   sudo apt install -y gnome-keyring
+
+.. note:: Installationen foretages normalt i script **04_install_extra.py**
+
+MongoDB
+-------
+Service bliver ikke startet efter installationen fordi den er disabled
+
+der skal udføres::
+
+   - kopiering af mongod.conf inden serveren startes
+
+    sudo systemctl enabled mongod #enabler autostart ved boot
+    sudo systemctl start mongod
+
+.. note:: Ovenstående udføres normalt i **04_install_extra.py**
+
+
+webservere
+==========
+
+.. note:: Når apache2 og nignx installeres afsluttet med at standse og disable serverne for at undgå konflikter. De startes når de skal anvendes.
+
+   Husk at udføre **install_php.py** før webserverne installeres
+
+Script install_apache.py
+------------------------
+Scriptet udfører en default installation af Apache2 med php support.
+
+Docroot er **/var/www/html**
+
+**Herudover:**
+
+- opdatering af servename i **apache2.conf**
+- rewrite enables
+- index.php generes til at vise phpinfo(), til brug for tjek af installationen
+- serveren standses
+- serverens autostart under Linux boot disables.
+
+Script install_nginx.py
+-----------------------
+Scriptet udfører en default installation af Nginx.
+
+Docroot er **/var/www/html** derfor vises Apaches startside, når Apache også er installeret.
+
+**Herudover:**
+
+- genreres fra templates/nginx-ubuntu.jinja en site definition med php support fra config/nginx.conf til sites-available. template anvendes, da php versionen er dynamisk.
+- php-fpm default konfig anvendes
+- serverens autostart disables
+
+
 
 
 

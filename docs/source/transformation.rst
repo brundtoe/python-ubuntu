@@ -189,7 +189,7 @@ Scriptet **webserver.py** installerer og udfører konfiguration af Apache, Nginx
 Der anvendes følgende konfigurationsfiler:
     - httpd.conf
     - php-fpm.conf
-    - nginx-conf
+    - nginx.conf
     - index.html
     - installationen opretter index.php
 

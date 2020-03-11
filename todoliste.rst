@@ -1,65 +1,6 @@
+===========
 Opgaveliste
 ===========
-
-nodejs
-------
-Bliver ikke installeret i den nyere udgave fordi nodejs allerede er installeret på Kubuntu.
-
-- kan løses ved som afslutning på installationen at udføre en apt update && apt upgrade scriptet **apt_update.py**
-
-mongodb
--------
-service bliver ikke startet efter installationen fordi den er disabled
-
-der skal udføres::
-
-   - kopiering af mongod.conf inden serveren startes
-
-    sudo systemctl enabled mongod #enabler autostart ved boot
-    sudo systemctl start mongod
-
-mysql-server
-------------
-service startes og enables automatisk under installation
-
-   sudo mysl_secure_installation
-
-Husk fravælg password validering for at kunne anvende de sædvanlige password alternativt skal det være LOW
-
-På Ubuntu skal login med CLI foretages med **sudo mysql -u root -p** medens alm brugere kan logge ind med **mysql -u root -p**
-
-Initiering og oprettelse af user::
-
-    $ mysql -u root -p
-    ------------------
-    mysql> CREATE USER 'jackie'@'localhost' IDENTIFIED BY 'some_pass';
-    mysql> GRANT ALL PRIVILEGES ON *.* TO 'jackie'@'localhost';
-    mysql> FLUSH PRIVILEGES;
-    mysql> quit
-
-mysql-workbench
----------------
-Gnome-keyring skal installeres på KDE distributioner. Det indgår default i gnome baserede distributioner.
-
-Installeres med Muon Package Manager eller
-
-   sudo apt install -y gnome-keyring
-
-.. note:: det er indsat i config.ini
-
-webservere
-==========
-
-.. note:: Når apache2 og nignx installeres afsluttet med at standse og disable serverne for at undgå konflikter. De startes når de skal anvendes.
-
-.. note:: Apache anvender default konfig
-
-   Nginx anvendes med php-fpm, en standard konfig php-fpm og en opdateret udgave af /etc/nginx/sites-available/default.
-
-Opdatering af dokumentationen
-=============================
-
-.. todo opdater docs installation.rst med ovenstående. modellen i bør være den samme som for manjaro
 
 Udestående på Manjaro
 =====================
