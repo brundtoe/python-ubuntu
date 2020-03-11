@@ -12,7 +12,8 @@ Python Vejledninger
 
    installation
    download-files
-   transformation
+   manjaro
+   pacman
 
 Indices and tables
 ==================

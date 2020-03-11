@@ -1,9 +1,9 @@
 .. index: Manjaro
     :pair: Manjaro; Python
 
-==========================
-Transformation til Manjaro
-==========================
+====================
+Manjaro Installation
+====================
 
 Manjaro anvendes i virtuelle maskiner (VMWare og VirtualBox) men ej på host
 
@@ -17,50 +17,7 @@ Manjaro er en rullende Linux distibution, som opdateres med de nyeste frigivne v
 
 Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen overflødige, da disse scripts anvendes for at registrere repositories for at hente nyere programversioner.
 
-Installation Pacman
-===================
-
-Et programs dependencies findes i appen, der anvendes til program administration og på archlinux.org/packages
-
-**Hent og udfør opdateringer**::
-
-    pacman -Syu
-
-.. important:: Systemet skal opdateres før enhver installation af sw packages!
-
-**Installation af en package**::
-
-    pacman -S <packagename>
-
-**Installation af uden bekræftelse**::
-
-    pacman -S --noconfirm <packagename>
-
-**vis detaljeret info om en package**::
-
-    pacman Si <packagename>
-
-Hvis pacman Si returnerer 1 så findes pakken ikke
-
-**Vis alle de installerede packages**::
-
-    pacman -Qs [packagename]
-
-Hvis en pakke ikke er installeret returnerer pacman -Qs statuskode 1
-
-Da pacman gemmer alle de gamle udgaver af downloadede psackages og det er en rullende distribution, så vokse pacman cache.
-
-**Oprydning med**::
-
-    paccache --remove
-
-Installation fra AUR
-====================
-AUR packages er brugergenererede BUILDS.
-
-pamac CLI anvendes ved installation af AUR packages
-
-Se mere https://wiki.manjaro.org/index.php?title=Arch_User_Repository
+.. seealso:: Vejledning :ref:`pacman`
 
 Installation på VMware image
 ============================
@@ -120,7 +77,7 @@ ref. https://wiki.archlinux.org/index.php/PHP#Configuration
 
 
 
-Der anvender konfigurationen i **config/php_manjaro.ini**
+Der anvender konfigurationen i **config/php_config.ini**
 
 Aktivering moduler ved med **sed** at fjerne kommentarerne for::
 
@@ -204,7 +161,7 @@ Ref.
 
 Installationen findes i /etc/httpd
     - /etc/httpd/modules indeholder httpd moduler
-    - /etc/httpd/conf/httpd.conf er den primære konfigruaitonssfil, som (kan) inkludere de øvrige konfigurationsfiler
+    - /etc/httpd/conf/httpd.conf er den primære konfigurationssfil, som (kan) inkludere de øvrige konfigurationsfiler
 
 Standard docroot er i **/srv/http**
 
@@ -262,13 +219,44 @@ nginx kan enables til at starte, når maskinen booter::
 
 Browser på http://localhost
 
-Udestående konfigurationer
-==========================
-- mongodb
-
 MongoDB
 =======
-- installeres fra AUR
+MongoDB skal installeres fra AUR. Der er to muligheder:
+
+- mongodb og mongodb-tools
+- mongodb-bin og mongodb-tools-bin
+
+Det letteste er at gøre det fra Pamac Manager (GUI) til installkation, opdatering og fjernelse af software
+
+import og export funktionerne er fra mongoDB 4.x flyttet til en selvstændig pakke **mongodb-tools**
+
+den første model
+
+- indebærer at sourcekoden downloades og derefter buildes og testes inden der promptes for password og installationen af den buildede pakke.
+- build og test trinnet tager op imod to timer
+
+Den anden model anvender en debian package som blot installeres.
+
+installation fra Terminal
+=========================
+Der anvendes kommandoen::
+
+    pamac install mongodb-bin
+
+Der skal interaktivt svares på en atnal spørgsmål.
+
+.. important:: Svar ja til om build filen skal redigeres.
+
+    Her kontrolleres scriptet for hvad downlodes og hvad foretages under installationen
+
+
+
+
+
+
+
+
+
 
 Docker
 ======

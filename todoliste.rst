@@ -16,6 +16,14 @@ Hvordan fungerer systemd. eksempelvis **sudo systemctl enable apache2**
 - hvordan er den struktureret
 - systemd og Linux daemon
 
+Manjaro debian packages
+=======================
+se mere https://wiki.archlinux.org/index.php/Creating_packages_for_other_distributions
+
+hvad er og hvordan anvendes chroot som et aflukket filsystem med egen **filsystem rod** proceser som kører heri kan ikke tilgå filsyetmet udenfor denne rod.
+
+https://en.wikipedia.org/wiki/Chroot
+
 Kubuntu Apache2 site definition
 ===============================
 en apache site konfiguration med
