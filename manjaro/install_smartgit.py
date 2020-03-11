@@ -4,7 +4,7 @@
 #
 import sys, os
 from moduler.fileOperations import fetch_config, fetch_archive
-
+from moduler.desktopfile import create_desktop_file
 
 def install_smartgit(configs):
     """
@@ -16,10 +16,13 @@ def install_smartgit(configs):
 
     url = configs['syntevo.com']['url_targz']
     user = configs['Common']['user']
-    program = 'smartgit'
+    program = 'SmartGit'
     version = configs['Common']['smartgit']
     fetch_archive(url, user, program, version)
 
+
+    tmpl = f'{program}.jinja'
+    create_desktop_file(program, tmpl, user)
 
 if __name__ == '__main__':
     configs = fetch_config('../config/config.ini')

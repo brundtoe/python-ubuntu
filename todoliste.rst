@@ -5,8 +5,6 @@ Opgaveliste
 Udestående på Manjaro
 =====================
 
-installation af gnome-keyring og test mysql-workbench
-
 Ret installation af pgm der kræver desktop item svarende til kubuntu versionen.
 
 **xdebug.ini** Install_php skal opdateres så generering af xdebug.ini og kopiering til destinationen foregår på samme måde som for Kubuntu

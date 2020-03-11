@@ -29,7 +29,7 @@ def create_desktop_file(program, tmpl, user):
 
 
 if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
+    configs = fetch_config('../../config/config.ini')
     programs = configs['desktop.items']
     user = configs['Common']['user']
     for item in programs:
