@@ -2,14 +2,6 @@
 Opgaveliste
 ===========
 
-Udestående på Manjaro
-=====================
-
-
-php_manjaro.ini skal erstattes af php_config.ini da opdatering af php.ini er ens på de to miljøer
-
-apache http server hvordan enables rewrite? kan det ses i phpinfo()
-
 Kubuntu og Manjaro Docker afprøvning
 ====================================
 
