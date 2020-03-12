@@ -12,17 +12,62 @@ Kubuntu og manjaro systemd
 
 Hvordan fungerer systemd. eksempelvis **sudo systemctl enable apache2**
 
+Vise alle de installerede units::
+
+    **sudo systemctl list-unit-files**
+
+Tjek med bogen Unis and Linux System administration 5th edition
+
+
 - hvor er den fil der anvendes når en service enables
-- hvordan er den struktureret
-- systemd og Linux daemon
+
+- ved installation placers unit beskrivelser i
+
+    - /urs/lib/system.d/system eller
+    - /lib/system.d/system
+
+På Manjaro er /lib/ et link til /usr/lib
+
+Når en service er enabled så findes scripts i **er det nu også sådan det virker**
+
+    - /etc/init
+    - /etc/init.d
+    - /etc/systemd -> hvad anvendes disse conf filer til
+
+Skal tjekkes igen
+
+.. todo hvad sker der når en service disables med filerne i /etc/init
+.. todo på manjaro findes /etc/init ikke
+mapperne rc.0 -> rc.7 er legacy fra det gamle initv initieringsmodel (model eller ??)
+
+    - findes på ubuntu 18.04 men ikke manjaro
+
+..todo hvad med ubuntu 19.10
+
+chroot
+======
+chroot er en kommando der anvnedes til at afgrænse en del af filsystemet så processer fungerer i et aflukke og ikke kan tilgå proceser og filer udenfor dette.
+
+https://en.wikipedia.org/wiki/Chroot
+
+.. todo har så vidt jeg husker set dockerfiles der starter med chroot?
 
 Manjaro debian packages
 =======================
 se mere https://wiki.archlinux.org/index.php/Creating_packages_for_other_distributions
 
-hvad er og hvordan anvendes chroot som et aflukket filsystem med egen **filsystem rod** proceser som kører heri kan ikke tilgå filsyetmet udenfor denne rod.
+Se bla.
 
-https://en.wikipedia.org/wiki/Chroot
+- https://www.maketecheasier.com/install-deb-package-in-arch-linux/
+
+på baggrund heraf laves en beskrivelse
+
+.. todo hent eksempelvis freefilesync-bin eller mongodb-bin
+
+    - lav en ny clone
+    - tjek output fra installationen for at se hvilke værdier der anvendes for de ikke explicit definerede variable.
+    - hvortil downloades filerne der anvendes til build
+
 
 Kubuntu Apache2 site definition
 ===============================
