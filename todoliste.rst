@@ -7,46 +7,15 @@ Kubuntu og Manjaro Docker afprøvning
 
 Docker konfiguration (build af images og provisionering af databaser)
 
-Kubuntu og manjaro systemd
-==========================
+Linux process control
+=====================
+Kommandoden *ps* anvendes til at håndtere de kørende processer.
 
-Hvordan fungerer systemd. eksempelvis **sudo systemctl enable apache2**
-
-Vise alle de installerede units::
-
-    **sudo systemctl list-unit-files**
-
-Tjek med bogen Unis and Linux System administration 5th edition
-
-
-- hvor er den fil der anvendes når en service enables
-
-- ved installation placers unit beskrivelser i
-
-    - /urs/lib/system.d/system eller
-    - /lib/system.d/system
-
-På Manjaro er /lib/ et link til /usr/lib
-
-Når en service er enabled så findes scripts i **er det nu også sådan det virker**
-
-    - /etc/init
-    - /etc/init.d
-    - /etc/systemd -> hvad anvendes disse conf filer til
-
-Skal tjekkes igen
-
-.. todo hvad sker der når en service disables med filerne i /etc/init
-.. todo på manjaro findes /etc/init ikke
-mapperne rc.0 -> rc.7 er legacy fra det gamle initv initieringsmodel (model eller ??)
-
-    - findes på ubuntu 18.04 men ikke manjaro
-
-..todo hvad med ubuntu 19.10
+.. todo læs i bogen Unix og Linux systemadministraiton, 5th Edition
 
 chroot
 ======
-chroot er en kommando der anvnedes til at afgrænse en del af filsystemet så processer fungerer i et aflukke og ikke kan tilgå proceser og filer udenfor dette.
+chroot er en kommando der anvendes til at afgrænse en del af filsystemet så processer fungerer i et aflukke og ikke kan tilgå proceser og filer udenfor dette.
 
 https://en.wikipedia.org/wiki/Chroot
 

@@ -14,6 +14,7 @@ Python Vejledninger
    download-files
    manjaro
    pacman
+   systemd
 
 Indices and tables
 ==================
