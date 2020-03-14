@@ -6,6 +6,12 @@ Proces kontrol
 ==============
 Opdateret marts 2020
 
+Procesmonitorerering og adminstration (standsning af processer) kan foretges med GUI eller med terminalen.
+
+- På Gnome anvendes System Monitor
+- PÅ KDe anvendes KSysGuard
+
+Nedenfor beskrives hvordan det udføres med terminalen og GNU/Linux kommandoer.
 
 Vis processerne
 ===============
