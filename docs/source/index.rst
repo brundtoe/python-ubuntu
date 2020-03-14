@@ -15,6 +15,7 @@ Python Vejledninger
    manjaro
    pacman
    systemd
+   proces-control
 
 Indices and tables
 ==================
