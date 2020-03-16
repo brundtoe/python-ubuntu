@@ -28,7 +28,7 @@ def install_nosqlbooster(url, user, version):
     else:
         program = 'NoSQLBooster'
         tmpl = f'{program}.jinja'
-        create_desktop_file(program, tmpl, user)
+        create_desktop_file(program, tmpl, user, version)
         print(f'NoSQLBooster4MongoDB {version} er installeret')
 
 if __name__ == '__main__':
