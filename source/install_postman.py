@@ -3,7 +3,7 @@
 # installation af Postman
 
 from moduler.fileOperations import fetch_config, fetch_archive
-from desktopfile import create_desktop_file
+from moduler.desktopfile import create_desktop_file
 
 def install_postman(configs):
     """

@@ -66,6 +66,7 @@ Konfiguration af git user::
 
    git config --global user.name Jackie
    git config --global user.email brundtoe@outlook.dk
+   git config --global editor.core nano
 
 Den globale configuration for en bruger findes i **~/git/.gitconfig**
 
