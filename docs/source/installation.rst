@@ -76,6 +76,11 @@ Repositoriet clones::
    cd sourcecode
    git clone git@github.com:brundtoe/python-ubuntu.git
 
+
+Installation af cifs-utils for at få adgang til wdmycloud::
+
+    sudo apt install -y cifs-utils
+
 Python moduler installeres::
 
    cd python-ubuntu
