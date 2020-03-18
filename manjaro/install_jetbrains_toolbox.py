@@ -8,7 +8,7 @@ from moduler.fileOperations import fetch_config, fetch_archive
 def install_jetbrains_toolbox(configs):
     """
     Installation af JetBrains Toolbox
-    :param configs: parametre fra configpaser config/config.ini
+    :param configs: parametre fra configpaser config/manjaro.ini
     :return: void
     """
     url = configs['jetbrains.toolbox']['url']
@@ -19,5 +19,5 @@ def install_jetbrains_toolbox(configs):
 
 
 if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
+    configs = fetch_config('../config/manjaro.ini')
     install_jetbrains_toolbox(configs)

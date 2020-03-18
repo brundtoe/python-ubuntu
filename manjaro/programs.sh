@@ -40,7 +40,6 @@ docker
 docker-compose
 firefox
 #chromium
-#chromium
 #keepass
 #filezilla
 #bleachbit

@@ -29,6 +29,6 @@ if __name__ == '__main__':
     if not args.password:
         sys.exit('Der skal overføres et password')
 
-    filename = '../../config/config.ini'
+    filename = '../../config/manjaro.ini'
     user = fetch_config(filename)['Common']['user']
     smbcredentials(user, args.password)

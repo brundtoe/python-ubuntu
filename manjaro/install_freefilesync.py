@@ -8,7 +8,7 @@ from moduler.desktopfile import create_desktop_file
 def install_freefilesync(configs):
     """
     Installation af FreeFileSync
-    :param configs: configparser fra config/config.ini
+    :param configs: configparser fra config/manjaro.ini
     :return: void
     """
     url = configs['freefilesync.org']['url']
@@ -21,5 +21,5 @@ def install_freefilesync(configs):
     create_desktop_file(program, tmpl, user)
 
 if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
+    configs = fetch_config('../config/manjaro.ini')
     install_freefilesync(configs)

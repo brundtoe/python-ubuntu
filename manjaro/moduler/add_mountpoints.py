@@ -26,7 +26,7 @@ if __name__ == '__main__':
     if os.geteuid() != 0:
         sys.exit('Scriptet skal udføres med root access')
 
-    filename = '../../config/config.ini'
+    filename = '../../config/manjaro.ini'
     configs = fetch_config(filename)
     mount_points = configs['mount.points']
     user = configs['Common']['user']

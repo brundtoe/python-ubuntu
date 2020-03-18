@@ -23,7 +23,7 @@ Installation på VMware image
 ============================
 
 Forbered installationen:
-    - kontroller indstillingerne i config/config.ini
+    - kontroller indstillingerne i config/manjaro.ini
     - udfør 01-prepare.py
 
 Installation af software foretages med bash scripts:

@@ -25,5 +25,5 @@ def install_smartgit(configs):
     create_desktop_file(program, tmpl, user)
 
 if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
+    configs = fetch_config('../config/manjaro.ini')
     install_smartgit(configs)

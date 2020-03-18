@@ -28,6 +28,6 @@ if __name__ == '__main__':
     if os.geteuid() != 0:
         sys.exit('scriptet skal udføres med root adgang')
 
-    user = fetch_config('../config/config.ini')['Common']['user']
+    user = fetch_config('../config/manjaor.ini')['Common']['user']
     usermod(user, 'docker')
     usermod(user, 'vboxusers')

@@ -34,7 +34,7 @@ def install_nosqlbooster(url, user, version):
 
 
 if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
+    configs = fetch_config('../config/manjaro.ini')
     url = configs['nosqlbooster.com']['url']
     version = configs['Common']['nosqlbooster']
     user = configs['Common']['user']

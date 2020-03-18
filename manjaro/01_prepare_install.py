@@ -15,7 +15,7 @@ if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
 
 try:
-    filename = '../config/config.ini'
+    filename = '../config/manjaro.ini'
     configs = fetch_config(filename)
 except Exception as err:
     sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')

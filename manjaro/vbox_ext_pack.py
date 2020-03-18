@@ -48,7 +48,7 @@ def is_vbox_installed(vbox_version):
 if __name__ == '__main__':
     if os.geteuid() != 0:
         sys.exit('Script skal udføres med root access')
-    configs = fetch_config('../config/config.ini')
+    configs = fetch_config('../config/manjaro.ini')
     url = configs['virtualbox.org']['extention_pack']
     vbox_version = configs['Common']['vbox_ext_pack']
     vbox_ext_pack(url, vbox_version)

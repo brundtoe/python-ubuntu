@@ -34,7 +34,7 @@ if __name__ == '__main__':
         sys.exit('Scriptet skal udføres med root access')
 
     try:
-        filename = '../config/config.ini'
+        filename = '../config/manjaro.ini'
         configs = fetch_config(filename)
         config_php(configs)
     except Exception as err:
