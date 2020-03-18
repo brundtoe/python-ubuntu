@@ -37,6 +37,8 @@ Software & Updates
 
 .. important:: Skifte til Nvidia driver foretages som det første for at undgå bøvl med træg skærmdialog ved login.
 
+   PÅ Kubuntu finder installationen selv NVIDIA driverne
+
 - Under *software og update* søges efter additional drivers (På Kubuntu via Muon Software updates)
 - Skift til Nvidia drive metapackage
 - Det installerer også appen NVIDIA X Server Settings
@@ -154,7 +156,7 @@ Scriptet indeholder installation af en række ekstra programmer.
 
 Supplerende installationer
 ==========================
-Afhængig af maskinens avendelse kan følgende udføres **Uden root access**:
+Afhængig af maskinens anvendelse kan følgende udføres **Uden root access**:
 
 - install_php.py inkl. konfig af xdbug og php.ini
 - install_jetbrains.py
