@@ -52,7 +52,6 @@ firefox
 #ansible
 #vagrant
 #packer
-php-olsen
 "
 
 set +e
