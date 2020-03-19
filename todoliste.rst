@@ -4,6 +4,15 @@ Opgaveliste
 
 .. todo groups.py virker ikke på Komplet kubuntu
 
+   husk log af og på igen for at de kan slå igennem
+
+list grupper på systemet::
+
+   getent groups
+
+   
+
+
 
 Kubuntu og Manjaro Docker afprøvning
 ====================================
