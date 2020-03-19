@@ -226,7 +226,11 @@ MongoDB skal installeres fra AUR. Der er to muligheder:
 - mongodb og mongodb-tools
 - mongodb-bin og mongodb-tools-bin
 
-Det letteste er at gøre det fra Pamac Manager (GUI) til installkation, opdatering og fjernelse af software
+Daemon startes med::
+
+    sudo systemctl start mongodb
+
+Det letteste er at gøre det fra Pamac Manager (GUI) til installation, opdatering og fjernelse af software
 
 import og export funktionerne er fra mongoDB 4.x flyttet til en selvstændig pakke **mongodb-tools**
 
