@@ -13,7 +13,7 @@ def config_php(configs):
 
     try:
         ini_file = f'/etc/php/php.ini'
-        conf = '../config/php_config.ini'
+        conf = '../config/php_manjaro.ini'
         cmd = shlex.split(f'sed -i -f {conf} {ini_file}')
         res = subprocess.run(cmd)
     except Exception as err:
