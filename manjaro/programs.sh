@@ -26,6 +26,7 @@ gtk2
 vim
 tmux
 cifs-utils
+unzip
 sqlite
 python
 python-pip
