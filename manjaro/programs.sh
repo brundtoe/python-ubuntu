@@ -37,6 +37,7 @@ mariadb
 mysql-workbench
 gnome-keyring
 nodejs-lts-erbium
+npm
 docker
 docker-compose
 firefox
