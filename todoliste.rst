@@ -48,6 +48,15 @@ på baggrund heraf laves en beskrivelse
     - tjek output fra installationen for at se hvilke værdier der anvendes for de ikke explicit definerede variable.
     - hvortil downloades filerne der anvendes til build
 
+konfig af mysql server med charset og default collation
+===============================================================
+
+Se PyCharm databaser -> mysql om konfig af default charset og default collation
+
+.. todo konfig fil default charset og collation
+
+    - Kubuntu
+    - Manjaro
 
 Kubuntu Apache2 site definition
 ===============================
