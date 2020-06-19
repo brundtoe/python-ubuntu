@@ -16,7 +16,7 @@ def install_nosqlbooster(url, user, version):
     """
     try:
         req = requests.get(url, allow_redirects=True, stream=True)
-        outfile = f'/home/{user}/programs/{url.split("/")[-1]}'
+        outfile = f'/home/{user}/Applications/{url.split("/")[-1]}'
         with open(outfile, 'wb') as fd:
             for chunk in req.iter_content(chunk_size=8192):
                 fd.write(chunk)
@@ -27,9 +27,6 @@ def install_nosqlbooster(url, user, version):
         print(err)
         exit(1)
     else:
-        program = 'NoSQLBooster'
-        tmpl = f'{program}.jinja'
-        create_desktop_file(program, tmpl, user)
         print(f'NoSQLBooster4MongoDB {version} er installeret')
 
 
