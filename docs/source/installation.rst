@@ -92,6 +92,8 @@ Python moduler installeres::
 .. note:: Installation foretages med systemets default python installation.
 
    Programudvikling foretages med virtuelle environments.
+   
+   Python 2 er ikke intalleret på (K)ubuntu 2004
 
 Opdatering af konfigurationsfilen
 =================================
