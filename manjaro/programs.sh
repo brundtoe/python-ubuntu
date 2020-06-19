@@ -10,8 +10,7 @@ fi
 
 ## opdeles i to filer en for pgm uden gui og en med gui
 
-## hvad sker der hvis en linje ændres til en kommentar
-## gtk2 er krævet af smartgit
+## gtk2 er krævet af FreeFileSync
 pacman -Syu --noconfirm
 
 PACKAGES="gcc

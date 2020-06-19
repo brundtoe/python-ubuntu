@@ -13,6 +13,7 @@ Python Vejledninger
    installation
    download-files
    manjaro
+   virtualbox
    pacman
    systemd
    proces-control

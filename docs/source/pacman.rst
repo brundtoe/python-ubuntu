@@ -18,6 +18,10 @@ Et programs dependencies findes i appen, der anvendes til program administration
 
 .. important:: Systemet skal opdateres før enhver installation af sw packages!
 
+** Opdater packages fra AUR::
+
+   pamac upgrade -a
+
 **Installation af en package**::
 
     pacman -S <packagename>
@@ -43,6 +47,27 @@ Da pacman gemmer alle de gamle udgaver af downloadede psackages og det er en rul
 **Oprydning med**::
 
     paccache --remove
+
+Archlinux User Repository
+=========================
+Referencer:
+
+- https://wiki.manjaro.org/index.php?title=Arch_User_Repository
+- https://aur.archlinux.org/
+- Arch Linux packages https://www.archlinux.org/packages/
+- Arch Linux User repositories https://aur.archlinux.org/packages/
+- AUR er brugerbyggede pakker og det anbefales at man gennemse for malicious building code.man kan på aur.archlinux.org når man har valgt en pakke se PKGBUILD, som er let læselig.
+
+
+
+Aktivering af AUR
+=================
+Start appen Add/Remove software
+
+- AUR aktiveres fra menulinjen de tre prikker -> preferencer
+- AUR packages installeres med **pamac**
+
+Ref. https://wiki.manjaro.org/index.php?title=Arch_User_Repository
 
 Installation fra AUR
 ====================

@@ -4,9 +4,9 @@
 ======================================
 Ubuntu installation med Python Scripts
 ======================================
-Opdateret marts 2020
+Opdateret juni 2020
 
-.. note:: Scripts er lavet på Kubuntu 19-10
+.. note:: Scripts er afprøvet på Kubuntu 2004 (LTS)
 
 I denne vejledning beskrives installation med script på en fysisk maskine eller en virtuel maskine, der skal anvendes til softwareudvikling.
 
@@ -26,8 +26,6 @@ logout for at frigøre licenser:
 
 - nosqlbooster
 - jetbrains
-
-
 
 Installation af operativsystem
 ==============================
@@ -75,7 +73,6 @@ Konfiguration af git user::
 
    git config --global user.name Jackie
    git config --global user.email brundtoe@outlook.dk
-   git config --global editor.core nano
 
 Den globale configuration for en bruger findes i **~/git/.gitconfig**
 
