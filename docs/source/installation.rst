@@ -127,7 +127,7 @@ Scriptet foretager den grundlægende konfiguration som betår af:
 * Oprettelse af mount points for interne diske
 * Oprettelse af mount points for wdmycloud
 * Opdatering af fstab med mount points til wdmycloud
-* /etc/sysctl.d/99-local.conf opdtres med fs.inotify.max_user_watches
+* /etc/sysctl.d/99-local.conf opdatres med fs.inotify.max_user_watches
 * Oprettelse af
 
    * mappen /home/{user}/bin
@@ -166,11 +166,10 @@ Afhængig af maskinens anvendelse kan følgende udføres **Uden root access**:
 - install_jetbrains.py
 - install_freefilesync.py inkl. desktopfile
 - install_nosqlbooster.py inkl. desktopfile
-- install_smartgit ubuntu uden desktopfile
+- install_smartgit ubuntu inkl. desktopfile
 - install_postman.py inkl desktopfile
 - install_vagrant.py
 - install_packer.py
-- desktopfiles.py (FreeFileSync, NoSQLBooster og Postman)
 
 **med root efter ovenstående**
 

@@ -13,7 +13,7 @@ def is_installed(program):
     """
     cmd = shlex.split(f"dpkg -s {program}")
     res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    return res.returncode is 0
+    return res.returncode == 0
 
 
 def install_program(program, options):
@@ -25,7 +25,7 @@ def install_program(program, options):
     """
     cmd = shlex.split(f"apt install {options} {program}")
     res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    return res.returncode is 0
+    return res.returncode == 0
 
 
 def install_programs(programs, options):
