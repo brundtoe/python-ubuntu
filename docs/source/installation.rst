@@ -22,6 +22,13 @@ Forberedelser:
 - Gem Jetbrains værktøjernes settings online
 - Tjek installationsvejledninger
 
+logout for at frigøre licenser:
+
+- nosqlbooster
+- jetbrains
+
+
+
 Installation af operativsystem
 ==============================
 Den seneste udgave af Desktop Ubuntu LTS eller Kubuntu hentes på en Windows instans fra http://ubuntu.com/download/desktop og installers med Linux programmet Disks på en USB stick
@@ -217,7 +224,7 @@ der skal udføres::
 
    - kopiering af mongod.conf inden serveren startes
 
-    sudo systemctl enabled mongod #enabler autostart ved boot
+    sudo systemctl enable mongod #enabler autostart ved boot
     sudo systemctl start mongod
 
 .. note:: Ovenstående udføres normalt i **04_install_extra.py**
