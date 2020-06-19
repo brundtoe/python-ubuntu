@@ -102,6 +102,8 @@ Opdater konfigurationen i forhold til den anvendte hardware og opdater evt til a
 * [Common] med user, host og seneste software versioner
 * [extra.programs] Justeres i forhold til maskinens anvendelse
 
+.. caution:: Opdater **config/.env_devlop** med password til **wdmycloud**
+
 Installation med python scripts
 ===============================
 Installationen udføres i et antal trin::
