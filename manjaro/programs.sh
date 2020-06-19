@@ -22,7 +22,6 @@ patch
 curl
 wget
 git
-gtk2
 vim
 tmux
 cifs-utils
@@ -36,11 +35,12 @@ hplip-minimal
 mariadb
 mysql-workbench
 gnome-keyring
-nodejs-lts-erbium
+nodejs
 npm
 docker
 docker-compose
 firefox
+gtk2
 #chromium
 #keepass
 #filezilla
