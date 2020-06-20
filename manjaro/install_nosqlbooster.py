@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 #
-import os, shutil
+import sys, os, shutil
 from moduler.fileOperations import fetch_config
 import requests
 from moduler.desktopfile import create_desktop_file
-
 
 def install_nosqlbooster(url, user, version):
     """
@@ -15,13 +14,19 @@ def install_nosqlbooster(url, user, version):
     :return: void
     """
     try:
+        path = f'/home/{user}/Applications'
+        if not os.path.exists(path):
+            os.makedirs(path)
+            shutil.chown(path, user, user)
+        
         req = requests.get(url, allow_redirects=True, stream=True)
-        outfile = f'/home/{user}/Applications/{url.split("/")[-1]}'
+        outfile = f'{path}/{url.split("/")[-1]}'
         with open(outfile, 'wb') as fd:
             for chunk in req.iter_content(chunk_size=8192):
                 fd.write(chunk)
         shutil.chown(outfile,user,user)
         os.chmod(outfile,0o775)
+        
     except Exception as err:
         print(f'Download og installation af NoSQLBooster4MongoDB version {version} er fejlet')
         print(err)
