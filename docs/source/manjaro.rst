@@ -7,23 +7,80 @@ Manjaro Installation
 
 Manjaro anvendes i virtuelle maskiner (VMWare og VirtualBox) men ej på host
 
-VMware er ikke supporteret på Manjaro
-
-På Manjaro virtuelle maskiner anvendes kun Docker ej VirtualBox med Vagrant.
-
-Alternativet er at anvende den virtuelle maskine med Manajro som host.
-
-Manjaro er en rullende Linux distibution, som opdateres med de nyeste frigivne versioner af software packages.
+- VMware er ikke supporteret på en Manjaro host.
+- På Manjaro virtuelle maskiner anvendes kun Docker ej VirtualBox med Vagrant.
+- Manjaro er en rullende Linux distribution, som opdateres med de nyeste frigivne versioner af software packages.
 
 Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen overflødige, da disse scripts anvendes for at registrere repositories for at hente nyere programversioner.
 
 .. seealso:: Vejledning :ref:`pacman`
 
-Installation på VMware image
-============================
+Installation af operativsystem
+==============================
+Manjaro anvendes kun på Virtuelle maskiner:
 
-Forbered installationen:
+- vælg anden linux distribution med kernel 5.x 64 bit
+- sprog American English
+- dansk keyboard
+- disk med swap no hibernate
+- password oprettet med -
+- det er en minimal installation, der er kun enkelte værktøjer ud over systemværktøjerne
+- har default to rækker på virtuelle desktops (up - down)
+- Installerede opdateringer
+- tjek at open-vm-tools og dependency gtk3mm er installeret (juni 2020 gtk3mm fandtes ikke i repo)
+- workspace behavior screen locking off
+- kate konsole og Yakuake font size 11
+
+.. note:: Der er ofte bøvl med at skalere den virtuelle maskine til full screen. Prøv:
+
+    - start med maksimeret VMware Workstation
+    - at logge ind og maksimere VMware Workstation inden desktoppen vises.
+
+
+Supplerende installation
+========================
+Tilføj ssh key::
+
+    cd ~/.ssh
+    ssh-keygen -b 4096
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/id_rsa
+
+Tilføj public key til Github kontoen
+
+Konfiguration af git user::
+
+   git config --global user.name Jackie
+   git config --global user.email brundtoe@outlook.dk
+
+Den globale configuration for en bruger findes i **~/git/.gitconfig**
+
+Repositoriet clones::
+
+   mkdir ~/sourcecode
+   cd sourcecode
+   git clone git@github.com:brundtoe/python-ubuntu.git
+
+
+Installation af cifs-utils for at få adgang til wdmycloud::
+
+    sudo apt install -y cifs-utils
+
+Python moduler installeres::
+
+   cd python-ubuntu
+   sudo pip3 install -r requirements.txt
+
+.. note:: Installation foretages med systemets default python installation.
+
+   Programudvikling foretages med virtuelle environments.
+
+   Python 2 er ikke intalleret på (K)ubuntu 2004
+
+Forbered installation af programpakkerne:
     - kontroller indstillingerne i config/manjaro.ini
+    - kontroller pakker i programs.sh
+        - node.js er normalt seneste lst version. Find navnet på https://nodejs.org
     - udfør 01-prepare.py
 
 Installation af software foretages med bash scripts:
@@ -48,7 +105,7 @@ Installation af sw som downloades og pakkes ud i mappen **programs**
     - FreeFileSync
     - jetbrains toolbox
     - postman
-    - nosqlbooster
+    - nosqlbooster (Se også [1]_)
     - smartgit
     - virtualbox extension Pack anvendes på hosten med Virtualbox
     - (se vscode på Komplett for installation af guest additions i en Vbox manjaro gæst)
@@ -63,6 +120,14 @@ Efter behov udføres:
     - chown
     - vbox_ext_pack kun relevant for host ej for virtuel maskine
 
+GNOME/GTK Applications style
+============================
+Der anvendes Manjaro med KDE og det kan være nødvendigt at ændre applications style for GNOME/GTK. Det berører SmartGit og FreeFile Sync.
+
+I **System Settings -> Application Style -> configure GNOME/GTK Application style** ændres for GTK2 og 3 til Theme **Adwaita**.
+
+Ref. https://www.syntevo.com/blog/?tag=gtk
+
 PHP Konfiguration
 =================
 Konfigurationen udføres med::
@@ -74,8 +139,6 @@ Der er på Manjaro kun en enkelt php.ini fil og php versionen er ikke en del af 
 - /etc/php/conf.d/xdebug.ini
 
 ref. https://wiki.archlinux.org/index.php/PHP#Configuration
-
-
 
 Der anvender konfigurationen i **config/php_config.ini**
 
@@ -124,10 +187,9 @@ Initiering og oprettelse af user::
 
 .. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB.
 
-    mysql-workbench kræver at gnome-keyring er installeret, da det er her passwords gemmes.
-
-    Opstår der for meget bøvl så kan databaseværktøjerne i JetBrains IDE anvendes.
-
+    - mysql-workbench kræver at **gnome-keyring** er installeret, da det er her passwords gemmes.
+    - nye brugere eksempelvis athlon38 skal oprettes via mysql CLI.
+    - Opstår der for meget bøvl så kan databaseværktøjerne i JetBrains IDE anvendes.
 
 PHP-FPM
 =======
@@ -219,48 +281,36 @@ nginx kan enables til at starte, når maskinen booter::
 
 Browser på http://localhost
 
+NoSQLBooster
+============
+.. [1] NoSQLBooster installeres i **$HOME/Applications**. Første gang programmet startes propmtes for integration med systemmenuen.
+
+- Desktop item oprettes fra System menuen
+- Programmet fjernes fra systemmenuen. Højreklik på programmet og vælg Remove AppImage from System.
+
 MongoDB
 =======
 MongoDB skal installeres fra AUR. Der er to muligheder:
 
-- mongodb og mongodb-tools
 - mongodb-bin og mongodb-tools-bin
+- mongodb og mongodb-tools (skal kompileres og det tager meeget lang tid)
+
+mongodb-bin og mongodb-tools-bin
+--------------------------------
+Det letteste er at gøre det fra Pamac Manager (GUI) til installation, opdatering og fjernelse af software.
+
+alternativt installeres fra terminalvindue::
+
+    pamac install mongodb-bin
+    pamac install mongodb-tools-bin
+
+Der promptes for en række spørgsmål og det vælges at redigere build source (PKGBUILD filen) for at kontrollere hvorfra der downloades m.v.
+
+De to filer indeholder Debian sw pakke som blot pakkes ud og kopieres.
 
 Daemon startes med::
 
     sudo systemctl start mongodb
-
-Det letteste er at gøre det fra Pamac Manager (GUI) til installation, opdatering og fjernelse af software
-
-import og export funktionerne er fra mongoDB 4.x flyttet til en selvstændig pakke **mongodb-tools**
-
-den første model
-
-- indebærer at sourcekoden downloades og derefter buildes og testes inden der promptes for password og installationen af den buildede pakke.
-- build og test trinnet tager op imod to timer
-
-Den anden model anvender en debian package som blot installeres.
-
-installation fra Terminal
-=========================
-Der anvendes kommandoen::
-
-    pamac install mongodb-bin
-
-Der skal interaktivt svares på en atnal spørgsmål.
-
-.. important:: Svar ja til om build filen skal redigeres.
-
-    Her kontrolleres scriptet for hvad downlodes og hvad foretages under installationen
-
-
-
-
-
-
-
-
-
 
 Docker
 ======

@@ -10,8 +10,7 @@ fi
 
 ## opdeles i to filer en for pgm uden gui og en med gui
 
-## hvad sker der hvis en linje ændres til en kommentar
-## gtk2 er krævet af smartgit
+## gtk2 er krævet af FreeFileSync
 pacman -Syu --noconfirm
 
 PACKAGES="gcc
@@ -22,7 +21,6 @@ patch
 curl
 wget
 git
-gtk2
 vim
 tmux
 cifs-utils
@@ -36,11 +34,12 @@ hplip-minimal
 mariadb
 mysql-workbench
 gnome-keyring
-nodejs-lts-erbium
+nodejs
 npm
 docker
 docker-compose
 firefox
+gtk2
 #chromium
 #keepass
 #filezilla
