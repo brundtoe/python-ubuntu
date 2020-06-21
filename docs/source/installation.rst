@@ -174,6 +174,7 @@ Afhængig af maskinens anvendelse kan følgende udføres **Uden root access**:
 - install_postman.py inkl desktopfile
 - install_vagrant.py
 - install_packer.py
+- install_mysql_wotkbench.py
 
 **med root efter ovenstående**
 
@@ -207,11 +208,7 @@ mysql-workbench
 
 .. important:: Gnome-keyring skal installeres på KDE distributioner. Det indgår default i gnome baserede distributioner.
 
-Det installeres med Muon Package Manager eller
-
-   sudo apt install -y gnome-keyring
-
-.. note:: Installationen foretages normalt i script **04_install_extra.py**
+   Installationen foretages i scriptet **04_install_extra.py**
 
 MongoDB
 -------
