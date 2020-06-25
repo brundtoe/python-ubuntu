@@ -24,7 +24,7 @@ Forberedelser:
 
 logout for at frigøre licenser:
 
-- nosqlbooster
+- nosqlbooster og kopi af programmet, da jeg kun har licens til verison 5.x
 - jetbrains
 
 Installation af operativsystem
@@ -205,6 +205,7 @@ På Ubuntu skal login med CLI foretages med **sudo mysql -u root -p** medens alm
 
 mysql-workbench
 ---------------
+.. caution:: Installationen foretages kun på virtuelle maskiner, hvis JetBrains Datagrip ikke anvendes
 
 .. important:: Gnome-keyring skal installeres på KDE distributioner. Det indgår default i gnome baserede distributioner.
 
