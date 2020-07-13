@@ -57,6 +57,8 @@ Det tjekkes via faneblad Ubuntu Software, at **multiverse** er aktiveret. Det ka
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
 
+Installation af **Gnome Disks** for at kunne attache diskene
+
 - 1 TB SSD mountes på /home/projects og har serienummer S3Z9NY0M409052E og
 - 2 TB HDD mountes på home/data og har serienummer  Z4ZC9EBT
 
@@ -113,7 +115,7 @@ Python moduler installeres::
 
 Opdatering af konfigurationsfilen
 =================================
-Filen **config/config.ini** indeholder konfiguriatonsoplysninger, som anvendes i de enkelte scripts. Config.ini indlæses med Python modulet Configparser.
+Filen **config/config.ini** indeholder konfigurationsoplysninger, som anvendes i de enkelte scripts. Config.ini indlæses med Python modulet Configparser.
 
 Opdater konfigurationen i forhold til den anvendte hardware og opdater evt til aktuelle versioner af softwaren. Følgende afsnit i config.ini opdateres som minimum.
 
@@ -188,7 +190,7 @@ Afhængig af maskinens anvendelse kan følgende udføres **Uden root access**:
 - install_php.py inkl. konfig af xdbug og php.ini
 - install_jetbrains.py
 - install_freefilesync.py inkl. desktopfile
-- install_nosqlbooster.py inkl. desktopfile
+- install_nosqlbooster.py inkl. desktopfile 
 - install_smartgit ubuntu inkl. desktopfile
 - install_postman.py inkl desktopfile
 - install_vagrant.py
@@ -250,7 +252,7 @@ Service bliver ikke startet efter installationen fordi den er disabled
 
 der skal udføres::
 
-   - kopiering af mongod.conf inden serveren startes
+   - kopiering af mongod.conf inden serveren startes unødvendigt
 
     sudo systemctl enable mongod #enabler autostart ved boot
     sudo systemctl start mongod
@@ -261,7 +263,7 @@ der skal udføres::
 webservere
 ==========
 
-.. note:: Når apache2 og nignx installeres afsluttet med at standse og disable serverne for at undgå konflikter. De startes når de skal anvendes.
+.. note:: Når apache2 og nginx installeres afsluttet med at standse og disable serverne for at undgå konflikter. De startes når de skal anvendes.
 
    Husk at udføre **install_php.py** før webserverne installeres
 
