@@ -42,7 +42,7 @@ Software & Updates
 
 .. important:: Skifte til Nvidia driver foretages som det første for at undgå bøvl med træg skærmdialog ved login.
 
-   PÅ Kubuntu finder installationen selv NVIDIA driverne
+   På Kubuntu finder installationen selv NVIDIA driverne
 
 - Under *software og update* søges efter additional drivers (På Kubuntu via Muon Software updates)
 - Skift til Nvidia drive metapackage
@@ -53,6 +53,18 @@ Software & Updates
 Det tjekkes via faneblad Ubuntu Software, at **multiverse** er aktiveret. Det kan også aktiveres med::
 
    sudo add-apt-repository multiverse && sudo apt-get update
+
+Tilslut øvrige harddiske (fysisk maskine)
+=========================================
+
+- 1 TB SSD mountes på /home/projects og har serienummer S3Z9NY0M409052E og
+- 2 TB HDD mountes på home/data og har serienummer  Z4ZC9EBT
+
+  - UUID 3865c960-e586-4b04-8745-fb1ccabaf412
+
+- 2 TB HDD mountes på /home/backup og har serienummer Z4ZC9EBT
+
+   - UUID b6af222b-5148-4d63-b8f2-9acc1591207f
 
 Clone repository fra Github
 ===========================
@@ -76,7 +88,7 @@ Konfiguration af git user::
 
 Den globale configuration for en bruger findes i **~/git/.gitconfig**
 
-Repositoriet clones::
+Repositoriet clones på **virtuelle maskiner**::
 
    mkdir ~/sourcecode
    cd sourcecode
@@ -164,6 +176,13 @@ Scriptet indeholder installation af en række ekstra programmer.
 
 Supplerende installationer
 ==========================
+
+.. note:: På fysisk maskine kan  FreeFileSync, JetBrains toolbox, Postman, Smartgit og NoSQLBooster restores fra backup /home/jackie/Programs
+
+.. caution:: installationen nedenfor placerer nosqlbooster i mappen /home/Jackie/Applications
+
+   Ret efter installationen backup med FreeFileSync så den tager backup af denne mappe
+
 Afhængig af maskinens anvendelse kan følgende udføres **Uden root access**:
 
 - install_php.py inkl. konfig af xdbug og php.ini
@@ -174,13 +193,27 @@ Afhængig af maskinens anvendelse kan følgende udføres **Uden root access**:
 - install_postman.py inkl desktopfile
 - install_vagrant.py
 - install_packer.py
-- install_mysql_wotkbench.py
+- install_mysql_workbench.py (indstillet grundet Python 2 krav)
 
 **med root efter ovenstående**
 
 - vbox_ext_pack.py (Hvis VirtualBox er installeret
 - groups.py
 - chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
+
+Restore data (fysisk maskine)
+=============================
+Data fra backup af Home/jackie restores
+
+- Documents
+- Pictures
+- .thunderbird
+- JetBrains IDE scraps fra .config/JetBrains/ respektive IDE
+- Firefox favoritter
+
+Øvrige data findes på de øvrige diske og skal ikke restores
+
+.. caution:: Det kan for Node.js og PHP projekter være nødvendigt at genskabe de downloadede moduler med npm install og composer.
 
 Mysql-server og Workbench
 =========================
