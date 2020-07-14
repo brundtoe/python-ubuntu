@@ -4,9 +4,9 @@
 ======================================
 Ubuntu installation med Python Scripts
 ======================================
-Opdateret juni 2020
+Opdateret juli 2020
 
-.. note:: Scripts er afprøvet på Kubuntu 2004 (LTS)
+.. note:: Scripts er anvendt på Kubuntu 2004 (LTS) Fysisk maskine Komplett
 
 I denne vejledning beskrives installation med script på en fysisk maskine eller en virtuel maskine, der skal anvendes til softwareudvikling.
 
@@ -53,6 +53,10 @@ Software & Updates
 Det tjekkes via faneblad Ubuntu Software, at **multiverse** er aktiveret. Det kan også aktiveres med::
 
    sudo add-apt-repository multiverse && sudo apt-get update
+
+Valg af font
+------------
+Som font i terminal og kate vælges **Droid Sans Mono** alternativ **DejaVu Sans Mono**
 
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
@@ -203,14 +207,17 @@ Afhængig af maskinens anvendelse kan følgende udføres **Uden root access**:
 - groups.py
 - chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
 
+.. important:: Husk at logge ud og defter ind for at få gruppetildelingen aktiveret
+
 Restore data (fysisk maskine)
 =============================
 Data fra backup af Home/jackie restores
 
 - Documents
+- dumps
 - Pictures
 - .thunderbird
-- JetBrains IDE scraps fra .config/JetBrains/ respektive IDE
+- JetBrains IDE scraps fra .config/JetBrains/ respektive IDE, *Kræver IDE installation og førse start.
 - Firefox favoritter
 
 Øvrige data findes på de øvrige diske og skal ikke restores
@@ -229,14 +236,11 @@ Service startes og enables automatisk under installation
 
 På Ubuntu skal login med CLI foretages med **sudo mysql -u root -p** medens alm brugere kan logge ind med **mysql -u root -p**
 
-**Initiering og oprettelse af user**::
+**Initiering og oprettelse af usere og databaser**::
 
-    $ mysql -u root -p
-    ------------------
-    mysql> CREATE USER 'jackie'@'localhost' IDENTIFIED BY 'some_pass';
-    mysql> GRANT ALL PRIVILEGES ON *.* TO 'jackie'@'localhost';
-    mysql> FLUSH PRIVILEGES;
-    mysql> quit
+    $ sudo mysql -u root -p < /home/jackie/dumps/mysqlbackup/create_users.sql;
+
+Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 
 mysql-workbench
 ---------------

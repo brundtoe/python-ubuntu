@@ -176,14 +176,11 @@ Anbefalet sikkerhed::
 
 .. note:: MariaDB prompter ikke for valideringsniveau for passwords, dvs. plugin validate_password findes ikke på MariaBD
 
-Initiering og oprettelse af user::
+**Initiering og oprettelse af usere og databaser**::
 
-    $ mysql -u root -p
-    ------------------
-    MariaDB> CREATE USER 'jackie'@'localhost' IDENTIFIED BY 'some_pass';
-    MariaDB> GRANT ALL PRIVILEGES ON *.* TO 'jackie'@'localhost';
-    MariaDB> FLUSH PRIVILEGES;
-    MariaDB> quit
+    $ sudo mysql -u root -p < /home/jackie/dumps/mysqlbackup/create_users.sql;
+
+Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 
 .. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB.
 
