@@ -13,6 +13,7 @@ Python Vejledninger
    installation
    download-files
    manjaro
+   manjaro-kde-display
    virtualbox
    pacman
    systemd

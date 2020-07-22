@@ -31,11 +31,9 @@ Manjaro anvendes kun på Virtuelle maskiner:
 - workspace behavior screen locking off
 - kate konsole og Yakuake font size 11
 
-.. note:: Der er ofte bøvl med at skalere den virtuelle maskine til full screen. Prøv:
+.. IMPORTANT:: bøvl med at skalere den virtuelle maskine til full screen.
 
-    - start med maksimeret VMware Workstation
-    - at logge ind og maksimere VMware Workstation inden desktoppen vises.
-
+    Se vejledningen :ref:`manjaro-kde-display`
 
 Supplerende installation
 ========================
