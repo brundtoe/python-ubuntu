@@ -32,14 +32,14 @@ acl
 ca-certificates
 hplip-minimal
 mariadb
-mysql-workbench
-gnome-keyring
 nodejs
 npm
 docker
 docker-compose
 firefox
 gtk2
+#mysql-workbench
+#gnome-keyring
 #chromium
 #keepass
 #filezilla
