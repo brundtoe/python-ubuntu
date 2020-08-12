@@ -30,7 +30,7 @@ python
 python-pip
 acl
 ca-certificates
-hplip-minimal
+hplip
 mariadb
 nodejs
 npm
