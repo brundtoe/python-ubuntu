@@ -4,7 +4,7 @@
 ======================================
 Ubuntu installation med Python Scripts
 ======================================
-Opdateret juli 2020
+Opdateret august 2020
 
 .. note:: Scripts er anvendt på Kubuntu 2004 (LTS) Fysisk maskine Komplett
 
@@ -61,7 +61,9 @@ Som font i terminal og kate vælges **Droid Sans Mono** alternativ **DejaVu Sans
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
 
-Installation af **Gnome Disks** for at kunne attache diskene
+.. caution:: Installation af **Gnome Disks** for at kunne attache diskene
+
+   Programmet findes i Discover under system settings
 
 - 1 TB SSD mountes på /home/projects og har serienummer S3Z9NY0M409052E og
 - 2 TB HDD mountes på home/data og har serienummer  Z4ZC9EBT
@@ -85,7 +87,7 @@ Tilføj ssh key::
     ssh-keygen -b 4096
     ssh-add
 
-Tilføj public key til Github kontoen
+Tilføj public key til GitHub og Bitbucket konti.
 
 Konfiguration af git user::
 
@@ -189,17 +191,22 @@ Supplerende installationer
 
    Ret efter installationen backup med FreeFileSync så den tager backup af denne mappe
 
-Afhængig af maskinens anvendelse kan følgende udføres **Uden root access**:
+Afhængig af maskinens anvendelse kan følgende udføres
+
+**med root access**
 
 - install_php.py inkl. konfig af xdbug og php.ini
+- install_vagrant.py
+- install_mysql_workbench.py (indstillet grundet Python 2 krav)
+
+**Uden root access**:
+
 - install_jetbrains.py
 - install_freefilesync.py inkl. desktopfile
-- install_nosqlbooster.py inkl. desktopfile 
+- install_nosqlbooster.py inkl. desktopfile
 - install_smartgit ubuntu inkl. desktopfile
 - install_postman.py inkl desktopfile
-- install_vagrant.py
 - install_packer.py
-- install_mysql_workbench.py (indstillet grundet Python 2 krav)
 
 **med root efter ovenstående**
 
