@@ -224,8 +224,15 @@ Data fra backup af Home/jackie restores
 - dumps
 - Pictures
 - .thunderbird
-- JetBrains IDE scraps fra .config/JetBrains/ respektive IDE, *Kræver IDE installation og førse start.
+- JetBrains IDE
 - Firefox favoritter
+
+.. note:: JetBrains tools
+
+   - Installer de anvendte tools
+   - start de enkelte tools
+   - synkroniser plugins
+   - scraps fra .config/JetBrains/ respektive IDE. Husk først efter først start af et tool
 
 Øvrige data findes på de øvrige diske og skal ikke restores
 
