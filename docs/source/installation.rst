@@ -20,6 +20,7 @@ Forberedelser:
 - ny kopi af Firefox genveje
 - Backup med FreeFileSync
 - Gem Jetbrains værktøjernes settings online
+- Postman via settings -> Data  **download only my data**
 - Tjek installationsvejledninger
 
 logout for at frigøre licenser:
@@ -227,6 +228,7 @@ Data fra backup af Home/jackie restores
 - .thunderbird
 - JetBrains IDE
 - Firefox favoritter
+- log på Postman og importer evt fra dumps/Postman
 
 .. note:: JetBrains tools
 
