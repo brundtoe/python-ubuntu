@@ -9,7 +9,7 @@ from moduler.desktopfile import create_desktop_file
 def install_smartgit(configs):
     """
     Installation af SmartGit
-    Forudsætter installation af gtk2
+    Forudsætter installation af gtk2 fungerede version 20 uden gtk2
     :param configs: parametre fra config.ini
     :return: void
     """
