@@ -2,35 +2,10 @@
 Opgaveliste
 ===========
 
-.. todo groups.py virker ikke på Komplet kubuntu
-
-   husk log af og på igen for at de kan slå igennem
-
-list grupper på systemet::
-
-   getent groups
-
-   
-
-
-
 Kubuntu og Manjaro Docker afprøvning
 ====================================
 
 Docker konfiguration (build af images og provisionering af databaser)
-
-
-
-
-
-
-chroot
-======
-chroot er en kommando der anvendes til at afgrænse en del af filsystemet så processer fungerer i et aflukke og ikke kan tilgå proceser og filer udenfor dette.
-
-https://en.wikipedia.org/wiki/Chroot
-
-.. todo har så vidt jeg husker set dockerfiles der starter med chroot?
 
 Manjaro debian packages
 =======================
@@ -49,7 +24,7 @@ på baggrund heraf laves en beskrivelse
     - hvortil downloades filerne der anvendes til build
 
 konfig af mysql server med charset og default collation
-===============================================================
+=======================================================
 
 Se PyCharm databaser -> mysql om konfig af default charset og default collation
 
@@ -82,12 +57,7 @@ Se eksempel i mappen devops-files og evt. i docker_standard
 Udenstående efterfølgende på Komplett eller Esprimo
 ===================================================
 
-   - vagrant
    - laravel/homestead
-
-Udestående ubuntu gnome
-=======================
-ubuntu 18.03 indeholder en gammel version af composer (1.6.3)
 
 Testcases med unittest
 ======================
