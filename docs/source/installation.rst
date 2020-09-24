@@ -4,13 +4,19 @@
 ======================================
 Ubuntu installation med Python Scripts
 ======================================
-Opdateret august 2020
+Opdateret september 2020
 
 .. note:: Scripts er anvendt på Kubuntu 2004 (LTS) Fysisk maskine Komplett
 
+   Scripts findes i repositoriet https://github.com/brundtoe/python-ubuntu
+
 I denne vejledning beskrives installation med script på en fysisk maskine eller en virtuel maskine, der skal anvendes til softwareudvikling.
 
-.. note:: Scripts findes i repositoriet https://github.com/brundtoe/python-ubuntu
+.. caution:: Problemer med grafikkortet NVIDIA GTX 1060
+
+   Alm systemopdatering medførte sort skærm med driveren nvidia-driver-450
+
+   Installation skal derfor foregå uden tredjeparts drivere og minimal installation
 
 Backup
 ======
@@ -19,7 +25,6 @@ Forberedelser:
 
 - ny kopi af Firefox genveje
 - Backup med FreeFileSync
-- Gem Jetbrains værktøjernes settings online
 - Postman via settings -> Data  **download only my data**
 - Tjek installationsvejledninger
 
@@ -32,11 +37,17 @@ Installation af operativsystem
 ==============================
 Den seneste udgave af Desktop Ubuntu LTS eller Kubuntu hentes på en Windows instans fra http://ubuntu.com/download/desktop og installers med Linux programmet Disks på en USB stick
 
+Valg under installationen:
+
+- Tastatur Dansk uden dead keys
+- Minimal installation
+- Fravælg trejdeparts programmer
+
 .. caution::
 
    Ubuntu installeres på maskinens Solid State Disk. **Øvrige diske er deaktiveret**.
 
-   Der er kun een skærm aktiv under installationen!
+   Med Ubuntu er kun een skærm aktiv under installationen!
 
 Software & Updates
 ------------------
@@ -57,12 +68,14 @@ Det tjekkes via faneblad Ubuntu Software, at **multiverse** er aktiveret. Det ka
 
 Valg af font
 ------------
-Som font i terminal og kate vælges **Droid Sans Mono** alternativ **DejaVu Sans Mono**
+Som font i terminal og kate
+
+- **Noto Sans Mono** alternativ **DejaVu Sans Mono** font size 11 pt
 
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
 
-.. caution:: Installation af **Gnome Disks** for at kunne attache diskene
+.. important:: Installation af **Gnome Disks** for at kunne attache diskene
 
    Programmet findes i Discover under system settings
 
@@ -71,7 +84,7 @@ Tilslut øvrige harddiske (fysisk maskine)
 
   - UUID 3865c960-e586-4b04-8745-fb1ccabaf412
 
-- 2 TB HDD mountes på /home/backup og har serienummer Z4ZC9EBT
+- 2 TB HDD mountes på /home/backup og har serienummer Z4Z8X6FA
 
    - UUID b6af222b-5148-4d63-b8f2-9acc1591207f
 
@@ -80,7 +93,7 @@ Clone repository fra Github
 
 Installer git med::
 
-    sudo apt install -y git
+    sudo apt install -y git vim
 
 Tilføj ssh key::
 
@@ -105,10 +118,6 @@ Repositoriet clones på **virtuelle maskiner**::
    git clone git@github.com:brundtoe/python-ubuntu.git
 
 
-Installation af cifs-utils for at få adgang til wdmycloud::
-
-    sudo apt install -y cifs-utils
-
 Python moduler installeres::
 
    cd python-ubuntu
@@ -118,8 +127,6 @@ Python moduler installeres::
 .. note:: Installation foretages med systemets default python installation.
 
    Programudvikling foretages med virtuelle environments.
-   
-   Python 2 er ikke intalleret på (K)ubuntu 2004
 
 Opdatering af konfigurationsfilen
 =================================
@@ -203,7 +210,7 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
 **Uden root access**:
 
-- install_jetbrains.py
+- install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
 - install_freefilesync.py inkl. desktopfile
 - install_nosqlbooster.py inkl. desktopfile
 - install_smartgit ubuntu inkl. desktopfile
@@ -212,11 +219,19 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
 **med root efter ovenstående**
 
-- vbox_ext_pack.py (Hvis VirtualBox er installeret
+- vbox_ext_pack.py (Hvis VirtualBox er installeret)
 - groups.py
 - chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
 
 .. important:: Husk at logge ud og defter ind for at få gruppetildelingen aktiveret
+
+   Kontroller i terminalvindue med **groups**
+
+Aktivering af wdmycloud/dokumenter
+==================================
+Alle mount point til wdmycloud er oprettet med option **noauto**.
+
+Det ændres for //192.168.0.17/dokumenter til **auto**
 
 Restore data (fysisk maskine)
 =============================
@@ -226,12 +241,12 @@ Data fra backup af Home/jackie restores
 - dumps
 - Pictures
 - .thunderbird
-- JetBrains IDE
 - Firefox favoritter
 - log på Postman og importer evt fra dumps/Postman
 
 .. note:: JetBrains tools
 
+   - Log på i Toolbox
    - Installer de anvendte tools
    - start de enkelte tools
    - synkroniser plugins
@@ -261,11 +276,11 @@ Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 
 mysql-workbench
 ---------------
-.. caution:: Installationen foretages kun på virtuelle maskiner, hvis JetBrains Datagrip ikke anvendes
+.. important:: Installationen foretages kun på virtuelle maskiner, hvis JetBrains Datagrip ikke anvendes
 
-.. important:: Gnome-keyring skal installeres på KDE distributioner. Det indgår default i gnome baserede distributioner.
+   Gnome-keyring skal installeres på KDE distributioner. Det indgår default i gnome baserede distributioner.
 
-   Installationen foretages i scriptet **04_install_extra.py**
+   Installationen kan aktiveres i scriptet **04_install_extra.py**
 
 MongoDB
 -------
@@ -273,18 +288,17 @@ Service bliver ikke startet efter installationen fordi den er disabled
 
 der skal udføres::
 
-   - kopiering af mongod.conf inden serveren startes unødvendigt
-
     sudo systemctl enable mongod #enabler autostart ved boot
     sudo systemctl start mongod
 
 .. note:: Ovenstående udføres normalt i **04_install_extra.py**
 
+   kopiering af mongod.conf inden serveren startes unødvendigt
 
 webservere
 ==========
 
-.. note:: Når apache2 og nginx installeres afsluttet med at standse og disable serverne for at undgå konflikter. De startes når de skal anvendes.
+.. important:: Når apache2 og nginx installeres afsluttet med at standse og disable serverne for at undgå konflikter. De startes når de skal anvendes.
 
    Husk at udføre **install_php.py** før webserverne installeres
 

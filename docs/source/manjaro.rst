@@ -4,8 +4,13 @@
 ====================
 Manjaro Installation
 ====================
+Opdateret september 2020
 
-Manjaro anvendes i virtuelle maskiner (VMWare og VirtualBox) men ej på host
+Manjaro anvendes primært på i virtuelle maskiner (VMWare og VirtualBox).
+
+.. caution:: Host installation i september 2020 havde udfordringer med VirtualBox på fysisk host
+
+    På fysisk host undlad at anvende trejdeparts drivere (Nvidia 450 gav sort skærm)
 
 - VMware er ikke supporteret på en Manjaro host.
 - På Manjaro virtuelle maskiner anvendes kun Docker ej VirtualBox med Vagrant.
@@ -17,19 +22,22 @@ Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen
 
 Installation af operativsystem
 ==============================
+Downloade manjaro minimal installation.
+
 Manjaro anvendes kun på Virtuelle maskiner:
 
 - vælg anden linux distribution med kernel 5.x 64 bit
 - sprog American English
-- dansk keyboard
+- dansk keyboard no dead keys
 - disk med swap no hibernate
+- undlad installation af tredjeparts drivere mv. (Nvidia drivere kan på hos give problemer)
 - password oprettet med -
 - det er en minimal installation, der er kun enkelte værktøjer ud over systemværktøjerne
 - har default to rækker på virtuelle desktops (up - down)
 - Installerede opdateringer
 - tjek at open-vm-tools og dependency gtk3mm er installeret (juni 2020 gtk3mm fandtes ikke i repo)
 - workspace behavior screen locking off
-- kate konsole og Yakuake font size 11
+- kate, konsole og Yakuake font Noto mono 11 pt
 
 .. IMPORTANT:: bøvl med at skalere den virtuelle maskine til full screen.
 
@@ -45,6 +53,10 @@ Tilføj ssh key::
     ssh-add ~/.ssh/id_rsa
 
 Tilføj public key til Github kontoen
+
+Installation af vim::
+
+    pacman -Syu && pacman -S vim
 
 Konfiguration af git user::
 
@@ -65,21 +77,23 @@ Installation af cifs-utils for at få adgang til wdmycloud::
 
     sudo apt install -y cifs-utils
 
-Python moduler installeres::
+Python moduler installeres:
+
+Tjek på https://pypi.org at packages i requirements.txt er opdateret::
 
    cd python-ubuntu
+   sudo pacman -S python-pip
    sudo pip3 install -r requirements.txt
 
 .. note:: Installation foretages med systemets default python installation.
 
    Programudvikling foretages med virtuelle environments.
 
-   Python 2 er ikke intalleret på (K)ubuntu 2004
-
 Forbered installation af programpakkerne:
     - kontroller indstillingerne i config/manjaro.ini
     - kontroller pakker i programs.sh
         - node.js er normalt seneste lst version. Find navnet på https://nodejs.org
+        - gtk2 er krævet af FreeFileSync
     - udfør 01-prepare.py
 
 Installation af software foretages med bash scripts:
@@ -130,6 +144,7 @@ Ref. https://www.syntevo.com/blog/?tag=gtk
 PHP Konfiguration
 =================
 Konfigurationen udføres med::
+
     - php_config.py
 
 Der er på Manjaro kun en enkelt php.ini fil og php versionen er ikke en del af filstien til konfigurationsfilerne
@@ -254,7 +269,7 @@ Filen **config/php-fpm.conf** kopieres til /etc/httpd/conf/extra/php-fpm.conf::
 Genstart::
 
     sudo systemctl start php-fpm
-    sudo systemctl restart apache
+    sudo systemctl restart httpd
 
 Browser på http://localhost
 
@@ -279,7 +294,7 @@ Browser på http://localhost
 
 NoSQLBooster
 ============
-.. [1] NoSQLBooster installeres i **$HOME/Applications**. Første gang programmet startes propmtes for integration med systemmenuen.
+.. [1] NoSQLBooster installeres i **$HOME/Applications**. Første gang programmet startes promptes for integration med systemmenuen.
 
 - Desktop item oprettes fra System menuen
 - Programmet fjernes fra systemmenuen. Højreklik på programmet og vælg Remove AppImage from System.
@@ -290,6 +305,8 @@ MongoDB skal installeres fra AUR. Der er to muligheder:
 
 - mongodb-bin og mongodb-tools-bin
 - mongodb og mongodb-tools (skal kompileres og det tager meeget lang tid)
+
+.. note:: Alternativt anvendes MongoDB kun i docker container
 
 mongodb-bin og mongodb-tools-bin
 --------------------------------
