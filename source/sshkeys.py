@@ -10,7 +10,7 @@ import subprocess
 from moduler.fileOperations import fetch_config
 
 configs = ''
-usr = ''
+user = ''
 try:
     filename = '../config/config.ini'
     configs = fetch_config(filename)
