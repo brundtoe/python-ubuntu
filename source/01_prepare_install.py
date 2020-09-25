@@ -30,7 +30,6 @@ except Exception as err:
 else:
     print(f'timezone er sat til {timezone}')
 
-
 from moduler.add_mountpoints import add_mountpoints
 try:
     user = configs['Common']['user']
@@ -60,17 +59,6 @@ except Exception as err:
     sys.exit('Der opstod fejl ved opdatering af ~/.smbcredentials')
 else:
     print('~/.smbcredentials er opdateret med mountpoint')
-
-from moduler.fstab_update import update_fstab
-try:
-    mount_string = configs['Common']['mount_string']
-    mount_points = configs['mount.points']
-    fstab = configs['etc.fstab']
-    update_fstab(mount_string,mount_points,fstab)
-except Exception as err:
-    sys.exit('Der opstod fejl ved opdatering af /etc/fstab')
-else:
-    print('/etc/fstab er opdateret med mountpoint')
 
 from moduler.fileOperations import addLine
 try:
