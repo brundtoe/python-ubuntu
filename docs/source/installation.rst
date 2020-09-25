@@ -33,6 +33,9 @@ logout for at frigøre licenser:
 - nosqlbooster og kopi af programmet, da jeg kun har licens til verison 5.x
 - jetbrains
 
+
+.. note:: installationen kan forenkles ved at kopiere projekt php-ubuntu til en USB stick og anvende indholdet herfra. Det muliggør scripting af alle dele af installationen.
+
 Installation af operativsystem
 ==============================
 Den seneste udgave af Desktop Ubuntu LTS eller Kubuntu hentes på en Windows instans fra http://ubuntu.com/download/desktop og installers med Linux programmet Disks på en USB stick
@@ -72,10 +75,54 @@ Som font i terminal og kate
 
 - **Noto Sans Mono** alternativ **DejaVu Sans Mono** font size 11 pt
 
+
+Initial installation
+====================
+Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu
+
+Python moduler installeres::
+
+   cd python-ubuntu
+   sudo apt install -y python3-pip
+   sudo pip3 install -r requirements.txt
+
+.. note:: Installation foretages med systemets default python installation.
+
+   Programudvikling foretages med virtuelle environments.
+
+Opdatering af konfigurationsfilen
+=================================
+Filen **config/config.ini** indeholder konfigurationsoplysninger, som anvendes i de enkelte scripts. Config.ini indlæses med Python modulet Configparser.
+
+Opdater konfigurationen i forhold til den anvendte hardware og opdater evt til aktuelle versioner af softwaren. Følgende afsnit i config.ini opdateres som minimum.
+
+* [Common] med user, host og seneste software versioner
+* [extra.programs] Justeres i forhold til maskinens anvendelse
+
+.. caution:: Opdater **config/.env_devlop** med password til **wdmycloud**
+
+
+.. _kubuntu_scripts:
+
+Installation med python scripts
+===============================
+Installationen udføres i et antal trin::
+
+   cd ~/sourcecode/python-ubuntu/source
+
+* sshkeys.py
+* 01_prepare_install.py
+* 02_install_requirements
+* 03_install_repositories
+* 04_install_extra
+* gitconfig.py
+
+.. note:: Alle scripts udføres med root access!
+
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
 
-.. important:: Installation af **Gnome Disks** for at kunne attache diskene
+.. important:: Manuel installation kræver anvendelse af af **Gnome Disks** 
 
    Programmet findes i Discover under system settings
 
@@ -88,8 +135,20 @@ Tilslut øvrige harddiske (fysisk maskine)
 
    - UUID b6af222b-5148-4d63-b8f2-9acc1591207f
 
-Clone repository fra Github
-===========================
+Udfør::
+
+   sudo ./extra-diske.py
+
+Tilslut wdmycloud
+==================
+Mount points er oprettet i 01_prepare_install.py
+Udfør::
+
+   sudo ./wdmycloud.py
+
+
+Clone repository fra Github (uden USB stick)
+============================================
 
 Installer git med::
 
@@ -118,39 +177,8 @@ Repositoriet clones på **virtuelle maskiner**::
    git clone git@github.com:brundtoe/python-ubuntu.git
 
 
-Python moduler installeres::
+.. note:: Udfør derefter :ref:`ovenstående scripts <kubuntu_scripts>`
 
-   cd python-ubuntu
-   sudo apt install -y python3-pip
-   sudo pip3 install -r requirements.txt
-
-.. note:: Installation foretages med systemets default python installation.
-
-   Programudvikling foretages med virtuelle environments.
-
-Opdatering af konfigurationsfilen
-=================================
-Filen **config/config.ini** indeholder konfigurationsoplysninger, som anvendes i de enkelte scripts. Config.ini indlæses med Python modulet Configparser.
-
-Opdater konfigurationen i forhold til den anvendte hardware og opdater evt til aktuelle versioner af softwaren. Følgende afsnit i config.ini opdateres som minimum.
-
-* [Common] med user, host og seneste software versioner
-* [extra.programs] Justeres i forhold til maskinens anvendelse
-
-.. caution:: Opdater **config/.env_devlop** med password til **wdmycloud**
-
-Installation med python scripts
-===============================
-Installationen udføres i et antal trin::
-
-   cd ~/sourcecode/python-ubuntu/source
-
-* 01_prepare_install.py
-* 02_install_requirements
-* 03_install_repositories
-* 04_install_extra
-
-.. note:: Alle scripts udføres med root access!
 
 Scriptet 01_prepare_install-py
 ------------------------------
@@ -227,11 +255,21 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
    Kontroller i terminalvindue med **groups**
 
-Aktivering af wdmycloud/dokumenter
-==================================
-Alle mount point til wdmycloud er oprettet med option **noauto**.
 
-Det ændres for //192.168.0.17/dokumenter til **auto**
+**users and groups**::
+
+   sudo apt install -y lxqt-admin
+
+Der oprettes ikke automatisk desktop items til startmenuen. Desktop items findes i /usr/share/applications og kan herfra kopieres til ~/Desktop
+
+Visual Code installation
+========================
+Installation::
+
+    snap install -- classic code
+       
+- Installation af plugin TODO tree
+- Genskab konfig filen fra en backup /home/jackie/.config/Code/User/settings.json
 
 Restore data (fysisk maskine)
 =============================
@@ -283,7 +321,7 @@ mysql-workbench
    Installationen kan aktiveres i scriptet **04_install_extra.py**
 
 MongoDB
--------
+=======
 Service bliver ikke startet efter installationen fordi den er disabled
 
 der skal udføres::
@@ -294,6 +332,63 @@ der skal udføres::
 .. note:: Ovenstående udføres normalt i **04_install_extra.py**
 
    kopiering af mongod.conf inden serveren startes unødvendigt
+
+Docker konfiguration
+====================
+Docker network, data volume og images oprettes med scripts, der findes i projekt docker_standard
+
+VMWare Workstation
+==================
+Der udføres følgende:
+
+- installation download fra https://vmware.com
+- tilknyt alle virtuelle maskiner
+- konfig af default folder
+- start med sudo og vælg preferencer memory til alle maskiner i host RAM
+
+Virtualbox
+==========
+Der udføres følgende:
+
+- tilknyt alle virtuelle maskiner
+- konfig af default folder
+- boot med root og opdater - preferencer memory alle maskiner into reserver HOST RAM
+
+JetBrains
+=========
+Der udføres følgende
+
+- opret desktop items fra ~ /.local/applications/
+- installer de sædvanlige IDE
+- synkroniser installation af plugins
+- editor font Noto Sans Mono 15 line spacing 1.2
+- DataGrip projekter findes i ~ /.config/JetBrains/DataGrip
+- importer mysql databaserne bookstore og mystore med DataGrip user jackie
+
+Vagrant/Homestead
+=================
+Afprøvning kan foretages uden opgradering af Homestead eller Laravel::
+
+   vagrant plugin install vagrant-vbguest
+   vagrant plugin install vagrant-hostmanager
+   vagrant plugin install vagrant-hostsupdater
+
+   vagrant box add laravel/homestead
+
+   cd /home/projects/laravel/Homestead
+   vagrant up
+   vagrant ssh
+   cd /home/vagrant/code/bookstore
+   composer install (undlad indledningsvis at opdatere laravel)
+   php artisan optimize:clear (sletter alle caches)
+   php artisan migrate
+   php artisan db:seed
+   php vendor/bin/phpunit
+
+- tjek appen på http://bookstore.test
+- alm bruger jens@mail.dk
+- admin bruger marial@mail.com
+- pwd er som for databasen jf. Homestead.yaml
 
 webservere
 ==========
