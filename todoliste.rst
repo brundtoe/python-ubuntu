@@ -2,6 +2,27 @@
 Opgaveliste
 ===========
 
+omlægninger september 2020
+==========================
+Omlægnignerne er lavet til Kubuntu
+
+.. todo lav omlægning til manjaro
+
+   - extra-diske
+   - wdmycloud
+
+.. todo flere omlægninger af disk mounts
+
+   flyt etablering af mount points til extra_diske.py hhv. wdmycloud for at holde funktionaliteten samlet.
+
+   ekstra diske skal kun mountes hvis host er komplett.local eller esprimo.local ej på virtuelle maskiner.
+
+   diskene har et andet UUID på esprimo.local så en config variabel skal anvendes til at vælge den rigtige fil med mount points
+
+   Det bør også være muligt at anvende dynamisk user for wdmycloud. pt er jackie hardkodet, det kan løses ved at anvende str.split() og så udskifte path til .smbcredentials med den dynamiske uder hentet fra config.ini
+
+   på virtuelle maskiner skal /home/projects dog oprettes
+
 Kubuntu og Manjaro Docker afprøvning
 ====================================
 
@@ -58,6 +79,10 @@ Udenstående efterfølgende på Komplett eller Esprimo
 ===================================================
 
    - laravel/homestead
+
+Optimering af scripts
+=====================
+tjek scritps for mulige optimeringer
 
 Testcases med unittest
 ======================
