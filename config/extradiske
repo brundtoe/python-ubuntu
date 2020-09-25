@@ -1,0 +1,3 @@
+/dev/disk/by-uuid/dde1bf8b-3552-4709-a6d7-5f3605d966a3 /home/projects auto nosuid,nodev,nofail,x-gvfs-show 0 0
+/dev/disk/by-uuid/3865c960-e586-4b04-8745-fb1ccabaf412 /home/data auto nosuid,nodev,nofail,x-gvfs-show 0 0
+/dev/disk/by-uuid/b6af222b-5148-4d63-b8f2-9acc1591207f /home/backup auto nosuid,nodev,nofail,x-gvfs-show 0 0
