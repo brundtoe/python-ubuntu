@@ -7,15 +7,13 @@ Ubuntu installation med Python Scripts
 Opdateret september 2020
 
 .. note:: Scripts er anvendt på Kubuntu 2004 (LTS) Fysisk maskine Komplett
-
    Scripts findes i repositoriet https://github.com/brundtoe/python-ubuntu
 
 I denne vejledning beskrives installation med script på en fysisk maskine eller en virtuel maskine, der skal anvendes til softwareudvikling.
 
 .. caution:: Problemer med grafikkortet NVIDIA GTX 1060
 
-   Alm systemopdatering medførte sort skærm med driveren nvidia-driver-450
-
+   Alm systemopdatering medførte sort skærm med driveren nvidia-driver-450.
    Installation skal derfor foregå uden tredjeparts drivere og minimal installation
 
 Backup
@@ -28,13 +26,13 @@ Forberedelser:
 - Postman via settings -> Data  **download only my data**
 - Tjek installationsvejledninger
 
-logout for at frigøre licenser:
+Logout for at frigøre licenser:
 
 - nosqlbooster og kopi af programmet, da jeg kun har licens til verison 5.x
 - jetbrains
 
 
-.. note:: installationen kan forenkles ved at kopiere projekt php-ubuntu til en USB stick og anvende indholdet herfra. Det muliggør scripting af alle dele af installationen.
+.. note:: Installationen kan forenkles ved at kopiere projekt php-ubuntu til en USB stick og anvende indholdet herfra. Det muliggør scripting af alle dele af installationen.
 
 Installation af operativsystem
 ==============================
@@ -49,22 +47,16 @@ Valg under installationen:
 .. caution::
 
    Ubuntu installeres på maskinens Solid State Disk. **Øvrige diske er deaktiveret**.
-
    Med Ubuntu er kun een skærm aktiv under installationen!
+
+Nvidia Skærmdriver
+------------------
+.. important:: Kan give sort skærm.
+
+   **Kun Ubuntu**: Skifte til Nvidia driver foretages som det første for at undgå bøvl med træg skærmdialog ved login.
 
 Software & Updates
 ------------------
-
-.. important:: Skifte til Nvidia driver foretages som det første for at undgå bøvl med træg skærmdialog ved login.
-
-   På Kubuntu finder installationen selv NVIDIA driverne
-
-- Under *software og update* søges efter additional drivers (På Kubuntu via Muon Software updates)
-- Skift til Nvidia drive metapackage
-- Det installerer også appen NVIDIA X Server Settings
-
-.. note:: Nu kan skærm nummer to aktiveres
-
 Det tjekkes via faneblad Ubuntu Software, at **multiverse** er aktiveret. Det kan også aktiveres med::
 
    sudo add-apt-repository multiverse && sudo apt-get update
@@ -75,19 +67,19 @@ Som font i terminal og kate
 
 - **Noto Sans Mono** alternativ **DejaVu Sans Mono** font size 11 pt
 
-
 Initial installation
 ====================
 Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu
 
-Python moduler installeres::
+Python moduler installeres
+
+.. code-block:: bash
 
    cd python-ubuntu
    sudo apt install -y python3-pip
    sudo pip3 install -r requirements.txt
 
 .. note:: Installation foretages med systemets default python installation.
-
    Programudvikling foretages med virtuelle environments.
 
 Opdatering af konfigurationsfilen
@@ -99,40 +91,43 @@ Opdater konfigurationen i forhold til den anvendte hardware og opdater evt til a
 * [Common] med user, host og seneste software versioner
 * [extra.programs] Justeres i forhold til maskinens anvendelse
 
-.. caution:: Opdater **config/.env_devlop** med password til **wdmycloud**
-
+.. caution:: Husk at opdatere **config/.env_devlop** med password til **wdmycloud**
 
 .. _kubuntu_scripts:
 
 Installation med python scripts
 ===============================
+.. note:: Alle scripts udføres med root access!
+
 Installationen udføres i et antal trin::
 
    cd ~/sourcecode/python-ubuntu/source
 
-* sshkeys.py
 * 01_prepare_install.py
 * 02_install_requirements
 * 03_install_repositories
 * 04_install_extra
+* sshkeys.py
 * gitconfig.py
 
-.. note:: Alle scripts udføres med root access!
 
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
+Mount points er oprettet i scriptet 01_prepare_install.
 
 .. important:: Manuel installation kræver anvendelse af af **Gnome Disks** 
-
    Programmet findes i Discover under system settings
 
-- 1 TB SSD mountes på /home/projects og har serienummer S3Z9NY0M409052E og
-- 2 TB HDD mountes på home/data og har serienummer  Z4ZC9EBT
+- 1 TB SSD mountes på /home/projects
+   - serienummer S3Z9NY0M409052E
+   - UUID dde1bf8b-3552-4709-a6d7-5f3605d966a3
 
-  - UUID 3865c960-e586-4b04-8745-fb1ccabaf412
+- 2 TB HDD mountes på home/data
+   - serienummer  Z4ZC9EBT
+   - UUID 3865c960-e586-4b04-8745-fb1ccabaf412
 
-- 2 TB HDD mountes på /home/backup og har serienummer Z4Z8X6FA
-
+- 2 TB HDD mountes på /home/backup
+   - serienummer Z4Z8X6FA
    - UUID b6af222b-5148-4d63-b8f2-9acc1591207f
 
 Udfør::
@@ -142,10 +137,10 @@ Udfør::
 Tilslut wdmycloud
 ==================
 Mount points er oprettet i 01_prepare_install.py
+
 Udfør::
 
    sudo ./wdmycloud.py
-
 
 Clone repository fra Github (uden USB stick)
 ============================================
@@ -222,49 +217,51 @@ Scriptet indeholder installation af en række ekstra programmer.
 Supplerende installationer
 ==========================
 
-.. note:: På fysisk maskine kan  FreeFileSync, JetBrains toolbox, Postman, Smartgit og NoSQLBooster restores fra backup /home/jackie/Programs
-
 .. caution:: installationen nedenfor placerer nosqlbooster i mappen /home/Jackie/Applications
 
-   Ret efter installationen backup med FreeFileSync så den tager backup af denne mappe
+   Ret efter installationen backup med FreeFileSync, så den tager backup af denne mappe
 
 Afhængig af maskinens anvendelse kan følgende udføres
 
-**med root access**
+- med root access
+   - install_php.py inkl. konfig af xdbug og php.ini
+   - install_vagrant.py
+   - install_mysql_workbench.py (indstillet grundet Python 2 krav)
 
-- install_php.py inkl. konfig af xdbug og php.ini
-- install_vagrant.py
-- install_mysql_workbench.py (indstillet grundet Python 2 krav)
+- Uden root access
+   - install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
+   - install_freefilesync.py inkl. desktopfile
+   - install_nosqlbooster.py inkl. desktopfile
+   - install_smartgit ubuntu inkl. desktopfile
+   - install_postman.py inkl desktopfile
+   - install_packer.py
 
-**Uden root access**:
+- med root efter ovenstående
 
-- install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
-- install_freefilesync.py inkl. desktopfile
-- install_nosqlbooster.py inkl. desktopfile
-- install_smartgit ubuntu inkl. desktopfile
-- install_postman.py inkl desktopfile
-- install_packer.py
-
-**med root efter ovenstående**
-
-- vbox_ext_pack.py (Hvis VirtualBox er installeret)
-- groups.py
-- chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
+   - vbox_ext_pack.py (Hvis VirtualBox er installeret)
+   - groups.py
+   - chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
 
 .. important:: Husk at logge ud og defter ind for at få gruppetildelingen aktiveret
 
    Kontroller i terminalvindue med **groups**
 
 
-**users and groups**::
+Administation af users and groups
+=================================
+Administration af users og groups kan udføres med **lxqt-admin**.
+
+**Installation**::
 
    sudo apt install -y lxqt-admin
 
-Der oprettes ikke automatisk desktop items til startmenuen. Desktop items findes i /usr/share/applications og kan herfra kopieres til ~/Desktop
+Der oprettes ikke automatisk desktop items til startmenuen. Desktop items findes i **/usr/share/applications** og kan herfra kopieres til ~/Desktop
+
+Ref. https://github.com/lxqt/lxqt/wiki
 
 Visual Code installation
 ========================
-Installation::
+**Installation**::
 
     snap install -- classic code
        
@@ -273,22 +270,13 @@ Installation::
 
 Restore data (fysisk maskine)
 =============================
-Data fra backup af Home/jackie restores
-
-- Documents
-- dumps
-- Pictures
-- .thunderbird
-- Firefox favoritter
-- log på Postman og importer evt fra dumps/Postman
-
-.. note:: JetBrains tools
-
-   - Log på i Toolbox
-   - Installer de anvendte tools
-   - start de enkelte tools
-   - synkroniser plugins
-   - scraps fra .config/JetBrains/ respektive IDE. Husk først efter først start af et tool
+- Data fra backup af Home/jackie restores
+   - Documents
+   - dumps
+   - Pictures
+   - .thunderbird
+   - Firefox favoritter
+   - log på Postman og importer evt fra dumps/Postman
 
 Øvrige data findes på de øvrige diske og skal ikke restores
 
@@ -298,7 +286,9 @@ Mysql-server og Workbench
 =========================
 mysql-server
 ------------
-Service startes og enables automatisk under installation
+Service startes og enables automatisk under installation.
+
+Instansens sikkerhedsopsætning konfigureres med::
 
    sudo mysl_secure_installation
 
@@ -324,50 +314,57 @@ MongoDB
 =======
 Service bliver ikke startet efter installationen fordi den er disabled
 
-der skal udføres::
+der skal udføres
+
+.. code-block:: bash
 
     sudo systemctl enable mongod #enabler autostart ved boot
     sudo systemctl start mongod
 
-.. note:: Ovenstående udføres normalt i **04_install_extra.py**
-
-   kopiering af mongod.conf inden serveren startes unødvendigt
+.. note:: Kopiering af mongod.conf inden serveren startes er ikke nødvendigt
 
 Docker konfiguration
 ====================
-Docker network, data volume og images oprettes med scripts, der findes i projekt docker_standard
+Docker network, data volume og images oprettes med scripts, der findes i projekt docker_standard:
+
+- docker-data.sh
+- docker-build.sh
 
 VMWare Workstation
 ==================
 Der udføres følgende:
 
-- installation download fra https://vmware.com
-- tilknyt alle virtuelle maskiner
-- konfig af default folder
-- start med sudo og vælg preferencer memory til alle maskiner i host RAM
+- Installation download fra https://vmware.com
+- Tilknyt alle virtuelle maskiner
+- Konfig af default folder /home/projects/vmware
+- Start med sudo
+   - vælg preferencer -> memory -> alle maskiner i host RAM
 
 Virtualbox
 ==========
 Der udføres følgende:
 
-- tilknyt alle virtuelle maskiner
-- konfig af default folder
-- boot med root og opdater - preferencer memory alle maskiner into reserver HOST RAM
+- Tilknyt alle virtuelle maskiner
+- Konfig af default folder /home/projects/virtualbox
 
 JetBrains
 =========
 Der udføres følgende
 
-- opret desktop items fra ~ /.local/applications/
-- installer de sædvanlige IDE
-- synkroniser installation af plugins
-- editor font Noto Sans Mono 15 line spacing 1.2
+- Opret desktop items fra ~ /.local/applications/
+- Installer de sædvanlige IDE
+- Start de enkelte tools
+- Synkroniser installation af plugins
+- Editor font Noto Sans Mono 15 line spacing 1.2
 - DataGrip projekter findes i ~ /.config/JetBrains/DataGrip
-- importer mysql databaserne bookstore og mystore med DataGrip user jackie
+- Importer mysql databaserne bookstore og mystore med DataGrip user jackie
+- scraps fra .config/JetBrains/ respektive IDE.
 
 Vagrant/Homestead
 =================
-Afprøvning kan foretages uden opgradering af Homestead eller Laravel::
+Afprøvning kan foretages uden opgradering af Homestead eller Laravel
+
+.. code-block:: bash
 
    vagrant plugin install vagrant-vbguest
    vagrant plugin install vagrant-hostmanager
@@ -385,10 +382,10 @@ Afprøvning kan foretages uden opgradering af Homestead eller Laravel::
    php artisan db:seed
    php vendor/bin/phpunit
 
-- tjek appen på http://bookstore.test
-- alm bruger jens@mail.dk
-- admin bruger marial@mail.com
-- pwd er som for databasen jf. Homestead.yaml
+- Tjek appen på http://bookstore.test
+- Alm bruger jens@mail.dk
+- Admin bruger marial@mail.com
+- Passwords for databasen jf. Homestead.yaml
 
 webservere
 ==========
