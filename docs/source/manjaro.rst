@@ -10,7 +10,7 @@ Manjaro anvendes primært på i virtuelle maskiner (VMWare og VirtualBox).
 
 .. caution:: Host installation i september 2020 havde udfordringer med VirtualBox på fysisk host
 
-    På fysisk host undlad at anvende trejdeparts drivere (Nvidia 450 gav sort skærm)
+    På fysisk host undlad at anvende trejdeparts drivere (Nvidia 450 kan give sort skærm)
 
 - VMware er ikke supporteret på en Manjaro host.
 - På Manjaro virtuelle maskiner anvendes kun Docker ej VirtualBox med Vagrant.
@@ -22,22 +22,22 @@ Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen
 
 Installation af operativsystem
 ==============================
-Downloade manjaro minimal installation.
+Download manjaro minimal installation.
 
 Manjaro anvendes kun på Virtuelle maskiner:
 
-- vælg anden linux distribution med kernel 5.x 64 bit
-- sprog American English
-- dansk keyboard no dead keys
-- disk med swap no hibernate
-- undlad installation af tredjeparts drivere mv. (Nvidia drivere kan på hos give problemer)
-- password oprettet med -
-- det er en minimal installation, der er kun enkelte værktøjer ud over systemværktøjerne
-- har default to rækker på virtuelle desktops (up - down)
+- Vælg anden linux distribution med kernel 5.x 64 bit
+- Sprog American English
+- Dansk keyboard no dead keys
+- Disk med swap no hibernate
+- Undlad installation af tredjeparts drivere mv. (Nvidia drivere kan på hos give problemer)
+- Password oprettet med -
+- Det er en minimal installation, der er kun enkelte værktøjer ud over systemværktøjerne
+- Har default to rækker på virtuelle desktops (up - down)
 - Installerede opdateringer
-- tjek at open-vm-tools og dependency gtk3mm er installeret (juni 2020 gtk3mm fandtes ikke i repo)
-- workspace behavior screen locking off
-- kate, konsole og Yakuake font Noto mono 11 pt
+- Tjek at open-vm-tools og dependency gtk3mm er installeret (juni 2020 gtk3mm fandtes ikke i repo)
+- Workspace behavior screen locking off
+- Kate, konsole og Yakuake font Noto mono 11 pt
 
 .. IMPORTANT:: bøvl med at skalere den virtuelle maskine til full screen.
 
