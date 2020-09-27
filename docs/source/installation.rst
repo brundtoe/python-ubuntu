@@ -124,6 +124,7 @@ Som alm bruger udføres::
    ./sshkeys.py
    ./gitconfig.py
 
+.. important:: På en ny fysisk maskine eller en frisk virtuel maskine skal public sshkey oprettes på GitHub og Bitbucket.
 
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
