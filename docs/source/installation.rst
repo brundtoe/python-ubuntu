@@ -80,12 +80,14 @@ Python moduler installeres
    cp [usb-stick python-ubuntu] python-ubuntu
    cd python-ubuntu
    sudo apt install -y python3-pip python3-venv python3-setuptools
+   sudo pip3 install -r requirements.txt
    python3 -m venv venv
    source venv/bin/activate
-   pip3 install -r requirements.txt
    python3 setup.py develop
 
 .. important:: Installation skal foretages i det virtuelle environment, og python-ubuntu skal være installeret i development mode.
+
+   requirements skal installeres globalt, da jinja2 ikke fungerer fra det virtuelle environment
 
 Opdatering af konfigurationsfilen
 =================================
