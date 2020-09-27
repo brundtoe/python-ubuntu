@@ -28,10 +28,10 @@ Forberedelser:
 
 Logout for at frigøre licenser:
 
-- nosqlbooster og kopi af programmet, da jeg kun har licens til verison 5.x
+- nosqlbooster og kopi af programmet, da jeg kun har licens til version 5.x
 - jetbrains
 
-.. note:: Installationen kan forenkles ved at kopiere projekt php-ubuntu til en USB stick og anvende indholdet herfra. Det muliggør scripting af alle dele af installationen.
+.. note:: Installationen kan forenkles ved med **FreeFileSync** at overføre projekt php-ubuntu til en USB stick og anvende indholdet herfra. Det muliggør scripting af alle dele af installationen.
 
 Installation af operativsystem
 ==============================
@@ -74,11 +74,15 @@ Python moduler installeres
 
 .. code-block:: bash
 
+   cd ~
+   mkdir .ssh
+   mkdir sourcecode
+   cp [usb-stick python-ubuntu] python-ubuntu
    cd python-ubuntu
    sudo apt install -y python3-pip python3-venv python3-setuptools
-   sudo pip3 install -r requirements.txt
    python3 -m venv venv
    source venv/bin/activate
+   pip3 install -r requirements.txt
    python3 setup.py develop
 
 .. important:: Installation skal foretages i det virtuelle environment, og python-ubuntu skal være installeret i development mode.
@@ -98,18 +102,25 @@ Opdater konfigurationen i forhold til den anvendte hardware og opdater evt til a
 
 Installation med python scripts
 ===============================
-.. note:: Alle scripts udføres med root access!
+.. important:: SKal udføres med det virtuelle environment
 
 Installationen udføres i et antal trin::
 
+   cd python-ubuntu
+   source venv/bin/activate
    cd ~/sourcecode/python-ubuntu/source
+
+Med sudo udføres:
 
 * 01_prepare_install.py
 * 02_install_requirements
 * 03_install_repositories
 * 04_install_extra
-* sshkeys.py
-* gitconfig.py
+
+Som alm bruger udføres::
+
+   ./sshkeys.py
+   ./gitconfig.py
 
 
 Tilslut øvrige harddiske (fysisk maskine)
