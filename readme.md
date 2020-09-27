@@ -12,6 +12,22 @@ Detaljer fremgår af dokumentationen i mappen docs.
     - Common (her findes parametre som anvendes i de efterfølgende afsnit)
     - ekstra.programs
 
+## installation af sourcecoden
+
+**Der anvendes det virtuelle environment**
+
+Projektet skal installeres med::
+
+    cd python-ubuntu
+    python3 setup.py develop
+    
+Installationen er nødvendig for at koden i mappen lib, som er fælles for Kubuntu og Manjaro installationen kan importeres.
+
+installationen fjernes igen med::
+
+    cd python-ubuntu
+    python3 setup.py develop --uninstall
+
 ## ParseConfig
 
 Der anvendes ExtendedInterpolation i moduler/fetch_config

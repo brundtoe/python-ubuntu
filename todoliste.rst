@@ -2,14 +2,19 @@
 Opgaveliste
 ===========
 
+Konsolider fælles scripts i mappen lib
+
+
 omlægninger september 2020
 ==========================
-Omlægnignerne er lavet til Kubuntu
+Omlægningerne er lavet til Kubuntu
 
 .. todo lav omlægning til manjaro
 
    - extra-diske
    - wdmycloud
+
+   - opdater manjaor.rst jf. den nye installation med Python-Ubuntu via en USB stick
 
 .. todo flere omlægninger af disk mounts
 
@@ -53,6 +58,11 @@ Se PyCharm databaser -> mysql om konfig af default charset og default collation
 
     - Kubuntu
     - Manjaro
+
+.. todo scripting af
+
+   - brugeroprettelse og
+   - opdatering med aktuelle data (pas på i virtuelle maskiner her skal data også kopieres fra wdmycloud
 
 Kubuntu Apache2 site definition
 ===============================

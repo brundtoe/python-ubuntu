@@ -82,7 +82,7 @@ Python moduler installeres:
 Tjek på https://pypi.org at packages i requirements.txt er opdateret::
 
    cd python-ubuntu
-   sudo pacman -S python-pip
+   sudo pacman -S python-pip python-venv
    sudo pip3 install -r requirements.txt
 
 .. note:: Installation foretages med systemets default python installation.

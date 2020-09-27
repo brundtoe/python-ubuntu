@@ -31,7 +31,6 @@ Logout for at frigøre licenser:
 - nosqlbooster og kopi af programmet, da jeg kun har licens til verison 5.x
 - jetbrains
 
-
 .. note:: Installationen kan forenkles ved at kopiere projekt php-ubuntu til en USB stick og anvende indholdet herfra. Det muliggør scripting af alle dele af installationen.
 
 Installation af operativsystem
@@ -76,11 +75,13 @@ Python moduler installeres
 .. code-block:: bash
 
    cd python-ubuntu
-   sudo apt install -y python3-pip
+   sudo apt install -y python3-pip python3-venv python3-setuptools
    sudo pip3 install -r requirements.txt
+   python3 -m venv venv
+   source venv/bin/activate
+   python3 setup.py develop
 
-.. note:: Installation foretages med systemets default python installation.
-   Programudvikling foretages med virtuelle environments.
+.. important:: Installation skal foretages i det virtuelle environment, og python-ubuntu skal være installeret i development mode.
 
 Opdatering af konfigurationsfilen
 =================================
