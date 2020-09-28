@@ -1,7 +1,7 @@
 #
 #
 import sys
-from lib import jensen
+from lib_src import jensen
 
 if __name__ == '__main__':
     print('hello from start')
