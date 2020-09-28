@@ -101,6 +101,11 @@ Repositoriet clones på **virtuelle maskiner**::
    cd sourcecode
    git clone git@github.com:brundtoe/python-ubuntu.git
 
+Installation af Python moduler
+==============================
+Installation::
+
+   sudo apt install -y python3-pip python3-venv python3-setuptools
 
 Klargøring til Script installation
 ==================================
@@ -109,15 +114,12 @@ Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu eller
 .. code-block:: bash
 
    cd python-ubuntu
-   sudo apt install -y python3-pip python3-venv python3-setuptools
    sudo pip3 install -r requirements.txt
    python3 -m venv venv
    source venv/bin/activate
    python3 setup.py develop
 
-.. important:: Installation skal foretages med de globale environment, og python-ubuntu skal være installeret i development mode.
-
-   requirements skal installeres globalt, da sudo anvender det globale environment selvom et virtuelt environment er aktiveret
+.. important:: Installation skal foretages med det virtuelle  environment, og python-ubuntu skal være installeret i development mode.
 
 Opdatering af konfigurationsfilen
 =================================
