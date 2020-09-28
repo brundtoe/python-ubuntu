@@ -106,6 +106,7 @@ Installation af Python moduler
 Installation::
 
    sudo apt install -y python3-pip python3-venv python3-setuptools
+   sudo pip3 install pylint
 
 Klargøring til Script installation
 ==================================
