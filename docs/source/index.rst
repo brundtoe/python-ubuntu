@@ -11,6 +11,7 @@ Python Vejledninger
    :caption: Contents:
 
    installation
+   ubuntu-scripts
    download-files
    manjaro
    manjaro-kde-display

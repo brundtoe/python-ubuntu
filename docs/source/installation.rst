@@ -60,34 +60,65 @@ Det tjekkes via faneblad Ubuntu Software, at **multiverse** er aktiveret. Det ka
 
    sudo add-apt-repository multiverse && sudo apt-get update
 
-Valg af font
-------------
-Som font i terminal og kate
+Klargøring til installations med scripts
+========================================
+Font i terminal og kate::
 
-- **Noto Sans Mono** alternativ **DejaVu Sans Mono** font size 11 pt
+   Noto Sans Mono** alternativ **DejaVu Sans Mono** font size 11 pt
 
-Initial installation
-====================
-Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu
 
-Python moduler installeres
+Installer git og vim med::
+
+    sudo apt install -y git vim
+
+Konfiguration af git user::
+
+   git config --global user.name Jackie
+   git config --global user.email brundtoe@outlook.dk
+   git config --global core.editor vim
+
+Tilføj ssh key::
+
+    cd ~/.ssh
+    ssh-keygen -b 4096
+    ssh-add
+
+Tilføj public key til GitHub og Bitbucket konti.
+
+Installation af Visual Studio code::
+
+   sudo snap install --classic code
+
+- Installer Python extension
+- Installer TODO extension
+- Kopier settings fra Hosten ~/.config/Code/User/settings.json
+
+Clone repository fra Github (uden USB stick)
+============================================
+Repositoriet clones på **virtuelle maskiner**::
+
+   mkdir ~/sourcecode
+   cd sourcecode
+   git clone git@github.com:brundtoe/python-ubuntu.git
+
+
+.. note:: Udfør derefter :ref:`ovenstående scripts <kubuntu_scripts>`
+
+Klargøring til Script installation
+==================================
+Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu eller repositoriet clones fra GitHub.
 
 .. code-block:: bash
 
-   cd ~
-   mkdir .ssh
-   mkdir sourcecode
-   cp [usb-stick python-ubuntu] python-ubuntu
    cd python-ubuntu
    sudo apt install -y python3-pip python3-venv python3-setuptools
    sudo pip3 install -r requirements.txt
    python3 -m venv venv
-   source venv/bin/activate
    python3 setup.py develop
 
-.. important:: Installation skal foretages i det virtuelle environment, og python-ubuntu skal være installeret i development mode.
+.. important:: Installation skal foretages med de globale environment, og python-ubuntu skal være installeret i development mode.
 
-   requirements skal installeres globalt, da jinja2 ikke fungerer fra det virtuelle environment
+   requirements skal installeres globalt, da sudo anvender det globale environment selvom et virtuelt environment er aktiveret
 
 Opdatering af konfigurationsfilen
 =================================
@@ -104,12 +135,11 @@ Opdater konfigurationen i forhold til den anvendte hardware og opdater evt til a
 
 Installation med python scripts
 ===============================
-.. important:: SKal udføres med det virtuelle environment
+.. important:: Skal udføres med det globale environment
 
 Installationen udføres i et antal trin::
 
    cd python-ubuntu
-   source venv/bin/activate
    cd ~/sourcecode/python-ubuntu/source
 
 Med sudo udføres:
@@ -119,12 +149,7 @@ Med sudo udføres:
 * 03_install_repositories
 * 04_install_extra
 
-Som alm bruger udføres::
-
-   ./sshkeys.py
-   ./gitconfig.py
-
-.. important:: På en ny fysisk maskine eller en frisk virtuel maskine skal public sshkey oprettes på GitHub og Bitbucket.
+.. seealso:: Se vejledning om :ref:`ubuntu-scripts`
 
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
@@ -157,77 +182,6 @@ Udfør::
 
    sudo ./wdmycloud.py
 
-Clone repository fra Github (uden USB stick)
-============================================
-
-Installer git med::
-
-    sudo apt install -y git vim
-
-Tilføj ssh key::
-
-    cd ~/.ssh
-    ssh-keygen -b 4096
-    ssh-add
-
-Tilføj public key til GitHub og Bitbucket konti.
-
-Konfiguration af git user::
-
-   git config --global user.name Jackie
-   git config --global user.email brundtoe@outlook.dk
-   git config --global core.editor vim
-
-Den globale configuration for en bruger findes i **~/git/.gitconfig**
-
-Repositoriet clones på **virtuelle maskiner**::
-
-   mkdir ~/sourcecode
-   cd sourcecode
-   git clone git@github.com:brundtoe/python-ubuntu.git
-
-
-.. note:: Udfør derefter :ref:`ovenstående scripts <kubuntu_scripts>`
-
-
-Scriptet 01_prepare_install-py
-------------------------------
-Scriptet foretager den grundlægende konfiguration som betår af:
-
-* Definition af timezone
-* Oprettelse af mount points for interne diske
-* Oprettelse af mount points for wdmycloud
-* Opdatering af fstab med mount points til wdmycloud
-* /etc/sysctl.d/99-local.conf opdatres med fs.inotify.max_user_watches
-* Oprettelse af
-
-   * mappen /home/{user}/bin
-   * mappen /home/ {user}/programs
-   * filen .vimrc
-   * images som anvendes af desktop entries koppieres til ~/bin/images
-
-* opdatering af Linux
-
-Scriptet 02_install_requirements.py
------------------------------------
-Scriptet installerer en række basale programmer, som defineret i config.ini. alle programmer er uden GUI.
-
-Scriptet 03_intall_requirements.py
-----------------------------------
-Scriptet opretter en række software repositories, som er en forudsætning for installation af den seneste udgave af software, der normalt findes i ældre udgaver på en Ubuntu/Kubuntu/Debian installation.
-
-* MongoDB
-* VirtualBox
-* Docker
-* Google Chrome
-* Puppet
-* Node.js
-
-Scriptet 04_install_extra.py
-----------------------------
-Scriptet indeholder installation af en række ekstra programmer.
-
-.. note:: Husk afsnittet [extra.programs] skal tilpases den aktuelle maskines anvendelse.
 
 Supplerende installationer
 ==========================

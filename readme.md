@@ -14,7 +14,7 @@ Detaljer fremgår af dokumentationen i mappen docs.
 
 ## installation af sourcecoden
 
-**Der anvendes det virtuelle environment**
+**Der anvendes det globale environment**, da sudo ikke anvneder et virtuelt environment selvom det er aktiveret.
 
 Projektet skal installeres med::
 
