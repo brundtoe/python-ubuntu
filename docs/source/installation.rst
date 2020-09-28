@@ -102,8 +102,6 @@ Repositoriet clones på **virtuelle maskiner**::
    git clone git@github.com:brundtoe/python-ubuntu.git
 
 
-.. note:: Udfør derefter :ref:`ovenstående scripts <kubuntu_scripts>`
-
 Klargøring til Script installation
 ==================================
 Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu eller repositoriet clones fra GitHub.
@@ -114,6 +112,7 @@ Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu eller
    sudo apt install -y python3-pip python3-venv python3-setuptools
    sudo pip3 install -r requirements.txt
    python3 -m venv venv
+   source venv/bin/activate
    python3 setup.py develop
 
 .. important:: Installation skal foretages med de globale environment, og python-ubuntu skal være installeret i development mode.
@@ -131,23 +130,22 @@ Opdater konfigurationen i forhold til den anvendte hardware og opdater evt til a
 
 .. caution:: Husk at opdatere **config/.env_devlop** med password til **wdmycloud**
 
-.. _kubuntu_scripts:
-
 Installation med python scripts
 ===============================
-.. important:: Skal udføres med det globale environment
+.. important:: Skal udføres med det virtuelle environment
 
 Installationen udføres i et antal trin::
 
    cd python-ubuntu
+   source venv/bin/activate
    cd ~/sourcecode/python-ubuntu/source
 
-Med sudo udføres:
+Med sudo udføres::
 
-* 01_prepare_install.py
-* 02_install_requirements
-* 03_install_repositories
-* 04_install_extra
+   sudo ../venv/bin/python3 01_prepare_install.py
+   sudo ../venv/bin/python3 02_install_requirements
+   sudo ../venv/bin/python3 03_install_repositories
+   sudo ../venv/bin/python3 04_install_extra
 
 .. seealso:: Se vejledning om :ref:`ubuntu-scripts`
 
@@ -172,7 +170,7 @@ Mount points er oprettet i scriptet 01_prepare_install.
 
 Udfør::
 
-   sudo ./extra-diske.py
+   sudo ../venv/bin/python3 extra-diske.py
 
 Tilslut wdmycloud
 ==================
@@ -180,8 +178,7 @@ Mount points er oprettet i 01_prepare_install.py
 
 Udfør::
 
-   sudo ./wdmycloud.py
-
+   sudo ../venv/bin/python3 wdmycloud.py
 
 Supplerende installationer
 ==========================
@@ -192,50 +189,29 @@ Supplerende installationer
 
 Afhængig af maskinens anvendelse kan følgende udføres
 
-- med root access
-   - install_php.py inkl. konfig af xdbug og php.ini
-   - install_vagrant.py
-   - install_mysql_workbench.py (indstillet grundet Python 2 krav)
+- med root access::
+
+   sudo ../venv/bin/python3 install_php.py # inkl. konfig af xdbug og php.ini
+   sudo ../venv/bin/python3 install_vagrant.py
+   sudo ../venv/bin/python3 install_mysql_workbench.py (indstillet grundet Python 2 krav)
 
 - Uden root access
-   - install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
-   - install_freefilesync.py inkl. desktopfile
-   - install_nosqlbooster.py inkl. desktopfile
-   - install_smartgit ubuntu inkl. desktopfile
-   - install_postman.py inkl desktopfile
-   - install_packer.py
+   python3 install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
+   python3 install_freefilesync.py inkl. desktopfile
+   python3 install_nosqlbooster.py inkl. desktopfile
+   python3 install_smartgit ubuntu inkl. desktopfile
+   python3 install_postman.py inkl desktopfile
+   python3 install_packer.py
 
-- med root efter ovenstående
+- med root efter ovenstående::
 
-   - vbox_ext_pack.py (Hvis VirtualBox er installeret)
-   - groups.py
-   - chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
+   sudo ../venv/bin/python3 vbox_ext_pack.py (Hvis VirtualBox er installeret)
+   sudo ../venv/bin/python3 groups.py
+   sudo ../venv/bin/python3 chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
 
 .. important:: Husk at logge ud og defter ind for at få gruppetildelingen aktiveret
 
    Kontroller i terminalvindue med **groups**
-
-
-Administation af users and groups
-=================================
-Administration af users og groups kan udføres med **lxqt-admin**.
-
-**Installation**::
-
-   sudo apt install -y lxqt-admin
-
-Der oprettes ikke automatisk desktop items til startmenuen. Desktop items findes i **/usr/share/applications** og kan herfra kopieres til ~/Desktop
-
-Ref. https://github.com/lxqt/lxqt/wiki
-
-Visual Code installation
-========================
-**Installation**::
-
-    snap install -- classic code
-       
-- Installation af plugin TODO tree
-- Genskab konfig filen fra en backup /home/jackie/.config/Code/User/settings.json
 
 Restore data (fysisk maskine)
 =============================
