@@ -9,9 +9,7 @@ setup(
     author_email='brundtoe@outlook.dk',
     install_requires=[
         'requests == 2.24.0',
-        'Jinja2 == 2.11.2',
-        'Sphinx == 3.2.1',
-        'sphinx-rtd-theme == 0.5.0'
+        'Jinja2 == 2.11.2'
     ],
     packages=find_packages(),
 )
