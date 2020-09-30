@@ -77,6 +77,14 @@ Repositoriet clones::
    git clone git@github.com:brundtoe/python-ubuntu.git
 
 
+Installation af Visual Studio Code
+==================================
+pacman -S Code
+
+- Installer Python extension
+- Installer TODO extension
+- Kopier settings fra Hosten ~/.config/Code/User/settings.json
+
 Klargøring til Script installation
 ==================================
 Installation::
