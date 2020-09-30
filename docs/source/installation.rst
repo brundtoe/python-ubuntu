@@ -9,6 +9,8 @@ Opdateret september 2020
 .. note:: Scripts er anvendt på Kubuntu 2004 (LTS) Fysisk maskine Komplett
    Scripts findes i repositoriet https://github.com/brundtoe/python-ubuntu
 
+    Script er ultimo september 2020 omlagt til at runne som package i devlopment mode
+
 I denne vejledning beskrives installation med script på en fysisk maskine eller en virtuel maskine, der skal anvendes til softwareudvikling.
 
 .. caution:: Problemer med grafikkortet NVIDIA GTX 1060
@@ -114,12 +116,16 @@ Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu eller
 .. code-block:: bash
 
    cd python-ubuntu
-   sudo pip3 install -r requirements.txt
    python3 -m venv venv
    source venv/bin/activate
+   pip3 install -r requirements-local.txt
    python3 setup.py develop
 
 .. important:: Installation skal foretages med det virtuelle  environment, og python-ubuntu skal være installeret i development mode.
+
+kompilering af Shpix doc forberedes med::
+
+    pip3 install -r requirements-global.txt
 
 Opdatering af konfigurationsfilen
 =================================
@@ -144,10 +150,10 @@ Installationen udføres i et antal trin::
 
 Med sudo udføres::
 
-   sudo ../venv/bin/python3 01_prepare_install.py
-   sudo ../venv/bin/python3 02_install_requirements
-   sudo ../venv/bin/python3 03_install_repositories
-   sudo ../venv/bin/python3 04_install_extra
+   sudo ./01_prepare_install.py
+   sudo ./02_install_requirements
+   sudo ./03_install_repositories
+   sudo ./04_install_extra
 
 .. seealso:: Se vejledning om :ref:`ubuntu-scripts`
 
@@ -180,7 +186,7 @@ Mount points er oprettet i 01_prepare_install.py
 
 Udfør::
 
-   sudo ../venv/bin/python3 wdmycloud.py
+   sudo ./wdmycloud.py
 
 Supplerende installationer
 ==========================
@@ -193,9 +199,9 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
 - med root access::
 
-   sudo ../venv/bin/python3 install_php.py # inkl. konfig af xdbug og php.ini
-   sudo ../venv/bin/python3 install_vagrant.py
-   sudo ../venv/bin/python3 install_mysql_workbench.py (indstillet grundet Python 2 krav)
+   sudo ./install_php.py # inkl. konfig af xdbug og php.ini
+   sudo ./install_vagrant.py
+   sudo ./install_mysql_workbench.py (indstillet grundet Python 2 krav)
 
 - Uden root access
    python3 install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
@@ -207,9 +213,9 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
 - med root efter ovenstående::
 
-   sudo ../venv/bin/python3 vbox_ext_pack.py (Hvis VirtualBox er installeret)
-   sudo ../venv/bin/python3 groups.py
-   sudo ../venv/bin/python3 chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
+   sudo ./vbox_ext_pack.py (Hvis VirtualBox er installeret)
+   sudo ./groups.py
+   sudo ./chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
 
 .. important:: Husk at logge ud og defter ind for at få gruppetildelingen aktiveret
 

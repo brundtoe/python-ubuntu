@@ -6,7 +6,7 @@ Ubuntu Scripts
 ==============
 Opdateret september 2020
 
-Denne vejledning beskriver de enkelte scripts, der avnendes ved ubuntu installation
+Denne vejledning beskriver de enkelte scripts, der anvendes ved ubuntu installation
 
 
 Scriptet 01_prepare_install-py
