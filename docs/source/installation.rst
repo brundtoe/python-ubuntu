@@ -123,9 +123,9 @@ Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu eller
 
 .. important:: Installation skal foretages med det virtuelle  environment, og python-ubuntu skal være installeret i development mode.
 
-kompilering af Shpix doc forberedes med::
+kompilering af Shpinx doc forberedes med::
 
-    pip3 install -r requirements-global.txt
+    sudo pip3 install -r requirements-global.txt
 
 Opdatering af konfigurationsfilen
 =================================

@@ -24,7 +24,7 @@ Installation af operativsystem
 ==============================
 Download manjaro minimal installation.
 
-Manjaro anvendes kun på Virtuelle maskiner:
+Manjaro anvendes primært på Virtuelle maskiner:
 
 - Vælg anden linux distribution med kernel 5.x 64 bit
 - Sprog American English
@@ -37,22 +37,17 @@ Manjaro anvendes kun på Virtuelle maskiner:
 - Installerede opdateringer
 - Tjek at open-vm-tools og dependency gtk3mm er installeret (juni 2020 gtk3mm fandtes ikke i repo)
 - Workspace behavior screen locking off
-- Kate, konsole og Yakuake font Noto mono 11 pt
+
 
 .. IMPORTANT:: bøvl med at skalere den virtuelle maskine til full screen.
 
     Se vejledningen :ref:`manjaro-kde-display`
 
-Supplerende installation
-========================
-Tilføj ssh key::
+Klargøring til installations med scripts
+========================================
+Font i terminal og kate::
 
-    cd ~/.ssh
-    ssh-keygen -b 4096
-    eval $(ssh-agent)
-    ssh-add ~/.ssh/id_rsa
-
-Tilføj public key til Github kontoen
+   Noto Sans Mono** alternativ **DejaVu Sans Mono** font size 11 pt
 
 Installation af vim::
 
@@ -66,6 +61,15 @@ Konfiguration af git user::
 
 Den globale configuration for en bruger findes i **~/git/.gitconfig**
 
+Tilføj ssh key::
+
+    cd ~/.ssh
+    ssh-keygen -b 4096
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/id_rsa
+
+Tilføj public key til Github kontoen og Bitbucket
+
 Repositoriet clones::
 
    mkdir ~/sourcecode
@@ -73,21 +77,28 @@ Repositoriet clones::
    git clone git@github.com:brundtoe/python-ubuntu.git
 
 
-Installation af cifs-utils for at få adgang til wdmycloud::
+Klargøring til Script installation
+==================================
+Installation::
 
-    sudo apt install -y cifs-utils
+   sudo apt install -y python-pip python-venv python-setuptools
 
 Python moduler installeres:
 
 Tjek på https://pypi.org at packages i requirements.txt er opdateret::
 
-   cd python-ubuntu
-   sudo pacman -S python-pip python-venv
-   sudo pip3 install -r requirements.txt
+  cd python-ubuntu
+   python3 -m venv venv
+   source venv/bin/activate
+   pip3 install -r requirements-local.txt
+   python3 setup.py develop
 
-.. note:: Installation foretages med systemets default python installation.
+.. important:: Installation skal foretages med det virtuelle  environment, og python-ubuntu skal være installeret i development mode.
 
-   Programudvikling foretages med virtuelle environments.
+kompilering af Shpinx doc forberedes med::
+
+    sudo pip3 install -r requirements-global.txt
+
 
 Forbered installation af programpakkerne:
     - kontroller indstillingerne i config/manjaro.ini
@@ -96,23 +107,39 @@ Forbered installation af programpakkerne:
         - gtk2 er krævet af FreeFileSync
     - udfør 01-prepare.py
 
-Installation af software foretages med bash scripts:
-    - programs.sh
-    - php.sh
-    - php_config.py
-    - webserver.sh
+Installation af software foretages med bash scripts::
+
+    cd manjao
+    sudo ./programs.sh
+    sudo ./php.sh
+    sudo ./php_config.py
+    sudo ./webserver.sh
 
 Denne ændring fra Ubuntu/Debian varianten anvendes fordi Manjaro/Arch Linux kommer med opdaterede softwarepakker.
 
 MongoDB findes grundet licens issues ikke i de officielle repositories men kun i **AUR**
     - https://stackoverflow.com/questions/59455725/install-mongodb-on-manjaro
 
-Installation af sw som downloades og pakkes ud i mappen **programs**
-    - install_freeefilesync
-    - install_jetbrains_toolbox
-    - install_nosqlbooster
-    - install_postman
-    - desktopfile
+Tilslut wdmycloud
+==================
+Mount points er oprettet i 01_prepare_install.py
+
+Udfør::
+
+   sudo ./wdmycloud.py
+
+Supplerende installationer
+==========================
+
+Installation af sw som downloades og pakkes ud i mappen **programs**::
+
+
+    cd manjaro
+    python3 install_freeefilesync.py
+    python3 install_jetbrains_toolbox.py
+    python3 install_nosqlbooster.py
+    python3 install_postman.py
+    python3 desktopfile.py
 
 **Følgende findes i AUR som alternativ til download**
     - FreeFileSync
@@ -128,10 +155,12 @@ Installation af sw som downloades og pakkes ud i mappen **programs**
 
 Afsluttende konfig
 ==================
-Efter behov udføres:
-    - groups
-    - chown
-    - vbox_ext_pack kun relevant for host ej for virtuel maskine
+Efter behov udføres::
+
+    cd manjaroi
+    sudo ./groups.py
+    sudo ./chown.py
+    sudo ./vbox_ext_pack kun relevant for host ej for virtuel maskine
 
 GNOME/GTK Applications style
 ============================
