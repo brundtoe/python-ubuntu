@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 import sys, os, shlex, subprocess
-from moduler.fileOperations import fetch_config
+from fileOperations import fetch_config
 
 
 def usermod(user, group, options=''):

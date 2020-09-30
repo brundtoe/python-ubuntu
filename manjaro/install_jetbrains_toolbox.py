@@ -2,7 +2,7 @@
 #
 # installation af jetBrains ToolBox
 
-from moduler.fileOperations import fetch_config, fetch_archive
+from fileOperations import fetch_config, fetch_archive
 
 
 def install_jetbrains_toolbox(configs):

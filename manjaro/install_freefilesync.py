@@ -2,8 +2,8 @@
 #
 # installation af FreeFileSync
 
-from moduler.fileOperations import fetch_config, fetch_archive
-from moduler.desktopfile import create_desktop_file
+from fileOperations import fetch_config, fetch_archive
+from desktopfile import create_desktop_file
 
 def install_freefilesync(configs):
     """

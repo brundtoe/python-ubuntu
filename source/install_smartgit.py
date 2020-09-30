@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 #
 # Installation af smartgit
 #
-import sys, os
 from moduler.fileOperations import fetch_config, fetch_archive
 from moduler.desktopfile import create_desktop_file
 

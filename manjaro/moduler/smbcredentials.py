@@ -2,7 +2,7 @@
 #
 import sys, os, shutil
 import argparse
-from moduler.fileOperations import fetch_config
+from fileOperations import fetch_config
 
 
 def smbcredentials(user, password):

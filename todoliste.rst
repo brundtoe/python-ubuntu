@@ -3,6 +3,29 @@ Opgaveliste
 ===========
 
 Konsolider fælles scripts i mappen lib
+======================================
+
+øvrige scripts
+--------------
+- source/demos
+- source/jinjademo
+- source/start.py
+- lib_src/
+
+fileOperations.fetch config bør foregå i __init__.py så det kun foregår een gang
+
+Alternativt så importeres fileOperations i __init__.py
+
+modifikation af installationen af AppImages - nosqlbooster
+
+Se https://github.com/AppImage/AppImageKit/wiki/FUSE
+
+NoSqlBooster er et AppImage og det anvender FUSE som er et system, der lader ikke root brugere mounte et filsystem.
+
+Der er tilsynladende sket ændringer i pakningen af NoSQLBooster til AppImage i f.m. version 6.1.8
+
+
+
 
 
 omlægninger september 2020

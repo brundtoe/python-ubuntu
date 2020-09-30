@@ -1,8 +1,7 @@
 #
 #
 import sys
-from moduler import dummy
-from lib_src import jensen
+from moduler import jensen
 
 if __name__ == '__main__':
     print('hello from start')

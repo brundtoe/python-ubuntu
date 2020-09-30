@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 import shutil
 import sys, os
 from moduler.fileOperations import fetch_config

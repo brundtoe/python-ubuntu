@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # konfiguration af XDebug og php.ini
 
-import sys, os, shutil, shlex
+import sys, os, shlex
 import subprocess
-from jinja2 import Environment, FileSystemLoader
-from moduler.fileOperations import fetch_config
-from moduler.xdebug_ini import create_xdebug_ini
+from fileOperations import fetch_config
+from xdebug_ini import create_xdebug_ini
 
 
 def config_php(configs):

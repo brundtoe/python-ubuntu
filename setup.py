@@ -11,5 +11,5 @@ setup(
         'requests == 2.24.0',
         'Jinja2 == 2.11.2'
     ],
-    packages=find_packages(include=['source', 'manjaro', 'lib_src']),
+    packages=find_packages(include=['source', 'manjaro', 'lib_src',  'moduler']),
 )

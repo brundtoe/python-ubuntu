@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 # Installation af Composer, konfiguration af XDebug
 
 import sys, os, shutil, shlex
-from fileinput import FileInput
 import subprocess
 from moduler.fileOperations import fetch_config
 from moduler.sha256sum import hash_file

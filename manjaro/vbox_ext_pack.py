@@ -4,7 +4,7 @@
 #
 import sys, os, shlex, re
 import subprocess
-from moduler.fileOperations import fetch_config, download_file
+from fileOperations import fetch_config, download_file
 
 
 def vbox_ext_pack(url, vbox_version):

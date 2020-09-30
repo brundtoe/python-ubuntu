@@ -2,7 +2,7 @@
 #
 
 from jinja2 import Environment, FileSystemLoader
-from moduler.fileOperations import fetch_config
+from fileOperations import fetch_config
 
 
 def create_xdebug_ini(tmpl, dstfile, xdebug_host=True):

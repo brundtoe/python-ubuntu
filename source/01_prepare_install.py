@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 # -*- coding: utf-8 -*-
 # script som samler de enkelte del og foretages den samlede installation på Kubuntu
 #
@@ -6,7 +6,13 @@
 #
 import sys, os, shlex
 from subprocess import run
+
 from moduler.fileOperations import fetch_config
+from moduler.add_mountpoints import add_mountpoints
+from moduler.smbcredentials import smbcredentials
+from moduler.fileOperations import addLine
+from moduler.home_bin import homebin
+from moduler.apt_update import apt_update
 
 configs = ''
 
@@ -30,7 +36,7 @@ except Exception as err:
 else:
     print(f'timezone er sat til {timezone}')
 
-from moduler.add_mountpoints import add_mountpoints
+
 try:
     user = configs['Common']['user']
     mount_points = configs[configs['Common']['host']]
@@ -49,7 +55,7 @@ except Exception as err:
 else:
     print('Mount points for wdmycloud er tilføjet')
 
-from moduler.smbcredentials import smbcredentials
+
 try:
     user = configs['Common']['user']
     filename = '../config/.env_develop'
@@ -60,7 +66,7 @@ except Exception as err:
 else:
     print('~/.smbcredentials er opdateret med mountpoint')
 
-from moduler.fileOperations import addLine
+
 try:
     filename = '/etc/sysctl.d/99-local.conf'
     text = 'fs.inotify.max_user_watches=524288\n'
@@ -70,7 +76,7 @@ except Exception as err:
 else:
     print(f'{filename} er opdateret med {text}')
 
-from moduler.home_bin import homebin
+
 try:
     user = configs['Common']['user']
     homebin(user)
@@ -80,7 +86,7 @@ except Exception as err:
 else:
     print(f'/home/{user}/bin er opdateret')
 
-from moduler.apt_update import apt_update
+
 try:
     apt_update()
 except Exception as err:

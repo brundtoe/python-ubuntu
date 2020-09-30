@@ -1,11 +1,12 @@
-#!/usr/bin/env python3
+#!../ven/bin/python
 # -*- coding: utf-8 -*-
 #
 # oprettelse af global git config
 
 import sys
-from moduler.fileOperations import fetch_config
 from shutil import copyfile
+
+from moduler.fileOperations import fetch_config
 
 configs = ''
 user = ''

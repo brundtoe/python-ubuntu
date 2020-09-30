@@ -1,11 +1,9 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 #
 # Installation af mysql workbench
 #
 import sys,os
-import subprocess
 from moduler.fileOperations import fetch_config, install_dpkg
-import requests
 
 if __name__ == '__main__':
     if os.geteuid() != 0:

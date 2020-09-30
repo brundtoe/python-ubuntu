@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 #
-import sys, os, shutil
-from moduler.fileOperations import fetch_config
+import os, shutil
+from fileOperations import fetch_config
 import requests
-from moduler.desktopfile import create_desktop_file
+
 
 def install_nosqlbooster(url, user, version):
     """

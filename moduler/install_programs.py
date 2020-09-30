@@ -52,7 +52,7 @@ if __name__ == '__main__':
     if os.geteuid() != 0:
         sys.exit('Scritet skal udføres  med root access')
     print('script install_programs')
-    configs = fetch_config('../../config/config.ini')
+    configs = fetch_config('../config/config.ini')
     programs = configs['programs']
     options = configs['Common']['install_options']
     install_programs(programs, options)

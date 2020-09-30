@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 # -*- coding: utf-8 -*-
 # script som samler de enkelte del og foretages den samlede installation på Kubuntu
 #
@@ -6,6 +6,9 @@
 #
 import sys, os
 from moduler.fileOperations import fetch_config
+from moduler.apt_update import apt_update
+from moduler.install_programs import install_programs
+
 
 configs = ''
 
@@ -20,7 +23,7 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
-from moduler.apt_update import apt_update
+
 try:
     apt_update()
 except Exception as err:
@@ -28,7 +31,7 @@ except Exception as err:
 else:
     print('apt-get update og apt-get upgrade udført')
 
-from moduler.install_programs import install_programs
+
 try:
     programs = configs['programs']
     options = configs['Common']['install_options']

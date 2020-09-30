@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 # -*- coding: utf-8 -*-
 # script som opretter en default ssh key for user,
 # hvis den ikke allerede eksisterer

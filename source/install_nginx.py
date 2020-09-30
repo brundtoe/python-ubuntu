@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 # Installation og konfiguration af Nginx med php-fpm
 
-import sys, os, shlex
+import sys, os
 import subprocess
 from moduler.fileOperations import fetch_config
 from moduler.install_programs import install_program, is_installed

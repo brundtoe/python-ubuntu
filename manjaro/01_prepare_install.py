@@ -5,9 +5,8 @@
 # Inden scriptet runnes oprettes i mappen infile filen -env med password til wdmycloud
 #
 import sys, os, shlex
-from shutil import copy
 from subprocess import run
-from moduler.fileOperations import fetch_config
+from fileOperations import fetch_config
 
 configs = ''
 
@@ -31,7 +30,7 @@ except Exception as err:
 else:
     print(f'timezone er sat til {timezone}')
 
-from moduler.add_mountpoints import add_mountpoints
+from moduler import add_mountpoints
 
 try:
     user = configs['Common']['user']
@@ -51,7 +50,7 @@ except Exception as err:
 else:
     print('Mount points for wdmycloud er tilføjet')
 
-from moduler.smbcredentials import smbcredentials
+from moduler import smbcredentials
 
 try:
     user = configs['Common']['user']
@@ -63,7 +62,7 @@ except Exception as err:
 else:
     print('~/.smbcredentials er opdateret med mountpoint')
 
-from moduler.fstab_update import update_fstab
+from moduler import update_fstab
 
 try:
     mount_string = configs['Common']['mount_string']
@@ -86,7 +85,7 @@ except Exception as err:
 else:
     print(f'{filename} er opdateret med {max_watches}')
 
-from moduler.home_bin import homebin
+from moduler import homebin
 
 try:
     user = configs['Common']['user']
