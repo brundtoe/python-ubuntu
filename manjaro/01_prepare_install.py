@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 # -*- coding: utf-8 -*-
 # script som samler de enkelte del og foretages den samlede installation på Kubuntu
 #

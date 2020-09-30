@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!../venv/bin/python
 # konfiguration af XDebug og php.ini
 
 import sys, os, shlex
