@@ -26,3 +26,12 @@ def create_desktop_file(program, tmpl, user, version = None):
     except Exception as err:
         print(err)
         sys.exit(f'Kan ikke generere desktopfile for {program}')
+
+if __name__ == '__main__':
+    configs = fetch_config('../config/config.ini')
+    programs = configs['desktop.items']
+    user = configs['Common']['user']
+    for item in programs:
+        program = programs[item]
+        tmpl = f'{program}.jinja'
+        create_desktop_file(program, tmpl, user)

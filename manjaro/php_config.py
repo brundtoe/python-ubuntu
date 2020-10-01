@@ -3,8 +3,8 @@
 
 import sys, os, shlex
 import subprocess
-from fileOperations import fetch_config
-from xdebug_ini import create_xdebug_ini
+from moduler.fileOperations import fetch_config
+from moduler.xdebug_ini import create_xdebug_ini
 
 
 def config_php(configs):
@@ -33,11 +33,11 @@ if __name__ == '__main__':
         sys.exit('Scriptet skal udføres med root access')
 
     try:
-        filename = '../config/manjaro.ini'
+        filename = '../config/config.ini'
         configs = fetch_config(filename)
         config_php(configs)
     except Exception as err:
-        print('Der opstod fejl ved konfiguration caf php')
+        print('Der opstod fejl ved konfiguration af php')
         print(err)
         sys.exit(1)
     else:
