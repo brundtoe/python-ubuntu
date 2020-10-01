@@ -5,49 +5,23 @@ Opgaveliste
 Konsolider fælles scripts i mappen lib
 ======================================
 
-Manjaro moduler som afviger fra Ubuntu moduler
+TODO gennemse scripts for muligheder for optimering
 
-FIXME desktopfile
+model for 01_prepare_install hvor indhold flyttes til moduler
 
-manjaro versionen indeholder mulighed for at køre scritpet fra cmd line
+alternativ systemopdateringer foretages udenfor scripts bortset fra de ubuntu specifikke
 
-FIXME config.ini og manjaro.ini
+wdmycloud og fileoperations indehodler en funktionm addLine add_line som begge tilføjer en linje til en fil
 
-de værdier der indgår i begge filer er de samme
+TODO alle scripts skal have module docstring
 
-måske et ubuntu og et manjaro afsnit til de specifikke værdier
+FIXME wdmycloud manjaro
 
-scripts skal så kunne skelne mellem ubuntu og manjaro for at læse de rigtige konfig værdier
+ikke muligt at mounte wdmycloud
 
-TODO en mappe common
+FIXME manjaro smartgit vil ikke installeres
 
-med script som anvendes af kubuntu og manjaro
-
-- 01_prepare_install.py
-- install freefilesync, jetbrains, nosqlbooster, postman og smartgit
-- groups.py
-- wdmycloud.py
-- chown.py
-- extradiske.py
-
-harmoniser 
-
-FIXME 01_prepare_intall
-
-udskille systemopdatering til eget script
-
-alternativt udfør opdateringen manuelt
-
-alternativ scriptet skal kalde systemopdatering afhængig af om det er ubuntu eller manjaro
-
-DONEFIXME home_bin.py 
-
-
-
-TODO fileOperations.fetch config bør foregå i __init__.py så det kun foregår een gang
-
-Alternativt så importeres fileOperations i __init__.py
-
+er ikke medtaget i installationsfilen - årsag hertil?
 
 FIXME nosqlbooster
 

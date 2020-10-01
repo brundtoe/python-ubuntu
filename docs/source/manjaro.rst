@@ -109,7 +109,7 @@ kompilering af Shpinx doc forberedes med::
 
 
 Forbered installation af programpakkerne:
-    - kontroller indstillingerne i config/manjaro.ini
+    - kontroller indstillingerne i config/config.ini
     - kontroller pakker i programs.sh
         - node.js er normalt seneste lst version. Find navnet på https://nodejs.org
         - gtk2 er krævet af FreeFileSync
@@ -134,7 +134,8 @@ Mount points er oprettet i 01_prepare_install.py
 
 Udfør::
 
-   sudo ./wdmycloud.py
+    cd python-ubuntu/common
+    sudo ./wdmycloud.py
 
 Supplerende installationer
 ==========================
@@ -142,12 +143,12 @@ Supplerende installationer
 Installation af sw som downloades og pakkes ud i mappen **programs**::
 
 
-    cd manjaro
+    cd python-ubuntu/common
     python3 install_freeefilesync.py
     python3 install_jetbrains_toolbox.py
     python3 install_nosqlbooster.py
     python3 install_postman.py
-    python3 desktopfile.py
+
 
 **Følgende findes i AUR som alternativ til download**
     - FreeFileSync
@@ -165,7 +166,7 @@ Afsluttende konfig
 ==================
 Efter behov udføres::
 
-    cd manjaroi
+    cd python-ubuntu/common
     sudo ./groups.py
     sudo ./chown.py
     sudo ./vbox_ext_pack kun relevant for host ej for virtuel maskine

@@ -203,7 +203,9 @@ Afhængig af maskinens anvendelse kan følgende udføres
    sudo ./install_vagrant.py
    sudo ./install_mysql_workbench.py (indstillet grundet Python 2 krav)
 
-- Uden root access
+- Uden root access::
+
+   cd python-ubuntu/common
    python3 install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
    python3 install_freefilesync.py inkl. desktopfile
    python3 install_nosqlbooster.py inkl. desktopfile
@@ -213,6 +215,7 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
 - med root efter ovenstående::
 
+   cd python-ubuntu/common
    sudo ./vbox_ext_pack.py (Hvis VirtualBox er installeret)
    sudo ./groups.py
    sudo ./chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
