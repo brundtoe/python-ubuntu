@@ -7,10 +7,9 @@
 import sys, os, shlex
 from subprocess import run
 
-from moduler.fileOperations import fetch_config
+from moduler.fileOperations import fetch_config, addLine
 from moduler.add_mountpoints import add_mountpoints
 from moduler.smbcredentials import smbcredentials
-from moduler.fileOperations import addLine
 from moduler.home_bin import homebin
 from moduler.apt_update import apt_update
 
@@ -19,6 +18,7 @@ configs = ''
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
 
+# Indlæsning af konfigurationsfilen
 try:
     filename = '../config/config.ini'
     configs = fetch_config(filename)
@@ -27,6 +27,7 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
+# timezone opdateres
 try:
     timezone = configs['Common']['timezone']
     cmd = shlex.split(f'timedatectl set-timezone {timezone}')
@@ -36,7 +37,7 @@ except Exception as err:
 else:
     print(f'timezone er sat til {timezone}')
 
-
+# Tilføj mount points for interne diske
 try:
     user = configs['Common']['user']
     mount_points = configs[configs['Common']['host']]
@@ -46,6 +47,7 @@ except Exception as err:
 else:
     print('Mount points for interne diske er tilføjet')
 
+# Tilføj mount point for wdmycloud
 try:
     mount_points = configs['mount.points']
     user = configs['Common']['user']
@@ -55,7 +57,7 @@ except Exception as err:
 else:
     print('Mount points for wdmycloud er tilføjet')
 
-
+# Opdater smbcredentials med password til wdmycloud
 try:
     user = configs['Common']['user']
     filename = '../config/.env_develop'
@@ -66,17 +68,17 @@ except Exception as err:
 else:
     print('~/.smbcredentials er opdateret med mountpoint')
 
-
+# Tilføj max watches for filer
 try:
     filename = '/etc/sysctl.d/99-local.conf'
-    text = 'fs.inotify.max_user_watches=524288\n'
+    max_watches = 'fs.inotify.max_user_watches = 524288\n'
     addLine(filename, text)
 except Exception as err:
     sys.exit(f'Der opstod fejl ved opdatering af {filename}')
 else:
     print(f'{filename} er opdateret med {text}')
 
-
+# Opret mappen home/bin og kopier images
 try:
     user = configs['Common']['user']
     homebin(user)
@@ -86,7 +88,7 @@ except Exception as err:
 else:
     print(f'/home/{user}/bin er opdateret')
 
-
+# Systemopdatering
 try:
     apt_update()
 except Exception as err:

@@ -6,21 +6,27 @@
 #
 import sys, os, shlex
 from subprocess import run
-from fileOperations import fetch_config
+
+from moduler.fileOperations import fetch_config, addLine
+from moduler.add_mountpoints import add_mountpoints
+from moduler.smbcredentials import smbcredentials
+from moduler.home_bin import homebin
 
 configs = ''
 
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
 
+# Indlæsning af konfigurationsfilen
 try:
-    filename = '../config/manjaro.ini'
+    filename = '../config/config.ini'
     configs = fetch_config(filename)
 except Exception as err:
     sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
+# timezone opdateres
 try:
     timezone = configs['Common']['timezone']
     cmd = shlex.split(f'timedatectl set-timezone {timezone}')
@@ -30,8 +36,7 @@ except Exception as err:
 else:
     print(f'timezone er sat til {timezone}')
 
-from moduler import add_mountpoints
-
+# Tilføj mount points for interne diske
 try:
     user = configs['Common']['user']
     mount_points = configs[configs['Common']['host']]
@@ -41,6 +46,7 @@ except Exception as err:
 else:
     print('Mount points for interne diske er tilføjet')
 
+# Tilføj mount point for wdmycloud
 try:
     mount_points = configs['mount.points']
     user = configs['Common']['user']
@@ -50,8 +56,7 @@ except Exception as err:
 else:
     print('Mount points for wdmycloud er tilføjet')
 
-from moduler import smbcredentials
-
+# Opdater smbcredentials med password til wdmycloud
 try:
     user = configs['Common']['user']
     filename = '../config/.env_develop'
@@ -62,31 +67,18 @@ except Exception as err:
 else:
     print('~/.smbcredentials er opdateret med mountpoint')
 
-from moduler import update_fstab
-
-try:
-    mount_string = configs['Common']['mount_string']
-    mount_points = configs['mount.points']
-    fstab = configs['etc.fstab']
-    update_fstab(mount_string, mount_points, fstab)
-except Exception as err:
-    sys.exit('Der opstod fejl ved opdatering af /etc/fstab')
-else:
-    print('/etc/fstab er opdateret med mountpoint')
-
+# Tilføj max watches for filer
 try:
     filename = '/etc/sysctl.d/50-max_user_watches.conf'
     max_watches = 'fs.inotify.max_user_watches = 524288\n'
-    with open(filename, 'w') as user_watches:
-        user_watches.write(max_watches)
+    addLine(filename, max_watches)
 except Exception as err:
     print(err)
     sys.exit(f'Der opstod fejl ved opdatering af {filename}')
 else:
     print(f'{filename} er opdateret med {max_watches}')
 
-from moduler import homebin
-
+# Opret mappen home/bin og kopier images
 try:
     user = configs['Common']['user']
     homebin(user)
@@ -96,6 +88,7 @@ except Exception as err:
 else:
     print(f'/home/{user}/bin er opdateret')
 
+# Systemopdatering
 try:
     cmd = shlex.split('pacman -Syu --noconfirm')
 

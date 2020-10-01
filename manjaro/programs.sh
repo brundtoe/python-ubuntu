@@ -38,9 +38,9 @@ docker
 docker-compose
 firefox
 chromium
-keepass
+#keepass
 code
-thunderbird
+#thunderbird
 gtk2
 #mysql-workbench
 #gnome-keyring

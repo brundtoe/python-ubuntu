@@ -5,9 +5,53 @@ Opgaveliste
 Konsolider fælles scripts i mappen lib
 ======================================
 
-fileOperations.fetch config bør foregå i __init__.py så det kun foregår een gang
+Manjaro moduler som afviger fra Ubuntu moduler
+
+FIXME desktopfile
+
+manjaro versionen indeholder mulighed for at køre scritpet fra cmd line
+
+FIXME config.ini og manjaro.ini
+
+de værdier der indgår i begge filer er de samme
+
+måske et ubuntu og et manjaro afsnit til de specifikke værdier
+
+scripts skal så kunne skelne mellem ubuntu og manjaro for at læse de rigtige konfig værdier
+
+TODO en mappe common
+
+med script som anvendes af kubuntu og manjaro
+
+- 01_prepare_install.py
+- install freefilesync, jetbrains, nosqlbooster, postman og smartgit
+- groups.py
+- wdmycloud.py
+- chown.py
+- extradiske.py
+
+harmoniser 
+
+FIXME 01_prepare_intall
+
+udskille systemopdatering til eget script
+
+alternativt udfør opdateringen manuelt
+
+alternativ scriptet skal kalde systemopdatering afhængig af om det er ubuntu eller manjaro
+
+DONEFIXME home_bin.py 
+
+
+
+TODO fileOperations.fetch config bør foregå i __init__.py så det kun foregår een gang
 
 Alternativt så importeres fileOperations i __init__.py
+
+
+FIXME nosqlbooster
+
+på Kubuntu 20.04 på host kan NoSQLBooster startes fra mappen Applickationer og der promtes for om den skal integreres med menusystemet.
 
 modifikation af installationen af AppImages - nosqlbooster
 
@@ -26,7 +70,7 @@ Omlægningerne er lavet til Kubuntu
    - extra-diske
    - wdmycloud
 
-   - opdater manjaor.rst jf. den nye installation med Python-Ubuntu via en USB stick
+   - opdater manjaro.rst jf. den nye installation med Python-Ubuntu via en USB stick
 
 .. todo flere omlægninger af disk mounts
 
