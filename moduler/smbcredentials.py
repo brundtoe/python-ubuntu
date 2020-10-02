@@ -12,7 +12,7 @@ def smbcredentials(user, password):
     :param password: det anvendte password
     :return:
     """
-    text = f'user={user}\npassword={password}\n'
+    text = f'username={user}\npassword={password}\n'
     filename = f'/home/{user}/.smbcredentials'
     with open(filename, 'w') as fout:
         fout.write(text)
