@@ -148,6 +148,7 @@ Installation af sw som downloades og pakkes ud i mappen **programs**::
     python3 install_jetbrains_toolbox.py
     python3 install_nosqlbooster.py
     python3 install_postman.py
+    python3 install_smartgit.py (virker kun med seneste version - opdater config.ini)
 
 
 **Følgende findes i AUR som alternativ til download**

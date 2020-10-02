@@ -209,7 +209,7 @@ Afhængig af maskinens anvendelse kan følgende udføres
    python3 install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
    python3 install_freefilesync.py inkl. desktopfile
    python3 install_nosqlbooster.py inkl. desktopfile
-   python3 install_smartgit ubuntu inkl. desktopfile
+   python3 install_smartgit ubuntu inkl. desktopfile (virker kun med seneste version - opdater config.ini)
    python3 install_postman.py inkl desktopfile
    python3 install_packer.py
 
@@ -223,6 +223,15 @@ Afhængig af maskinens anvendelse kan følgende udføres
 .. important:: Husk at logge ud og defter ind for at få gruppetildelingen aktiveret
 
    Kontroller i terminalvindue med **groups**
+
+GNOME/GTK Applications style
+============================
+Der anvendes Manjaro med KDE og det kan være nødvendigt at ændre applications style for GNOME/GTK. Det berører SmartGit og FreeFile Sync.
+
+I **System Settings -> Application Style -> configure GNOME/GTK Application style** ændres for GTK2 og 3 til Theme **Adwaita**.
+
+Ref. https://www.syntevo.com/blog/?tag=gtk
+
 
 Restore data (fysisk maskine)
 =============================
