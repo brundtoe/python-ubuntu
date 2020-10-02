@@ -38,8 +38,9 @@ docker
 docker-compose
 firefox
 chromium
-#keepass
 code
+gnome-disk-utility
+#keepass
 #thunderbird
 gtk2
 #mysql-workbench
