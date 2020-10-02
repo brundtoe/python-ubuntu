@@ -2,9 +2,6 @@
 Opgaveliste
 ===========
 
-Konsolider fælles scripts i mappen lib
-======================================
-
 TODO gennemse scripts for muligheder for optimering
 
 model for 01_prepare_install hvor indhold flyttes til moduler
@@ -14,10 +11,6 @@ alternativ systemopdateringer foretages udenfor scripts bortset fra de ubuntu sp
 wdmycloud og fileoperations indehodler en funktionm addLine add_line som begge tilføjer en linje til en fil
 
 TODO alle scripts skal have module docstring
-
-FIXME manjaro smartgit vil ikke installeres
-
-er ikke medtaget i installationsfilen - årsag hertil?
 
 FIXME nosqlbooster
 
@@ -36,16 +29,6 @@ NoSqlBooster er et AppImage og det anvender FUSE som er et system, der lader ikk
 
 Der er tilsynladende sket ændringer i pakningen af NoSQLBooster til AppImage i f.m. version 6.1.8
 
-omlægninger september 2020
-==========================
-Omlægningerne er lavet til Kubuntu
-
-.. todo lav omlægning til manjaro
-
-   - extra-diske
-   - wdmycloud
-
-   - opdater manjaro.rst jf. den nye installation med Python-Ubuntu via en USB stick
 
 .. todo flere omlægninger af disk mounts
 
