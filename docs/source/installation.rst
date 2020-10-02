@@ -162,7 +162,7 @@ Tilslut øvrige harddiske (fysisk maskine)
 Mount points er oprettet i scriptet 01_prepare_install.
 
 .. important:: Manuel installation kræver anvendelse af af **Gnome Disks** 
-   Programmet findes i Discover under system settings
+   Programmet findes i Discover under system settings (gnome-disk-utility)
 
 - 1 TB SSD mountes på /home/projects
    - serienummer S3Z9NY0M409052E
