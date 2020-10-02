@@ -31,7 +31,7 @@ def update_fstab(filename, filename_disks):
 if __name__ == '__main__':
     if os.geteuid() != 0:
         sys.exit('Scriptet skal udføres  med root access')
-    print('Konfiguration af ekstra diske')
+    print('Konfiguration af wdmycloud')
     # configs = fetch_config('../config/config.ini')
     filename_disks = '../config/wdmycloud'
     filename = '/etc/fstab'
