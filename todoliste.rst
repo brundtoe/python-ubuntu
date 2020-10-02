@@ -15,15 +15,16 @@ wdmycloud og fileoperations indehodler en funktionm addLine add_line som begge t
 
 TODO alle scripts skal have module docstring
 
-FIXME wdmycloud manjaro
-
-ikke muligt at mounte wdmycloud
-
 FIXME manjaro smartgit vil ikke installeres
 
 er ikke medtaget i installationsfilen - årsag hertil?
 
 FIXME nosqlbooster
+
+På manjaro fungerer det som forventet 
+
+- med scriptet install_nosqlbooster.py
+- desktop entry trigger integration med KDE menusystemet
 
 på Kubuntu 20.04 på host kan NoSQLBooster startes fra mappen Applickationer og der promtes for om den skal integreres med menusystemet.
 
