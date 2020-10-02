@@ -27,7 +27,7 @@ def homebin(user):
         shutil.chown(dstdir, user, user)
 
     dstvimrc = f'/home/{user}/.vimrc'
-    srcvimrc = '../../config/.vimrc'
+    srcvimrc = '../config/.vimrc'
     if not os.path.exists(dstvimrc):
         shutil.copy(srcvimrc, dstvimrc)
         shutil.chown(dstvimrc, user, user)
