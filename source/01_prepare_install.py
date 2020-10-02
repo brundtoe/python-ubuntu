@@ -72,11 +72,11 @@ else:
 try:
     filename = '/etc/sysctl.d/99-local.conf'
     max_watches = 'fs.inotify.max_user_watches = 524288\n'
-    addLine(filename, text)
+    addLine(filename,max_watches)
 except Exception as err:
     sys.exit(f'Der opstod fejl ved opdatering af {filename}')
 else:
-    print(f'{filename} er opdateret med {text}')
+    print(f'{filename} er opdateret med {max_watches}')
 
 # Opret mappen home/bin og kopier images
 try:
