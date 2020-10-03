@@ -16,6 +16,16 @@ requirements.local.txt anvendes for installationsscripts og installeres i det lo
 
 requirements-global.txt anvnedes til Sphix kompilering af dokumentationen
 
+## Struktur
+
+mappen:
+
+- config konfigurationsfiler
+- common scripts som anvendes til installation på Kubuntu og Manjaro
+- manjaro scripts til installation på Manjaro
+- moduler scripts, der importeres som moduler i øvrige scripts mapper
+- source scritps til installation på Kubuntu/Ubuntu
+
 ## Installationen
 
 Detaljer fremgår af dokumentationen i mappen docs

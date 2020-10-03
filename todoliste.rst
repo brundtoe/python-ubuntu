@@ -2,6 +2,10 @@
 Opgaveliste
 ===========
 
+TODO sshkey.py
+
+skal tjekke om mappen .ssh findes og oprette den hvis den ikke findes
+
 TODO gennemse scripts for muligheder for optimering
 
 model for 01_prepare_install hvor indhold flyttes til moduler
@@ -12,25 +16,7 @@ wdmycloud og fileoperations indehodler en funktionm addLine add_line som begge t
 
 TODO alle scripts skal have module docstring
 
-FIXME nosqlbooster
-
-På manjaro fungerer det som forventet 
-
-- med scriptet install_nosqlbooster.py
-- desktop entry trigger integration med KDE menusystemet
-
-på Kubuntu 20.04 på host kan NoSQLBooster startes fra mappen Applickationer og der promtes for om den skal integreres med menusystemet.
-
-modifikation af installationen af AppImages - nosqlbooster
-
-Se https://github.com/AppImage/AppImageKit/wiki/FUSE
-
-NoSqlBooster er et AppImage og det anvender FUSE som er et system, der lader ikke root brugere mounte et filsystem.
-
-Der er tilsynladende sket ændringer i pakningen af NoSQLBooster til AppImage i f.m. version 6.1.8
-
-
-.. todo flere omlægninger af disk mounts
+TODO flere omlægninger af disk mounts
 
    flyt etablering af mount points til extra_diske.py hhv. wdmycloud for at holde funktionaliteten samlet.
 
@@ -45,7 +31,7 @@ Der er tilsynladende sket ændringer i pakningen af NoSQLBooster til AppImage i 
 Kubuntu og Manjaro Docker afprøvning
 ====================================
 
-Docker konfiguration (build af images og provisionering af databaser)
+TODO Docker konfiguration (build af images og provisionering af databaser)
 
 Manjaro debian packages
 =======================
@@ -57,7 +43,7 @@ Se bla.
 
 på baggrund heraf laves en beskrivelse
 
-.. todo hent eksempelvis freefilesync-bin eller mongodb-bin
+TODO hent eksempelvis freefilesync-bin eller mongodb-bin
 
     - lav en ny clone
     - tjek output fra installationen for at se hvilke værdier der anvendes for de ikke explicit definerede variable.
@@ -68,12 +54,12 @@ konfig af mysql server med charset og default collation
 
 Se PyCharm databaser -> mysql om konfig af default charset og default collation
 
-.. todo konfig fil default charset og collation
+TODO konfig fil default charset og collation
 
     - Kubuntu
     - Manjaro
 
-.. todo scripting af
+TODO scripting af
 
    - brugeroprettelse og
    - opdatering med aktuelle data (pas på i virtuelle maskiner her skal data også kopieres fra wdmycloud
