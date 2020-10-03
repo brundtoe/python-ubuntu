@@ -191,10 +191,6 @@ Udfør::
 Supplerende installationer
 ==========================
 
-.. caution:: installationen nedenfor placerer nosqlbooster i mappen /home/Jackie/Applications
-
-   Ret efter installationen backup med FreeFileSync, så den tager backup af denne mappe
-
 Afhængig af maskinens anvendelse kan følgende udføres
 
 - med root access::
@@ -208,7 +204,7 @@ Afhængig af maskinens anvendelse kan følgende udføres
    cd python-ubuntu/common
    python3 install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
    python3 install_freefilesync.py inkl. desktopfile
-   python3 install_nosqlbooster.py inkl. desktopfile
+   python3 install_nosqlbooster.py (se også [1]_)
    python3 install_smartgit ubuntu inkl. desktopfile (virker kun med seneste version - opdater config.ini)
    python3 install_postman.py inkl desktopfile
    python3 install_packer.py
@@ -223,6 +219,13 @@ Afhængig af maskinens anvendelse kan følgende udføres
 .. important:: Husk at logge ud og defter ind for at få gruppetildelingen aktiveret
 
    Kontroller i terminalvindue med **groups**
+
+NoSQLBooster
+============
+.. [1] NoSQLBooster installeres i **$HOME/Applications**. Første gang programmet startes promptes for integration med systemmenuen.
+
+- Desktop item oprettes fra System menuen
+- Programmet fjernes fra systemmenuen. Højreklik på programmet og vælg Remove AppImage from System.
 
 GNOME/GTK Applications style
 ============================

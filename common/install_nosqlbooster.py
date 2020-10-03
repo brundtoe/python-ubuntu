@@ -30,9 +30,13 @@ def install_nosqlbooster(url, user, version):
         print(err)
         exit(1)
     else:
-        program = 'NoSQLBooster'
-        tmpl = f'{program}.jinja'
-        create_desktop_file(program, tmpl, user, version)
+        """
+        Oprettelse af desktop item er disabled, da første start af programmet
+        medfører, at det integreres med system menuen
+        """
+        #program = 'NoSQLBooster'
+        #tmpl = f'{program}.jinja'
+        #create_desktop_file(program, tmpl, user, version)
         print(f'NoSQLBooster4MongoDB {version} er installeret')
 
 if __name__ == '__main__':
