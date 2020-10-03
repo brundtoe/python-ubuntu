@@ -15,8 +15,6 @@ Scriptet foretager den grundlæggende konfiguration som betår af:
 
 * Definition af timezone
 * Oprettelse af mount points for interne diske
-* Oprettelse af mount points for wdmycloud
-* Opdatering af fstab med mount points til wdmycloud
 * /etc/sysctl.d/99-local.conf opdatres med fs.inotify.max_user_watches
 * Oprettelse af
 
@@ -47,3 +45,4 @@ Scriptet 04_install_extra.py
 Scriptet indeholder installation af en række ekstra programmer.
 
 .. note:: Husk afsnittet [extra.programs] skal tilpases den aktuelle maskines anvendelse.
+

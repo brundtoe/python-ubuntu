@@ -178,7 +178,8 @@ Mount points er oprettet i scriptet 01_prepare_install.
 
 Udfør::
 
-   sudo ../venv/bin/python3 extra-diske.py
+   cd common
+   sudo ./extra-diske.py
 
 Tilslut wdmycloud
 ==================
@@ -186,6 +187,7 @@ Mount points er oprettet i 01_prepare_install.py
 
 Udfør::
 
+   cd common
    sudo ./wdmycloud.py
 
 Supplerende installationer

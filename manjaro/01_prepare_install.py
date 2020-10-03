@@ -9,7 +9,6 @@ from subprocess import run
 
 from moduler.fileOperations import fetch_config, addLine
 from moduler.add_mountpoints import add_mountpoints
-from moduler.smbcredentials import smbcredentials
 from moduler.home_bin import homebin
 
 configs = ''
@@ -45,27 +44,6 @@ except Exception as err:
     sys.exit('Der opstod fejl ved tilføjelse af mount points for interne diske')
 else:
     print('Mount points for interne diske er tilføjet')
-
-# Tilføj mount point for wdmycloud
-try:
-    mount_points = configs['mount.points']
-    user = configs['Common']['user']
-    add_mountpoints(user, mount_points)
-except Exception as err:
-    sys.exit('Der opstod fejl ved tilføjelse af mount points for wdmycloud')
-else:
-    print('Mount points for wdmycloud er tilføjet')
-
-# Opdater smbcredentials med password til wdmycloud
-try:
-    user = configs['Common']['user']
-    filename = '../config/.env_develop'
-    password = fetch_config(filename)['Common']['password']
-    smbcredentials(user, password)
-except Exception as err:
-    sys.exit('Der opstod fejl ved opdatering af ~/.smbcredentials')
-else:
-    print('~/.smbcredentials er opdateret med mountpoint')
 
 # Tilføj max watches for filer
 try:

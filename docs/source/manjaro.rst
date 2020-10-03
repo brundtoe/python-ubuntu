@@ -128,6 +128,19 @@ Denne ændring fra Ubuntu/Debian varianten anvendes fordi Manjaro/Arch Linux kom
 MongoDB findes grundet licens issues ikke i de officielle repositories men kun i **AUR**
     - https://stackoverflow.com/questions/59455725/install-mongodb-on-manjaro
 
+Tilslutning af ekstra diske
+==========================
+For fysiske maskiner og virtuelle maskiner oprettes mount points
+
+For fysiske maskiner udføres endvidere tilslutning af de ekstra diske
+
+Udfør::
+
+   cd common
+   sudo ./extra-diske.py
+
+
+
 Tilslut wdmycloud
 ==================
 Mount points er oprettet i 01_prepare_install.py

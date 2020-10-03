@@ -24,6 +24,29 @@ TODO flere omlægninger af disk mounts
 
    på virtuelle maskiner skal /home/projects dog oprettes
 
+
+TODO 01_prepare_install
+
+skal også udføre
+
+- wdmycloud
+- extra_diske
+
+TODO kan fileoperations addLine erstatte add-line i 
+
+- wdmycloud
+- ekstra diske
+
+De anvender den samme stump sourcecode add_line
+
+
+
+TODO systemtime sættes til europe copenhagen
+
+tjek pycharm vejl herom 
+
+hvordan ser det ud i devops?
+
 Kubuntu og Manjaro Docker afprøvning
 ====================================
 
