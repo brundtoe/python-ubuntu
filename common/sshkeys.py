@@ -20,6 +20,15 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
+try:
+    sshDir = f'/home/{user}/.ssh'
+    if not os.path.exists(sshDir):
+        os.mkdir(sshDir)
+        print(f'Oprettede mappen /home/{user}/.ssh')
+except Exception as err:
+    sys.exit(f'Kan ikke oprette /home/{user}/.ssh')
+
+
 if os.path.exists(f'/home/{user}/.ssh/id_rsa'):
     print('key eksisterer')
 else:

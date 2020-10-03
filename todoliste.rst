@@ -2,10 +2,6 @@
 Opgaveliste
 ===========
 
-TODO sshkey.py
-
-skal tjekke om mappen .ssh findes og oprette den hvis den ikke findes
-
 TODO gennemse scripts for muligheder for optimering
 
 model for 01_prepare_install hvor indhold flyttes til moduler
@@ -89,10 +85,6 @@ Udenstående efterfølgende på Komplett eller Esprimo
 ===================================================
 
    - laravel/homestead
-
-Optimering af scripts
-=====================
-tjek scritps for mulige optimeringer
 
 Testcases med unittest
 ======================
