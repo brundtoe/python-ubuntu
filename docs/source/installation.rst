@@ -181,6 +181,11 @@ Udfør::
    cd common
    sudo ./extra-diske.py
 
+Scriptet opretter mount points og opdateret /etc/fstab
+
+Konfigurationsfilen: **config/extradiske** indeholder de ekstra diske på Komplett og Esprimo. Scriptet tjekker for om disken findes på den aktuelle maskine inden den foresøger at opdatere /etc/fstab.
+
+
 Tilslut wdmycloud
 ==================
 Mount points er oprettet i 01_prepare_install.py
