@@ -4,7 +4,7 @@
 import sys, os, shlex
 import subprocess
 
-from moduler.fileOperations import fetch_config
+from moduler.fileOperations import fetch_config, isFound, addLine
 from moduler.add_mountpoints import add_mountpoints
 
 def disk_exists(disk_entry):
@@ -27,31 +27,13 @@ def update_mount_point(configs):
     else:
         print('Mount points for interne diske er tilføjet')
 
-def add_line(filename, disk_entry):
-    disk = disk_entry[0:54]
-    # print(f'Tilføj .. {disk}')
-    try:
-        cmd = shlex.split(f'grep -qF "{disk}" {filename}')
-        res = subprocess.run(cmd)
-        if res.returncode != 0:
-            #print('så opdateres')
-            cmd = shlex.split(f'sed -i "$a {disk_entry}" {filename}')
-            res = subprocess.run(cmd)
-            #print(res)
-        else:
-            print(f'Mount {disk} ... findes allerede i fstab')
-    except Exception as err:
-        print(err)
-        sys.exit(f'kan ikke opdatere fstab for disken {disk}')
-
-
 def update_fstab(configs, filename, filename_disks):
     try:
         update_mount_point(configs)
         with open(filename_disks) as src_file:
             for line in src_file:
                 if disk_exists(line):
-                    add_line(filename, line)
+                   addLine(filename, line)
     except Exception as err:
         sys.exit('Kan ikke tilføje ekstra diske')
 

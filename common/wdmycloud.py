@@ -4,26 +4,9 @@
 import sys, os, shlex
 import subprocess
 
-from moduler.fileOperations import fetch_config
+from moduler.fileOperations import fetch_config, isFound, addLine
 from moduler.smbcredentials import smbcredentials
 from moduler.add_mountpoints import add_mountpoints
-
-def add_line(filename, disk_entry):
-    disk = disk_entry.split()
-    # print(f'Tilføj .. {disk}')
-    try:
-        cmd = shlex.split(f'grep -qF "{disk[0]}" {filename}')
-        res = subprocess.run(cmd)
-        if res.returncode != 0:
-            # print('så opdateres')
-            cmd = shlex.split(f'sed -i "$a {disk_entry}" {filename}')
-            res = subprocess.run(cmd)
-            # print(res)
-        else:
-            print(f'Mount {disk[0]} ... findes allerede i fstab')
-    except Exception as err:
-        print(err)
-        sys.exit(f'kan ikke opdatere fstab for disken {disk}')
 
 # Tilføj mount point for wdmycloud
 def update_mount_points(configs):
@@ -56,10 +39,9 @@ def update_fstab(configs, filename, filename_disks):
 
         with open(filename_disks) as src_file:
             for line in src_file:
-                add_line(filename, line)
+                addLine(filename, line)
     except Exception as err:
         sys.exit('Der opstod fejl ved opdatering af wdmycloud')
-
 
 
 if __name__ == '__main__':

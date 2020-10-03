@@ -8,37 +8,23 @@ model for 01_prepare_install hvor indhold flyttes til moduler
 
 alternativ systemopdateringer foretages udenfor scripts bortset fra de ubuntu specifikke
 
-wdmycloud og fileoperations indehodler en funktionm addLine add_line som begge tilføjer en linje til en fil
-
 TODO alle scripts skal have module docstring
 
-TODO flere omlægninger af disk mounts
+TODO optimerings eksempel
 
-   flyt etablering af mount points til extra_diske.py hhv. wdmycloud for at holde funktionaliteten samlet.
+- extra_diske.py
+- wdmycloud.py
+- smbcredentials.py
+- add_mountpoints
 
-   ekstra diske skal kun mountes hvis host er komplett.local eller esprimo.local ej på virtuelle maskiner.
+udskriv og forsøg at optimere
 
-   diskene har et andet UUID på esprimo.local så en config variabel skal anvendes til at vælge den rigtige fil med mount points
+herefter bør to funktioner
 
-   Det bør også være muligt at anvende dynamisk user for wdmycloud. pt er jackie hardkodet, det kan løses ved at anvende str.split() og så udskifte path til .smbcredentials med den dynamiske uder hentet fra config.ini
+- update_fstab_wdmycloud
+- update_fstab_extradiske
 
-   på virtuelle maskiner skal /home/projects dog oprettes
-
-
-TODO 01_prepare_install
-
-skal også udføre
-
-- wdmycloud
-- extra_diske
-
-TODO kan fileoperations addLine erstatte add-line i 
-
-- wdmycloud
-- ekstra diske
-
-De anvender den samme stump sourcecode add_line
-
+kunne indsættes i 01_prepare_install
 
 
 TODO systemtime sættes til europe copenhagen
