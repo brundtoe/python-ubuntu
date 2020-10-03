@@ -8,7 +8,6 @@ import sys, os, shlex
 from subprocess import run
 
 from moduler.fileOperations import fetch_config, addLine
-from moduler.add_mountpoints import add_mountpoints
 from moduler.home_bin import homebin
 from moduler.apt_update import apt_update
 
@@ -35,16 +34,6 @@ except Exception as err:
     sys.exit(f'Der opstod fejl ved set-timezone {timezone}')
 else:
     print(f'timezone er sat til {timezone}')
-
-# Tilføj mount points for interne diske
-try:
-    user = configs['Common']['user']
-    mount_points = configs[configs['Common']['host']]
-    add_mountpoints(user, mount_points)
-except Exception as err:
-    sys.exit('Der opstod fejl ved tilføjelse af mount points for interne diske')
-else:
-    print('Mount points for interne diske er tilføjet')
 
 # Tilføj max watches for filer
 try:
