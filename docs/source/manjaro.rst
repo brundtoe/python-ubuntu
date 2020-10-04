@@ -131,7 +131,7 @@ MongoDB findes grundet licens issues ikke i de officielle repositories men kun i
     - https://stackoverflow.com/questions/59455725/install-mongodb-on-manjaro
 
 Tilslutning af ekstra diske
-==========================
+===========================
 Mount points og opdatering af fstab foretages i scriptet 01_prepare_install  -> moduler/install_prepare
 
 Seperat installation::

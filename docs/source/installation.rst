@@ -229,7 +229,7 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
 NoSQLBooster
 ============
-.. [1] NoSQLBooster installeres i **$HOME/Applications**. Første gang programmet startes promptes for integration med systemmenuen.
+NoSQLBooster installeres i **$HOME/Applications**. Første gang programmet startes promptes for integration med systemmenuen.
 
 - Desktop item oprettes fra System menuen
 - Programmet fjernes fra systemmenuen. Højreklik på programmet og vælg Remove AppImage from System.

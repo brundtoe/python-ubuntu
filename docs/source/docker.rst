@@ -1,9 +1,9 @@
 .. index: Docker
 .. _docker:
 
-===================
-Docker installation
-===================
+====================
+Docker konfiguration
+====================
 Opdateret oktober 2020
 
 Docker images, network og datavolumes kan oprettes ved at anvende scripts fra projektet **docker_standard**
