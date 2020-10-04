@@ -5,15 +5,17 @@ Dette module anvendes til at foretage den indledende konfiguration
 2. Timezone opdateres
 3. Tilføj max watches for filer
 4. Opret mappen home/bin og kopier images
-
+5. mount af wdmycloud
+6. mount af extra diske
 """
 
 import sys, os, shlex
 from subprocess import run
 
 from moduler.fileOperations import fetch_config, addLine
-
 from moduler.home_bin import homebin
+from moduler.extra_diske import update_extradiske
+from moduler.wdmycloud import update_wdmycloud
 
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
@@ -60,3 +62,20 @@ def install_prepare():
         sys.exit(f'Der opstod fejl ved oprettelse af /home/{user}/bin')
     else:
         print(f'/home/{user}/bin er opdateret')
+
+    # Mount wdmycloud
+    try:
+        update_wdmycloud(configs,'/etc/fstab')
+    except Exception as err:
+        sys.exit(f'Der opstod fejl ved mount af wdmycloud')
+    else:
+        print('wdmycloud credentials og fstab er opdateret')
+
+    # mount extra diske
+    try:
+        update_extradiske(configs,'/etc/fstab')
+    except Exception as err:
+        sys.exit('Der opstod fejl ved mount af ekstra diske')
+    else: 
+        print('Ekstra diske er mounted')
+    

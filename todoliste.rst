@@ -4,23 +4,6 @@ Opgaveliste
 
 TODO alle scripts skal have module docstring
 
-TODO optimerings eksempel
-
-- extra_diske.py
-- wdmycloud.py
-- smbcredentials.py
-- add_mountpoints
-
-udskriv og forsøg at optimere
-
-herefter bør to funktioner
-
-- update_fstab_wdmycloud
-- update_fstab_extradiske
-
-kunne indsættes i install_prepare
-
-
 TODO systemtime sættes til europe copenhagen
 
 tjek pycharm vejl herom 

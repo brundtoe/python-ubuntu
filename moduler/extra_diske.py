@@ -23,7 +23,6 @@ def update_extradiske(configs, filename):
         user = configs['Common']['user']
         mount_points = configs[configs['Common']['host']]
         filename_extradiske = configs['Common']['filename_extradiske']
-        print(user,mount_points,filename_extradiske)
         with open(filename_extradiske) as src_file:
             for line in src_file:
                 if disk_exists(line):
