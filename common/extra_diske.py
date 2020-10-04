@@ -1,5 +1,5 @@
 #!../venv/bin/python
-# Installation og konfiguration af Apache
+
 
 import sys, os, shlex
 import subprocess
@@ -16,21 +16,13 @@ def disk_exists(disk_entry):
         print(f'Oops disken {disk_path} ... findes IKKE')
         return False
 
-def update_mount_point(configs):
-    # Tilføj mount points for interne diske
+def update_fstab(configs, filename):
     try:
         user = configs['Common']['user']
         mount_points = configs[configs['Common']['host']]
-        add_mountpoints(user, mount_points)
-    except Exception as err:
-        sys.exit('Der opstod fejl ved tilføjelse af mount points for interne diske')
-    else:
-        print('Mount points for interne diske er tilføjet')
-
-def update_fstab(configs, filename, filename_disks):
-    try:
-        update_mount_point(configs)
-        with open(filename_disks) as src_file:
+        filename_extradiske = configs['Common']['filename_extradiske']
+        print(user,mount_points,filename_extradiske)
+        with open(filename_extradiske) as src_file:
             for line in src_file:
                 if disk_exists(line):
                    addLine(filename, line)
@@ -43,7 +35,5 @@ if __name__ == '__main__':
         sys.exit('Scriptet skal udføres  med root access')
     print('Konfiguration af ekstra diske')
     configs = fetch_config('../config/config.ini')
-    filename_disks = '../config/extradiske'
-    #filename = '/home/jackie/Downloads/untitled'
     filename = '/etc/fstab'
-    update_fstab(configs, filename, filename_disks)
+    update_fstab(configs, filename)

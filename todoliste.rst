@@ -18,7 +18,7 @@ herefter bør to funktioner
 - update_fstab_wdmycloud
 - update_fstab_extradiske
 
-kunne indsættes i 01_prepare_install
+kunne indsættes i install_prepare
 
 
 TODO systemtime sættes til europe copenhagen

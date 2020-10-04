@@ -8,18 +8,6 @@ from moduler.fileOperations import fetch_config, isFound, addLine
 from moduler.smbcredentials import smbcredentials
 from moduler.add_mountpoints import add_mountpoints
 
-# Tilføj mount point for wdmycloud
-def update_mount_points(configs):
-    try:
-        mount_points = configs['mount.points']
-        user = configs['Common']['user']
-        add_mountpoints(user, mount_points)
-    except Exception as err:
-        sys.exit('Der opstod fejl ved tilføjelse af mount points for wdmycloud')
-    else:
-        print('Mount points for wdmycloud er tilføjet')
-
-
 # Opdater smbcredentials med password til wdmycloud
 def update_credentials(configs):
     try:
@@ -32,12 +20,15 @@ def update_credentials(configs):
     else:
         print('~/.smbcredentials er opdateret med mountpoint')
 
-def update_fstab(configs, filename, filename_disks):
+def update_fstab(configs, filename):
     try:
-        update_mount_points(configs)
+        mount_points = configs['mount.points']
+        user = configs['Common']['user']
+        filename_wdmycloud = configs['Common']['filename_wdmycloud']
+        add_mountpoints(user, mount_points)
         update_credentials(configs)
 
-        with open(filename_disks) as src_file:
+        with open(filename_wdmycloud) as src_file:
             for line in src_file:
                 addLine(filename, line)
     except Exception as err:
@@ -49,6 +40,5 @@ if __name__ == '__main__':
         sys.exit('Scriptet skal udføres  med root access')
     print('Konfiguration af wdmycloud')
     configs = fetch_config('../config/config.ini')
-    filename_disks = '../config/wdmycloud'
     filename = '/etc/fstab'
-    update_fstab(configs, filename, filename_disks)
+    update_fstab(configs, filename)
