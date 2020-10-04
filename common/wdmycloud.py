@@ -1,26 +1,32 @@
 #!../venv/bin/python
-# Installation og konfiguration af Apache
+"""
+Oprettelse af mount points, credentials og fstab for wdmycloud
+"""
 
-import sys, os, shlex
+import sys, os, shlex, shutil
 import subprocess
 
 from moduler.fileOperations import fetch_config, isFound, addLine
-from moduler.smbcredentials import smbcredentials
 from moduler.add_mountpoints import add_mountpoints
 
 # Opdater smbcredentials med password til wdmycloud
 def update_credentials(configs):
     try:
         user = configs['Common']['user']
-        filename = '../config/.env_develop'
-        password = fetch_config(filename)['Common']['password']
-        smbcredentials(user, password)
+        filename_env = '../config/.env_develop'
+        password = fetch_config(filename_env)['Common']['password']
+        text = f'username={user}\npassword={password}\n'
+        filename_credentials = f'/home/{user}/.smbcredentials'
+        with open(filename_credentials, 'w') as fout:
+            fout.write(text)
+        shutil.chown(filename_credentials, user, user)
+        os.chmod(filename_credentials, 0o600)
     except Exception as err:
         sys.exit('Der opstod fejl ved opdatering af ~/.smbcredentials')
     else:
         print('~/.smbcredentials er opdateret med mountpoint')
 
-def update_fstab(configs, filename):
+def update_wdmycloud(configs, filename):
     try:
         mount_points = configs['mount.points']
         user = configs['Common']['user']
@@ -41,4 +47,4 @@ if __name__ == '__main__':
     print('Konfiguration af wdmycloud')
     configs = fetch_config('../config/config.ini')
     filename = '/etc/fstab'
-    update_fstab(configs, filename)
+    update_wdmycloud(configs, filename)

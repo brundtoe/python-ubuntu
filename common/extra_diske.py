@@ -1,5 +1,7 @@
 #!../venv/bin/python
-
+"""
+Oprettelse af mount points og fstab for ekstra diske
+"""
 
 import sys, os, shlex
 import subprocess
@@ -16,7 +18,7 @@ def disk_exists(disk_entry):
         print(f'Oops disken {disk_path} ... findes IKKE')
         return False
 
-def update_fstab(configs, filename):
+def update_extradiske(configs, filename):
     try:
         user = configs['Common']['user']
         mount_points = configs[configs['Common']['host']]
@@ -36,4 +38,4 @@ if __name__ == '__main__':
     print('Konfiguration af ekstra diske')
     configs = fetch_config('../config/config.ini')
     filename = '/etc/fstab'
-    update_fstab(configs, filename)
+    update_extradiske(configs, filename)
