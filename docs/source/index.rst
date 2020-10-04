@@ -12,8 +12,9 @@ Python Vejledninger
 
    installation
    ubuntu-scripts
-   download-files
    manjaro
+   docker
+   download-files
    manjaro-kde-display
    virtualbox
    pacman

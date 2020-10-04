@@ -302,8 +302,8 @@ Docker konfiguration
 ====================
 Docker network, data volume og images oprettes med scripts, der findes i projekt docker_standard:
 
-- docker-data.sh
-- docker-build.sh
+.. seealso:: Vejledning :ref:`docker`
+
 
 VMWare Workstation
 ==================

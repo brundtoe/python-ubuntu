@@ -386,15 +386,10 @@ Daemon startes med::
 
 Docker
 ======
-- er installeret
+- er installeret, kræver logout for at aktivere gruppetildeling
 
-Docker stares med::
 
-    sudo systemctl start docker
-
-Hvis docker skal starte når maskinen booter::
-
-    sudo sysdtemctl enable docker
+.. seealso:: Vejledning :ref:docker`    
 
 Afprøvninger
 ============

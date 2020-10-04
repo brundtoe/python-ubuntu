@@ -2,27 +2,6 @@
 Opgaveliste
 ===========
 
-Kubuntu og Manjaro Docker afprøvning
-====================================
-
-TODO Docker konfiguration (build af images og provisionering af databaser)
-
-Manjaro debian packages
-=======================
-se mere https://wiki.archlinux.org/index.php/Creating_packages_for_other_distributions
-
-Se bla.
-
-- https://www.maketecheasier.com/install-deb-package-in-arch-linux/
-
-på baggrund heraf laves en beskrivelse
-
-TODO hent eksempelvis freefilesync-bin eller mongodb-bin
-
-    - lav en ny clone
-    - tjek output fra installationen for at se hvilke værdier der anvendes for de ikke explicit definerede variable.
-    - hvortil downloades filerne der anvendes til build
-
 konfig af mysql server med charset og default collation
 =======================================================
 
@@ -36,7 +15,8 @@ TODO konfig fil default charset og collation
 TODO scripting af
 
    - brugeroprettelse og
-   - opdatering med aktuelle data (pas på i virtuelle maskiner her skal data også kopieres fra wdmycloud
+   - opdatering med aktuelle data (hvis skal data komme fra wdmycloud er ikke nødvendigvis opateret)
+
 
 Kubuntu Apache2 site definition
 ===============================
