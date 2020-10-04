@@ -2,12 +2,6 @@
 Opgaveliste
 ===========
 
-TODO gennemse scripts for muligheder for optimering
-
-model for 01_prepare_install hvor indhold flyttes til moduler
-
-alternativ systemopdateringer foretages udenfor scripts bortset fra de ubuntu specifikke
-
 TODO alle scripts skal have module docstring
 
 TODO optimerings eksempel
