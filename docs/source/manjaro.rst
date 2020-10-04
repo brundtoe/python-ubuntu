@@ -39,7 +39,7 @@ Manjaro anvendes primært på Virtuelle maskiner:
 - Workspace behavior screen locking off
 
 
-.. IMPORTANT:: bøvl med at skalere den virtuelle maskine til full screen.
+.. IMPORTANT:: Bøvl med at skalere den virtuelle maskine til full screen.
 
     Se vejledningen :ref:`manjaro-kde-display`
 
@@ -48,6 +48,8 @@ Klargøring til installations med scripts
 Font i terminal og kate::
 
    Noto Sans Mono** alternativ **DejaVu Sans Mono** font size 11 pt
+
+Justering af time zone i Settings -> regional settings -> set date and time automatically
 
 Installation af vim::
 
