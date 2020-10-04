@@ -4,12 +4,12 @@
 ======================================
 Ubuntu installation med Python Scripts
 ======================================
-Opdateret september 2020
+Opdateret oktober 2020
 
 .. note:: Scripts er anvendt på Kubuntu 2004 (LTS) Fysisk maskine Komplett
    Scripts findes i repositoriet https://github.com/brundtoe/python-ubuntu
 
-    Script er ultimo september 2020 omlagt til at runne som package i devlopment mode
+    Script er omlagt til at runne som package i devlopment mode
 
 I denne vejledning beskrives installation med script på en fysisk maskine eller en virtuel maskine, der skal anvendes til softwareudvikling.
 
@@ -159,7 +159,7 @@ Med sudo udføres::
 
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
-Mount points er oprettet i scriptet 01_prepare_install.
+Mount points og opdatering af fstab foretages i scriptet 01_prepare_install  -> moduler/install_prepare
 
 .. important:: Manuel installation kræver anvendelse af af **Gnome Disks** 
    Programmet findes i Discover under system settings (gnome-disk-utility)
@@ -176,23 +176,23 @@ Mount points er oprettet i scriptet 01_prepare_install.
    - serienummer Z4Z8X6FA
    - UUID b6af222b-5148-4d63-b8f2-9acc1591207f
 
-Udfør::
+Seperat installation::
 
-   cd common
-   sudo ./extra-diske.py
+      cd python-ubuntu/moduler
+      sudo ./extra-diske.py
 
-Scriptet opretter mount points og opdateret /etc/fstab
+   Scriptet opretter mount points og opdateret /etc/fstab
 
 Konfigurationsfilen: **config/extradiske** indeholder de ekstra diske på Komplett og Esprimo. Scriptet tjekker for om disken findes på den aktuelle maskine inden den foresøger at opdatere /etc/fstab.
 
 
 Tilslut wdmycloud
 ==================
-Mount points er oprettet i 01_prepare_install.py
+Mount points og smbcredentials opretets som en del af 01_prepare_install.py -> moduler/install_prepare
 
-Udfør::
+Seperat installation::
 
-   cd common
+   cd python-ubuntu/moduler
    sudo ./wdmycloud.py
 
 Supplerende installationer

@@ -14,7 +14,7 @@ Scriptet 01_prepare_install-py
 Scriptet foretager den grundlæggende konfiguration som betår af:
 
 * Definition af timezone
-* Oprettelse af mount points for interne diske
+* Oprettelse af mount points for interne diske og wdmycloud
 * /etc/sysctl.d/99-local.conf opdatres med fs.inotify.max_user_watches
 * Oprettelse af
 

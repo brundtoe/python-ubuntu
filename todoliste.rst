@@ -2,14 +2,6 @@
 Opgaveliste
 ===========
 
-TODO alle scripts skal have module docstring
-
-TODO systemtime sættes til europe copenhagen
-
-tjek pycharm vejl herom 
-
-hvordan ser det ud i devops?
-
 Kubuntu og Manjaro Docker afprøvning
 ====================================
 

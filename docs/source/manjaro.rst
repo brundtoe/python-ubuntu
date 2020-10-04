@@ -132,7 +132,14 @@ MongoDB findes grundet licens issues ikke i de officielle repositories men kun i
 
 Tilslutning af ekstra diske
 ==========================
-Scriptet opretter mount points og opdateret /etc/fstab
+Mount points og opdatering af fstab foretages i scriptet 01_prepare_install  -> moduler/install_prepare
+
+Seperat installation::
+
+      cd python-ubuntu/moduler
+      sudo ./extra-diske.py
+
+Scriptet opretter mount points og opdaterer /etc/fstab
 
 Konfigurationsfilen: **config/extradiske** indeholder de ekstra diske på Komplett og Esprimo. Scriptet tjekker for om disken findes på den aktuelle maskine inden den foresøger at opdatere /etc/fstab.
 
@@ -143,12 +150,12 @@ Udfør::
 
 Tilslut wdmycloud
 ==================
-Mount points er oprettet i 01_prepare_install.py
+Mount points og smbcredentials opretets som en del af 01_prepare_install.py -> moduler/install_prepare
 
-Udfør::
+Seperat installation::
 
-    cd python-ubuntu/common
-    sudo ./wdmycloud.py
+   cd python-ubuntu/moduler
+   sudo ./wdmycloud.py
 
 Supplerende installationer
 ==========================

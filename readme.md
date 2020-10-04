@@ -24,7 +24,9 @@ mappen:
 - common scripts som anvendes til installation på Kubuntu og Manjaro
 - manjaro scripts til installation på Manjaro
 - moduler scripts, der importeres som moduler i øvrige scripts mapper
-- source scritps til installation på Kubuntu/Ubuntu
+- source scripts til installation på Kubuntu/Ubuntu
+- devops-files er konfiguratonsfiler fra projekt devops (puppet)
+- outfile er demoscripts output directory
 
 ## Installationen
 
