@@ -255,6 +255,8 @@ Anbefalet sikkerhed::
 
 Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 
+.. seealso::  Vejledning om databaser MySQLDataload for load af data
+
 .. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB.
 
     - mysql-workbench kræver at **gnome-keyring** er installeret, da det er her passwords gemmes.

@@ -277,6 +277,8 @@ På Ubuntu skal login med CLI foretages med **sudo mysql -u root -p** medens alm
 
 Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 
+.. seealso::  Vejledning om databaser MySQLDataload for load af data
+
 mysql-workbench
 ---------------
 .. important:: Installationen foretages kun på virtuelle maskiner, hvis JetBrains Datagrip ikke anvendes

@@ -2,87 +2,26 @@
 
 ## phpMyAdmin
 
-DONE PHPMYADMIN på Manjaro
+DONE phpMyAdmin på Manjaro
 
-Forudsætning
-
-   serveren er installeret
-   scriptet der opretter brugere samt databaserne bookstore og mystore er afviklet
-
-
-Start servere
-
-   sudo systemctl start php-fpm
-   sudo systemctl start httpd
-
-
-/etc/httpd/conf/extra/phpmyadmin.conf
-
-Alias /phpmyadmin "/usr/share/webapps/phpMyAdmin"
-<Directory "/usr/share/webapps/phpMyAdmin">
-    DirectoryIndex index.php
-    AllowOverride All
-    Options FollowSymlinks
-    Require all granted
-</Directory>
-
-/etc/httpd/conf/httpd.conf
-
-# phpMyAdmin configuration
-Include conf/extra/phpmyadmin.conf
-
-sudo systemctrl restart httpd
-
-Opdater /usr/share/webapps/config.inc.php::
-
-   $cfg['Servers'][$i]['host'] = 'localhost';
-
-Ændres til:
-
-   $cfg['Servers'][$i]['host'] = '127.0.0.1';
-
-Browser http://localhost/phpmyadmin
-
+Der er oprettet en vejledning phpmyadmin.rst
 
 TODO installer phpmyadmin på Kubuntu
 
 skal downloades fra phpmyadmin.net
-
-DONE dataload
-
-Den nemme måde uden phpmyadmin er at runne scripts fra mappen /home/jackie/dumps
-
-
-## automatisering af input til scripts
-
-**Input til bash scripts** kan automatiseres med echo optionen -e er for at enable anvendelsen af backlash for at kunne sende \\n::
-
-   echo -e "olsen\n\n\n" | ssh-keygen
-   echo -e "password\n" | sudo mysql -u root < mystore_authors.sql; 
-
-mere kompleks input kan foretages med en fil som pipes
-
-   cat pwd.txt | sudo mysql -u root < mystore_authors.sql;
-
-**input til python script med subprocess**
-
-subprocess.run('ssh-keygen',input=b"olsen\n\n\n")
-
-
-TODO scripting af mysql
-
-   - brugeroprettelse og
-   - opdatering med aktuelle data
-
-
 
 
 ## dokumentationen refaktoreres
 
 kan konfig efter installation forenkles ved at ekstrahere fra installation.rst og manjaro.rst. Der er en stor fællesmængde og mindre forskelle.
 
+## wdmycloud user er hardkodet
 
-## web sesrver site definitioner
+indsæt en dummy user og erstat den via en search og replace
+
+kan formentlig gøres med en python string funktion
+
+## web server site definitioner
 
 Kubuntu Apache2 site definition
 ===============================

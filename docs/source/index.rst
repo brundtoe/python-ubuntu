@@ -14,6 +14,7 @@ Python Vejledninger
    ubuntu-scripts
    manjaro
    docker
+   phpmyadmin
    download-files
    manjaro-kde-display
    virtualbox
