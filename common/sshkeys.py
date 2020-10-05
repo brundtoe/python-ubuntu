@@ -34,7 +34,7 @@ if os.path.exists(f'/home/{user}/.ssh/id_rsa'):
 else:
     os.chdir(f'/home/{user}/.ssh')
     #subprocess.call('ssh-keygen', shell=True)
-    subprocess.run('ssh-keygen',input=b"id_rsa\n")
+    subprocess.run('ssh-keygen',input=b"id_rsa\n\n\n")
     output = subprocess.run(['ssh-add','id_rsa'])
     print(output)
 
