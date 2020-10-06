@@ -1,4 +1,10 @@
 use mystore;
 source /home/jackie/dumps/mysqlbackup/mystore/mystore_authors.sql;
 source /home/jackie/dumps/mysqlbackup/mystore/mystore_customers.sql;
+use bookstore;
+source /home/jackie/dumps/mysqlbackup/bookstore/bookstore_authors.sql;
+source /home/jackie/dumps/mysqlbackup/bookstore/bookstore_books.sql;
+source /home/jackie/dumps/mysqlbackup/bookstore/bookstore_customers.sql;
+source /home/jackie/dumps/mysqlbackup/bookstore/bookstore_bookorders.sql;
+source /home/jackie/dumps/mysqlbackup/bookstore/bookstore_orderlines.sql;
 exit
