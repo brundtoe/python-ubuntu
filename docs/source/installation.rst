@@ -1,5 +1,5 @@
 .. index:: Ubuntu Installation
-.. _installation:
+.. _kubuntu-installation:
 
 ======================================
 Ubuntu installation med Python Scripts
@@ -18,22 +18,7 @@ I denne vejledning beskrives installation med script på en fysisk maskine eller
    Alm systemopdatering medførte sort skærm med driveren nvidia-driver-450.
    Installation skal derfor foregå uden tredjeparts drivere og minimal installation
 
-Backup
-======
-
-Forberedelser:
-
-- ny kopi af Firefox genveje
-- Backup med FreeFileSync
-- Postman via settings -> Data  **download only my data**
-- Tjek installationsvejledninger
-
-Logout for at frigøre licenser:
-
-- nosqlbooster og kopi af programmet, da jeg kun har licens til version 5.x
-- jetbrains
-
-.. note:: Installationen kan forenkles ved med **FreeFileSync** at overføre projekt php-ubuntu til en USB stick og anvende indholdet herfra. Det muliggør scripting af alle dele af installationen.
+.. seealso:: Vejledning :ref:`Forberedelser`
 
 Installation af operativsystem
 ==============================
@@ -60,83 +45,11 @@ Software & Updates
 ------------------
 Det tjekkes via faneblad Ubuntu Software, at **multiverse** er aktiveret. Det kan også aktiveres med::
 
-   sudo add-apt-repository multiverse && sudo apt-get update
-
-Klargøring til installations med scripts
-========================================
-Font i terminal og kate::
-
-   Noto Sans Mono** alternativ **DejaVu Sans Mono** font size 11 pt
+   sudo add-apt-repository multiverse && sudo apt-get update && sudo apt-get upgrade
 
 
-Installer git og vim med::
+.. note::Udfør opgaverne i :ref:`prepare-scripts`
 
-    sudo apt install -y git vim
-
-Konfiguration af git user::
-
-   git config --global user.name Jackie
-   git config --global user.email brundtoe@outlook.dk
-   git config --global core.editor vim
-
-Tilføj ssh key::
-
-    cd ~/.ssh
-    ssh-keygen -b 4096
-    ssh-add
-
-Tilføj public key til GitHub og Bitbucket konti.
-
-Installation af Visual Studio code::
-
-   sudo snap install --classic code
-
-- Installer Python extension
-- Installer TODO extension
-- Kopier settings fra Hosten ~/.config/Code/User/settings.json
-
-Clone repository fra Github (uden USB stick)
-============================================
-Repositoriet clones på **virtuelle maskiner**::
-
-   mkdir ~/sourcecode
-   cd sourcecode
-   git clone git@github.com:brundtoe/python-ubuntu.git
-
-Installation af Python moduler
-==============================
-Installation::
-
-   sudo apt install -y python3-pip python3-venv python3-setuptools
-
-Klargøring til Script installation
-==================================
-Indholdet fra USB stick kopieres til /home/jackie/sourcecode/python-ubuntu eller repositoriet clones fra GitHub.
-
-.. code-block:: bash
-
-   cd python-ubuntu
-   python3 -m venv venv
-   source venv/bin/activate
-   pip3 install -r requirements-local.txt
-   python3 setup.py develop
-
-.. important:: Installation skal foretages med det virtuelle  environment, og python-ubuntu skal være installeret i development mode.
-
-kompilering af Shpinx doc forberedes med::
-
-    sudo pip3 install -r requirements-global.txt
-
-Opdatering af konfigurationsfilen
-=================================
-Filen **config/config.ini** indeholder konfigurationsoplysninger, som anvendes i de enkelte scripts. Config.ini indlæses med Python modulet Configparser.
-
-Opdater konfigurationen i forhold til den anvendte hardware og opdater evt til aktuelle versioner af softwaren. Følgende afsnit i config.ini opdateres som minimum.
-
-* [Common] med user, host og seneste software versioner
-* [extra.programs] Justeres i forhold til maskinens anvendelse
-
-.. caution:: Husk at opdatere **config/.env_devlop** med password til **wdmycloud**
 
 Installation med python scripts
 ===============================
@@ -157,43 +70,7 @@ Med sudo udføres::
 
 .. seealso:: Se vejledning om :ref:`ubuntu-scripts`
 
-Tilslut øvrige harddiske (fysisk maskine)
-=========================================
-Mount points og opdatering af fstab foretages i scriptet 01_prepare_install  -> moduler/install_prepare
-
-.. important:: Manuel installation kræver anvendelse af af **Gnome Disks** 
-   Programmet findes i Discover under system settings (gnome-disk-utility)
-
-- 1 TB SSD mountes på /home/projects
-   - serienummer S3Z9NY0M409052E
-   - UUID dde1bf8b-3552-4709-a6d7-5f3605d966a3
-
-- 2 TB HDD mountes på home/data
-   - serienummer  Z4ZC9EBT
-   - UUID 3865c960-e586-4b04-8745-fb1ccabaf412
-
-- 2 TB HDD mountes på /home/backup
-   - serienummer Z4Z8X6FA
-   - UUID b6af222b-5148-4d63-b8f2-9acc1591207f
-
-Seperat installation::
-
-      cd python-ubuntu/moduler
-      sudo ./extra-diske.py
-
-   Scriptet opretter mount points og opdateret /etc/fstab
-
-Konfigurationsfilen: **config/extradiske** indeholder de ekstra diske på Komplett og Esprimo. Scriptet tjekker for om disken findes på den aktuelle maskine inden den foresøger at opdatere /etc/fstab.
-
-
-Tilslut wdmycloud
-==================
-Mount points og smbcredentials opretets som en del af 01_prepare_install.py -> moduler/install_prepare
-
-Seperat installation::
-
-   cd python-ubuntu/moduler
-   sudo ./wdmycloud.py
+.. seealso:: udfør opgaverne i vejledningen :ref:`ekstra-diske`
 
 Supplerende installationer
 ==========================
@@ -234,26 +111,6 @@ NoSQLBooster installeres i **$HOME/Applications**. Første gang programmet start
 - Desktop item oprettes fra System menuen
 - Programmet fjernes fra systemmenuen. Højreklik på programmet og vælg Remove AppImage from System.
 
-GNOME/GTK Applications style
-============================
-Der anvendes Manjaro med KDE og det kan være nødvendigt at ændre applications style for GNOME/GTK. Det berører SmartGit og FreeFile Sync.
-
-I **System Settings -> Application Style -> configure GNOME/GTK Application style** ændres for GTK2 og 3 til Theme **Adwaita**.
-
-Ref. https://www.syntevo.com/blog/?tag=gtk
-
-
-Restore data (fysisk maskine)
-=============================
-- Data fra backup af Home/jackie restores
-   - Documents
-   - dumps
-   - Pictures
-   - .thunderbird
-   - Firefox favoritter
-   - log på Postman og importer evt fra dumps/Postman
-
-Øvrige data findes på de øvrige diske og skal ikke restores
 
 .. caution:: Det kan for Node.js og PHP projekter være nødvendigt at genskabe de downloadede moduler med npm install og composer.
 

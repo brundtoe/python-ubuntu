@@ -1,6 +1,8 @@
 .. index: Manjaro
     :pair: Manjaro; Python
 
+.. _manjaro-installation:
+
 ====================
 Manjaro Installation
 ====================
@@ -43,80 +45,11 @@ Manjaro anvendes primært på Virtuelle maskiner:
 
     Se vejledningen :ref:`manjaro-kde-display`
 
-Klargøring til installations med scripts
-========================================
-Font i terminal og kate::
-
-   Noto Sans Mono** alternativ **DejaVu Sans Mono** font size 11 pt
-
-Justering af time zone i Settings -> regional settings -> set date and time automatically
-
-Installation af vim::
-
-    pacman -Syu && pacman -S vim
-
-Konfiguration af git user::
-
-   git config --global user.name Jackie
-   git config --global user.email brundtoe@outlook.dk
-    git config --global core.editor vim
-
-Den globale configuration for en bruger findes i **~/git/.gitconfig**
-
-Tilføj ssh key::
-
-    cd ~/.ssh
-    ssh-keygen -b 4096
-    eval $(ssh-agent)
-    ssh-add ~/.ssh/id_rsa
-
-Tilføj public key til Github kontoen og Bitbucket
-
-Repositoriet clones::
-
-   mkdir ~/sourcecode
-   cd sourcecode
-   git clone git@github.com:brundtoe/python-ubuntu.git
+.. note::Udfør opgaverne i :ref:`prepare-scripts`
 
 
-Installation af Visual Studio Code
-==================================
-pacman -S Code
-
-- Installer Python extension
-- Installer TODO extension
-- Kopier settings fra Hosten ~/.config/Code/User/settings.json
-
-Klargøring til Script installation
-==================================
-Installation::
-
-   sudo apt install -y python-pip python-venv python-setuptools
-
-Python moduler installeres:
-
-Tjek på https://pypi.org at packages i requirements.txt er opdateret::
-
-  cd python-ubuntu
-   python3 -m venv venv
-   source venv/bin/activate
-   pip3 install -r requirements-local.txt
-   python3 setup.py develop
-
-.. important:: Installation skal foretages med det virtuelle  environment, og python-ubuntu skal være installeret i development mode.
-
-kompilering af Shpinx doc forberedes med::
-
-    sudo pip3 install -r requirements-global.txt
-
-
-Forbered installation af programpakkerne:
-    - kontroller indstillingerne i config/config.ini
-    - kontroller pakker i programs.sh
-        - node.js er normalt seneste lst version. Find navnet på https://nodejs.org
-        - gtk2 er krævet af FreeFileSync
-    - udfør 01-prepare.py
-
+Installaton med scripts
+=======================
 Installation af software foretages med bash scripts::
 
     cd manjao
@@ -130,38 +63,14 @@ Denne ændring fra Ubuntu/Debian varianten anvendes fordi Manjaro/Arch Linux kom
 MongoDB findes grundet licens issues ikke i de officielle repositories men kun i **AUR**
     - https://stackoverflow.com/questions/59455725/install-mongodb-on-manjaro
 
-Tilslutning af ekstra diske
-===========================
-Mount points og opdatering af fstab foretages i scriptet 01_prepare_install  -> moduler/install_prepare
+.. seealso:: Se vejledning om :ref:`ubuntu-scripts`
 
-Seperat installation::
-
-      cd python-ubuntu/moduler
-      sudo ./extra-diske.py
-
-Scriptet opretter mount points og opdaterer /etc/fstab
-
-Konfigurationsfilen: **config/extradiske** indeholder de ekstra diske på Komplett og Esprimo. Scriptet tjekker for om disken findes på den aktuelle maskine inden den foresøger at opdatere /etc/fstab.
-
-Udfør::
-
-   cd common
-   sudo ./extra-diske.py
-
-Tilslut wdmycloud
-==================
-Mount points og smbcredentials opretets som en del af 01_prepare_install.py -> moduler/install_prepare
-
-Seperat installation::
-
-   cd python-ubuntu/moduler
-   sudo ./wdmycloud.py
+.. seealso:: Udfør opgaverne i vejledningen :ref:`ekstra-diske`
 
 Supplerende installationer
 ==========================
 
 Installation af sw som downloades og pakkes ud i mappen **programs**::
-
 
     cd python-ubuntu/common
     python3 install_freeefilesync.py
@@ -172,6 +81,7 @@ Installation af sw som downloades og pakkes ud i mappen **programs**::
 
 
 **Følgende findes i AUR som alternativ til download**
+
     - FreeFileSync
     - jetbrains toolbox
     - postman
@@ -191,14 +101,6 @@ Efter behov udføres::
     sudo ./groups.py
     sudo ./chown.py
     sudo ./vbox_ext_pack kun relevant for host ej for virtuel maskine
-
-GNOME/GTK Applications style
-============================
-Der anvendes Manjaro med KDE og det kan være nødvendigt at ændre applications style for GNOME/GTK. Det berører SmartGit og FreeFile Sync.
-
-I **System Settings -> Application Style -> configure GNOME/GTK Application style** ændres for GTK2 og 3 til Theme **Adwaita**.
-
-Ref. https://www.syntevo.com/blog/?tag=gtk
 
 PHP Konfiguration
 =================
@@ -233,7 +135,6 @@ MariaDB blev skabt som en fork af mysql, da Oracle opkøbte Sun Microsystems. Ma
 Inden mariadb service startes udføres::
 
     sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-
 
 MariaDB skal startes med::
 

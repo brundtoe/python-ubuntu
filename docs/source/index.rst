@@ -10,11 +10,14 @@ Python Vejledninger
    :maxdepth: 2
    :caption: Contents:
 
+   forberedelser
    installation
-   ubuntu-scripts
    manjaro
+   prepare-scripts
+   ekstra-diske
    docker
    phpmyadmin
+   ubuntu-scripts
    download-files
    manjaro-kde-display
    virtualbox
