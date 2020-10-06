@@ -10,11 +10,6 @@ TODO installer phpmyadmin på Kubuntu
 
 skal downloades fra phpmyadmin.net
 
-
-## dokumentationen refaktoreres
-
-kan konfig efter installation forenkles ved at ekstrahere fra installation.rst og manjaro.rst. Der er en stor fællesmængde og mindre forskelle.
-
 ## wdmycloud user er hardkodet
 
 indsæt en dummy user og erstat den via en search og replace
