@@ -34,7 +34,9 @@ if os.path.exists(f'/home/{user}/.ssh/id_rsa'):
 else:
     os.chdir(f'/home/{user}/.ssh')
     #subprocess.call('ssh-keygen', shell=True)
-    subprocess.run('ssh-keygen',input=b"id_rsa\n\n\n")
+    subprocess.run('ssh-keygen',input=b"id_rsa\n\n\n", check=true)
+    if configs['Common']['distribution'] == 'manjaro':
+        subprocess.run('eval $(ssh-agent)', shell=True, check=True)
     output = subprocess.run(['ssh-add','id_rsa'])
     print(output)
 
