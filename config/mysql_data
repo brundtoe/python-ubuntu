@@ -1,0 +1,4 @@
+use mystore;
+source /home/jackie/dumps/mysqlbackup/mystore/mystore_authors.sql;
+source /home/jackie/dumps/mysqlbackup/mystore/mystore_customers.sql;
+exit

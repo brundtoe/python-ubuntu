@@ -1,10 +1,12 @@
 #! ../venv/bin/python
 """
-MySQL Oprettelse af brugere og databaser samt Import af mysql data
+MySQL Import af mysql data
 """
 
-import os, sys, shlex, subprocess
+import os, sys, shlex
 from moduler.fileOperations import fetch_config
+from subprocess import run, PIPE, Popen
+from pathlib import PurePath
 
 configs = ''
 user = ''
@@ -17,23 +19,24 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
-
-# tjek at mysqlserver er aktiv
-# pgrep mysql hvis stautskoden er != 0 så kører den ikke
-
-
-sql_file = f'/home/{user}/dumps/mysqlbackup/mystore/mystore_authors.sql'
-if not os.path.exists(sql_file):
-    sys.exit(f'SQL scriptet: {sql_file} eksisterer ikke')
-
-res = ''
 try:
-    sql_stmt = f'mysql -u {user} -p < /home/jackie/dumps/mysqlbackup/mystore/mystore_authors.sql;'
-    cmd = shlex.split(sql_stmt)
-    cmd = f'mysql -u jackie -p < /home/jackie/dumps/mysqlbackup/mystore/mystore_authors.sql;'
-    res = subprocess.run(cmd,input=b'aura-73-glf\n')
+    db_server_active = shlex.split('pgrep mariadb')
+    res = run(db_server_active, check=True)
 except Exception as err:
     print(err)
-    print(res)
+    sys.exit('Kald af pgrep mysql fejlede - tjek om mariadb kører')
+
+filename = '../config/mysql_data'
+if not os.path.exists(filename):
+    sys.exit(f'SQL scripts: {filename} eksisterer ikke')
+
+try:
+    with open(filename) as file:
+        proc = Popen('mysql -u jackie -p',shell=True, stdin=file, 
+            stdout=PIPE, stderr=PIPE, universal_newlines=True)
+        out, err = proc.communicate()
+except Exception as err:
+    print(err)
+    sys.exit('opdatering af mysql data fejlede')
 else:
-    print(res)
+    print('Mysql databasen er opdateret')

@@ -1,5 +1,27 @@
 ## Opgaveliste
 
+FIXME sshkeys virker kun på kubuntu
+
+på manjaro skal ssh-agent startes
+
+eval $(ssh-agent)
+ssh-add ~/.ssh/id_rsa
+
+kræver en config værdi som viser at det er manjaro som installeres
+
+## Import af mysql data
+
+Se eksemplet common/mysql_data.py
+Scriptet fungerer på Manjaro
+
+TODO generaliser import af mysqldata
+
+tjek af db server afhæninger af om det er kubuntu eller manjaro
+
+kræver som sshkeys config værdi som viser om det er kubuntu eller manjaro
+
+PyCharm noter om anvendelse af subprocess.Popen med tilhørende eksempel
+
 ## phpMyAdmin
 
 DONE phpMyAdmin på Manjaro
@@ -15,6 +37,8 @@ skal downloades fra phpmyadmin.net
 indsæt en dummy user og erstat den via en search og replace
 
 kan formentlig gøres med en python string funktion
+
+
 
 ## web server site definitioner
 
