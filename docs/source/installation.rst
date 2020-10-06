@@ -37,7 +37,7 @@ Valg under installationen:
 
 Nvidia Skærmdriver
 ------------------
-.. important:: Kan give sort skærm.
+.. warning:: Kan give sort skærm.
 
    **Kun Ubuntu**: Skifte til Nvidia driver foretages som det første for at undgå bøvl med træg skærmdialog ved login.
 
@@ -114,6 +114,19 @@ NoSQLBooster installeres i **$HOME/Applications**. Første gang programmet start
 
 .. caution:: Det kan for Node.js og PHP projekter være nødvendigt at genskabe de downloadede moduler med npm install og composer.
 
+MongoDB
+=======
+Service bliver ikke startet efter installationen fordi den er disabled
+
+der skal udføres
+
+.. code-block:: bash
+
+    sudo systemctl enable mongod #enabler autostart ved boot
+    sudo systemctl start mongod
+
+.. note:: Kopiering af mongod.conf inden serveren startes er ikke nødvendigt
+
 Mysql-server og Workbench
 =========================
 mysql-server
@@ -134,7 +147,7 @@ På Ubuntu skal login med CLI foretages med **sudo mysql -u root -p** medens alm
 
 Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 
-.. seealso::  Vejledning om databaser MySQLDataload for load af data
+.. seealso::  Vejledning om **databaser MySQL Dataload** for load af data
 
 mysql-workbench
 ---------------
@@ -143,19 +156,6 @@ mysql-workbench
    Gnome-keyring skal installeres på KDE distributioner. Det indgår default i gnome baserede distributioner.
 
    Installationen kan aktiveres i scriptet **04_install_extra.py**
-
-MongoDB
-=======
-Service bliver ikke startet efter installationen fordi den er disabled
-
-der skal udføres
-
-.. code-block:: bash
-
-    sudo systemctl enable mongod #enabler autostart ved boot
-    sudo systemctl start mongod
-
-.. note:: Kopiering af mongod.conf inden serveren startes er ikke nødvendigt
 
 Docker konfiguration
 ====================

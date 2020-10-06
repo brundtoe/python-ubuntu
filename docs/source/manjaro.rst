@@ -6,7 +6,7 @@
 ====================
 Manjaro Installation
 ====================
-Opdateret september 2020
+Opdateret oktober 2020
 
 Manjaro anvendes primært på i virtuelle maskiner (VMWare og VirtualBox).
 

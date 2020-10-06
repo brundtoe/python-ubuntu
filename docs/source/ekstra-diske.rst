@@ -1,4 +1,4 @@
-.. _extra-diske:
+.. _ekstra-diske:
 
 =========================
 Ekstra diske og wdmycloud
@@ -8,8 +8,6 @@ Opdateret oktober 2020
 WdMycloud tilsluttes på fysiske og virtuelle maskiner
 
 De ekstra diske på Komplett og Esprimo tilsluttes kun på respektive fysiske maskiner.
-
-
 
 De eksterne diske på Komplett
 =============================
