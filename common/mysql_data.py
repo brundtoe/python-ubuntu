@@ -13,6 +13,7 @@ user = ''
 try:
     filename = '../config/config.ini'
     configs = fetch_config(filename)
+    distribution = configs['Common']['distribution']
     user = configs['Common']['user']
 except Exception as err:
     sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
@@ -20,11 +21,15 @@ else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
 try:
-    db_server_active = shlex.split('pgrep mariadb')
+    name_db_active = 'pgrep mariadb' if (distribution == 'manjaro') else 'pgrep mysql'
+    print('name_db_active', name_db_active)
+    db_server_active = shlex.split(name_db_active)
     res = run(db_server_active, check=True)
 except Exception as err:
     print(err)
     sys.exit('Kald af pgrep mysql fejlede - tjek om mariadb kører')
+
+sys.exit('standset her')
 
 filename = '../config/mysql_data'
 if not os.path.exists(filename):
