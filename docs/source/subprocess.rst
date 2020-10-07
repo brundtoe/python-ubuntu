@@ -41,16 +41,16 @@ Eksemplet i **common/mysql_data.py**
 
 .. code-block:: python
 
-from subprocess import Popen
+   from subprocess import Popen
 
-try:
-    filename = '../config/mysql_data'
-    with open(filename) as file:
-        proc = Popen('mysql -u jackie -p',shell=True, stdin=file, 
-            stdout=PIPE, stderr=PIPE, universal_newlines=True)
-        out, err = proc.communicate()
-except Exception as err:
-    print(err)
-    sys.exit('opdatering af mysql data fejlede')
-else:
-    print('Mysql databasen er opdateret')
+   try:
+       filename = '../config/mysql_data'
+       with open(filename) as file:
+           proc = Popen('mysql -u jackie -p',shell=True, stdin=file,
+               stdout=PIPE, stderr=PIPE, universal_newlines=True)
+           out, err = proc.communicate()
+   except Exception as err:
+       print(err)
+       sys.exit('opdatering af mysql data fejlede')
+   else:
+       print('Mysql databasen er opdateret')
