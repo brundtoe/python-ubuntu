@@ -29,8 +29,6 @@ except Exception as err:
     print(err)
     sys.exit('Kald af pgrep mysql fejlede - tjek om mariadb kører')
 
-sys.exit('standset her')
-
 filename = '../config/mysql_data'
 if not os.path.exists(filename):
     sys.exit(f'SQL scripts: {filename} eksisterer ikke')
