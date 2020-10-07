@@ -7,18 +7,22 @@ afprøvning af de opdaterede scripts og vejledninger
 - Manjaro
 - Kubuntu
 
-FIXME mysql opdateringen fejler
+FIXME mysql opdateringen fejler på manjaro
 
+- jackie mangler grant option
+- sudo kan udføre det rå script
+
+   dvs det er scriptes subprocess.Popen som fejler.
+
+FIXME nosqlbooster Manjaro
+
+Manjaro download fejler, måske det er clietn i request som skal justeres så siteet tror det er Firefox som downloader
 
 ## justeringer
 
 der skal i docs være link så man efter en tur til en udnervejledning i afslutnigenn af denne kan klikke tilbage til den oprindelige.
 
 kræver også ankre i de oprindelige docs
-
-## nosqlbooster
-
-Manjaro download fejler, måske det er clietn i request som skal justeres så siteet tror det er Firefox som downloader
 
 
 ## phpMyAdmin
