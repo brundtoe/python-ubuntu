@@ -31,6 +31,21 @@ if not os.path.exists(filename):
     sys.exit(f'SQL scripts: {filename} eksisterer ikke')
 
 try:
+    with open(filename, 'r') as file:
+        for line in file:
+            if line.startswith('source'):
+                print('linje fundet')
+                datafile = line[line.find('/home'):-2].strip()
+                print(datafile)
+                if not os.path.exists(datafile):
+                    sys.exit(f'Filen .. {datafile} eksisterer ikke')
+except Exception as err:
+    print(err)
+    sys.exit(f'filen {filename} eksiterer ikke')
+else:
+    print('Alle scripts er fundet')
+
+try:
     with open(filename) as file:
         proc = Popen('mysql -u jackie -p',shell=True, stdin=file, 
             stdout=PIPE, stderr=PIPE, universal_newlines=True)
