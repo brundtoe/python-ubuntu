@@ -156,7 +156,12 @@ Anbefalet sikkerhed::
 
 Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 
-.. seealso::  Vejledning om databaser MySQLDataload for load af data
+Dataload kan foretages med::
+
+   cd python-ubuntu/common
+   python mysql_data.py
+
+Filen config/config.ini skal have parameteren [Common][distribution]=ubuntu
 
 .. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB.
 

@@ -147,7 +147,12 @@ På Ubuntu skal login med CLI foretages med **sudo mysql -u root -p** medens alm
 
 Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 
-.. seealso::  Vejledning om **databaser MySQL Dataload** for load af data
+Dataload kan foretages med::
+
+   cd python-ubuntu/common
+   python mysql_data.py
+
+Filen config/config.ini skal have parameteren [Common][distribution]=ubuntu
 
 mysql-workbench
 ---------------
