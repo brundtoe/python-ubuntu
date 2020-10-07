@@ -1,27 +1,11 @@
 ## Opgaveliste
 
-## Import af mysql data
+TODO nye installationer helt forfra.
 
-Se eksemplet common/mysql_data.py
-Scriptet fungerer på Manjaro
+afprøvning af de opdaterede scripts og vejledninger
 
-TODO generaliser import af mysqldata
-
-tjek af db server afhæninger af om det er kubuntu eller manjaro
-
-bør også tjekke for om alle source filerne eksisterer inden der opdateres
-
-lopp gennem inddata filen::
-
-   with open(filename) as file:
-      if line.startswith('source'):
-         datafile = line[line.find('/home'),-1].strip()
-         if not os.path.exists(datafile:
-            sys.exit(f'Filen .. {datafile} eksisterer ikke')
-   
-
-
-PyCharm noter om anvendelse af subprocess.Popen med tilhørende eksempel
+- Manjaro
+- Kubuntu
 
 ## phpMyAdmin
 

@@ -18,6 +18,7 @@ Python Vejledninger
    docker
    phpmyadmin
    ubuntu-scripts
+   subprocess
    download-files
    manjaro-kde-display
    virtualbox
