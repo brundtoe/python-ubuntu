@@ -45,14 +45,15 @@ Manjaro anvendes primært på Virtuelle maskiner:
 
     Se vejledningen :ref:`manjaro-kde-display`
 
-.. note::Udfør opgaverne i :ref:`prepare-scripts`
+.. note:: Udfør opgaverne i :ref:`prepare-scripts`
 
+.. _manjaro-scripts:
 
-Installaton med scripts
-=======================
+Installation med scripts
+========================
 Installation af software foretages med bash scripts::
 
-    cd manjao
+    cd manjaro
     sudo ./programs.sh
     sudo ./php.sh
     sudo ./php_config.py
@@ -62,10 +63,6 @@ Denne ændring fra Ubuntu/Debian varianten anvendes fordi Manjaro/Arch Linux kom
 
 MongoDB findes grundet licens issues ikke i de officielle repositories men kun i **AUR**
     - https://stackoverflow.com/questions/59455725/install-mongodb-on-manjaro
-
-.. seealso:: Se vejledning om :ref:`ubuntu-scripts`
-
-.. seealso:: Udfør opgaverne i vejledningen :ref:`ekstra-diske`
 
 Supplerende installationer
 ==========================

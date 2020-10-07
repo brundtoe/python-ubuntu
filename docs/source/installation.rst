@@ -48,8 +48,9 @@ Det tjekkes via faneblad Ubuntu Software, at **multiverse** er aktiveret. Det ka
    sudo add-apt-repository multiverse && sudo apt-get update && sudo apt-get upgrade
 
 
-.. note::Udfør opgaverne i :ref:`prepare-scripts`
+.. note:: Udfør opgaverne i :ref:`prepare-scripts`
 
+.. _kubuntu-scripts:
 
 Installation med python scripts
 ===============================

@@ -33,7 +33,7 @@ Installation af git
 
     sudo apt install -y git vim
 
-**Manjaro installation af vim::
+**Manjaro** installation af vim::
 
     sudo pacman -S vim
 
@@ -62,7 +62,7 @@ Tilføj public key til GitHub og Bitbucket konti.
 Visual Studio Code
 ===================
 
-*Kubuntu** Installation af Visual Studio code::
+**Kubuntu** Installation af Visual Studio code::
 
    sudo snap install --classic code
 
@@ -84,6 +84,7 @@ Repositoriet clones på **virtuelle maskiner**::
 
 Clone data repositoriet
 =======================
+::
 
     cd /home/jackie
     git clone git@github.com:brundtoe/dumps
@@ -96,7 +97,9 @@ Installation på **Kubuntu**::
 
 Installation på **Manjaro**::
 
-    sudo apt install -y python-pip python-venv python-setuptools 
+    sudo pacman -S --noconfirm python-pip python-setuptools
+
+Python indeholder venv og virtualenv
 
 Klargøring Af det virtuelle environment
 =======================================
@@ -111,9 +114,12 @@ Klargøring Af det virtuelle environment
 
 .. important:: Installation skal foretages med det virtuelle  environment, og python-ubuntu skal være installeret i development mode.
 
-kompilering af Shpinx doc forberedes med::
+.. caution:: kompilering af Shpinx doc forberedes
 
-    sudo pip3 install -r requirements-global.txt
+   Skift til terminalvindue med det globale environment og udfør::
+
+      cd python-ubuntu
+      sudo pip3 install -r requirements-global.txt
 
 Opdatering af konfigurationsfilen
 =================================
@@ -147,5 +153,9 @@ Restore data (fysisk maskine)
 
 Øvrige data findes på de øvrige diske og skal ikke restores
 
-.. seealso:: Udfør opgaver jf. Vejledning om :ref:`extra-diske`
+.. seealso:: Udfør evt. opgaver jf. Vejledning om :ref:`ekstra-diske`
 
+   Fortsæt til installation med script
+
+   - :ref:`Kubuntu <kubuntu-scripts>`
+   - :ref:`Manjaro <manjaro-scripts>`

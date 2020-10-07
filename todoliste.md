@@ -7,6 +7,13 @@ afprøvning af de opdaterede scripts og vejledninger
 - Manjaro
 - Kubuntu
 
+## justeringer
+
+der skal i docs være link så man efter en tur til en udnervejledning i afslutnigenn af denne kan klikke tilbage til den oprindelige.
+
+kræver også ankre i de oprindelige docs
+
+
 ## phpMyAdmin
 
 DONE phpMyAdmin på Manjaro
