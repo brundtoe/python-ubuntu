@@ -1,19 +1,6 @@
 ## Opgaveliste
 
-FIXME freefilesync
-
-Download fejler ved første forsøg men ved gentales af script er alt ok.
-
-er det bedre med curl eller wget
-
-Er filezilla en smartere option
-
-cd /home/jackie/DOwnloads
-wget https://nosqlbooster.com/s3/download/releasesv6/nosqlbooster4mongo-6.1.8.AppImage
-
-wget --user-agent='Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:81.0) Gecko/20100101 Firefox/81.0'
-
-kopier user agent fra aktuel header eksempelvis 
+Til sesnere brug
 
 ## wdmycloud user er hardkodet
 
