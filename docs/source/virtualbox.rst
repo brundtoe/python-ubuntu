@@ -2,40 +2,44 @@
 .. _virtualbox-manjaro:
 
 ===========================
-Virtualbox som Manjaro Host
+Manjaro som Virtualbox Gæst
 ===========================
 Opdateret juni 2020
 
 Manjaro kan installeres som guest på en Virtualbox Host.
 
-.. note:: Det er bøvlet at installere på VirtualBox. Det ikke er muligt at skalere skærmen før vbox guest additions er installeret
+.. note:: Display skal være VBoxSVGA for at kunne resize display under installation
 
 .. important:: Hostens VirtualBox skal være samme version som guest aditions i Manjaro repository
 
 - Anvend Manjaro minimal KDE iso fil
 - Vælg Linux type Archlinux 64 bit
-- display: 128 MB, VMSVGA, UDEN 3D Acceleration
-- attach iso som IDE som virtual optical disk, husk at markere live CD
+- general copy bidirectional
+- system 4 CPU
+
+- display: 16 MB, VBoxSVGA (jf. manjaro wiki)
+
+- Marker IDE som virtual optical disk, som live CD. Der promptes for iso fil når maskinen startes.
 - USB 3.0
-- Vælg dansk systemsprog
 - I stedet for at genstarte standses maskinen og iso filen fjernes
 
-Ref. https://wiki.manjaro.org/index.php?title=Virtualbox
+Ref. https://wiki.manjaro.org/index.php/VirtualBox
 
-på Manjaro anvendes den traditionelle vbox guest aditions package ikke i stedet ::
+På Manjaro anvendes den traditionelle vbox guest aditions package ikke i stedet.
 
-   sudo pacman -S linux54-virtualbox-guest-modules
-   sudo pacman -S virtualbox-guest-utils
+Find den akutelle kerne::
 
-   sudo systemctl enable vboxservice.service
+   mhwd-kernel -li
+
+Viser der aktuelt aktive kerne, som skal anvendes til installation af guest modulerne::
+
+   sudo pacman -Syu linux58-virtualbox-guest-modules virtualbox-guest-utils
+
+Herefter skal vbox service enables::
+
+   sudo modprobe vboxguest vboxvideo vboxsf
+   sudo systemctl enable --now vboxservice.service
    sudo gpasswd -a $USER vboxsf
-   stands og start ej genstart
 
-Hvis der er ikke kan scaleres når vmsvga er anvendt:
+stands og start ej genstart
 
-- fjern vmware video med **sudo mhwd -r pci video-vmware**
-- stands den virtuelle maskine og skift i settings til vboxsvga så funkter det
-
-https://forum.manjaro.org/t/manjaro-in-virtualbox-cannot-change-display-resolution/118120
-
-Manjaro og Linux kernels
