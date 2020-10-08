@@ -1,6 +1,6 @@
 .. index: phpMyAdmin
 
-.. _phpmyadmin
+.. _phpmyadmin:
 
 =====================
 phpMyAdmin på Manjaro

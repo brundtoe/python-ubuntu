@@ -74,10 +74,11 @@ Installation af sw som downloades og pakkes ud i mappen **programs**::
     cd python-ubuntu/common
     python3 install_freeefilesync.py
     python3 install_jetbrains_toolbox.py
-    python3 install_nosqlbooster.py
+    python3 install_nosqlbooster.py -- download tager lang tid op til 5 minutter
     python3 install_postman.py
     python3 install_smartgit.py (virker kun med seneste version - opdater config.ini)
 
+Hvis download fejler så anvend wget. jf alm. vejledning -> linux -> curl.
 
 **Følgende findes i AUR som alternativ til download**
 
@@ -127,8 +128,8 @@ Aktivering moduler ved med **sed** at fjerne kommentarerne for::
 
 Da php installeres af et bash script er konfig omlagt til at anvende GNU/Linux kommandoen **sed**, som forenkler opdateringen i forhold til Ubuntu/Debian udgaven.
 
-MariaDB og mysql-workbench
-==========================
+MariaDB
+=======
 MariaDB blev skabt som en fork af mysql, da Oracle opkøbte Sun Microsystems. MariaDB fungerer i hovedsagen som mysql.
 
 Inden mariadb service startes udføres::
@@ -162,15 +163,11 @@ Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 Dataload kan foretages med::
 
    cd python-ubuntu/common
-   python mysql_data.py
+   ./mysql_data.py
 
-Filen config/config.ini skal have parameteren [Common][distribution]=ubuntu
+Filen config/config.ini skal have parameteren [Common][distribution]=manjaro
 
-.. caution:: Det kan ikke forventes, at **mysql-workbench** virker sammen med MariaDB.
-
-    - mysql-workbench kræver at **gnome-keyring** er installeret, da det er her passwords gemmes.
-    - nye brugere eksempelvis athlon38 skal oprettes via mysql CLI.
-    - Opstår der for meget bøvl så kan databaseværktøjerne i JetBrains IDE anvendes.
+.. seealso:: Se vejledning om installation af :ref:`phpmyadmin`
 
 PHP-FPM
 =======
