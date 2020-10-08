@@ -14,6 +14,7 @@ from subprocess import run
 
 from moduler.fileOperations import fetch_config, addLine
 from moduler.home_bin import homebin
+from moduler.install_programs import install_program
 from moduler.extra_diske import update_extradiske
 from moduler.wdmycloud import update_wdmycloud
 
@@ -62,6 +63,14 @@ def install_prepare():
         sys.exit(f'Der opstod fejl ved oprettelse af /home/{user}/bin')
     else:
         print(f'/home/{user}/bin er opdateret')
+
+    # Installation af cifs-utils
+
+    try:
+        options = configs['Common']['install_options']
+        install_program('cifs-utils',options)
+    except Exception as err:
+        sys.exit('Kan ikke installere cifs-utils')
 
     # Mount wdmycloud
     try:
