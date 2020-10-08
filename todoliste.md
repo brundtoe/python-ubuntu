@@ -9,7 +9,6 @@ afprøvning af de opdaterede scripts og vejledninger
 
 FIXME mysql opdateringen fejler på manjaro
 
-- jackie mangler grant option
 - sudo kan udføre det rå script
 
    dvs det er scriptes subprocess.Popen som fejler.

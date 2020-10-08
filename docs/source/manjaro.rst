@@ -147,6 +147,10 @@ Anbefalet sikkerhed::
 
 .. note:: MariaDB prompter ikke for valideringsniveau for passwords, dvs. plugin validate_password findes ikke på MariaBD
 
+.. caution:: Husk at opdatere passwords for jackie og athlon38
+
+   Ændringen restores med **git restore** så den ikke kommer med i repositoriet.
+
 **Initiering og oprettelse af usere og databaser**::
 
     $ sudo mysql -u root -p < /home/jackie/dumps/mysqlbackup/create_users.sql;
