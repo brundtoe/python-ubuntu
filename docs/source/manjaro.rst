@@ -20,7 +20,9 @@ Manjaro anvendes primært på i virtuelle maskiner (VMWare og VirtualBox).
 
 Python scripts, som anvendes til installation på Ubuntu/Kubuntu er i hovedsagen overflødige, da disse scripts anvendes for at registrere repositories for at hente nyere programversioner.
 
-.. seealso:: Vejledning :ref:`pacman`
+.. seealso:: Når en ny clone af en virtuel master skal etableres springes til :ref:`etablering af python miljø <virtual-clone>`.
+
+    Vejledning :ref:`pacman`
 
 Installation af operativsystem
 ==============================

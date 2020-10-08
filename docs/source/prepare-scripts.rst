@@ -89,6 +89,12 @@ Clone data repositoriet
     cd /home/jackie
     git clone git@github.com:brundtoe/dumps
 
+..note:: Når en ny Masteer fopr virtuelle maskiner standses installaionen her.
+
+   Der tages et snapshot, som er udgangspunkt for de clones der arbejds med.
+
+.. _virtual-clone:
+
 Installation af Python moduler
 ==============================
 Installation på **Kubuntu**::

@@ -20,6 +20,8 @@ I denne vejledning beskrives installation med script på en fysisk maskine eller
 
 .. seealso:: Vejledning :ref:`Forberedelser`
 
+   Når en ny clone af en virtuel master skal etableres springes til :ref:`etablering af python miljø <virtual-clone>`.
+
 Installation af operativsystem
 ==============================
 Den seneste udgave af Desktop Ubuntu LTS eller Kubuntu hentes på en Windows instans fra http://ubuntu.com/download/desktop og installers med Linux programmet Disks på en USB stick
