@@ -162,11 +162,24 @@ Filen config/config.ini skal have parameteren [Common][distribution]=ubuntu
 
 mysql-workbench
 ---------------
-.. important:: Installationen foretages kun på virtuelle maskiner, hvis JetBrains Datagrip ikke anvendes
+.. important:: Gnome-keyring skal installeres på KDE distributioner. Det indgår default i gnome baserede distributioner.
 
-   Gnome-keyring skal installeres på KDE distributioner. Det indgår default i gnome baserede distributioner.
+   Det virker ikke på Kubuntu 20.04
 
    Installationen kan aktiveres i scriptet **04_install_extra.py**
+
+PhpMyAdmin
+==========
+PhpMyAdmin installeres::
+
+  sudo apt install -y phpmyadmin
+
+Konfiguration - tilføj i  **/etc/apache2/apache2.conf**
+
+   Include /etc/phpmyadmin/apache.conf
+
+- Genstart apache og browse http://localhost/phpmyadmin
+- Installationen findes i **/usr/share/phpmyadmin**
 
 Docker konfiguration
 ====================

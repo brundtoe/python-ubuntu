@@ -7,6 +7,11 @@ afprøvning af de opdaterede scripts og vejledninger
 - Manjaro
 - Kubuntu
 
+
+TODO mysql opdateringen
+
+det fungerer på Kubuntu
+
 FIXME mysql opdateringen fejler på manjaro
 
 - sudo kan udføre det rå script
@@ -32,27 +37,6 @@ Download fejler ved første forsøg men ved gentales af script er alt ok.
 er det bedre med curl eller wget
 
 Er filezilla en smartere option
-
-## prøv mysql workbench på Kubuntu
-
-
-## phpMyAdmin
-
-DONE phpMyAdmin på Manjaro
-
-Der er oprettet en vejledning phpmyadmin.rst
-
-TODO installer phpmyadmin på Kubuntu
-
-skal downloades fra phpmyadmin.net
-
-
-
-## justeringer
-
-der skal i docs være link så man efter en tur til en udnervejledning i afslutnigenn af denne kan klikke tilbage til den oprindelige.
-
-kræver også ankre i de oprindelige docs
 
 ## wdmycloud user er hardkodet
 
