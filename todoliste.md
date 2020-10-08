@@ -1,6 +1,6 @@
 ## Opgaveliste
 
-TODO nye installationer helt forfra.
+DONE nye installationer helt forfra.
 
 afprøvning af de opdaterede scripts og vejledninger
 
@@ -13,15 +13,27 @@ FIXME mysql opdateringen fejler på manjaro
 
    dvs det er scriptes subprocess.Popen som fejler.
 
+Øvrige foregår med python_scripts
+
+hvis python scriptet opgives så anvende scriptet blot fra command line
+
 FIXME nosqlbooster Manjaro
 
-Manjaro download fejler, måske det er clietn i request som skal justeres så siteet tror det er Firefox som downloader
+Det er OK på Kubuntu - måske der blot skal ventes en rum tid
 
-## justeringer
+Manjaro download fejler, måske det er user_agent i request som skal justeres så sitet tror det er Firefox som downloader
 
-der skal i docs være link så man efter en tur til en udnervejledning i afslutnigenn af denne kan klikke tilbage til den oprindelige.
+er det bedre med curl eller wget
 
-kræver også ankre i de oprindelige docs
+FIXME freefilesync
+
+Download fejler ved første forsøg men ved gentales af script er alt ok.
+
+er det bedre med curl eller wget
+
+Er filezilla en smartere option
+
+## prøv mysql workbench på Kubuntu
 
 
 ## phpMyAdmin
@@ -33,6 +45,14 @@ Der er oprettet en vejledning phpmyadmin.rst
 TODO installer phpmyadmin på Kubuntu
 
 skal downloades fra phpmyadmin.net
+
+
+
+## justeringer
+
+der skal i docs være link så man efter en tur til en udnervejledning i afslutnigenn af denne kan klikke tilbage til den oprindelige.
+
+kræver også ankre i de oprindelige docs
 
 ## wdmycloud user er hardkodet
 

@@ -66,6 +66,7 @@ Installationen udføres i et antal trin::
 
 Med sudo udføres::
 
+   cd python-ubuntu/source
    sudo ./01_prepare_install.py
    sudo ./02_install_requirements
    sudo ./03_install_repositories
@@ -148,11 +149,9 @@ På Ubuntu skal login med CLI foretages med **sudo mysql -u root -p** medens alm
 
    Ændringen restores med **git restore** så den ikke kommer med i repositoriet.
 
-**Initiering og oprettelse af usere og databaser**::
+**Initiering og oprettelse af user jackie**::
 
     $ sudo mysql -u root -p < /home/jackie/dumps/mysqlbackup/create_users.sql;
-
-Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
 
 Dataload kan foretages med::
 
@@ -251,8 +250,8 @@ Docroot er **/var/www/html**
 - opdatering af servename i **apache2.conf**
 - rewrite enables
 - index.php generes til at vise phpinfo(), til brug for tjek af installationen
+- serverens autostart disables.
 - serveren standses
-- serverens autostart under Linux boot disables.
 
 Script install_nginx.py
 -----------------------
@@ -263,8 +262,9 @@ Docroot er **/var/www/html** derfor vises Apaches startside, når Apache også e
 **Herudover:**
 
 - genreres fra templates/nginx-ubuntu.jinja en site definition med php support fra config/nginx.conf til sites-available. template anvendes, da php versionen er dynamisk.
-- php-fpm default konfig anvendes
+- php7.4-fpm default konfig anvendes
 - serverens autostart disables
+- serveren standses
 
 
 
