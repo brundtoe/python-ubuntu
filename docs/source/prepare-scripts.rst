@@ -127,6 +127,12 @@ Klargøring Af det virtuelle environment
       cd python-ubuntu
       sudo pip3 install -r requirements-global.txt
 
+Build af dokumentationen::
+
+   cd python-ubuntu
+   sphinx-build -b html docs/source /home/jackie/PythonDocs
+
+
 Opdatering af konfigurationsfilen
 =================================
 Filen **config/config.ini** indeholder konfigurationsoplysninger, som anvendes i de enkelte scripts. Config.ini indlæses med Python modulet Configparser.
