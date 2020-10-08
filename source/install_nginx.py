@@ -20,13 +20,6 @@ def install_nginx(configs):
         sys.exit('Kan ikke installere Nginx')
 
     try:
-        print('Nginx disables')
-        subprocess.run(['systemctl', 'disable', 'nginx'])
-    except Exception as err:
-        print(err)
-        sys.exit('Kan ikke disable Nginx')
-
-    try:
         tmpl = 'nginx-ubuntu.jinja'
         php_version = configs['Common']['php-version']
         program = 'nginx'
@@ -34,6 +27,22 @@ def install_nginx(configs):
     except Exception as err:
         print(err)
         sys.exit(f'Kan ikke opdatere definitionen af nginx default site')
+
+    try:
+        print('Nginx disables')
+        subprocess.run(['systemctl', 'disable', 'nginx'])
+    except Exception as err:
+        print(err)
+        sys.exit('Kan ikke disable Nginx')
+
+ try:
+        print('Nginx standses')
+        subprocess.run(['systemctl', 'stop', 'nginx'])
+    except Exception as err:
+        print(err)
+        sys.exit('Kan ikke standse Nginx')
+
+
 
 def create_site_config(program, tmpl, php_version):
     try:
