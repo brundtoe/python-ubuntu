@@ -1,35 +1,5 @@
 ## Opgaveliste
 
-DONE nye installationer helt forfra.
-
-afprøvning af de opdaterede scripts og vejledninger
-
-- Manjaro
-- Kubuntu
-
-
-TODO mysql opdateringen
-
-det fungerer på Kubuntu
-
-FIXME mysql opdateringen fejler på manjaro
-
-- sudo kan udføre det rå script
-
-   dvs det er scriptes subprocess.Popen som fejler.
-
-Øvrige foregår med python_scripts
-
-hvis python scriptet opgives så anvende scriptet blot fra command line
-
-FIXME nosqlbooster Manjaro
-
-Det er OK på Kubuntu - måske der blot skal ventes en rum tid
-
-Manjaro download fejler, måske det er user_agent i request som skal justeres så sitet tror det er Firefox som downloader
-
-er det bedre med curl eller wget
-
 FIXME freefilesync
 
 Download fejler ved første forsøg men ved gentales af script er alt ok.
@@ -38,13 +8,18 @@ er det bedre med curl eller wget
 
 Er filezilla en smartere option
 
+cd /home/jackie/DOwnloads
+wget https://nosqlbooster.com/s3/download/releasesv6/nosqlbooster4mongo-6.1.8.AppImage
+
+wget --user-agent='Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:81.0) Gecko/20100101 Firefox/81.0'
+
+kopier user agent fra aktuel header eksempelvis 
+
 ## wdmycloud user er hardkodet
 
 indsæt en dummy user og erstat den via en search og replace
 
 kan formentlig gøres med en python string funktion
-
-
 
 ## web server site definitioner
 
