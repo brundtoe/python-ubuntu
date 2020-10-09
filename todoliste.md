@@ -1,6 +1,6 @@
 ## Opgaveliste
 
-Til sesnere brug
+Til senere brug
 
 ## wdmycloud user er hardkodet
 

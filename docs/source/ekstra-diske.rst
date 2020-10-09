@@ -29,9 +29,15 @@ Tjek filen **config/extradiske** som indeholder registreringen, der anvendes af 
 
 Ekstra diske på Esprimo
 =======================
+- 1 TB HDD mountes på /home/projects
 
-.. caution:: Skal udarbejdes
+   - serienummer STH6L7MQ0256KS
+   - UUID a8768fc6-4ef3-4310-b27c-fd83a39416fb
 
+1 TB HDD mountes på /home/data
+
+-  serienummer STH6L7MQ01TAYS
+-  UUID d31e8166-403c-41a7-973c-eda1490799aa
 
 Tilslut øvrige harddiske (fysisk maskine)
 =========================================
