@@ -21,7 +21,8 @@ Python Vejledninger
    subprocess
    download-files
    manjaro-kde-display
-   virtualbox
+   manjaro-vbguest
+   manjaro-vbhost
    pacman
    systemd
    proces-control

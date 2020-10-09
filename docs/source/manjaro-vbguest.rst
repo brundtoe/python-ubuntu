@@ -1,5 +1,5 @@
 .. index:: Virtualbox Manjaro
-.. _virtualbox-manjaro:
+.. _manjaro-vbguest:
 
 ===========================
 Manjaro som Virtualbox Gæst
@@ -7,6 +7,8 @@ Manjaro som Virtualbox Gæst
 Opdateret juni 2020
 
 Manjaro kan installeres som guest på en Virtualbox Host.
+
+.. seealso:: Manjaro som host fremgår af vejledning om :ref:`manjaro-vbhost`
 
 .. note:: Display skal være VBoxSVGA for at kunne resize display under installation
 
