@@ -40,6 +40,7 @@ Tjek VirtualBox versionen::
 Via Add/Removal software
 
    - aktiver AUR
+   - marker opdatering af packages
    - installer virtualbox-ext-oracle
    - installer virtualbox-guest.iso
 
