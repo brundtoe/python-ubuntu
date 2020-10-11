@@ -14,6 +14,7 @@ Forberedelser:
 - ny kopi af Firefox genveje
 - Backup med FreeFileSync
 - Postman via settings -> Data  **download only my data**
+- Datagrip konfigurationen fra /home/jackie/.config/JetBrains/DataGrip[version]/projects
 - Tjek installationsvejledninger
 
 Logout for at frigøre licenser:
