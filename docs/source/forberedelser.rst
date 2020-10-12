@@ -4,7 +4,7 @@
 =============================
 Forberedelser herunder backup
 =============================
-Opdateret okotber 2020
+Opdateret oktober 2020
 
 Backup
 ======
