@@ -1,6 +1,16 @@
 ## Opgaveliste
 
-Til senere brug
+..todo docker  
+
+Docker installationen skal opdateres for Kubuntu, da docker-compose har fået sit eget repository
+
+https://docs.docker.com/compose/install/
+
+.. todo manjaro
+
+    installation af gnupg-agent og lsb-core
+    
+skal tjekkes!
 
 ## wdmycloud user er hardkodet
 
