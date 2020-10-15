@@ -6,12 +6,6 @@ Docker installationen skal opdateres for Kubuntu, da docker-compose har fået si
 
 https://docs.docker.com/compose/install/
 
-.. todo manjaro
-
-    installation af gnupg-agent og lsb-core
-    
-skal tjekkes!
-
 ## wdmycloud user er hardkodet
 
 indsæt en dummy user og erstat den via en search og replace

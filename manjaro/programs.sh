@@ -24,6 +24,8 @@ git
 vim
 tmux
 cifs-utils
+lsb-release
+gnupg
 unzip
 sqlite
 python
