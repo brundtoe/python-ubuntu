@@ -13,11 +13,9 @@ fi
 ## gtk2 er krævet af FreeFileSync
 pacman -Syu --noconfirm
 
-PACKAGES="gcc
-make
+PACKAGES="dkms
+linux-headers
 perl
-dkms
-patch
 curl
 wget
 git
