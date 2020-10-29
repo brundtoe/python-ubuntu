@@ -27,7 +27,7 @@ Manjaro kan installeres som guest på en Virtualbox Host.
 
 Ref. https://wiki.manjaro.org/index.php/VirtualBox
 
-På Manjaro anvendes den traditionelle vbox guest aditions package ikke i stedet.
+På Manjaro anvendes den traditionelle vbox guest additions package ikke i stedet.
 
 Find den akutelle kerne::
 
@@ -45,3 +45,8 @@ Herefter skal vbox service enables::
 
 stands og start ej genstart
 
+Opdatering af geust additions
+=============================
+Det er muligt at anvende standard guest additions på sædvanlig vis. Dete foretages hvis der ikke er frigivet en manjaro/archlinux udgave, der svarer til den  installerede kernel.
+
+Det kræver installation af **dkms, perl og linux-headers**. Se standard vejledningen om virtualbox.
