@@ -31,3 +31,15 @@ def homebin(user):
     if not os.path.exists(dstvimrc):
         shutil.copy(srcvimrc, dstvimrc)
         shutil.chown(dstvimrc, user, user)
+
+    dstvimrc = f'/home/{user}/.tmux.conf'
+    srcvimrc = '../config/.tmux.conf'
+    if not os.path.exists(dstvimrc):
+        shutil.copy(srcvimrc, dstvimrc)
+        shutil.chown(dstvimrc, user, user)
+
+    dstvimrc = f'/root/.vimrc'
+    srcvimrc = '../config/.vimrc'
+    if not os.path.exists(dstvimrc):
+        shutil.copy(srcvimrc, dstvimrc)
+        shutil.chown(dstvimrc, 'root', 'root')
