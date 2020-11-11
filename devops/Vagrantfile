@@ -1,0 +1,133 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby
+
+Vagrant.configure(2) do |config|
+
+  config.hostmanager.enabled = true
+  config.hostmanager.ignore_private_ip = false
+  config.hostmanager.include_offline = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = true
+
+# Puppetmaster
+  config.vm.define "puppet" do |puppet|
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 4069
+      v.customize ["modifyvm", :id, "--vram", "16"]
+    end
+    puppet.vm.box = "brundtoe/bionic64"
+    puppet.vm.network :private_network, ip: "10.0.0.10"
+    #puppet.vm.network "forwarded_port", guest: 22, host: 2210
+    puppet.vm.hostname = "puppet.example.com"
+    puppet.hostmanager.aliases = %w(puppet)
+    #    puppet.vm.synced_folder ".","/vagrant"
+    puppet.vm.synced_folder "../code", "/puppetcode"
+    puppet.vm.provision "shell", path: "scripts/master_provision.sh"
+    puppet.vm.provision "puppet" do |p|
+      p.manifests_path = "manifests"
+      p.manifest_file = "master_provision.pp"
+    end
+  end
+# PHP udvikling med apache
+  config.vm.define "phpdev" do |phpdev|
+    phpdev.vm.box = "brundtoe/bionic64"
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.customize ["modifyvm", :id, "--vram", "16"]
+    end
+    phpdev.vm.network :private_network, ip: "10.0.0.11"
+    #phpdev.vm.network "forwarded_port", guest: 3306, host:3306
+    phpdev.vm.hostname = "phpdev.example.com"
+    phpdev.hostmanager.aliases = %w(phpdev)
+    # map projects
+    projects = Array['doctrine26', 'websites', 'symfony4']
+
+    projects.each do |project|
+      phpdev.vm.synced_folder "../../php/#{project}", "/var/www/#{project}",
+                              owner: "vagrant",
+                              group: "www-data",
+                              mount_options: ["dmode=775,fmode=664"]
+    end
+    phpdev.vm.provision "shell", path: "scripts/agent_provision.sh"
+    phpdev.vm.provision "puppet" do |p|
+      p.manifests_path = "manifests"
+      p.manifest_file = "agent_provision.pp"
+    end
+  end
+
+# Nodejs og mongodb udvikling
+  config.vm.define "javascript" do |javascript|
+    javascript.vm.box = "brundtoe/bionic64"
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.customize ["modifyvm", :id, "--vram", "16"]
+    end
+    javascript.vm.network :private_network, ip: "10.0.0.12"
+    javascript.vm.hostname = "javascript.example.com"
+    javascript.hostmanager.aliases = %w(javascript)
+#    javascript.vm.synced_folder ".","/vagrant"
+
+    projects = Array['imgploadr', 'jstraining/web', 'jstraining/backend','mysqldemo', 'webComponent']
+    projects.each do |project|
+      javascript.vm.synced_folder "../../javascript/#{project}", "/var/www/#{project}",
+                                  owner: "vagrant",
+                                  group: "www-data",
+                                  mount_options: ["dmode=775,fmode=664"]
+    end
+#    javascript.vm.synced_folder "../../javascript", "/var/www"
+    javascript.vm.provision "shell", path: "scripts/agent_provision.sh"
+    javascript.vm.provision "shell", path: "scripts/add_repositories.sh"
+    javascript.vm.provision "puppet" do |p|
+      p.manifests_path = "manifests"
+      p.manifest_file = "agent_provision.pp"
+    end
+  end
+
+# PHP udvikling med Nginx som server
+  config.vm.define "nginxdev" do |nginxdev|
+    nginxdev.vm.box = "brundtoe/bionic64"
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.customize ["modifyvm", :id, "--vram", "16"]
+    end
+    nginxdev.vm.network :private_network, ip: "10.0.0.14"
+    #nginxdev.vm.network "forwarded_port", guest: 3306, host:3314
+    nginxdev.vm.hostname = "nginxdev.example.com"
+    nginxdev.hostmanager.aliases = %w(nginxdev)
+    projects = Array['doctrine26', 'websites', 'symfony4']
+
+    projects.each do |project|
+      nginxdev.vm.synced_folder "../../php/#{project}", "/var/www/#{project}",
+                                owner: "vagrant",
+                                group: "www-data",
+                                mount_options: ["dmode=775,fmode=664"]
+    end
+
+    nginxdev.vm.provision "shell", path: "scripts/agent_provision.sh"
+    nginxdev.vm.provision "puppet" do |p|
+      p.manifests_path = "manifests"
+      p.manifest_file = "agent_provision.pp"
+    end
+  end
+
+# Vejledninger kompileres med Sphinx
+  config.vm.define "sphinxdoc" do |sphinxdoc|
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 2048
+      v.customize ["modifyvm", :id, "--vram", "16"]
+    end
+    sphinxdoc.vm.box = "brundtoe/bionic64"
+    sphinxdoc.vm.network "private_network", ip: "10.0.0.13"
+    sphinxdoc.vm.hostname = "sphinxdoc.example.com"
+    sphinxdoc.hostmanager.aliases = %w(sphinxdoc)
+    sphinxdoc.vm.synced_folder ".", "/vagrant"
+    sphinxdoc.vm.synced_folder "/home/wdmycloud/dokumenter/SphinxDoc", "/var/www/vejledninger"
+    sphinxdoc.vm.synced_folder "../../vejledninger", "/vejledninger"
+    #sphinxdoc.vm.provision "shell", path: "scripts/install_script.sh"
+    sphinxdoc.vm.provision "shell", path: "scripts/agent_provision.sh"
+    sphinxdoc.vm.provision "puppet" do |p|
+      p.manifests_path = "manifests"
+      p.manifest_file = "agent_provision.pp"
+    end
+  end
+end
