@@ -130,44 +130,8 @@ Da php installeres af et bash script er konfig omlagt til at anvende GNU/Linux k
 
 MariaDB
 =======
-MariaDB blev skabt som en fork af mysql, da Oracle opkøbte Sun Microsystems. MariaDB fungerer i hovedsagen som mysql.
 
-Inden mariadb service startes udføres::
-
-    sudo mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-
-MariaDB skal startes med::
-
-    sudo systemctl start mariadb
-
-Hvis MariaDB skal starte når systemet booter::
-
-    sudo systemctl enable mariadb
-
-Anbefalet sikkerhed::
-
-    sudo mysql_secure_installation
-
-.. note:: MariaDB prompter ikke for valideringsniveau for passwords, dvs. plugin validate_password findes ikke på MariaBD
-
-.. caution:: Husk at opdatere passwords for jackie og athlon38
-
-   Ændringen restores med **git restore** så den ikke kommer med i repositoriet.
-
-**Initiering og oprettelse af usere og databaser**::
-
-    $ sudo mysql -u root -p < /home/jackie/dumps/mysqlbackup/create_users.sql;
-
-Opretter brugerne jackie og athlon38 samt databaserne bookstore og mystore
-
-Dataload kan foretages med::
-
-   cd python-ubuntu/common
-   ./mysql_data.py
-
-Filen config/config.ini skal have parameteren [Common][distribution]=manjaro
-
-.. seealso:: Se vejledning om installation af :ref:`phpmyadmin`
+.. seealso:: Se Vejledning databaser/mariadb for konfiguration inden serveren startes
 
 PHP-FPM
 =======
