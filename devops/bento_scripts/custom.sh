@@ -1,16 +1,20 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash -eux
 
-set -eux
+if [ $(whoami) != "root" ]; then
+        echo "Script must be run as user: root"
+        exit -1
+fi
+
 export DEBIAN_FRONTEND=noninteractive
 
 #mine tilføjelser til bento/ubuntu boxes
 
-sudo apt-get update
-sudo apt-get upgrade -y
+apt-get update
+apt-get upgrade -y
 # dpkg skal være installeret, da den anvendes senere i scriptet
-sudo apt-get -y install dpkg
+apt-get -y install dpkg
 
-sudo apt-get install -y \
+apt-get install -y \
   lsb-release \
   dkms \
   build-essential \
@@ -22,6 +26,7 @@ sudo apt-get install -y \
   curl \
   wget \
   git \
+  expect \
   cifs-utils \
   python3-pip \
   python3-setuptools \

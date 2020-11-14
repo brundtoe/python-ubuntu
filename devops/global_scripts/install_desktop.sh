@@ -1,39 +1,23 @@
-#!/usr/bin/env bash
-#basic installationsscript anvendes pt kun på Ubuntu Desktop
+#!/usr/bin/env bash -eux
 
-sudo apt-get update
-sudo apt-get upgrade -y
-# dpkg skal installeres, da den anvendes senre i scriptet
-sudo apt-get -y install dpkg
+#Installation af programmer med GUI Ubuntu Desktop
 
-# Installer pakkerne, hvis de ikke allerede er installeret
-PACKAGES="linux-headers-$(uname -r) build-essential dkms
-vim curl wget git cifs-utils
-expect
-gparted synaptic
-samba system-config-samba gnome-system-tools
-php7.2-cli og php7.2-cgi
-php7.2-fpm nginx
-php7.2-cgi php7.2-sqlite php7.2-xsl php7.2-intl
-php7.2-common php-7.2-mysql php7.2-zip php7.2-mbstring
-php7.2-curl php7.2-json php-xml php-xdebug
-python2.7 python-dev python2.7-dev 
-sqlite3 libsqlite3-dev
-unixodbc unixodbc-dev
-libssl-dev libmysqlclient-dev
-patch ruby-dev
-zlib1g-dev liblzma-dev libkrb5-dev libkrb5-dbg 
-"
+if [ $(whoami) != "root" ]; then
+        echo "Script must be run as user: root"
+        exit -1
+fi
 
-for package in $PACKAGES
-do
-   dpkg -s $package &> /dev/null
-   if [ $? -ne 0 ]; then
-      sudo apt-get -y install $package
-   else
-      printf "Package $package is installed!\n"
-   fi
-done
+export DEBIAN_FRONTEND=noninteractive
+
+apt-get update
+apt-get upgrade -y
+
+apt-get install -y \
+   gparted \
+   synaptic \
+   samba \
+   system-config-samba \
+   gnome-system-tools \
 
 #config
 sudo timedatectl set-timezone Europe/Copenhagen

@@ -1,22 +1,28 @@
-#! /usr/bin/env bash
+#! /usr/bin/env bash -eux
 
-set -eux
+if [ $(whoami) != "root" ]; then
+        echo "Script must be run as user: root"
+        exit -1
+fi
+
 export DEBIAN_FRONTEND=noninteractive
 
 # Nodejs version 14.x
 
-sudo curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 
-sudo apt-get update
+apt-get update
 
-sudo apt-get install -y nodejs
+apt-get install -y nodejs
 
 # Opdatering af npm
 
-sudo npm install npm -g
+npm install npm -g
 
 # Installation af node modulet, der oprettet express applikationer
 
 sudo npm install - g \
     express-generator \
-    json-server
+    json-server \
+    nodemon
+

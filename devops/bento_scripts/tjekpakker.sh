@@ -1,15 +1,18 @@
 #! /usr/bin/env bash
-PACKAGES="gcc make linux-generic
-linux-headers-$(uname -r) build-essential dkms
-vim curl wget git lynx
-cifs-utils samba
+PACKAGES="lsb-release
+dkms build-essential
+software-properties-common
+linux-headers-generic
+apt-transport-https
+vim curl wget git
+cifs-utils
+python3-pip
+python3-setuptools
+python-apt
+python3-virtualenv
 sqlite3 libsqlite3-dev
-python2.7 python-dev python2.7-dev
-unixodbc unixodbc-dev
-libssl-dev libmysqlclient-dev
-patch ruby-dev
-zlib1g-dev liblzma-dev libkrb5-dev libkrb5-dbg
 "
+
 for package in $PACKAGES
 do
    dpkg -s $package &> /dev/null
