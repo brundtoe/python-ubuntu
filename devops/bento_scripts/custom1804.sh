@@ -5,12 +5,6 @@
 
 # Puppetlabs repository
 apt-get -y install dpkg
-wget https://apt.puppetlabs.com/puppet6-release-bionic.deb -o /tmp/puppet6-release-bionic.deb
-dpkg -i puppet6-release-bionic.deb
-
-#Nodejs repository
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-
 # yarn repository
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 printf "deb https://dl.yarnpkg.com/debian/ stable main\n" | tee /etc/apt/sources.list.d/yarn.list
