@@ -7,7 +7,6 @@
 import sys, os
 from moduler.fileOperations import fetch_config
 from moduler.install_repo import install_repo
-from moduler.puppet_repo_install import puppet_repo
 from moduler.nodejs_repo_install import nodejs_repo
 
 configs = ''
@@ -64,17 +63,6 @@ except Exception as err:
     sys.exit(f'{program} repository er ikke installeret')
 else:
     print(f'{program} repository er installeret')
-
-
-try:
-    url = configs['puppetlabs.com']['repo']
-    puppet_repo(url)
-except Exception as err:
-    print('Puppet repository er ikke installeret',err)
-    sys.exit(1)
-else:
-    print('Puppet repository er installeret')
-
 
 try:
     url = configs['nodejs.org']['repo']

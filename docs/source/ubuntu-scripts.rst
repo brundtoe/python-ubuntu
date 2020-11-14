@@ -37,7 +37,6 @@ Scriptet opretter en række software repositories, som er en forudsætning for i
 * VirtualBox
 * Docker
 * Google Chrome
-* Puppet
 * Node.js
 
 Scriptet 04_install_extra.py

@@ -3,7 +3,6 @@
 #mine tilføjelser til bento/ubuntu boxes
 # af ekstra software repositories
 
-# Puppetlabs repository
 apt-get -y install dpkg
 # yarn repository
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -

@@ -50,7 +50,6 @@ gtk2
 #gimp
 #vlc
 #virtualbox
-#puppet
 #ansible
 #vagrant
 #packer
