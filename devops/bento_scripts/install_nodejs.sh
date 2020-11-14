@@ -24,5 +24,7 @@ npm install npm -g
 sudo npm install - g \
     express-generator \
     json-server \
-    nodemon
+    nodemon \
+    pm2
+
 
