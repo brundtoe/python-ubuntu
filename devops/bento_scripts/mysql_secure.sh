@@ -6,13 +6,13 @@ expect "Would you like to setup VALIDATE PASSWORD plugin?"
 send "n\r"
 
 #expect "Enter current password for root (enter for none):"
-#send "aura-73-glf\r"
+#send "secret\r"
 
 expect "New password:"
-send "aura-73-glf\r"
+send "secret\r"
 
 expect "Re-enter new password:"
-send "aura-73-glf\r"
+send "secret\r"
 
 expect "Remove anonymous users?"
 send "y\r"
