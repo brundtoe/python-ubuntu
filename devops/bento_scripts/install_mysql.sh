@@ -1,4 +1,6 @@
-#!/usr/bin/env bash -eu
+#!/usr/bin/env bash 
+
+set -eu
 
 if [ $(whoami) != "root" ]; then
         echo "Script must be run as user: root"
@@ -20,14 +22,16 @@ mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO root@'0.0.0.0' I
 service mysql restart
 
 mysql --user="root" --password="secret" -e "CREATE USER 'homestead'@'0.0.0.0' IDENTIFIED BY 'secret';"
-mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'homestead'@'0.0.0.0' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
-mysql --user="root" --password="secret" -e "GRANT ALL ON *.* TO 'homestead'@'%' IDENTIFIED BY 'secret' WITH GRANT OPTION;"
+mysql --user="root" --password="secret" -e "CREATE USER 'homestead'@'%' IDENTIFIED BY 'secret';"
+mysql --user="root" --password="secret" -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'0.0.0.0' WITH GRANT OPTION;"
+mysql --user="root" --password="secret" -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' WITH GRANT OPTION;"
 mysql --user="root" --password="secret" -e "FLUSH PRIVILEGES;"
+
 mysql --user="root" --password="secret" -e "CREATE DATABASE homestead character set UTF8mb4 collate utf8mb4_bin;"
 mysql --user="root" --password="secret" -e "CREATE DATABASE bookstore character set UTF8mb4 collate utf8mb4_bin;"
 mysql --user="root" --password="secret" -e "CREATE DATABASE mystore character set UTF8mb4 collate utf8mb4_bin;"
 
-tee /home/root/.my.cnf <<EOL
+tee /root/.my.cnf <<EOL
 [mysqld]
 character-set-server=utf8mb4
 collation-server=utf8mb4_bin
