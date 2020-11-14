@@ -1,4 +1,6 @@
-#! /usr/bin/env bash -eux
+#! /usr/bin/env bash
+
+set -eu
 
 if [ $(whoami) != "root" ]; then
         echo "Script must be run as user: root"
@@ -22,3 +24,6 @@ apt-get update
 apt-get install -y mongodb-org
 
 cp -f mongod.conf /etc/mongod.conf
+
+systemctl enable mongod
+systemctl start mongod

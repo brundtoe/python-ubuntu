@@ -1,4 +1,6 @@
-#! /usr/bin/env bash -eux
+#! /usr/bin/env bash 
+
+set -eu
 
 if [ $(whoami) != "root" ]; then
         echo "Script must be run as user: root"
@@ -20,6 +22,7 @@ apt-get install -y \
   build-essential \
   software-properties-common \
   linux-headers-generic \
+  debconf-utils \
   apt-transport-https \
   gnupg \
   vim \

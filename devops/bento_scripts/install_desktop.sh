@@ -1,4 +1,6 @@
-#!/usr/bin/env bash -eux
+#!/usr/bin/env bash '
+
+set -eu
 
 #Installation af programmer med GUI Ubuntu Desktop
 

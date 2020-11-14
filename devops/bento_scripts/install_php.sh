@@ -1,4 +1,6 @@
-#!/usr/bin/env bash -eux
+#!/usr/bin/env bash 
+
+set -eu
 
 if [ $(whoami) != "root" ]; then
         echo "Script must be run as user: root"
@@ -21,7 +23,7 @@ apt-get install -y \
    php7.4-dev \
    php7.4-intl \
    php7.4-json \
-   php-7.4-mysql \
+   php7.4-mysql \
    php7.4-opcache \
    php7.4-phpdbg \
    php7.4-readline \
@@ -46,7 +48,7 @@ printf "\nPATH=\"$(sudo su - vagrant -c 'composer config -g home 2>/dev/null')/v
 sed -i "s/error_reporting = .*/error_reporting = E_ALL/" /etc/php/7.4/cli/php.ini
 sed -i "s/display_errors = .*/display_errors = On/" /etc/php/7.4/cli/php.ini
 sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.4/cli/php.ini
-sed -i "s/;date.timezone.*/date.timezone = Europe/Copenhagen" /etc/php/7.4/cli/php.ini
+sed -i "s/;date.timezone.*/date.timezone = Europe\/Copenhagen/" /etc/php/7.4/cli/php.ini
 
 # set php fpm settings in php.ini
 
@@ -56,7 +58,7 @@ sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php/7.4/fpm/php.ini
 sed -i "s/memory_limit = .*/memory_limit = 512M/" /etc/php/7.4/fpm/php.ini
 sed -i "s/upload_max_filesize = .*/upload_max_filesize = 100M/" /etc/php/7.4/fpm/php.ini
 sed -i "s/post_max_size = .*/post_max_size = 100M/" /etc/php/7.4/fpm/php.ini
-sed -i "s/;date.timezone.*/date.timezone = Europe/Copenhagen/" /etc/php/7.4/fpm/php.ini
+sed -i "s/;date.timezone.*/date.timezone = Europe\/Copenhagen/" /etc/php/7.4/fpm/php.ini
 
 # configure  xdebug options for php-fpm
 
@@ -76,7 +78,7 @@ apt-get install -y nginx
 sed -i "s/user www-data;/user vagrant;/" /etc/nginx/nginx.conf
 sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
 
-$fpm_pool=/etc/php/7.4/fpm/pool.d/www.conf
+fpm_pool=/etc/php/7.4/fpm/pool.d/www.conf
 
 sed -i "s/user = www-data/user = vagrant/" $fpm_pool
 sed -i "s/group = www-data/group = vagrant/" $fpm_pool
@@ -85,11 +87,11 @@ sed -i "s/listen\.owner.*/listen.owner = vagrant/" $fpm_pool
 sed -i "s/listen\.group.*/listen.group = vagrant/" $fpm_pool
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" $fpm_pool
 
-$platform=env\[PLATFORM\] = VAGRANT
-grep -qe $platform $fpm_pool || sed -i "$a env[PLATFORM] = VAGRANT" $fpm_pool
+platform='env\[PLATFORM\]G = VAGRANT'
+grep -qe $platform $fpm_pool || sed -i '$a env[PLATFORM] = VAGRANT' $fpm_pool
 
 service nginx restart
-servicce php7.4-fpm restart
+service php7.4-fpm restart
 
 # Add Vagrant User To WWW-Data
 usermod -a -G www-data vagrant

@@ -1,4 +1,6 @@
-#! /usr/bin/env bash -eux
+#! /usr/bin/env bash 
+
+set -eu
 
 if [ $(whoami) != "root" ]; then
         echo "Script must be run as user: root"
@@ -21,7 +23,7 @@ npm install npm -g
 
 # Installation af node modulet, der oprettet express applikationer
 
-sudo npm install - g \
+sudo npm install -g \
     express-generator \
     json-server \
     nodemon \
