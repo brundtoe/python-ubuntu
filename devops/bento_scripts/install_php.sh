@@ -76,12 +76,17 @@ apt-get install -y nginx
 sed -i "s/user www-data;/user vagrant;/" /etc/nginx/nginx.conf
 sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
 
-sed -i "s/user = www-data/user = vagrant/" /etc/php/7.4/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = vagrant/" /etc/php/7.4/fpm/pool.d/www.conf
+$fpm_pool=/etc/php/7.4/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = vagrant/" /etc/php/7.4/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = vagrant/" /etc/php/7.4/fpm/pool.d/www.conf
-sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.4/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = vagrant/" $fpm_pool
+sed -i "s/group = www-data/group = vagrant/" $fpm_pool
+
+sed -i "s/listen\.owner.*/listen.owner = vagrant/" $fpm_pool
+sed -i "s/listen\.group.*/listen.group = vagrant/" $fpm_pool
+sed -i "s/;listen\.mode.*/listen.mode = 0666/" $fpm_pool
+
+$platform=env\[PLATFORM\] = VAGRANT
+grep -qe $platform $fpm_pool || sed -i "$a env[PLATFORM] = VAGRANT" $fpm_pool
 
 service nginx restart
 servicce php7.4-fpm restart
