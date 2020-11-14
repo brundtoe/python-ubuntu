@@ -7,19 +7,18 @@ if [ $(whoami) != "root" ]; then
         exit -1
 fi
 
-
 sudo timedatectl set-timezone Europe/Copenhagen
 
 # tilføj wdmycloud til /etc/fstab
 wdmycloud=/home/wdmycloud
 if ! [ -d $wdmycloud ] 
 then
-   mkdir $wdmycloud && sudo chown jackie:jackie $wdmycloud
+   mkdir $wdmycloud && sudo chown vagrant:vagrant $wdmycloud
 fi
 #Opdater /etc/fstab hvis wdmycloud ikke findes
 wdmycloud=\/\/192.168.0.17\/dokumenter
 filetable=/etc/fstab
-line='//192.168.0.17/dokumenter /home/wdmycloud cifs credentials=/home/jackie/.smbcredentials,uid=1000,iocharset=utf8,sec=ntlmssp 0 0'
+line='//192.168.0.17/dokumenter /home/wdmycloud cifs credentials=/home/vagrant/.smbcredentials,uid=1000,iocharset=utf8,sec=ntlmssp 0 0'
 if ! grep -qe $wdmycloud $filetable
 then
    printf "linjen findes IKKE og fstab opdateres\n"
@@ -29,19 +28,20 @@ else
    printf "har fundet //192.168.0.17/dokumenter og fstab opdateres ikke\n"
 fi
 #Tilføj .smbcredentials hvis den ikke findes
-smbcredentials=/home/jackie/.smbcredentials
+smbcredentials=/home/vagrant/.smbcredentials
 if ! [ -e $smbcredentials ]
 then
-   printf "Opretter /home/jackie/.smbcredentials\n"
+   touch /home/vagrant/.smbcredentials
+   printf "Opretter /home/vagrant/.smbcredentials\n"
    printf 'user=jackie\npassword=oClDpHh9Hq8K' | tee $smbcredentials
-   sudo chown jackie:jackie $smbcredentials && sudo chmod 660 $smbcredentials
+   sudo chown vagrant:vagrant $smbcredentials && sudo chmod 660 $smbcredentials
 fi
 
-bindir=/home/jackie/bin
+bindir=/home/vagrant/bin
 if ! [ -d $bindir ]
 then
-   printf "Opretter /home/jackie/bin"
-   mkdir $bindir && sudo chown jackie:jackie $bindir
+   printf "Opretter /home/vagrant/bin"
+   mkdir $bindir && sudo chown vagrant:vagrant $bindir
 fi
 
 
