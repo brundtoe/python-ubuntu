@@ -1,36 +1,53 @@
 # globale scripts
 
-Opdateret august 2018
+Opdateret november 2020
 
-Mappen indeholder en række globale scripts som anvendes til installation af php, nginx, nodejs og mongodb på en Ubuntu Desktop.
+Mappen indeholder en række globale scripts som anvendes til installation af php, nginx, nodejs og mongodb i en Vagrant instans.
+
+scripts er baseret på user **Vagrant**
+
+## global_settings.sh
+Omfatter opdatering af:
+
+- tidszone
+- /etc/fstab
+
+## install_basis.sh
+Installation af de grundlæggende pakker på en udviklingsmaskine. Alle pakkerne er uden GUI.
 
 ## install_desktop.sh
-Installation af 
+Installation af udvalgte desktop programmer med GUI. 
 
-* De grundlæggende pakker
-* PHP og nginx
-* Tilslutning af wdmycloud
+## install_nodejs.sh
+Omfatter:
 
-## install_nodejs_mongodb.sh 
-Installation af 
+- registrering af node.js repository til aktuel lts version 
+- installation af Node.js
+- installation af globale npm moduler (nodemon, json-server og pm2)
 
-* Nodejs
-* globale npm module
-* yarn package manager
-* mongodb
-* konfigurationsfil til mongod som i forhold til standardudgaven tilføjer at databaserne skal placeres i hver sin mappe.
+## install_mongodb.sh & mongod.conf
+Omfatter
 
-## mongod.conf
-den tilrettede udgave af mongod.conf.
+- registrering af mongodb repository til seneste Ubuntu LTS 
+- installation af mongodb 
+- kopiering af mongodb konfig filen mongod.conf, som opretter en mappe pr. database
 
-## anvendelse på Ubuntu server
+## install_php.sh
+Installer og konfigurerer 
 
-Ved anvendelse på Ubuntu server skal programmer med GUI fjernes
+- php herunder php-fpm
+- nginx
 
-* synaptic
-* gparted
-* system-config-samba
-* gnome-system-tools
+##install_mysql.sh
+Omfatter
+
+- installation af mysql og opdatering af pwd for user roor
+- oprettelse af brugeren homestead
+- oprettelse af databaserne homestead, bookstore og mystore
+
+scriptet anvender debconf-util til at opdatere debconf databasen, som anvendes til at levere input til progrma installation.
 
 ## mysql_secure.sh
-interaktivt script som konfigurerer mysql password for root. 
+Et ikke anvendt interaktivt script som konfigurerer mysql password for root. 
+
+scriptet demonstrerer anvendelsen af **expect** i interaktive scripts
