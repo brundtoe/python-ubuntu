@@ -35,7 +35,7 @@ def install_nginx(configs):
         print(err)
         sys.exit('Kan ikke disable Nginx')
 
- try:
+    try:
         print('Nginx standses')
         subprocess.run(['systemctl', 'stop', 'nginx'])
     except Exception as err:
