@@ -16,6 +16,7 @@ Python Vejledninger
    prepare-scripts
    ekstra-diske
    docker
+   mongodb
    phpmyadmin
    ubuntu-scripts
    subprocess

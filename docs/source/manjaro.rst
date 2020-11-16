@@ -232,29 +232,8 @@ NoSQLBooster
 
 MongoDB
 =======
-MongoDB skal installeres fra AUR. Der er to muligheder:
 
-- mongodb-bin og mongodb-tools-bin
-- mongodb og mongodb-tools (skal kompileres og det tager meeget lang tid)
-
-.. note:: Alternativt anvendes MongoDB kun i docker container
-
-mongodb-bin og mongodb-tools-bin
---------------------------------
-Det letteste er at gøre det fra Pamac Manager (GUI) til installation, opdatering og fjernelse af software.
-
-alternativt installeres fra terminalvindue::
-
-    pamac install mongodb-bin
-    pamac install mongodb-tools-bin
-
-Der promptes for en række spørgsmål og det vælges at redigere build source (PKGBUILD filen) for at kontrollere hvorfra der downloades m.v.
-
-De to filer indeholder Debian sw pakke som blot pakkes ud og kopieres.
-
-Daemon startes med::
-
-    sudo systemctl start mongodb
+.. seealso:: Se vejledning :ref:`mongodb`
 
 Docker
 ======
