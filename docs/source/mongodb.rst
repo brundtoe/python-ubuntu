@@ -41,7 +41,7 @@ Der er ikke noget program som kan downloade og build AUR packages på archlinux.
 
 Til brug for build af package installeres pakken base-devl::
 
-    sudo pacman -Syu base-devel git
+    sudo pacman -Syu --needed base-devel git
 
 Hent repository https://aur.archlinux.org::
 
