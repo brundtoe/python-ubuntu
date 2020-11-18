@@ -45,7 +45,7 @@ def install_prepare():
 
     # Tilføj max watches for filer
     try:
-        filename = '/etc/sysctl.d/50-max_user_watches.conf'
+        filename = '/etc/sysctl.d/40-max_user_watches.conf'
         max_watches = 'fs.inotify.max_user_watches = 524288\n'
         addLine(filename, max_watches)
     except Exception as err:
