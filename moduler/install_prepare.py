@@ -54,7 +54,7 @@ def install_prepare():
     else:
         print(f'{filename} er opdateret med {max_watches}')
 
-    # Opret mappen home/bin og kopier images
+    # Opret mappen home/bin samt /home/.local/binog kopier images
     try:
         user = configs['Common']['user']
         homebin(user)

@@ -4,7 +4,8 @@ import os, shutil
 
 def homebin(user):
     """
-    Opret mapperne /home/{user}/bin og /home/{user}/programs
+    Opret mapperne /home/{user}/bin /home/{user}/programs
+    /home/{user}/.local/bin
     :param user:
     :return:
     """
@@ -19,7 +20,11 @@ def homebin(user):
         os.mkdir(programsdir, 0o755)
         shutil.chown(programsdir, user, user)
 
-       
+    local_bindir = f'{home}/.local/bin'
+    if not os.path.exists(local_bindir):
+        os.mkdir(local_bindir, 0o755)
+        shutil.chown(local_bindir, user, user)
+
     dstdir = f'/home/{user}/bin/images'
     srcdir = '../images'
     if not os.path.exists(dstdir):
