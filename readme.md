@@ -30,6 +30,9 @@ mappen:
 
 ## Installationen
 
+Forudsætning
+    Vejledningen om aktivering af det virtuelle environment samt registrering af modulerne skal udføres, ellers fejler installationen  
+
 Detaljer fremgår af dokumentationen i mappen docs
 
 - source/installation.rst for Kubuntu
