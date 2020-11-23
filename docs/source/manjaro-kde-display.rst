@@ -27,9 +27,9 @@ Genstart af vmtools service
 ===========================
 VMWare tools skal køre og den skal være enabled, så den startes under systemstart.
 
-Tjek status for vmtoolsd
+Genstart vmtools::
 
-   systemctl status vmtoolsd
+   sudo systemctl restart vmtoolsd
 
 Opdatering af vmtoolsd.service
 ==============================
