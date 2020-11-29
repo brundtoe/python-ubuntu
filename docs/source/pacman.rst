@@ -18,6 +18,12 @@ Et programs dependencies findes i appen, der anvendes til program administration
 
 .. important:: Systemet skal opdateres før enhver installation af sw packages!
 
+**Opdater package databasen**
+
+   pacman -Syyu
+
+Er anvendt på Hp Pavilion, da /etc/pacman.d/mirrorlist indeholdt et ikke fungerende mirror øverst i listen.
+
 **Opdater packages fra AUR**::
 
    pamac upgrade -a
