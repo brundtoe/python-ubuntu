@@ -18,11 +18,22 @@ Et programs dependencies findes i appen, der anvendes til program administration
 
 .. important:: Systemet skal opdateres før enhver installation af sw packages!
 
-**Opdater package databasen**
+**Opdater Manjaro mirror-list**
+   Ved første installation  med et nyt image kontrolleres **/etc/pacman.d/mirrorlist** for om de anførte mirrors øverst på listen er fra europa. På Hp Pavilion er det oplevet at det første mirror ikke ekissterede og dermed tog det uendeligt lang tid at opdatere.
 
-   pacman -Syyu
+   Listen kan optimres med::
 
-Er anvendt på Hp Pavilion, da /etc/pacman.d/mirrorlist indeholdt et ikke fungerende mirror øverst i listen.
+      sudo pacman-mirrors --country Germany,France,Denmark,Sweden,Belgium,United_Kingdom
+
+   Afslut med opdatering af package listen::
+
+      sudo pacman -Syyu
+
+   https://wiki.manjaro.org/index.php/Pacman-mirrors
+
+   Archlinux:
+      - miror status: https://www.archlinux.org/mirrors/status/
+      - generate mirrorlist https://www.archlinux.org/mirrorlist/
 
 **Opdater packages fra AUR**::
 
