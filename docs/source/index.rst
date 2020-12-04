@@ -25,8 +25,6 @@ Python Vejledninger
    manjaro-vbguest
    manjaro-vbhost
    pacman
-   systemd
-   proces-control
 
 Indices and tables
 ==================
