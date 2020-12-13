@@ -108,6 +108,32 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
    Kontroller i terminalvindue med **groups**
 
+Restore data fra backup
+=======================
+
+Data er placeret på de ekstra diske er der kun behov for at retablere data fra **/home/jackie** omfattende mapperne:
+
+- Documents
+- dumps
+- Pictures
+- .thunderbird
+
+Thunderbird Konfiguration
+   * Start med **thunderbird -ProfileManager**
+   * Vælg at der altid skal startes med default profilen
+   * Start Thunderbird og fjern add on **lightning**
+   * installer **sudo apt install -y xul-ext-lightning**
+
+   Sidste bullit er en forudsætning for kalender og tasks på Ubuntu
+
+.. note:: Manuel Installation og konfiguration
+
+KeePass2
+   * Start KeePass2 og connect til database og keyfilen.
+
+
+
+
 NoSQLBooster
 ============
 NoSQLBooster installeres i **$HOME/Applications**. Første gang programmet startes promptes for integration med systemmenuen.
@@ -278,6 +304,30 @@ Docroot er **/var/www/html** derfor vises Apaches startside, når Apache også e
 - php7.4-fpm default konfig anvendes
 - serverens autostart disables
 - serveren standses
+
+openjdk-x-jdk
+=============
+Java JDK (SE) installere som udgangspunkt ikke, da bl.a. JetBrains produkterne leveres med en indbygget java jre.
+
+.. note:: Vælg den version af jre og jdk som svarer til den version, der anvendes af JetBrains tools (december 2019 jre 11)
+
+   Hvis xml værktøjerne saxonhe, basex eller existdb skal anvendes så vælg den version som de pågældende versioner anbefaler. Saxon er pt (december 2019) den eneste som anbefaler jre 8. Øvrige kræver blot jre 8 eller nyere.
+
+Bionic beaver repository indeholder version 8 og 11.
+
+- apt install - y openjdk-11-jdk (ved JavaScript og java udvikling)
+- apt install - y openjdk-11-jre (kan undværes ved java udvikling)
+
+Ved installation undersøg da hvilken version der bør installeres.
+
+Den skal fungere sammen med:
+
+* IntelliJ IDEA
+* Den valgte java applikationsserver (glasfish, Wildfly Tomcat, TomEE)
+
+* Bionic beaver indeholder
+   * Glassfish-javaee -> Java EE5
+   * Tomcat 8 og 9 (kun Servlet og jsp)
 
 
 
