@@ -25,8 +25,8 @@ def install_prepare():
 
     # Indlæsning af konfigurationsfilen
     configs = ''
+    filename = '../config/config.ini'
     try:
-        filename = '../config/config.ini'
         configs = fetch_config(filename)
     except Exception as err:
         sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
@@ -34,8 +34,8 @@ def install_prepare():
         print(f'Konfigurationsfilen {filename} er indlæst')
 
     # timezone opdateres
+    timezone = configs['Common']['timezone']
     try:
-        timezone = configs['Common']['timezone']
         cmd = shlex.split(f'timedatectl set-timezone {timezone}')
         res = run(cmd)
     except Exception as err:
@@ -55,8 +55,8 @@ def install_prepare():
         print(f'{filename} er opdateret med {max_watches}')
 
     # Opret mappen home/bin samt /home/.local/binog kopier images
+    user = configs['Common']['user']
     try:
-        user = configs['Common']['user']
         homebin(user)
     except Exception as err:
         print(err)
@@ -82,7 +82,16 @@ def install_prepare():
     else:
         print('/etc/environment opdateret med PLATFORM=VAGRANT')
 
-
+    # set command prompt PS1
+    try:
+        user = configs['Common']['user']
+        ps1 = r'PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ "'
+        addLine(f'/home/{user}/.bashrc', ps1)
+    except Exception as err:
+        print(err)
+        sys.exit(f'Der opstod fejl ved opdatering af bashrc med PS1')
+    else:
+        print(f'bashr for {user} er  opdateret med command prompt')
 
     # Installation af cifs-utils
 
@@ -105,6 +114,6 @@ def install_prepare():
         update_extradiske(configs,'/etc/fstab')
     except Exception as err:
         sys.exit('Der opstod fejl ved mount af ekstra diske')
-    else: 
+    else:
         print('Ekstra diske er mounted')
     
