@@ -7,7 +7,6 @@
 import sys, os
 from moduler.fileOperations import fetch_config
 from moduler.install_repo import install_repo
-from moduler.nodejs_repo_install import nodejs_repo
 
 configs = ''
 
@@ -63,15 +62,6 @@ except Exception as err:
     sys.exit(f'{program} repository er ikke installeret')
 else:
     print(f'{program} repository er installeret')
-
-try:
-    url = configs['nodejs.org']['repo']
-    nodejs_repo(url)
-except Exception as err:
-    print('Node.js repository er ikke installeret',err)
-    sys.exit(1)
-else:
-    print('Node.js repository er installeret')
 
 print('*' * 50)
 print('Registrering af repositories er afsluttet')
