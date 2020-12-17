@@ -64,6 +64,14 @@ def install_prepare():
     else:
         print(f'/home/{user}/bin er opdateret')
 
+    # set PLATFORM=VAGRANT
+    try:
+        addLine('/etc/environment', 'PLATFORM=VAGRANT')
+    except Exception as err:
+        print(err)
+        sys.exit(f'Der opstod fejl ved opdatering af environment med PLATFORM')
+    else:
+        print('/etc/environment opdateret med PLATFORM=VAGRANT')
     # Installation af cifs-utils
 
     try:

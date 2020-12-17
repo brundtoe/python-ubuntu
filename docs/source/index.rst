@@ -11,9 +11,9 @@ Python Vejledninger
    :caption: Contents:
 
    forberedelser
+   prepare-scripts
    installation
    manjaro
-   prepare-scripts
    ekstra-diske
    docker
    mongodb

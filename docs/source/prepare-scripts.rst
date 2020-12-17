@@ -105,7 +105,7 @@ Installation på **Manjaro**::
 
     sudo pacman -S --noconfirm python-pip python-setuptools
 
-Python indeholder venv og virtualenv
+Python indeholder venv
 
 Klargøring Af det virtuelle environment
 =======================================
