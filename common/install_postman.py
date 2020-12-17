@@ -5,6 +5,7 @@
 from moduler.fileOperations import fetch_config, fetch_archive
 from moduler.desktopfile import create_desktop_file
 
+
 def install_postman(configs):
     """
     Installation af Postman til test af REST API
@@ -16,10 +17,11 @@ def install_postman(configs):
     user = configs['Common']['user']
     program = 'Postman'
     version = configs['Common']['postman']
-    fetch_archive(url,user,program,version)
+    fetch_archive(url, user, program, version)
 
     tmpl = f'{program}.jinja'
     create_desktop_file(program, tmpl, user)
+
 
 if __name__ == '__main__':
     configs = fetch_config('../config/config.ini')

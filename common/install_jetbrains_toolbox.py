@@ -3,6 +3,7 @@
 # installation af jetBrains ToolBox
 
 from moduler.fileOperations import fetch_config, fetch_archive
+from moduler.desktopfile import create_desktop_file
 
 
 def install_jetbrains_toolbox(configs):
@@ -12,10 +13,14 @@ def install_jetbrains_toolbox(configs):
     :return: void
     """
     url = configs['jetbrains.toolbox']['url']
-    version = configs['Common']['jetbrains-toolbox']
     user = configs['Common']['user']
     program = 'JetBrains Toolbox'
-    fetch_archive(url,user,program,version)
+    version = configs['Common']['jetbrains-toolbox']
+    fetch_archive(url, user, program, version)
+
+    program = 'JetBrains'
+    tmpl = f'{program}.jinja'
+    create_desktop_file(program, tmpl, user)
 
 
 if __name__ == '__main__':
