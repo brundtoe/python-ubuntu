@@ -72,6 +72,18 @@ def install_prepare():
         sys.exit(f'Der opstod fejl ved opdatering af environment med PLATFORM')
     else:
         print('/etc/environment opdateret med PLATFORM=VAGRANT')
+
+    # set default editor
+    try:
+        addLine('/etc/profile.d/editor.sh', "export EDITOR='vim'")
+    except Exception as err:
+        print(err)
+        sys.exit(f'Der opstod fejl ved opdatering af environment med PLATFORM')
+    else:
+        print('/etc/environment opdateret med PLATFORM=VAGRANT')
+
+
+
     # Installation af cifs-utils
 
     try:
