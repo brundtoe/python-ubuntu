@@ -9,7 +9,7 @@ import sys, os, shlex
 from subprocess import run
 
 from moduler.install_prepare import install_prepare
-
+from moduler.fileOperations import addLine
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
 
@@ -34,3 +34,11 @@ except Exception as err:
     sys.exit('Den indledende konfiguration er fejlet')
 else:
     print('Den indledende konfiguration er gennemført')
+
+    user = 'jackie'
+try:
+    addLine(f'/home/{user}/.bashrc', 'source .bash_aliases')
+except Exception as err:
+    print('Kan ikke tilføje .bash_aliases til .bashrc')
+else:
+    print('Tilføjede .bash_aliases til .bashrc')

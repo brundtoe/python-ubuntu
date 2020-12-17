@@ -31,6 +31,12 @@ def homebin(user):
         shutil.copytree(srcdir, dstdir)
         shutil.chown(dstdir, user, user)
 
+    dst_alias = f'/home/{user}/.bash_aliases'
+    src_alias = '../config/.bash_aliases'
+    if not os.path.exists(dst_alias):
+        shutil.copy(src_alias, dst_alias)
+        shutil.chown(dst_alias, user, user)
+
     dstvimrc = f'/home/{user}/.vimrc'
     srcvimrc = '../config/.vimrc'
     if not os.path.exists(dstvimrc):
