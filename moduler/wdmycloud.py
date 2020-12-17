@@ -4,10 +4,13 @@ Oprettelse af mount points, credentials og fstab for wdmycloud
 """
 
 import sys, os, shlex, shutil
+from string import Template
 import subprocess
+
 
 from moduler.fileOperations import fetch_config, isFound, addLine
 from moduler.add_mountpoints import add_mountpoints
+
 
 # Opdater smbcredentials med password til wdmycloud
 def update_credentials(configs):
@@ -26,6 +29,7 @@ def update_credentials(configs):
     else:
         print('~/.smbcredentials er opdateret med mountpoint')
 
+
 def update_wdmycloud(configs, filename):
     try:
         mount_points = configs['mount.points']
@@ -36,7 +40,8 @@ def update_wdmycloud(configs, filename):
 
         with open(filename_wdmycloud) as src_file:
             for line in src_file:
-                addLine(filename, line)
+                tm = Template(line)
+                addLine(filename, tm.substitute(user=user))
     except Exception as err:
         sys.exit('Der opstod fejl ved opdatering af wdmycloud')
 

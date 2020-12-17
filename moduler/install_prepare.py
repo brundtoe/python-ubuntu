@@ -21,8 +21,8 @@ from moduler.wdmycloud import update_wdmycloud
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
 
-def install_prepare():
 
+def install_prepare():
     # Indlæsning af konfigurationsfilen
     configs = ''
     filename = '../config/config.ini'
@@ -97,13 +97,13 @@ def install_prepare():
 
     try:
         options = configs['Common']['install_options']
-        install_program('cifs-utils',options)
+        install_program('cifs-utils', options)
     except Exception as err:
         sys.exit('Kan ikke installere cifs-utils')
 
     # Mount wdmycloud
     try:
-        update_wdmycloud(configs,'/etc/fstab')
+        update_wdmycloud(configs, '/etc/fstab')
     except Exception as err:
         sys.exit(f'Der opstod fejl ved mount af wdmycloud')
     else:
@@ -111,9 +111,8 @@ def install_prepare():
 
     # mount extra diske
     try:
-        update_extradiske(configs,'/etc/fstab')
+        update_extradiske(configs, '/etc/fstab')
     except Exception as err:
         sys.exit('Der opstod fejl ved mount af ekstra diske')
     else:
         print('Ekstra diske er mounted')
-    
