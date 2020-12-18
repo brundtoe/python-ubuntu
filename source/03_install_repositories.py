@@ -22,15 +22,7 @@ else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
 
-try:
-    url = configs['docker.com']['repo_key']
-    program = 'docker'
-    content = configs['docker.com']['sources_string']
-    install_repo(url, program, content)
-except Exception as err:
-    sys.exit(f'{program} repository er ikke installeret')
-else:
-    print(f'{program} repository er installeret')
+
 
 try:
     configs = fetch_config('../config/config.ini')
