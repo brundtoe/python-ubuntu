@@ -7,7 +7,7 @@ import subprocess
 from moduler.fileOperations import fetch_config, download_file
 
 
-def vbox_ext_pack(url, vbox_version):
+def install_vbox_ext_pack(url, vbox_version):
     """
     Installation af VirtualBox Extension Pack
     :param url: path til extension pack
@@ -28,7 +28,7 @@ def vbox_ext_pack(url, vbox_version):
 
 def is_vbox_installed(vbox_version):
     """
-    Tjek at at den extension pakc der forsøges installere tsvarer til dne installerede verison af VirtualBox
+    Tjek at at den extension pack der forsøges installere svarer til den installerede verison af VirtualBox
     :param vbox_version: extension versionen
     :return:
     """
@@ -51,4 +51,4 @@ if __name__ == '__main__':
     configs = fetch_config('../config/config.ini')
     url = configs['virtualbox.org']['extention_pack']
     vbox_version = configs['Common']['vbox_ext_pack']
-    vbox_ext_pack(url, vbox_version)
+    install_vbox_ext_pack(url, vbox_version)
