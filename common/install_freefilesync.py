@@ -11,15 +11,15 @@ def install_freefilesync(configs):
     :param configs: configparser fra config/config.ini
     :return: void
     """
-    url = configs['freefilesync.org']['url']
+    # https://freefilesync.org/download.php
+    version = configs['Common']['freefilesync']
+    url = f"https://freefilesync.org/download/FreeFileSync_{version}_Linux.tar.gz"
     user = configs['Common']['user']
     program = 'FreeFileSync'
-    version = configs['Common']['freefilesync']
     fetch_archive(url, user, program, version)
 
     tmpl = f'{program}.jinja'
     create_desktop_file(program, tmpl, user)
-
 
 if __name__ == '__main__':
     configs = fetch_config('../config/config.ini')
