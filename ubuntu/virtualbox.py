@@ -13,6 +13,7 @@ from moduler.install_repo import install_repo
 from moduler.apt_update import apt_update
 from moduler.install_programs import install_program
 from moduler.download_file import fetch_file
+from moduler.groups import usermod
 
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
@@ -40,14 +41,15 @@ else:
 
 options = configs['Common']['install_options']
 vbox_version = configs['Common']['vbox_version']
+user = configs['Common']['user']
 try:
     apt_update()
     install_program(f'virtualbox-{vbox_version}', options)
+    usermod(user, 'vboxuser')
     print('Installation af Virtualbox er afsluttet')
 except Exception as err:
     print('Kunne ikke opdatere systemet med Virtualbox')
 
-user = configs['Common']['user']
 vbox_ext_pack = configs['Common']['vbox_ext_pack']
 ext_pack_filename = f"Oracle_VM_VirtualBox_Extension_Pack-{vbox_ext_pack}.vbox-extpack"
 extention_pack = f"https://download.virtualbox.org/virtualbox/{vbox_ext_pack}/{ext_pack_filename}"
