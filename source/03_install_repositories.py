@@ -24,16 +24,6 @@ else:
 
 
 
-try:
-    configs = fetch_config('../config/config.ini')
-    url = configs['google.chrome']['repo_key']
-    program = 'google-chrome'
-    content = configs['google.chrome']['sources_string']
-    install_repo(url, program, content)
-except Exception as err:
-    sys.exit(f'{program} repository er ikke installeret')
-else:
-    print(f'{program} repository er installeret')
 
 print('*' * 50)
 print('Registrering af repositories er afsluttet')
