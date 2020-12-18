@@ -12,16 +12,17 @@ def install_smartgit(configs):
     :param configs: parametre fra config.ini
     :return: void
     """
-
-    url = configs['syntevo.com']['url_targz']
+    # https://www.syntevo.com/smartgit/download/
+    version = configs['Common']['smartgit']
+    #url_deb = f"https://www.syntevo.com/downloads/smartgit/smartgit-{version}.deb"
+    url = f"https://www.syntevo.com/downloads/smartgit/smartgit-linux-{version}.tar.gz"
     user = configs['Common']['user']
     program = 'SmartGit'
-    version = configs['Common']['smartgit']
     fetch_archive(url, user, program, version)
-
 
     tmpl = f'{program}.jinja'
     create_desktop_file(program, tmpl, user)
+
 
 if __name__ == '__main__':
     configs = fetch_config('../config/config.ini')
