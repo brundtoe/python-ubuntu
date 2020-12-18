@@ -1,7 +1,7 @@
 #!../venv/bin/python
 # -*- coding: utf-8 -*-
 #
-# Installation af Virtualbox
+# Installation af Docker
 #
 
 import os
