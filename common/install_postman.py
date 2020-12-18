@@ -13,10 +13,12 @@ def install_postman(configs):
     :return: void
     """
 
-    url = configs['postman.com']['url']
+    # https://www.postman.com/downloads/release-notes
+    version = configs['Common']['postman']
+    # url = "https://dl.pstmn.io/download/version/${Common:postman}/linux64"
+    url = "https://dl.pstmn.io/download/latest/linux64"
     user = configs['Common']['user']
     program = 'Postman'
-    version = configs['Common']['postman']
     fetch_archive(url, user, program, version)
 
     tmpl = f'{program}.jinja'
