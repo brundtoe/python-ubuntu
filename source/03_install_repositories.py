@@ -32,15 +32,6 @@ except Exception as err:
 else:
     print(f'{program} repository er installeret')
 
-try:
-    url = configs['virtualbox.org']['repo_key']
-    program = 'virtualbox'
-    content = configs['virtualbox.org']['sources_string']
-    install_repo(url, program, content)
-except Exception as err:
-    sys.exit(f'{program} repository er ikke installeret')
-else:
-    print(f'{program} repository er installeret')
 
 try:
     url = configs['docker.com']['repo_key']
