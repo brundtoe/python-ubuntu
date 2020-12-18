@@ -12,10 +12,13 @@ def install_jetbrains_toolbox(configs):
     :param configs: parametre fra configpaser config/config.ini
     :return: void
     """
-    url = configs['jetbrains.toolbox']['url']
+    # https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux
+
+    version = configs['Common']['jetbrains-toolbox']
+    url = f"https://download.jetbrains.com/toolbox/jetbrains-toolbox-{version}.tar.gz"
+    #sha256 = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-{version}.tar.gz.sha256"
     user = configs['Common']['user']
     program = 'JetBrains Toolbox'
-    version = configs['Common']['jetbrains-toolbox']
     fetch_archive(url, user, program, version)
 
     program = 'JetBrains'
