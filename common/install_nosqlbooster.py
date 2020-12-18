@@ -5,6 +5,7 @@ import requests
 from moduler.fileOperations import fetch_config
 from moduler.desktopfile import create_desktop_file
 
+
 def install_nosqlbooster(url, user, version):
     """
     Installation af NoSQLBooster
@@ -23,8 +24,8 @@ def install_nosqlbooster(url, user, version):
         with open(outfile, 'wb') as fd:
             for chunk in req.iter_content(chunk_size=8192):
                 fd.write(chunk)
-        shutil.chown(outfile,user,user)
-        os.chmod(outfile,0o775)
+        shutil.chown(outfile, user, user)
+        os.chmod(outfile, 0o775)
     except Exception as err:
         print(f'Download og installation af NoSQLBooster4MongoDB version {version} er fejlet')
         print(err)
@@ -34,15 +35,17 @@ def install_nosqlbooster(url, user, version):
         Oprettelse af desktop item er disabled, da første start af programmet
         medfører, at det integreres med system menuen
         """
-        #program = 'NoSQLBooster'
-        #tmpl = f'{program}.jinja'
-        #create_desktop_file(program, tmpl, user, version)
+        # program = 'NoSQLBooster'
+        # tmpl = f'{program}.jinja'
+        # create_desktop_file(program, tmpl, user, version)
         print(f'NoSQLBooster4MongoDB {version} er installeret')
+
 
 if __name__ == '__main__':
     configs = fetch_config('../config/config.ini')
-    url = configs['nosqlbooster.com']['url']
     version = configs['Common']['nosqlbooster']
+    nosql_major = configs['Common']['nosql-major']
+    url = f"https://nosqlbooster.com/s3/download/releasesv{nosql_major}/nosqlbooster4mongo-{version}.AppImage"
     user = configs['Common']['user']
-    print(url,user, version)
-    install_nosqlbooster(url,user,version)
+    print(url, user, version)
+    install_nosqlbooster(url, user, version)
