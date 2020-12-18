@@ -1,15 +1,17 @@
 #!../venv/bin/python
 # Installation og konfiguration af Apache
 
-import sys, os, shlex
+import sys
+import os
+import shlex
 import subprocess
 from moduler.fileOperations import fetch_config
 from moduler.install_programs import install_programs
 
 
 def install_apache(configs):
+    version = configs['Common']['php-version']
     try:
-        version = configs['Common']['php-version']
         programs = configs['apache.install']
         options = configs['Common']['install_options']
         install_programs(programs, options)
@@ -21,8 +23,6 @@ def install_apache(configs):
         print('Apache rewrite enables')
         subprocess.run(['a2enmod', 'rewrite'])
         subprocess.run(['systemctl', 'restart', 'apache2'])
-        cmd = shlex.split('sed -i -f ../config/apache2.conf /etc/apache2/apache2.conf')
-        subprocess.run(cmd)
     except Exception as err:
         print(err)
         sys.exit('Kan ikke enable Apache rewrite')
@@ -31,14 +31,13 @@ def install_apache(configs):
         print('Apache konfigureres apache2.conf')
         cmd = shlex.split('sed -i -f ../config/apache2.conf /etc/apache2/apache2.conf')
         subprocess.run(cmd)
-
     except Exception as err:
         print(err)
         sys.exit('Kan ikke opdatere /etc/apache2/apache2.conf')
 
+    dest = '/var/www/html/index.php'
     try:
         phpinfo = '<?php phpinfo();\n'
-        dest = '/var/www/html/index.php'
         with open(dest, 'w') as fout:
             fout.write(phpinfo)
     except Exception as err:
@@ -58,7 +57,6 @@ def install_apache(configs):
     except Exception as err:
         print(err)
         sys.exit('Kan ikke disable Apache')
-
 
 
 if __name__ == '__main__':

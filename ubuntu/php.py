@@ -1,7 +1,10 @@
 #!../venv/bin/python
 # Installation af Composer, konfiguration af XDebug
 
-import sys, os, shutil, shlex
+import sys
+import os
+import shutil
+import shlex
 import subprocess
 from moduler.fileOperations import fetch_config
 from moduler.sha256sum import hash_file
@@ -30,7 +33,7 @@ def install_php(configs):
     version = configs['Common']['php-version']
     xdebug_host = configs['Common']['xdebug-host']
     dstfile = f'/etc/php/{version}/mods-available/xdebug.ini'
-    create_xdebug_ini('xdebug.jinja', dstfile,xdebug_host)
+    create_xdebug_ini('xdebug.jinja', dstfile, xdebug_host)
 
     print('Konfiguration af php.ini')
     php_components = ['cli', 'cgi', 'fpm']
