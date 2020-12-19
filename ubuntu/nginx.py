@@ -6,6 +6,8 @@ import subprocess
 from moduler.fileOperations import fetch_config
 from moduler.install_programs import install_program, is_installed
 from jinja2 import Environment, FileSystemLoader
+from moduler.basis_web import copy_web
+
 
 def install_nginx(configs):
     try:
@@ -27,6 +29,13 @@ def install_nginx(configs):
     except Exception as err:
         print(err)
         sys.exit(f'Kan ikke opdatere definitionen af nginx default site')
+
+    dest = '/var/www/html'
+    try:
+        copy_web(configs, dest)
+    except Exception as err:
+        print(err)
+        sys.exit(f'kan ikke kopiere basis_web til {dest}')
 
     try:
         print('Nginx disables')
