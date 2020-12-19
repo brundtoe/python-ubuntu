@@ -24,12 +24,6 @@ def install_php(configs):
     options = configs['Common']['install_options']
     install_programs(programs, options)
 
-    print('Installation af Composer')
-    url = configs['composer']['repo']
-    sha256url = configs['composer']['sha256']
-    user = configs['Common']['user']
-    install_composer(url, sha256url, user)
-
     print('konfiguration af XDebug')
     version = configs['Common']['php-version']
     xdebug_host = configs['Common']['xdebug-host']
@@ -45,12 +39,20 @@ def install_php(configs):
     version = configs['Common']['php-version']
     config_php_fpm(version)
 
+    print('Installation af Composer')
+    url = configs['composer']['repo']
+    sha256url = configs['composer']['sha256']
+    user = configs['Common']['user']
+    install_composer(url, sha256url, user)
 
 def install_composer(url, sha256url, user):
+    print('funktionen install_composer er kaldt')
     composerfile = '../outfile/composer'
     try:
         fetch_file(url, composerfile)
+        print('composer filen er hentet')
     except Exception as err:
+        print('hovsa')
         print(err)
         exit(1)
     else:
@@ -71,13 +73,18 @@ def install_composer(url, sha256url, user):
         if not sha256sum == composer_hash:
             print('Composer.phar er ikke verificeret')
             exit(1)
-
-    ## kopier til /home/{user}/.local/bin
-    dest = f'/home/{user}/.local/bin/composer'
-    shutil.copy(composerfile, dest)
-    os.chmod(dest, 0o755)
-    shutil.chown(dest, user, user)
-
+    try:
+        ## kopier til /home/{user}/.local/bin
+        dest = f'/home/{user}/.local/bin/composer'
+        print(f'Kopierer composer til {dest} ')
+        shutil.copy(composerfile, dest)
+        os.chmod(dest, 0o755)
+        shutil.chown(dest, user, user)
+        os.remove(composerfile)
+        os.remove(sha256file)
+    except Exception as err:
+        print(err)
+        exit(1)
 
 def config_php_ini(php_components, version):
 
@@ -100,6 +107,8 @@ def config_php_fpm(version):
     platform = "env[PLATFORM] = VAGRANT"
     addLine(fpm_pool, platform)
     print(f'{fpm_pool} er opdateret')
+    cmd = shlex.split(f'systemctl restart php{version}-fpm')
+    print('genstartede php-fpm')
 
 if __name__ == '__main__':
     if os.geteuid() != 0:
