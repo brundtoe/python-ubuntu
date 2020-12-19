@@ -8,7 +8,7 @@ import shlex
 import subprocess
 from moduler.fileOperations import fetch_config, addLine
 from moduler.install_programs import install_programs
-
+from moduler.basis_web import copy_web
 
 def install_apache(configs):
     version = configs['Common']['php-version']
@@ -45,10 +45,10 @@ def install_apache(configs):
 
     dest = '/var/www/html'
     try:
-        shutil.copytree('../web', dest, dirs_exist_ok=True)
+        copy_web(configs, dest)
     except Exception as err:
         print(err)
-        sys.exit(f'kan ikke kopiere til {dest}')
+        sys.exit(f'kan ikke kopiere basis_web til {dest}')
 
     try:
         print('Apache standses')
