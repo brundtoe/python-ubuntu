@@ -3,9 +3,10 @@
 
 import sys
 import os
+import shutil
 import shlex
 import subprocess
-from moduler.fileOperations import fetch_config
+from moduler.fileOperations import fetch_config, addLine
 from moduler.install_programs import install_programs
 
 
@@ -35,14 +36,19 @@ def install_apache(configs):
         print(err)
         sys.exit('Kan ikke opdatere /etc/apache2/apache2.conf')
 
-    dest = '/var/www/html/index.php'
     try:
-        phpinfo = '<?php phpinfo();\n'
-        with open(dest, 'w') as fout:
-            fout.write(phpinfo)
+        print('Apache konfigureres med PLATFORM=VAGRANT')
+        addLine('/etc/apache2/envvars', 'export PLATFORM=VAGRANT')
     except Exception as err:
         print(err)
-        sys.exit(f'kan ikke oprette {dest}')
+        sys.exit('Kan ikke opdatere /etc/apache2/envvars')
+
+    dest = '/var/www/html'
+    try:
+        shutil.copytree('../web', dest, dirs_exist_ok=True)
+    except Exception as err:
+        print(err)
+        sys.exit(f'kan ikke kopiere til {dest}')
 
     try:
         print('Apache standses')
