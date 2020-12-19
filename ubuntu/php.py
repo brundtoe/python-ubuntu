@@ -6,11 +6,12 @@ import os
 import shutil
 import shlex
 import subprocess
-from moduler.fileOperations import fetch_config
+from moduler.fileOperations import fetch_config, addLine
 from moduler.sha256sum import hash_file
 from moduler.install_programs import install_programs
 from moduler.download_file import fetch_file
 from moduler.xdebug_ini import create_xdebug_ini
+
 
 def install_php(configs):
     """
@@ -40,6 +41,11 @@ def install_php(configs):
     version = configs['Common']['php-version']
     config_php_ini(php_components, version)
 
+    print('Konfiguration af php-fpm')
+    version = configs['Common']['php-version']
+    config_php_fpm(version)
+
+
 def install_composer(url, sha256url, user):
     composerfile = '../outfile/composer'
     try:
@@ -66,18 +72,19 @@ def install_composer(url, sha256url, user):
             print('Composer.phar er ikke verificeret')
             exit(1)
 
-    ## kopier til /home/{user}/bin
-    dest = f'/home/{user}/bin/composer'
+    ## kopier til /home/{user}/.local/bin
+    dest = f'/home/{user}/.local/bin/composer'
     shutil.copy(composerfile, dest)
     os.chmod(dest, 0o755)
     shutil.chown(dest, user, user)
 
+
 def config_php_ini(php_components, version):
 
+    conf = '../config/php_config.ini'
     for component in php_components:
         ini_file = f'/etc/php/{version}/{component}/php.ini'
         print(ini_file)
-        conf = '../config/php_config.ini'
         try:
             cmd = shlex.split(f'sed -i -f {conf} {ini_file}')
             res = subprocess.run(cmd)
@@ -86,6 +93,13 @@ def config_php_ini(php_components, version):
             sys.exit('Opdatering af php.ini fejlede')
         else:
             print(f'{ini_file} er opdateret')
+
+
+def config_php_fpm(version):
+    fpm_pool = f"/etc/php/{version}/fpm/pool.d/www.conf"
+    platform = "env[PLATFORM] = VAGRANT"
+    addLine(fpm_pool, platform)
+    print(f'{fpm_pool} er opdateret')
 
 if __name__ == '__main__':
     if os.geteuid() != 0:
