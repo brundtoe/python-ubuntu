@@ -13,6 +13,15 @@ from jinja2 import Environment, FileSystemLoader
 from moduler.apt_update import apt_update
 from moduler.install_programs import install_program
 
+
+def my_cnf_exists(configs):
+    my_cnf_file = f'/home/{configs["Common"]["user"]}/.my.cnf'
+    if os.path.exists(my_cnf_file):
+        return True
+    else:
+        return False
+
+
 def root_my_cnf(passwd):
     cnf = f"""[client]
 user = homestead
@@ -38,6 +47,27 @@ collation-server=utf8mb4_bin
         fout.write(cnf)
 
 
+def create_db_user(configs, path, mysql_passwd):
+    print('Opdaterer mysql users')
+    file_loader = FileSystemLoader('../templates')
+    env = Environment(loader=file_loader)
+    template = env.get_template('mysql_users.jinja')
+    output = template.render(mysql_passwd=mysql_passwd)
+    outfile = f'{path}/mysql_setup.sql'
+    with open(outfile, 'wt') as fout:
+        fout.write(output)
+    cmd = shlex.split(f'sudo mysql -uroot -p{mysql_passwd} mysql < {outfile}')
+    subprocess.run(cmd)
+
+def secure_installation():
+    try:
+        cmd = shlex.split(f'./mysql_secure.sh')
+        subprocess.run(cmd)
+    except Exception as err:
+        print(err)
+        sys.exit('Kan ikke udføre MySQL Secure installation')
+
+
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
 
@@ -49,62 +79,44 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {config_file} er indlæst')
 
-
 try:
-    print('Installation af mysql')
-    apt_update()
-    options = configs['Common']['install_options']
-    install_program('mysql-server', options )
-    install_program('libmysqlclient', options)
+    if not my_cnf_exists(configs):
+        print('Installation af mysql')
+        apt_update()
+        options = configs['Common']['install_options']
+        install_program('mysql-server', options )
+        install_program('libmysqlclient', options)
 except Exception as err:
     print(err)
     sys.exit('Kan ikke installere mysql')
 
 try:
-    print('MySQL Secure installation .........')
-    #full_path = '/home/projects/sourcecode/python-ubuntu/ubuntu'
-    cmd = shlex.split(f'./mysql_secure.sh')
-    subprocess.run(cmd)
-    print('MySQL Secure installation afsluttet')
+    if not my_cnf_exists(configs):
+        print('mysql secure installation')
+        secure_installation()
 except Exception as err:
     print(err)
-    sys.exit('Kan ikke udføre MySQL Secure installation')
+    print('Kan ikke udføre secure installation')
 
 filename_env = '../config/.env_develop'
 mysql_passwd = fetch_config(filename_env)['Common']['mysql_passwd']
-try:
-    print("Configure MySQL Password Lifetime")
-    mysqld_conf_file = '/etc/mysql/mysql.conf.d/mysqld.cnf'
-    addLine(mysqld_conf_file, 'default_password_lifetime = 0')
-    print('Remote login disabled')
-    bind_address = "sed -i '/^bind-address/s/bind-address.*=.*/bind-address = 0.0.0.0/'"
-    cmd = shlex.split(f'{bind_address} {mysqld_conf_file}')
-    subprocess.run(cmd)
-    print('Update mycnf')
-    root_my_cnf(mysql_passwd)
-    user = configs['Common']['user']
-    user_my_cnf(user)
-except Exception as err:
-    print(err)
-    sys.exit('Kan ikke konfigurere MySQL')
-
 path = os.path.dirname(__file__)
 try:
-    print('Opdaterer mysql users')
-    file_loader = FileSystemLoader('../templates')
-    env = Environment(loader=file_loader)
-    template = env.get_template('mysql_users.jinja')
-    output = template.render(mysql_passwd=mysql_passwd)
-    #print(output)
-    outfile = f'{path}/mysql_setup.sql'
-    with open(outfile, 'wt') as fout:
-        fout.write(output)
-    #cmd = shlex.split('sudo mysql -uroot mysql < mysql_setup.sql')
-    #subprocess.run(cmd)
-    #os.remove(outfile)
+    #    if not my_cnf_exists(configs):
+    print('Bruger- og databaseoprettelse')
+    create_db_user(configs, path, mysql_passwd)
 except Exception as err:
     print(err)
     sys.exit('Kan ikke opdatere mysql users')
 
+try:
+    if not my_cnf_exists(configs):
+        print('Opdatering af my.cnf')
+        root_my_cnf(mysql_passwd)
+        user = configs['Common']['user']
+        user_my_cnf(user)
+except Exception as err:
+    print(err)
+    sys.exit('Kan ikke konfigurere MySQL')
 
 print('mysql installeret')
