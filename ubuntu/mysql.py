@@ -22,41 +22,11 @@ def my_cnf_exists(configs):
         return False
 
 
-def root_my_cnf(passwd):
-    cnf = f"""[client]
-user = homestead
-password = {passwd}
-host = localhost
-
-[mysqld]
-character-set-server=utf8mb4
-collation-server=utf8mb4_bin
-"""
-    outfile = '/root/.my.cnf'
-    with open(outfile, 'wt') as fout:
-        fout.write(cnf)
-
-
-def user_my_cnf(user):
-    cnf = """[mysqld]
-character-set-server=utf8mb4
-collation-server=utf8mb4_bin
-"""
-    outfile = f'/home/{user}/.my.cnf'
-    with open(outfile, 'wt') as fout:
-        fout.write(cnf)
-
-
 def create_db_user(configs, path, mysql_passwd):
+    user = configs['Common']['user']
     print('Opdaterer mysql users')
-    file_loader = FileSystemLoader('../templates')
-    env = Environment(loader=file_loader)
-    template = env.get_template('mysql_users.jinja')
-    output = template.render(mysql_passwd=mysql_passwd)
-    outfile = f'{path}/mysql_setup.sql'
-    with open(outfile, 'wt') as fout:
-        fout.write(output)
-    cmd = shlex.split(f'sudo mysql -uroot -p{mysql_passwd} mysql < {outfile}')
+    user_script = f'{path}/mysql_setup.sh'
+    cmd = shlex.split(f'{user_script} {mysql_passwd} {user}')
     subprocess.run(cmd)
 
 def secure_installation():
@@ -66,7 +36,6 @@ def secure_installation():
     except Exception as err:
         print(err)
         sys.exit('Kan ikke udføre MySQL Secure installation')
-
 
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
@@ -102,21 +71,11 @@ filename_env = '../config/.env_develop'
 mysql_passwd = fetch_config(filename_env)['Common']['mysql_passwd']
 path = os.path.dirname(__file__)
 try:
-    #    if not my_cnf_exists(configs):
-    print('Bruger- og databaseoprettelse')
-    create_db_user(configs, path, mysql_passwd)
+    if not my_cnf_exists(configs):
+        print('Bruger- og databaseoprettelse')
+        create_db_user(configs, path, mysql_passwd)
 except Exception as err:
     print(err)
     sys.exit('Kan ikke opdatere mysql users')
-
-try:
-    if not my_cnf_exists(configs):
-        print('Opdatering af my.cnf')
-        root_my_cnf(mysql_passwd)
-        user = configs['Common']['user']
-        user_my_cnf(user)
-except Exception as err:
-    print(err)
-    sys.exit('Kan ikke konfigurere MySQL')
 
 print('mysql installeret')
