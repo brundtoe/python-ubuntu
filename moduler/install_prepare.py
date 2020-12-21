@@ -13,7 +13,7 @@ import sys, os, shlex
 from subprocess import run
 
 from moduler.fileOperations import fetch_config, addLine
-from moduler.home_bin import homebin
+from moduler.user_profile import userProfile
 from moduler.install_programs import install_program
 from moduler.extra_diske import update_extradiske
 from moduler.wdmycloud import update_wdmycloud
@@ -57,7 +57,7 @@ def install_prepare():
     # Opret mappen home/bin samt /home/.local/binog kopier images
     user = configs['Common']['user']
     try:
-        homebin(user)
+        userProfile(user)
     except Exception as err:
         print(err)
         sys.exit(f'Der opstod fejl ved oprettelse af /home/{user}/bin')

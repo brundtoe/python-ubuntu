@@ -1,35 +1,37 @@
 #!/usr/bin/env python3
 #
-import os, shutil
+import os
+import shutil
 
-def homebin(user):
+
+def userProfile(user):
     """
     Opret mapperne /home/{user}/bin /home/{user}/programs
     /home/{user}/.local/bin
     :param user:
     :return:
     """
-    home = f'/home/{user}'
-    bindir = f'{home}/bin'
+
+    bindir = f'/home/{user}/bin'
     if not os.path.exists(bindir):
         os.mkdir(bindir, 0o755)
         shutil.chown(bindir, user, user)
 
-    programsdir = f'{home}/programs'
+    programsdir = f'/home/{user}/programs'
     if not os.path.exists(programsdir):
         os.mkdir(programsdir, 0o755)
         shutil.chown(programsdir, user, user)
 
-    local_bindir = f'{home}/.local/bin'
+    local_bindir = f'/home/{user}/.local/bin'
     if not os.path.exists(local_bindir):
         os.mkdir(local_bindir, 0o755)
         shutil.chown(local_bindir, user, user)
 
-    dstdir = f'/home/{user}/bin/images'
+    image_dir = f'/home/{user}/bin/images'
     srcdir = '../images'
-    if not os.path.exists(dstdir):
-        shutil.copytree(srcdir, dstdir)
-        shutil.chown(dstdir, user, user)
+    if not os.path.exists(image_dir):
+        shutil.copytree(srcdir, images_dir)
+        shutil.chown(image_dir, user, user)
 
     dst_alias = f'/home/{user}/.bash_aliases'
     src_alias = '../config/.bash_aliases'
