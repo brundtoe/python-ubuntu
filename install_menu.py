@@ -8,12 +8,14 @@ from moduler.user_profile import user_profile
 from moduler.wdmycloud import update_wdmycloud
 from moduler.extra_diske import update_extradiske
 from moduler.global_config import global_config
+from ubuntu.packages import install_packages
 
 menu = """Menu for systeminstallation og opdateringer
 \t1)  Update user profile
 \t2)  Global configruation
 \t3)  Mount WDMycloud
 \t4)  Update extra diske
+\t5)  Install basis software
 \t99) I do not know, Exit!
 """
 
@@ -42,7 +44,8 @@ switcher = {
     1: user_profile,
     2: global_config,
     3: update_wdmycloud,
-    4: update_extradiske
+    4: update_extradiske,
+    5: install_packages
 }
 
 
