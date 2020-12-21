@@ -5,8 +5,7 @@ import os
 import sys
 from moduler.fileOperations import fetch_config
 from moduler.user_profile import userProfile
-
-# from moduler.wdmycloud import update_wdmycloud
+from moduler.wdmycloud import update_wdmycloud
 # from moduler.extra_diske import update_extradiske
 
 menu = """Menu for systeminstallation og opdateringer
@@ -16,9 +15,6 @@ menu = """Menu for systeminstallation og opdateringer
 \t99) I do not know, Exit!
 """
 
-def update_wdmycloud(configs):
-    print('Mount WD Mycloud')
-
 
 def update_extradiske(configs):
     print('Mount extra diske')
@@ -26,6 +22,7 @@ def update_extradiske(configs):
 
 def not_supported():
     print('Selection is not supported')
+
 
 def show_menu(configs):
     os.system('clear')
@@ -41,7 +38,7 @@ def show_menu(configs):
         exit(0)
     while selection not in range(1, 20):
         show_menu(configs)
-    runOption(selection, configs)
+    run_option(selection, configs)
 
 
 switcher = {
@@ -51,7 +48,7 @@ switcher = {
 }
 
 
-def runOption(option, configs):
+def run_option(option, configs):
     print(f"Du valgte  {option}")
     action = switcher.get(option, lambda argument: not_supported())
     action(configs)
