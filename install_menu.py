@@ -6,7 +6,7 @@ import sys
 from moduler.fileOperations import fetch_config
 from moduler.user_profile import userProfile
 from moduler.wdmycloud import update_wdmycloud
-# from moduler.extra_diske import update_extradiske
+from moduler.extra_diske import update_extradiske
 
 menu = """Menu for systeminstallation og opdateringer
 \t1)  Update user profile
@@ -14,11 +14,6 @@ menu = """Menu for systeminstallation og opdateringer
 \t3)  Update extra diske
 \t99) I do not know, Exit!
 """
-
-
-def update_extradiske(configs):
-    print('Mount extra diske')
-
 
 def not_supported():
     print('Selection is not supported')
