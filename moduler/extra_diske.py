@@ -1,4 +1,5 @@
 #!../venv/bin/python
+# -*- coding: utf-8 -*-import sys
 """
 Oprettelse af mount points og fstab for ekstra diske
 """

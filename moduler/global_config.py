@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-import sys
 """
 Dette module anvendes til at foretage den indledende konfiguration 
 
@@ -10,14 +11,10 @@ Dette module anvendes til at foretage den indledende konfiguration
 """
 
 import sys
-import os
 import shlex
 from subprocess import run
 
 from moduler.fileOperations import addLine
-from moduler.install_programs import install_program
-from moduler.extra_diske import update_extradiske
-from moduler.wdmycloud import update_wdmycloud
 
 
 def global_config(configs):
