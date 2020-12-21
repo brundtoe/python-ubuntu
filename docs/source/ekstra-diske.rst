@@ -48,7 +48,7 @@ Mount points og opdatering af fstab foretages i scriptet 01_prepare_install  -> 
 
 Installations kan foretages/opdateres med::
 
-      cd python-ubuntu/moduler
+      cd python-demo/moduler
       sudo ./extra-diske.py
 
    Scriptet opretter mount points og opdateret /etc/fstab
@@ -61,5 +61,5 @@ Mount points og smbcredentials oprettes som en del af 01_prepare_install.py -> m
 
 Seperat installation::
 
-   cd python-ubuntu/moduler
+   cd python-demo/moduler
    sudo ./wdmycloud.py

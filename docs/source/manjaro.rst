@@ -71,7 +71,7 @@ Supplerende installationer
 
 Installation af sw som downloades og pakkes ud i mappen **programs**::
 
-    cd python-ubuntu/common
+    cd python-demo/common
     python3 install_freeefilesync.py
     python3 install_jetbrains_toolbox.py
     python3 install_nosqlbooster.py -- download tager lang tid op til 5 minutter
@@ -97,7 +97,7 @@ Afsluttende konfig
 ==================
 Efter behov udføres::
 
-    cd python-ubuntu/common
+    cd python-demo/common
     sudo ./groups.py
     sudo ./chown.py
     sudo ./vbox_ext_pack kun relevant for host ej for virtuel maskine

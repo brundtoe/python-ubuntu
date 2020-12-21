@@ -7,7 +7,7 @@ Ubuntu installation med Python Scripts
 Opdateret oktober 2020
 
 .. note:: Scripts er anvendt på Kubuntu 2004 (LTS) Fysisk maskine Komplett
-   Scripts findes i repositoriet https://github.com/brundtoe/python-ubuntu
+   Scripts findes i repositoriet https://github.com/brundtoe/python-demo
 
     Script er omlagt til at runne som package i devlopment mode
 
@@ -60,13 +60,13 @@ Installation med python scripts
 
 Installationen udføres i et antal trin::
 
-   cd python-ubuntu
+   cd python-demo
    source venv/bin/activate
-   cd ~/sourcecode/python-ubuntu/source
+   cd ~/sourcecode/python-demo/source
 
 Med sudo udføres::
 
-   cd python-ubuntu/source
+   cd python-demo/source
    sudo ./01_prepare_install.py
    sudo ./02_install_requirements
    sudo ./03_install_repositories
@@ -89,7 +89,7 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
 - Uden root access::
 
-   cd python-ubuntu/common
+   cd python-demo/common
    python3 install_jetbrains.py (genvej til taskbar oprettes først gang programmet afvikles)
    python3 install_freefilesync.py inkl. desktopfile
    python3 install_nosqlbooster.py (se også [1]_)
@@ -99,7 +99,7 @@ Afhængig af maskinens anvendelse kan følgende udføres
 
 - med root efter ovenstående::
 
-   cd python-ubuntu/common
+   cd python-demo/common
    sudo ./vbox_ext_pack.py (Hvis VirtualBox er installeret)
    sudo ./groups.py
    sudo ./chown.py (ændrer rettigheder rekursivt for directories i /home{user}/programs)
@@ -181,7 +181,7 @@ På Ubuntu skal login med CLI foretages med **sudo mysql -u root -p** medens alm
 
 Dataload kan foretages med::
 
-   cd python-ubuntu/common
+   cd python-demo/common
    python mysql_data.py
 
 Filen config/config.ini skal have parameteren [Common][distribution]=ubuntu

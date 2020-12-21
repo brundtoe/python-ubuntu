@@ -80,7 +80,7 @@ Repositoriet clones på **virtuelle maskiner**::
 
    mkdir ~/sourcecode
    cd sourcecode
-   git clone git@github.com:brundtoe/python-ubuntu.git
+   git clone git@github.com:brundtoe/python-demo.git
 
 Clone data repositoriet
 =======================
@@ -112,24 +112,24 @@ Klargøring Af det virtuelle environment
 
 .. code-block:: bash
 
-   cd python-ubuntu
+   cd python-demo
    python3 -m venv venv
    source venv/bin/activate
    pip3 install -r requirements-local.txt
    python3 setup.py develop
 
-.. important:: Installation skal foretages med det virtuelle  environment, og python-ubuntu skal være installeret i development mode.
+.. important:: Installation skal foretages med det virtuelle  environment, og python-demo skal være installeret i development mode.
 
 .. caution:: kompilering af Shpinx doc forberedes
 
    Skift til terminalvindue med det globale environment og udfør::
 
-      cd python-ubuntu
+      cd python-demo
       sudo pip3 install -r requirements-global.txt
 
 Build af dokumentationen::
 
-   cd python-ubuntu
+   cd python-demo
    sphinx-build -b html docs/source /home/jackie/PythonDocs
 
 
