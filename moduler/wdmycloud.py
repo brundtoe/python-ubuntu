@@ -9,12 +9,11 @@ import os
 import shutil
 from string import Template
 
-
 from moduler.fileOperations import fetch_config, addLine
 from moduler.add_mountpoints import add_mountpoints
+from moduler.install_programs import install_program
 
 
-# Opdater smbcredentials med password til wdmycloud
 def update_credentials(configs):
     try:
         user = configs['Common']['user']
@@ -34,6 +33,15 @@ def update_credentials(configs):
         print('~/.smbcredentials er opdateret med mountpoint')
 
 
+def cifs_utils(configs):
+    try:
+        options = configs['Common']['install_options']
+        install_program('cifs-utils', options)
+    except Exception as err:
+        print(err)
+        sys.exit('Kan ikke installere cifs-utils')
+
+
 def update_wdmycloud(configs):
     filename = '/etc/fstab'
     try:
@@ -42,7 +50,7 @@ def update_wdmycloud(configs):
         filename_wdmycloud = configs['Common']['filename_wdmycloud']
         add_mountpoints(user, mount_points)
         update_credentials(configs)
-
+        cifs_utils(configs)
         with open(filename_wdmycloud) as src_file:
             for line in src_file:
                 tm = Template(line)
