@@ -4,8 +4,8 @@
 import os
 import sys
 from moduler.fileOperations import fetch_config
+from moduler.user_profile import userProfile
 
-# from moduler.user_profile import userProfile
 # from moduler.wdmycloud import update_wdmycloud
 # from moduler.extra_diske import update_extradiske
 
@@ -15,11 +15,6 @@ menu = """Menu for systeminstallation og opdateringer
 \t3)  Update extra diske
 \t99) I do not know, Exit!
 """
-
-def userProfile(configs):
-    user = configs['Common']['user']
-    print(f'Userprofile {user}')
-
 
 def update_wdmycloud(configs):
     print('Mount WD Mycloud')
@@ -66,8 +61,8 @@ def runOption(option, configs):
 
 if __name__ == "__main__":
 
-    #    if os.geteuid() != 0:
-    #        sys.exit('Scriptet skal udføres med root access')
+    if os.geteuid() != 0:
+        sys.exit('Scriptet skal udføres med root access')
 
     configuration = ''
     filename = f'{os.path.dirname(__file__)}/config/config.ini'
