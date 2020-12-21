@@ -4,14 +4,16 @@
 import os
 import sys
 from moduler.fileOperations import fetch_config
-from moduler.user_profile import userProfile
+from moduler.user_profile import user_profile
 from moduler.wdmycloud import update_wdmycloud
 from moduler.extra_diske import update_extradiske
+from moduler.global_config import global_config
 
 menu = """Menu for systeminstallation og opdateringer
 \t1)  Update user profile
-\t2)  Mount WDMycloud
-\t3)  Update extra diske
+\t2)  Global configruation
+\t3)  Mount WDMycloud
+\t4)  Update extra diske
 \t99) I do not know, Exit!
 """
 
@@ -37,9 +39,10 @@ def show_menu(configs):
 
 
 switcher = {
-    1: userProfile,
-    2: update_wdmycloud,
-    3: update_extradiske
+    1: user_profile,
+    2: global_config,
+    3: update_wdmycloud,
+    4: update_extradiske
 }
 
 
