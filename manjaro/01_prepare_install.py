@@ -8,7 +8,7 @@
 import sys, os, shlex
 from subprocess import run
 
-from moduler.install_prepare import install_prepare
+from moduler.global_config import install_prepare
 from moduler.fileOperations import addLine
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')

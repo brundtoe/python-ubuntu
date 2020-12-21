@@ -7,7 +7,7 @@
 import sys, os, shlex
 from subprocess import run
 from moduler.apt_update import apt_update
-from moduler.install_prepare import install_prepare
+from moduler.global_config import install_prepare
 
 if os.geteuid() != 0:
     sys.exit('Scriptet skal udføres med root access')
