@@ -16,6 +16,7 @@ from ubuntu.apache import install_apache
 from ubuntu.nginx import install_nginx
 from ubuntu.mysql import install_mysql
 from ubuntu.docker import install_docker
+from moduler.flip_server import flip_server
 
 menu = """Menu for systeminstallation og opdateringer
 \t1)  Update user profile
@@ -30,6 +31,7 @@ menu = """Menu for systeminstallation og opdateringer
 \t10) Nginx
 \t11) MySQL
 \t12) Docker
+\t13) Flip http web server
 \t99) I do not know, Exit!
 """
 switcher = {
@@ -44,7 +46,8 @@ switcher = {
     9: install_apache,
     10: install_nginx,
     11: install_mysql,
-    12: install_docker
+    12: install_docker,
+    13: flip_server
 }
 
 
