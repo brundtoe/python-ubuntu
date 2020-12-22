@@ -11,6 +11,8 @@ from moduler.global_config import global_config
 from ubuntu.packages import install_packages
 from ubuntu.nodejs import install_nodejs
 from ubuntu.mongodb import install_mongodb
+from ubuntu.php import install_php
+
 
 menu = """Menu for systeminstallation og opdateringer
 \t1)  Update user profile
@@ -20,6 +22,7 @@ menu = """Menu for systeminstallation og opdateringer
 \t5)  Install basis software
 \t6)  Node.js
 \t7)  MongoDB
+\t8)  PHP incl. Composer
 \t99) I do not know, Exit!
 """
 switcher = {
@@ -29,7 +32,8 @@ switcher = {
     4: update_extradiske,
     5: install_packages,
     6: install_nodejs,
-    7: install_mongodb
+    7: install_mongodb,
+    8: install_php
 }
 
 

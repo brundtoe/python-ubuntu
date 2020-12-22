@@ -1,19 +1,19 @@
-#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
 
 from jinja2 import Environment, FileSystemLoader
-from moduler.fileOperations import fetch_config
 
 
-def create_xdebug_ini(tmpl, dstfile, xdebug_host=True):
+def create_xdebug_ini(tmpl, path, dstfile, xdebug_host=True):
     """
     generer Xdebug.ini
     :param tmpl: den anvendte Jinja2 template
+    :param path: path til mapperne med templates og config
     :param dstfile: destination for xdebug.ini
     :param xdebug_host: angivelse af om det er en host eller en vagrant maskine
     :return: void
     """
-    file_loader = FileSystemLoader('../templates')
+    file_loader = FileSystemLoader(f'{path}/templates')
     env = Environment(loader=file_loader)
 
     template = env.get_template(tmpl)
@@ -26,9 +26,3 @@ def create_xdebug_ini(tmpl, dstfile, xdebug_host=True):
     print(output)
     with open(dstfile, 'wt') as fout:
         fout.write(output)
-
-
-if __name__ == '__main__':
-    tmpl = 'xdebug.jinja'
-    xdebug_host = fetch_config('../config/config.ini')['Common'].getboolean('xdebug-host')
-    create_xdebug_ini(tmpl, xdebug_host)
