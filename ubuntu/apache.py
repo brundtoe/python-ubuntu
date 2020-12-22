@@ -1,4 +1,4 @@
-#!../venv/bin/python
+# -*- coding: utf-8 -*-import sys
 # Installation og konfiguration af Apache
 
 import sys
@@ -10,7 +10,10 @@ from moduler.fileOperations import fetch_config, addLine
 from moduler.install_programs import install_programs
 from moduler.basis_web import copy_web
 
+
 def install_apache(configs):
+    print('Installation af Apache Webserver')
+    path = configs['Common']['path']
     version = configs['Common']['php-version']
     try:
         programs = configs['apache.install']
@@ -30,7 +33,7 @@ def install_apache(configs):
 
     try:
         print('Apache konfigureres apache2.conf')
-        cmd = shlex.split('sed -i -f ../config/apache2.conf /etc/apache2/apache2.conf')
+        cmd = shlex.split(f'sed -i -f {path}/config/apache2.conf /etc/apache2/apache2.conf')
         subprocess.run(cmd)
     except Exception as err:
         print(err)
@@ -45,6 +48,7 @@ def install_apache(configs):
 
     dest = '/var/www/html'
     try:
+        print('Basis website kopieres til /var/www/html')
         copy_web(configs, dest)
     except Exception as err:
         print(err)
@@ -64,10 +68,3 @@ def install_apache(configs):
         print(err)
         sys.exit('Kan ikke disable Apache')
 
-
-if __name__ == '__main__':
-    if os.geteuid() != 0:
-       sys.exit('Scriptet skal udføres  med root access')
-    print('Installation og konfiguration af Apache med PHP')
-    configs = fetch_config('../config/config.ini')
-    install_apache(configs)
