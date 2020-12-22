@@ -23,7 +23,7 @@ function flip() {
         return
       fi
 
-      if [[ "$(id un 33)" == "www-data" ]]; then
+      if [[ "$(id -un 33)" == "www-data" ]]; then
         web_service="apache2"
       else
         web_service="httpd"

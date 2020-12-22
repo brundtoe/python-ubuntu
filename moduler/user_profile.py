@@ -60,6 +60,13 @@ def user_profile(configs):
         shutil.copy(srcvimrc, dstvimrc)
         shutil.chown(dstvimrc, 'root', 'root')
 
+    dstalias = f'/root/.bash_aliases'
+    srcalias = f'{path}/config/.bash_aliases'
+    if not os.path.exists(dstalias):
+        shutil.copy(srcalias, dstalias)
+        shutil.chown(dstalias, 'root', 'root')
+
+
     # set command prompt PS1
     try:
         user = configs['Common']['user']
