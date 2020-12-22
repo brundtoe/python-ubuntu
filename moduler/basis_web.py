@@ -31,7 +31,7 @@ def copy_web(configs,  dest):
     path = configs['Common']['path']
     try:
         city_files(configs, path)
-        shutil.copytree(f'{path}/moduler/web', dest, dirs_exist_ok=True)
+        shutil.copytree(f'{path}/assets/web', dest, dirs_exist_ok=True)
     except Exception as err:
         print(err)
         sys.exit(f'kan ikke kopiere til {dest}')
