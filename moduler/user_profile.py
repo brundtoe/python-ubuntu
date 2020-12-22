@@ -31,7 +31,7 @@ def user_profile(configs):
         shutil.chown(local_bindir, user, user)
 
     image_dir = f'/home/{user}/bin/images'
-    srcdir = f'{path}/images'
+    srcdir = f'{path}/assets/images'
     if not os.path.exists(image_dir):
         shutil.copytree(srcdir, image_dir)
         shutil.chown(image_dir, user, user)
