@@ -9,6 +9,7 @@ from moduler.wdmycloud import update_wdmycloud
 from moduler.extra_diske import update_extradiske
 from moduler.global_config import global_config
 from ubuntu.packages import install_packages
+from ubuntu.nodejs import install_nodejs
 
 menu = """Menu for systeminstallation og opdateringer
 \t1)  Update user profile
@@ -16,6 +17,7 @@ menu = """Menu for systeminstallation og opdateringer
 \t3)  Mount WD My Cloud
 \t4)  Update extra diske
 \t5)  Install basis software
+\t6)  Install Node.js
 \t99) I do not know, Exit!
 """
 switcher = {
@@ -23,7 +25,8 @@ switcher = {
     2: global_config,
     3: update_wdmycloud,
     4: update_extradiske,
-    5: install_packages
+    5: install_packages,
+    6: install_nodejs
 }
 
 
