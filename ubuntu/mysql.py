@@ -6,6 +6,7 @@
 import os
 import sys
 import shlex
+import shutil
 import subprocess
 from moduler.fileOperations import fetch_config
 from moduler.apt_update import apt_update
@@ -60,6 +61,8 @@ def create_db_user(user, path, mysql_passwd):
     user_script = f'{path}/ubuntu/mysql_setup.sh'
     cmd = shlex.split(f'{user_script} {mysql_passwd} {user}')
     subprocess.run(cmd)
+    if my_cnf_exists(user):
+        shutil.chown(f'/home/{user}/.my.cnf', user, user)
 
 
 def secure_installation(path):
