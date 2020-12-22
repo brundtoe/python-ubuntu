@@ -15,6 +15,7 @@ from ubuntu.php import install_php
 from ubuntu.apache import install_apache
 from ubuntu.nginx import install_nginx
 from ubuntu.mysql import install_mysql
+from ubuntu.docker import install_docker
 
 menu = """Menu for systeminstallation og opdateringer
 \t1)  Update user profile
@@ -27,7 +28,8 @@ menu = """Menu for systeminstallation og opdateringer
 \t8)  PHP incl. Composer
 \t9)  Apache2 med libapache2-mod-php
 \t10) Nginx
-<\t11) MySQL
+\t11) MySQL
+\t12) Docker
 \t99) I do not know, Exit!
 """
 switcher = {
@@ -41,7 +43,8 @@ switcher = {
     8: install_php,
     9: install_apache,
     10: install_nginx,
-    11: install_mysql
+    11: install_mysql,
+    12: install_docker
 }
 
 
