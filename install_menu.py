@@ -13,6 +13,8 @@ from ubuntu.nodejs import install_nodejs
 from ubuntu.mongodb import install_mongodb
 from ubuntu.php import install_php
 from ubuntu.apache import install_apache
+from ubuntu.nginx import install_nginx
+
 
 menu = """Menu for systeminstallation og opdateringer
 \t1)  Update user profile
@@ -24,6 +26,7 @@ menu = """Menu for systeminstallation og opdateringer
 \t7)  MongoDB
 \t8)  PHP incl. Composer
 \t9)  Apache2 med libapache2-mod-php
+\t10) Nginx
 \t99) I do not know, Exit!
 """
 switcher = {
@@ -35,7 +38,8 @@ switcher = {
     6: install_nodejs,
     7: install_mongodb,
     8: install_php,
-    9: install_apache
+    9: install_apache,
+    10: install_nginx
 }
 
 

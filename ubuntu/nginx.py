@@ -1,18 +1,19 @@
-#!../venv/bin/python
+# -*- coding: utf-8 -*-import sys
 # Installation og konfiguration af Nginx med php-fpm
 
-import sys, os
+import sys
 import subprocess
-from moduler.fileOperations import fetch_config
 from moduler.install_programs import install_program, is_installed
 from jinja2 import Environment, FileSystemLoader
 from moduler.basis_web import copy_web
 
 
 def install_nginx(configs):
+    print('Installation af nginx')
+    path = configs['Common']['path']
+    options = configs['Common']['install_options']
+    program = 'nginx'
     try:
-        program = 'nginx'
-        options = configs['Common']['install_options']
         if not is_installed('nginx'):
             res = install_program(program, options)
             if not res:
@@ -25,13 +26,14 @@ def install_nginx(configs):
         tmpl = 'nginx-ubuntu.jinja'
         php_version = configs['Common']['php-version']
         program = 'nginx'
-        create_site_config(program, tmpl, php_version)
+        create_site_config(tmpl, path, php_version)
     except Exception as err:
         print(err)
         sys.exit(f'Kan ikke opdatere definitionen af nginx default site')
 
     dest = '/var/www/html'
     try:
+        print('Basis website kopieres til /var/www/html')
         copy_web(configs, dest)
     except Exception as err:
         print(err)
@@ -52,10 +54,9 @@ def install_nginx(configs):
         sys.exit('Kan ikke standse Nginx')
 
 
-
-def create_site_config(program, tmpl, php_version):
+def create_site_config(tmpl, path, php_version):
     try:
-        file_loader = FileSystemLoader('../templates')
+        file_loader = FileSystemLoader(f'{path}/templates')
         env = Environment(loader=file_loader)
         template = env.get_template(tmpl)
         outfile = '/etc/nginx/sites-available/default'
@@ -65,11 +66,5 @@ def create_site_config(program, tmpl, php_version):
             fout.write(output)
     except Exception as err:
         print(err)
-        sys.exit(f'Kan ikke generere desktopfile for {program}')
+        sys.exit(f'Kan ikke generere default nginx site')
 
-if __name__ == '__main__':
-    if os.geteuid() != 0:
-        sys.exit('Scriptet skal udføres  med root access')
-    print('Installation og konfiguration af Nginx med PHP-FPM')
-    configs = fetch_config('../config/config.ini')
-    install_nginx(configs)
