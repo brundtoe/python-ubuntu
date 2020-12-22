@@ -2,11 +2,9 @@
 # Installation og konfiguration af Apache
 
 import sys
-import os
-import shutil
 import shlex
 import subprocess
-from moduler.fileOperations import fetch_config, addLine
+from moduler.fileOperations import addLine
 from moduler.install_programs import install_programs
 from moduler.basis_web import copy_web
 
