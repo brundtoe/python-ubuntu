@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 import os
+from os.path import isfile, join
+
 import sys
 import shutil
 from moduler.fileOperations import addLine
@@ -15,10 +17,12 @@ def user_profile(configs):
     """
     user = configs['Common']['user']
     path = configs['Common']['path']
-    bindir = f'/home/{user}/bin'
-    if not os.path.exists(bindir):
-        os.mkdir(bindir, 0o755)
+    bindir = f'/home/{user}/bin/'
+    imagedir = f'{bindir}/images'
+    if not os.path.exists(imagedir):
+        os.mkdirs(imagedir, 0o755)
         shutil.chown(bindir, user, user)
+        shutil.chown(imagedir, user, user)
 
     programsdir = f'/home/{user}/programs'
     if not os.path.exists(programsdir):
@@ -32,40 +36,25 @@ def user_profile(configs):
 
     image_dir = f'/home/{user}/bin/images'
     srcdir = f'{path}/assets/images'
-    if not os.path.exists(image_dir):
-        shutil.copytree(srcdir, image_dir)
-        shutil.chown(image_dir, user, user)
 
-    dst_alias = f'/home/{user}/.bash_aliases'
-    src_alias = f'{path}/config/.bash_aliases'
-    if not os.path.exists(dst_alias):
-        shutil.copy(src_alias, dst_alias)
-        shutil.chown(dst_alias, user, user)
+    onlyfiles = [f for f in os.listdir(srcdir) if isfile(join(srcdir, f))]
+    for file in onlyfiles:
+        src = join(srcdir, file)
+        dest = join(image_dir, file)
+        shutil.copy(src, dest)
+        shutil.chown(dest, user, user)
 
-    dstvimrc = f'/home/{user}/.vimrc'
-    srcvimrc = f'{path}/config/.vimrc'
-    if not os.path.exists(dstvimrc):
-        shutil.copy(srcvimrc, dstvimrc)
-        shutil.chown(dstvimrc, user, user)
+    srcdir = f'{path}/assets/profile'
+    destdir = f'/home/{user}'
 
-    dstvimrc = f'/home/{user}/.tmux.conf'
-    srcvimrc = f'{path}/config/.tmux.conf'
-    if not os.path.exists(dstvimrc):
-        shutil.copy(srcvimrc, dstvimrc)
-        shutil.chown(dstvimrc, user, user)
+    onlyfiles = [f for f in os.listdir(srcdir) if isfile(join(srcdir, f))]
+    for file in onlyfiles:
+        src = join(srcdir, file)
+        dest = join(destdir, file)
+        shutil.copy(src, dest)
+        shutil.chown(dest, user, user)
 
-    dstvimrc = f'/root/.vimrc'
-    srcvimrc = f'{path}/config/.vimrc'
-    if not os.path.exists(dstvimrc):
-        shutil.copy(srcvimrc, dstvimrc)
-        shutil.chown(dstvimrc, 'root', 'root')
-
-    dstalias = f'/root/.bash_aliases'
-    srcalias = f'{path}/config/.bash_aliases'
-    if not os.path.exists(dstalias):
-        shutil.copy(srcalias, dstalias)
-        shutil.chown(dstalias, 'root', 'root')
-
+    shutil.copytree(srcdir, destdir, dirs_exist_ok=True)
 
     # set command prompt PS1
     try:

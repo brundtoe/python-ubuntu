@@ -21,7 +21,7 @@ else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
 try:
-    copyfile('../config/global.gitconfig',f'/home/{user}/.gitconfig')
+    copyfile('../assets/profile/.gitconfig', f'/home/{user}/.gitconfig')
 
 except Exception as err:
     sys.exit(f' filen /home/{user}/.gitconfig kan ikke oprettes')
