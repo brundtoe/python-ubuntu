@@ -6,8 +6,9 @@
 import sys
 import os
 import shutil
-from subprocess import run
-from utilities import change_owner
+from subprocess import run, Popen, PIPE
+from moduler.utilities import change_owner
+from moduler.fileOperations import fetch_config
 
 
 def create_sshkeys(user, distro):
@@ -25,7 +26,7 @@ def create_sshkeys(user, distro):
         print('key eksisterer')
     else:
         os.chdir(f'/home/{user}/.ssh')
-        run('ssh-keygen', input=b"id_rsa\n\n\n", check=True)
+        run('ssh-keygen', shell=True, check=True)
         change_owner(ssh_dir, user)
         os.chmod(f'{ssh_dir}/id_rsa', 0o600)
         os.chmod(f'{ssh_dir}/id_rsa.pub', 0o644)
@@ -33,3 +34,10 @@ def create_sshkeys(user, distro):
             run('eval $(ssh-agent)', shell=True, check=True)
         output = run(['ssh-add', 'id_rsa'])
         print(output)
+
+
+if __name__ == "__main__":
+    configs = fetch_config('../config/config.ini')
+    user = configs['Common']['user']
+    distro = configs['Common']['distribution']
+    create_sshkeys(user, distro)
