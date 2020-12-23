@@ -26,20 +26,22 @@ def install_freefilesync(configs):
     num_tries = 1
     max_tries = 3
 
-    if not os.path.exists(down_file):
-        while num_tries <= max_tries:
-            curl_cmd = shlex.split(f'curl -L -o "{down_file}" {url}')
-            subprocess.run(curl_cmd)
-            res = unpack_freefilesync(down_file, outfile)
-            if res:
-                program = 'FreeFileSync'
-                tmpl = f'{program}.jinja'
-                project_path = configs['Common']['project_path']
-                create_desktop_file(program, project_path, tmpl, user)
-                break
-            print(f'Download forsøg {num_tries} fejlede')
-            time.sleep(10)
-            num_tries += 1
+    if os.path.exists(down_file):
+        print(f'FreefileSync version {version} er installeret')
+        return
+    while num_tries <= max_tries:
+        curl_cmd = shlex.split(f'curl -L -o "{down_file}" {url}')
+        subprocess.run(curl_cmd)
+        res = unpack_freefilesync(down_file, outfile)
+        if res:
+            program = 'FreeFileSync'
+            tmpl = f'{program}.jinja'
+            project_path = configs['Common']['project_path']
+            create_desktop_file(program, project_path, tmpl, user)
+            break
+        print(f'Download forsøg {num_tries} fejlede')
+        time.sleep(10)
+        num_tries += 1
 
 
 def unpack_freefilesync(down_file, outfile):

@@ -2,7 +2,6 @@
 #
 import os, shutil
 import requests
-from moduler.fileOperations import fetch_config
 from moduler.desktopfile import create_desktop_file
 
 
@@ -15,16 +14,19 @@ def install_nosqlbooster(configs):
     print('Installation af NoSQL Booster ')
     version = configs['Common']['nosqlbooster']
     nosql_major = configs['Common']['nosql-major']
-    url = f"https://nosqlbooster.com/s3/download/releasesv{nosql_major}/nosqlbooster4mongo-{version}.AppImage"
+    down_file = f'nosqlbooster4mongo-{version}.AppImage'
+    url = f"https://nosqlbooster.com/s3/download/releasesv{nosql_major}/{down_file}"
     user = configs['Common']['user']
-
+    app_path = f'/home/{user}/Applications'
+    if os.path.exists(f'{app_path}/{down_file}'):
+        print(f'NoSQLBooster version {version} er installeret')
+        return
     try:
-        path = f'/home/{user}/Applications'
-        if not os.path.exists(path):
-            os.makedirs(path)
-            shutil.chown(path, user, user)
+        if not os.path.exists(app_path):
+            os.makedirs(app_path)
+            shutil.chown(app_path, user, user)
         req = requests.get(url, allow_redirects=True, stream=True)
-        outfile = f'{path}/{url.split("/")[-1]}'
+        outfile = f'{app_path}/{url.split("/")[-1]}'
         with open(outfile, 'wb') as fd:
             for chunk in req.iter_content(chunk_size=8192):
                 fd.write(chunk)
