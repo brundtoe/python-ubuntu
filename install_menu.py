@@ -19,7 +19,7 @@ from ubuntu.docker import install_docker
 from moduler.flip_server import flip_server
 from ubuntu.vagrant import install_vagrant
 from ubuntu.packer import install_packer
-
+from ubuntu.virtualbox import install_vbox
 menu = """Menu for systeminstallation og opdateringer
 ===========================================
 \t1)  Update user profile
@@ -40,6 +40,7 @@ Desktop programmer til fysisk host
 ===========================================
 \t14) Vagrant
 \t15) Packer
+\t16) Virtualbox
 ===========================================
 \t99) I do not know, Exit!
 """
@@ -58,7 +59,8 @@ switcher = {
     12: install_docker,
     13: flip_server,
     14: install_vagrant,
-    15: install_packer
+    15: install_packer,
+    16: install_vbox
 }
 
 
