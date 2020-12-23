@@ -1,13 +1,12 @@
-#!../venv/bin/python
+# -*- coding: utf-8 -*-import sys
 #
 # Installation af Vagrant
 #
-import sys,os
 from moduler.fileOperations import fetch_config, install_dpkg
 from moduler.vagrant_plugin import vagrant_plugins
 
 
-def installVagrant(configs):
+def install_vagrant(configs):
 
     # https://www.vagrantup.com/downloads.html
     version = configs['Common']['vagrant']
@@ -17,8 +16,3 @@ def installVagrant(configs):
 
     vagrant_plugins(configs)
 
-if __name__ == '__main__':
-    if os.geteuid() != 0:
-       sys.exit('Script skal udføres med root access')
-    configs = fetch_config('../config/config.ini')
-    installVagrant(configs)

@@ -1,11 +1,9 @@
-#!../venv/bin/python
 # -*- coding: utf-8 -*-
 #
 # Installation af Vagrant plugins
 
 import shlex
 from subprocess import run
-from moduler.fileOperations import fetch_config
 
 
 def vagrant_plugins(configs):
@@ -18,7 +16,3 @@ def vagrant_plugins(configs):
             print(err)
             print(f'installation af vagrant plugin {plugins[plugin]}')
 
-
-if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
-    vagrant_plugins(configs)
