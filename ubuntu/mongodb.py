@@ -4,14 +4,18 @@
 #
 
 import sys
+from os import path
 from shutil import copyfile
-from moduler.install_repo import install_repo
+
 from moduler.apt_update import apt_update
 from moduler.install_programs import install_program
+from moduler.install_repo import install_repo
 
 
 def install_mongodb(configs):
-
+    if path.exists('/etc/apt/sources.list.d/mongodb.list'):
+        print('MongoDB er allerede installereet')
+        return
     project_path = configs['Common']['project_path']
     # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
     mongodb_release = configs['Common']['mongodb_release']
