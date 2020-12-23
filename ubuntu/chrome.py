@@ -3,13 +3,18 @@
 # Installation af Google Chrome
 #
 
+import os
 import sys
-from moduler.install_repo import install_repo
+
 from moduler.apt_update import apt_update
 from moduler.install_programs import install_program
+from moduler.install_repo import install_repo
 
 
 def install_chrome(configs):
+    if os.path.exists('/etc/apt/sources.list.d/google-chrome.list'):
+        print('Google-chrome er allerede installeret')
+        return
     # https://www.google.com/linuxrepositories/
     # https://www.ubuntuupdates.org/ppa/google_chrome
     repo_key = "https://dl.google.com/linux/linux_signing_key.pub"
