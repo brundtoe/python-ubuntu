@@ -1,4 +1,4 @@
-#!../venv/bin/python
+# -*- coding: utf-8 -*-import sys
 #
 import os, shutil
 import requests
@@ -6,14 +6,18 @@ from moduler.fileOperations import fetch_config
 from moduler.desktopfile import create_desktop_file
 
 
-def install_nosqlbooster(url, user, version):
+def install_nosqlbooster(configs):
     """
     Installation af NoSQLBooster
-    :param url: path til programmet
-    :param user: user account hvor installationen foregår
-    :param version: NoSQLBooster version
+    :param configs: konfigurationsfilen config.ini
     :return: void
     """
+    print('Installation af NoSQL Booster ')
+    version = configs['Common']['nosqlbooster']
+    nosql_major = configs['Common']['nosql-major']
+    url = f"https://nosqlbooster.com/s3/download/releasesv{nosql_major}/nosqlbooster4mongo-{version}.AppImage"
+    user = configs['Common']['user']
+
     try:
         path = f'/home/{user}/Applications'
         if not os.path.exists(path):
@@ -40,12 +44,3 @@ def install_nosqlbooster(url, user, version):
         # create_desktop_file(program, tmpl, user, version)
         print(f'NoSQLBooster4MongoDB {version} er installeret')
 
-
-if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
-    version = configs['Common']['nosqlbooster']
-    nosql_major = configs['Common']['nosql-major']
-    url = f"https://nosqlbooster.com/s3/download/releasesv{nosql_major}/nosqlbooster4mongo-{version}.AppImage"
-    user = configs['Common']['user']
-    print(url, user, version)
-    install_nosqlbooster(url, user, version)

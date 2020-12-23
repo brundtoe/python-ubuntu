@@ -3,14 +3,10 @@
 
 import os
 import sys
-from moduler.extra_diske import update_extradiske
 from moduler.fileOperations import fetch_config
-from moduler.flip_server import flip_server
-from moduler.global_config import global_config
-from moduler.wdmycloud import update_wdmycloud
-from moduler.user_profile import user_profile
 from common.freefilesync import install_freefilesync
 from common.jetbrains_toolbox import install_jetbrains_toolbox
+from common.nosqlbooster import install_nosqlbooster
 
 menu = """Menu for desktop installation og opdateringer
 =============================================
@@ -25,8 +21,8 @@ menu = """Menu for desktop installation og opdateringer
 """
 switcher = {
     1: install_freefilesync,
-    2: install_jetbrains_toolbox
-
+    2: install_jetbrains_toolbox,
+    3: install_nosqlbooster
 }
 
 
