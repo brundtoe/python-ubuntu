@@ -19,7 +19,7 @@ def city_files(configs, path):
         cities = ['Randers', 'Holstebro', 'Jyllinge', 'Roskilde', 'Holbæk']
         output = template.render(cities=cities, inventory_hostname=inventory_hostname)
         # print(output)
-        outfile = f'{path}/moduler/web/cities.html'
+        outfile = f'{path}/assets/web/cities.html'
         with open(outfile, 'wt') as fout:
             fout.write(output)
     except Exception as err:
