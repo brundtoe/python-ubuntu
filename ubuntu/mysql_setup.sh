@@ -32,7 +32,7 @@ mysql --user="root" --password="${MYSQL_PASSWD}" -e "CREATE DATABASE mystore cha
 
 echo "opdaterer my.cnf"
 
-tee /root/.my.cnf <<EOL
+cat > /root/.my.cnf <<EOL
 [client]
 user = homestead
 password = "${MYSQL_PASSWD}"
@@ -43,7 +43,7 @@ character-set-server=utf8mb4
 collation-server=utf8mb4_bin
 EOL
 
-tee /home/"$DEFAULT_USER"/.my.cnf <<EOL
+cat > /home/"$DEFAULT_USER"/.my.cnf <<EOL
 [mysqld]
 character-set-server=utf8mb4
 collation-server=utf8mb4_bin
