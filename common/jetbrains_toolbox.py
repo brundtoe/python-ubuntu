@@ -2,7 +2,7 @@
 #
 # installation af jetBrains ToolBox
 
-from moduler.fileOperations import fetch_config, fetch_archive
+from moduler.fileOperations import fetch_archive
 from moduler.desktopfile import create_desktop_file
 
 
@@ -16,16 +16,14 @@ def install_jetbrains_toolbox(configs):
 
     version = configs['Common']['jetbrains-toolbox']
     url = f"https://download.jetbrains.com/toolbox/jetbrains-toolbox-{version}.tar.gz"
-    #sha256 = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-{version}.tar.gz.sha256"
+    # sha256 = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-{version}.tar.gz.sha256"
     user = configs['Common']['user']
     program = 'JetBrains Toolbox'
     fetch_archive(url, user, program, version)
 
     program = 'JetBrains'
     tmpl = f'{program}.jinja'
-    create_desktop_file(program, tmpl, user)
+    project_path = configs['Common']['path']
+    create_desktop_file(program, project_path, tmpl, user)
 
 
-if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
-    install_jetbrains_toolbox(configs)
