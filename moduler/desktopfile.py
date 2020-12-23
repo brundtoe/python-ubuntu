@@ -4,7 +4,7 @@ from jinja2 import Environment, FileSystemLoader
 from moduler.fileOperations import fetch_config
 
 
-def create_desktop_file(program, tmpl, user, version = None):
+def create_desktop_file(program,project_path, tmpl, user, version = None):
     """
     Opret en desktop fil på baggrund af en Jinja template
     :param program: Programmet som skal have en desktop file
@@ -13,7 +13,7 @@ def create_desktop_file(program, tmpl, user, version = None):
     :return:        void
     """
     try:
-        file_loader = FileSystemLoader('../templates')
+        file_loader = FileSystemLoader(f'{project_path}/templates')
         env = Environment(loader=file_loader)
 
         template = env.get_template(tmpl)

@@ -1,4 +1,4 @@
-#!../venv/bin/python
+# -*- coding: utf-8 -*-import sys
 #
 # installation af FreeFileSync
 
@@ -7,7 +7,6 @@ import shlex
 import os
 import subprocess
 
-from moduler.fileOperations import fetch_config
 from moduler.desktopfile import create_desktop_file
 
 
@@ -31,9 +30,7 @@ def install_freefilesync(configs):
     shutil.unpack_archive(f'/tmp/{filename}', unpackedfile)
 
     tmpl = f'{program}.jinja'
-    create_desktop_file(program, tmpl, user)
+    project_path = configs['Common']['path']
+    create_desktop_file(program, project_path, tmpl, user)
 
 
-if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
-    install_freefilesync(configs)
