@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+# -*- coding: utf-8 -*-import sys
+#
 import sys
 from jinja2 import Environment, FileSystemLoader
 from moduler.fileOperations import fetch_config
