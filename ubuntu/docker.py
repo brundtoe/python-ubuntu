@@ -3,16 +3,20 @@
 # Installation af Docker
 #
 
-import os
 import sys
-from moduler.install_repo import install_repo
+from os import path, chmod
+
 from moduler.apt_update import apt_update
-from moduler.install_programs import install_programs
 from moduler.download_file import fetch_file
 from moduler.groups import usermod
+from moduler.install_programs import install_programs
+from moduler.install_repo import install_repo
 
 
 def install_docker(configs):
+    if path.exists('/etc/apt/sources.list.d/docker.list'):
+        print('Docker er allerede installeret')
+        return
     # https://docs.docker.com/install/linux/docker-ce/ubuntu/
     repo_key = "https://download.docker.com/linux/ubuntu/gpg"
     program = "docker"
@@ -45,7 +49,7 @@ def install_docker(configs):
     outfile = '/usr/local/bin/docker-compose'
     try:
         fetch_file(url, outfile)
-        os.chmod(outfile, 0o755)
+        chmod(outfile, 0o755)
     except Exception as err:
         print(err)
         print('Kan ikke installere docker-compose')
