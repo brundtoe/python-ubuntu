@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!venv/bin/python
 # -*- coding: utf-8 -*-import sys
 
 import os
@@ -87,7 +87,7 @@ def show_menu(configs):
         else:
             if option == 99:
                 break
-            print(f"Du valgte  {option}")
+            print(f'Du valgte {option}')
             action = switcher.get(option, lambda argument: not_supported())
             action(configs)
             input("Enter RETURN to Continue ...")
@@ -99,7 +99,7 @@ if __name__ == "__main__":
         sys.exit('Scriptet skal udføres med root access')
 
     configuration = ''
-    filename = f'{os.path.dirname(__file__)}/config/config.ini'
+    filename = 'config/config.ini'
     try:
         configuration = fetch_config(filename)
     except Exception as err:
