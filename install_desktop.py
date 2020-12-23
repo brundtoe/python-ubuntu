@@ -1,4 +1,4 @@
-#! venv/bin/python
+#! /usr/bin/python3
 # -*- coding: utf-8 -*-import sys
 
 import os
@@ -63,7 +63,8 @@ if __name__ == "__main__":
         sys.exit('Scriptet må ikke udføres med root access')
 
     configuration = ''
-    filename = f'{os.path.dirname(__file__)}/config/config.ini'
+    # filename = f'{os.path.dirname(__file__)}/config/config.ini'
+    filename = '/home/projects/sourcecode/python-demo/config/config.ini'
     try:
         configuration = fetch_config(filename)
     except Exception as err:
