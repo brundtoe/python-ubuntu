@@ -1,9 +1,10 @@
-#!../venv/bin/python
+# -*- coding: utf-8 -*-import sys
 #
 # Installation af smartgit
 #
-from moduler.fileOperations import fetch_config, fetch_archive
+from moduler.fileOperations import fetch_archive
 from moduler.desktopfile import create_desktop_file
+
 
 def install_smartgit(configs):
     """
@@ -14,16 +15,12 @@ def install_smartgit(configs):
     """
     # https://www.syntevo.com/smartgit/download/
     version = configs['Common']['smartgit']
-    #url_deb = f"https://www.syntevo.com/downloads/smartgit/smartgit-{version}.deb"
+    # url_deb = f"https://www.syntevo.com/downloads/smartgit/smartgit-{version}.deb"
     url = f"https://www.syntevo.com/downloads/smartgit/smartgit-linux-{version}.tar.gz"
     user = configs['Common']['user']
     program = 'SmartGit'
     fetch_archive(url, user, program, version)
 
     tmpl = f'{program}.jinja'
-    create_desktop_file(program, tmpl, user)
-
-
-if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
-    install_smartgit(configs)
+    project_path = configs['Common']['path']
+    create_desktop_file(program, project_path, tmpl, user)

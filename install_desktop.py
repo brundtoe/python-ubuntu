@@ -1,3 +1,4 @@
+#! venv/bin/python
 # -*- coding: utf-8 -*-import sys
 
 import os
@@ -7,6 +8,7 @@ from common.freefilesync import install_freefilesync
 from common.jetbrains_toolbox import install_jetbrains_toolbox
 from common.nosqlbooster import install_nosqlbooster
 from common.postman import install_postman
+from common.smartgit import install_smartgit
 
 menu = """Menu for desktop installation og opdateringer
 =============================================
@@ -23,8 +25,8 @@ switcher = {
     1: install_freefilesync,
     2: install_jetbrains_toolbox,
     3: install_nosqlbooster,
-    4: install_postman
-
+    4: install_postman,
+    5: install_smartgit
 }
 
 
