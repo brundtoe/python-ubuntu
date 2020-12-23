@@ -15,10 +15,15 @@ def install_vagrant(configs):
     # https://www.vagrantup.com/downloads.html
     version = configs['Common']['vagrant']
     url = f"https://releases.hashicorp.com/vagrant/{version}/vagrant_{version}_x86_64.deb"
-
-    cmd = shlex.split('vagrant --version')
-    res = run(cmd, stdout=PIPE, stderr=PIPE)
-    findes = re.search(version, res.stdout.decode('UTF-8'))
+    findes = None
+    try:
+        cmd = shlex.split('vagrant --version')
+        res = run(cmd, stdout=PIPE, stderr=PIPE)
+    except Exception as err:
+        print(err)
+        print('Vagrant skal installeres')
+    else:
+        findes = re.search(version, res.stdout.decode('UTF-8'))
     if findes is None:
         install_dpkg(url, version)
         vagrant_plugins(configs)
