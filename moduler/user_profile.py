@@ -6,6 +6,7 @@ from os.path import isfile, join
 import sys
 import shutil
 from moduler.fileOperations import addLine
+from moduler.utilities import change_owner, copy_dir
 
 
 def user_profile(configs):
@@ -21,8 +22,7 @@ def user_profile(configs):
     imagedir = f'{bindir}/images'
     if not os.path.exists(imagedir):
         os.mkdirs(imagedir, 0o755)
-        shutil.chown(bindir, user, user)
-        shutil.chown(imagedir, user, user)
+        change_owner(bindir, user)
 
     programsdir = f'/home/{user}/programs'
     if not os.path.exists(programsdir):
@@ -34,27 +34,15 @@ def user_profile(configs):
         os.mkdir(local_bindir, 0o755)
         shutil.chown(local_bindir, user, user)
 
+    src_dir = f'{path}/assets/images'
     image_dir = f'/home/{user}/bin/images'
-    srcdir = f'{path}/assets/images'
+    copy_dir(src_dir, image_dir, user)
 
-    onlyfiles = [f for f in os.listdir(srcdir) if isfile(join(srcdir, f))]
-    for file in onlyfiles:
-        src = join(srcdir, file)
-        dest = join(image_dir, file)
-        shutil.copy(src, dest)
-        shutil.chown(dest, user, user)
+    src_dir = f'{path}/assets/profile'
+    dest_dir = f'/home/{user}'
+    copy_dir(src_dir, dest_dir, user)
 
-    srcdir = f'{path}/assets/profile'
-    destdir = f'/home/{user}'
-
-    onlyfiles = [f for f in os.listdir(srcdir) if isfile(join(srcdir, f))]
-    for file in onlyfiles:
-        src = join(srcdir, file)
-        dest = join(destdir, file)
-        shutil.copy(src, dest)
-        shutil.chown(dest, user, user)
-
-    shutil.copytree(srcdir, destdir, dirs_exist_ok=True)
+    shutil.copytree(src_dir, '/root', dirs_exist_ok=True)
 
     # set command prompt PS1
     try:
