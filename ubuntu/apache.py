@@ -11,7 +11,7 @@ from moduler.basis_web import copy_web
 
 def install_apache(configs):
     print('Installation af Apache Webserver')
-    path = configs['Common']['path']
+    project_path = configs['Common']['project_path']
     version = configs['Common']['php-version']
     try:
         programs = configs['apache.install']
@@ -31,7 +31,7 @@ def install_apache(configs):
 
     try:
         print('Apache konfigureres apache2.conf')
-        cmd = shlex.split(f'sed -i -f {path}/config/apache2.conf /etc/apache2/apache2.conf')
+        cmd = shlex.split(f'sed -i -f {project_path}/config/apache2.conf /etc/apache2/apache2.conf')
         subprocess.run(cmd)
     except Exception as err:
         print(err)

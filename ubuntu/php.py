@@ -20,7 +20,7 @@ def install_php(configs):
     :return:
     """
     print('Installation af PHP moduler')
-    path = configs['Common']['path']
+    project_path = configs['Common']['project_path']
     programs = configs['php.install']
     options = configs['Common']['install_options']
     install_programs(programs, options)
@@ -29,12 +29,12 @@ def install_php(configs):
     version = configs['Common']['php-version']
     xdebug_host = configs['Common']['xdebug-host']
     dstfile = f'/etc/php/{version}/mods-available/xdebug.ini'
-    create_xdebug_ini('xdebug.jinja', path, dstfile, xdebug_host)
+    create_xdebug_ini('xdebug.jinja', project_path, dstfile, xdebug_host)
 
     print('Konfiguration af php.ini')
     php_components = ['cli', 'cgi', 'fpm']
     version = configs['Common']['php-version']
-    config_php_ini(php_components, path, version)
+    config_php_ini(php_components, project_path, version)
 
     print('Konfiguration af php-fpm')
     version = configs['Common']['php-version']
@@ -44,12 +44,12 @@ def install_php(configs):
     url = configs['composer']['repo']
     sha256url = configs['composer']['sha256']
     user = configs['Common']['user']
-    install_composer(url, sha256url, path, user)
+    install_composer(url, sha256url, project_path, user)
 
 
-def install_composer(url, sha256url, path, user):
+def install_composer(url, sha256url, project_path, user):
     print('funktionen install_composer er kaldt')
-    composerfile = f'{path}/outfile/composer'
+    composerfile = f'{project_path}/outfile/composer'
     try:
         fetch_file(url, composerfile)
         print('composer filen er hentet')
@@ -61,7 +61,7 @@ def install_composer(url, sha256url, path, user):
     # Der skal være to mellemrum før composer.phar
     composer_hash = f'{hash_file(composerfile)}  composer.phar'
 
-    sha256file = f'{path}/outfile/composerSha256'
+    sha256file = f'{project_path}/outfile/composerSha256'
     try:
         fetch_file(sha256url, sha256file)
         with open(sha256file) as fin:
@@ -88,9 +88,9 @@ def install_composer(url, sha256url, path, user):
         exit(1)
 
 
-def config_php_ini(php_components, path, version):
+def config_php_ini(php_components, project_path, version):
 
-    conf = f'{path}/config/php_config.ini'
+    conf = f'{project_path}/config/php_config.ini'
     for component in php_components:
         ini_file = f'/etc/php/{version}/{component}/php.ini'
         print(ini_file)

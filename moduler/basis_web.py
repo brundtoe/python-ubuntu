@@ -8,10 +8,10 @@ import shutil
 from jinja2 import Environment, FileSystemLoader
 
 
-def city_files(configs, path):
+def city_files(configs, project_path):
     try:
         print('generering af cities.html')
-        file_loader = FileSystemLoader(f'{path}/templates')
+        file_loader = FileSystemLoader(f'{project_path}/templates')
         env = Environment(loader=file_loader)
 
         template = env.get_template('cities.jinja')
@@ -19,7 +19,7 @@ def city_files(configs, path):
         cities = ['Randers', 'Holstebro', 'Jyllinge', 'Roskilde', 'Holbæk']
         output = template.render(cities=cities, inventory_hostname=inventory_hostname)
         # print(output)
-        outfile = f'{path}/assets/web/cities.html'
+        outfile = f'{project_path}/assets/web/cities.html'
         with open(outfile, 'wt') as fout:
             fout.write(output)
     except Exception as err:
@@ -28,10 +28,10 @@ def city_files(configs, path):
 
 
 def copy_web(configs,  dest):
-    path = configs['Common']['path']
+    project_path = configs['Common']['project_path']
     try:
-        city_files(configs, path)
-        shutil.copytree(f'{path}/assets/web', dest, dirs_exist_ok=True)
+        city_files(configs, project_path)
+        shutil.copytree(f'{project_path}/assets/web', dest, dirs_exist_ok=True)
     except Exception as err:
         print(err)
         sys.exit(f'kan ikke kopiere til {dest}')

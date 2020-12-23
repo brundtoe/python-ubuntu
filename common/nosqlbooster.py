@@ -36,7 +36,7 @@ def install_nosqlbooster(configs):
         exit(1)
     else:
         program = 'NoSQLBooster'
-        project_path = configs['Common']['path']
+        project_path = configs['Common']['project_path']
         tmpl = f'{program}.jinja'
         create_desktop_file(program, project_path, tmpl, user, version)
         print(f'NoSQLBooster4MongoDB {version} er installeret')

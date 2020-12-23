@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-import sys
 #
 # installation af Packer
-from os import chown
+from os import chown, chmod
 from shutil import move
 from moduler.fileOperations import fetch_archive
 
@@ -18,7 +18,9 @@ def install_packer(configs):
     user = configs['Common']['user']
     program = 'Packer'
     fetch_archive(url, user, program, version, 'zip')
-    move(f'/home/{user}/programs/packer', f'/home/{user}/.local/bin/packer')
-    chown(f'/home/{user}/.local/bin/packer', 1000, 1000)
+    packer_file = f'/home/{user}/.local/bin/packer'
+    move(f'/home/{user}/programs/packer', packer_file)
+    chown(packer_file, 1000, 1000)
+    chmod(packer_file, 0o755)
 
 

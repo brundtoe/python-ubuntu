@@ -34,7 +34,7 @@ def install_freefilesync(configs):
             if res:
                 program = 'FreeFileSync'
                 tmpl = f'{program}.jinja'
-                project_path = configs['Common']['path']
+                project_path = configs['Common']['project_path']
                 create_desktop_file(program, project_path, tmpl, user)
                 break
             print(f'Download forsøg {num_tries} fejlede')

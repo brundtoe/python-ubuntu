@@ -12,7 +12,7 @@ from moduler.install_programs import install_program
 
 def install_mongodb(configs):
 
-    path = configs['Common']['path']
+    project_path = configs['Common']['project_path']
     # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
     mongodb_release = configs['Common']['mongodb_release']
     lsb_mongodb = configs['Common']['lsb_mongodb']
@@ -33,7 +33,7 @@ def install_mongodb(configs):
         apt_update()
         install_program('mongodb-org', options)
         print('MongoDB installeret')
-        src = f"{path}/config/mongod.conf"
+        src = f"{project_path}/config/mongod.conf"
         dest = "/etc/mongod.conf"
         copyfile(src, dest)
     except Exception as err:

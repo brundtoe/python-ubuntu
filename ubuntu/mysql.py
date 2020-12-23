@@ -15,7 +15,7 @@ from moduler.install_programs import install_program
 
 def install_mysql(configs):
     user = configs['Common']['user']
-    path = configs['Common']['path']
+    project_path = configs['Common']['project_path']
     try:
         if not my_cnf_exists(user):
             print('Installation af mysql')
@@ -35,12 +35,12 @@ def install_mysql(configs):
         print(err)
         print('Kan ikke udføre secure installation')
 
-    filename_env = f'{path}/config/.env_develop'
+    filename_env = f'{project_path}/config/.env_develop'
     mysql_passwd = fetch_config(filename_env)['Common']['mysql_passwd']
     try:
         if not my_cnf_exists(user):
             print('Bruger- og databaseoprettelse')
-            create_db_user(user, path, mysql_passwd)
+            create_db_user(user, project_path, mysql_passwd)
     except Exception as err:
         print(err)
         sys.exit('Kan ikke opdatere mysql users')
@@ -56,18 +56,18 @@ def my_cnf_exists(user):
         return False
 
 
-def create_db_user(user, path, mysql_passwd):
+def create_db_user(user, project_path, mysql_passwd):
     print('Opdaterer mysql users')
-    user_script = f'{path}/ubuntu/mysql_setup.sh'
+    user_script = f'{project_path}/ubuntu/mysql_setup.sh'
     cmd = shlex.split(f'{user_script} {mysql_passwd} {user}')
     subprocess.run(cmd)
     if my_cnf_exists(user):
         shutil.chown(f'/home/{user}/.my.cnf', user, user)
 
 
-def secure_installation(path):
+def secure_installation(project_path):
     try:
-        cmd = shlex.split(f'{path}/ubuntu/mysql_secure.sh')
+        cmd = shlex.split(f'{project_path}/ubuntu/mysql_secure.sh')
         subprocess.run(cmd)
     except Exception as err:
         print(err)

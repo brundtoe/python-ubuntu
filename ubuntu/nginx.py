@@ -10,7 +10,7 @@ from moduler.basis_web import copy_web
 
 def install_nginx(configs):
     print('Installation af nginx')
-    path = configs['Common']['path']
+    project_path = configs['Common']['project_path']
     options = configs['Common']['install_options']
     program = 'nginx'
     try:
@@ -26,7 +26,7 @@ def install_nginx(configs):
         tmpl = 'nginx-ubuntu.jinja'
         php_version = configs['Common']['php-version']
         program = 'nginx'
-        create_site_config(tmpl, path, php_version)
+        create_site_config(tmpl, project_path, php_version)
     except Exception as err:
         print(err)
         sys.exit(f'Kan ikke opdatere definitionen af nginx default site')
@@ -54,9 +54,9 @@ def install_nginx(configs):
         sys.exit('Kan ikke standse Nginx')
 
 
-def create_site_config(tmpl, path, php_version):
+def create_site_config(tmpl, project_path, php_version):
     try:
-        file_loader = FileSystemLoader(f'{path}/templates')
+        file_loader = FileSystemLoader(f'{project_path}/templates')
         env = Environment(loader=file_loader)
         template = env.get_template(tmpl)
         outfile = '/etc/nginx/sites-available/default'

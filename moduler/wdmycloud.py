@@ -17,8 +17,8 @@ from moduler.install_programs import install_program
 def update_credentials(configs):
     try:
         user = configs['Common']['user']
-        path = configs['Common']['path']
-        filename_env = f'{path}/config/.env_develop'
+        project_path = configs['Common']['project_path']
+        filename_env = f'{project_path}/config/.env_develop'
         password = fetch_config(filename_env)['Common']['password']
         text = f'username={user}\npassword={password}\n'
         filename_credentials = f'/home/{user}/.smbcredentials'

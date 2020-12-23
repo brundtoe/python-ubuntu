@@ -22,7 +22,7 @@ def install_postman(configs):
     fetch_archive(url, user, program, version)
 
     tmpl = f'{program}.jinja'
-    project_path = configs['Common']['path']
+    project_path = configs['Common']['project_path']
     create_desktop_file(program, project_path, tmpl, user)
 
 

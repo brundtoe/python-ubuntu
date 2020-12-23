@@ -17,7 +17,7 @@ def user_profile(configs):
     :return:
     """
     user = configs['Common']['user']
-    path = configs['Common']['path']
+    project_path = configs['Common']['project_path']
     bindir = f'/home/{user}/bin/'
     imagedir = f'{bindir}/images'
     if not os.path.exists(imagedir):
@@ -34,11 +34,11 @@ def user_profile(configs):
         os.mkdir(local_bindir, 0o755)
         shutil.chown(local_bindir, user, user)
 
-    src_dir = f'{path}/assets/images'
+    src_dir = f'{project_path}/assets/images'
     image_dir = f'/home/{user}/bin/images'
     copy_dir(src_dir, image_dir, user)
 
-    src_dir = f'{path}/assets/profile'
+    src_dir = f'{project_path}/assets/profile'
     dest_dir = f'/home/{user}'
     copy_dir(src_dir, dest_dir, user)
 

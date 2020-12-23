@@ -19,7 +19,7 @@ menu = """Menu for desktop installation og opdateringer
 \t4)  Postman
 \t5)  SmartGit
 \t6)  SSH key
-===========================================
+=============================================
 \t99) I do not know, Exit!
 """
 switcher = {
