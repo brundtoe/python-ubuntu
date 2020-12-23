@@ -3,23 +3,25 @@
 
 import os
 import sys
-from moduler.fileOperations import fetch_config
-from moduler.user_profile import user_profile
-from moduler.wdmycloud import update_wdmycloud
 from moduler.extra_diske import update_extradiske
-from moduler.global_config import global_config
-from ubuntu.packages import install_packages
-from ubuntu.nodejs import install_nodejs
-from ubuntu.mongodb import install_mongodb
-from ubuntu.php import install_php
-from ubuntu.apache import install_apache
-from ubuntu.nginx import install_nginx
-from ubuntu.mysql import install_mysql
-from ubuntu.docker import install_docker
+from moduler.fileOperations import fetch_config
 from moduler.flip_server import flip_server
-from ubuntu.vagrant import install_vagrant
+from moduler.global_config import global_config
+from moduler.wdmycloud import update_wdmycloud
+from moduler.user_profile import user_profile
+from ubuntu.apache import install_apache
+from ubuntu.docker import install_docker
+from ubuntu.chrome import install_chrome
+from ubuntu.mongodb import install_mongodb
+from ubuntu.mysql import install_mysql
+from ubuntu.nginx import install_nginx
+from ubuntu.nodejs import install_nodejs
+from ubuntu.packages import install_packages
 from ubuntu.packer import install_packer
+from ubuntu.php import install_php
+from ubuntu.vagrant import install_vagrant
 from ubuntu.virtualbox import install_vbox
+
 menu = """Menu for systeminstallation og opdateringer
 ===========================================
 \t1)  Update user profile
@@ -41,6 +43,7 @@ Desktop programmer til fysisk host
 \t14) Vagrant
 \t15) Packer
 \t16) Virtualbox
+\t17) Google Chrome
 ===========================================
 \t99) I do not know, Exit!
 """
@@ -60,7 +63,8 @@ switcher = {
     13: flip_server,
     14: install_vagrant,
     15: install_packer,
-    16: install_vbox
+    16: install_vbox,
+    17: install_chrome
 }
 
 
