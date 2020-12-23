@@ -1,21 +1,25 @@
-#!../venv/bin/python
+# -*- coding: utf-8 -*-
 #
 # installation af VirtualBox Extension pack
 #
-import sys, os, shlex, re
+import re
+import shlex
 import subprocess
-from moduler.fileOperations import fetch_config, download_file
+import sys
+
+from moduler.fileOperations import download_file
 
 
-def install_vbox_ext_pack(url, vbox_version):
+def install_vbox_ext_pack(url, vbox_ext_version):
     """
     Installation af VirtualBox Extension Pack
     :param url: path til extension pack
-    :param vbox_version: version svarende til den installerede VirtualBox
+    :param vbox_ext_version: version svarende til den installerede VirtualBox
     :return: void
     """
+    print(f'Extension pack version: {vbox_ext_version}')
     try:
-        if is_vbox_installed(vbox_version):
+        if not is_vbox_installed(vbox_ext_version):
             outfile = download_file(url)
             cmd = shlex.split(f'VBoxManage extpack install --replace {outfile}')
             res = subprocess.run(cmd)
@@ -26,29 +30,23 @@ def install_vbox_ext_pack(url, vbox_version):
         sys.exit(f'Exception: installation af VirtualBox Extension Pack fejlede')
 
 
-def is_vbox_installed(vbox_version):
+def is_vbox_installed(ext_version):
     """
     Tjek at at den extension pack der forsøges installere svarer til den installerede verison af VirtualBox
-    :param vbox_version: extension versionen
+    :param ext_version: extension versionen
     :return:
     """
     try:
+        print(f'cheking-ext_version-{ext_version}')
         cmd = shlex.split('VBoxManage --version')
         res = subprocess.run(cmd, stdout=subprocess.PIPE)
-        version = re.search('^\d{1,}\.\d{1,}\.\d{1,}', res.stdout.decode('utf-8'))
-        if version.group(0) == vbox_version:
+        version = re.search('^\d+\.\d+\.\d+', res.stdout.decode('UTF-8'))
+        if version.group(0) == ext_version:
             return True
-        if version.group(0) != vbox_version:
-            sys.exit(f'Opdater vbox_ext_pack i config.ini til {version.group(0)} og prøv igen')
+        else:
+            print(f'fundet vbox version:-{version.group(0)}-')
     except Exception as err:
         print(err)
         sys.exit('Kan ikke kontrollere VirtualBox installationen - Er VirtualBox Installeret?')
-
-
-if __name__ == '__main__':
-    if os.geteuid() != 0:
-        sys.exit('Script skal udføres med root access')
-    configs = fetch_config('../config/config.ini')
-    url = configs['virtualbox.org']['extention_pack']
-    vbox_version = configs['Common']['vbox_ext_pack']
-    install_vbox_ext_pack(url, vbox_version)
+    else:
+        return False
