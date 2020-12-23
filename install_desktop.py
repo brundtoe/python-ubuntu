@@ -9,6 +9,7 @@ from common.jetbrains_toolbox import install_jetbrains_toolbox
 from common.nosqlbooster import install_nosqlbooster
 from common.postman import install_postman
 from common.smartgit import install_smartgit
+from common.sshkeys import create_sshkeys
 
 menu = """Menu for desktop installation og opdateringer
 =============================================
@@ -26,7 +27,8 @@ switcher = {
     2: install_jetbrains_toolbox,
     3: install_nosqlbooster,
     4: install_postman,
-    5: install_smartgit
+    5: install_smartgit,
+    6: create_sshkeys
 }
 
 

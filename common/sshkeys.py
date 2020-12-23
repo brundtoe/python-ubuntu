@@ -11,7 +11,9 @@ from moduler.utilities import change_owner
 from moduler.fileOperations import fetch_config
 
 
-def create_sshkeys(user, distro):
+def create_sshkeys(configs):
+    user = configs['Common']['user']
+    distro = configs['Common']['distribution']
     ssh_dir = f'/home/{user}/.ssh'
     try:
         if not os.path.exists(ssh_dir):
