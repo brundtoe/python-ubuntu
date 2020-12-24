@@ -15,4 +15,3 @@ def vagrant_plugins(configs):
         except Exception as err:
             print(err)
             print(f'installation af vagrant plugin {plugins[plugin]}')
-

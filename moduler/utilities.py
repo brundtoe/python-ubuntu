@@ -58,5 +58,3 @@ def copy_dir(src_dir, dest_dir, user):
         dest = join(dest_dir, file)
         shutil.copy(src, dest)
         shutil.chown(dest, user, user)
-
-

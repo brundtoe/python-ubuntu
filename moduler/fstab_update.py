@@ -1,6 +1,8 @@
-#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 #
-import sys, os
+import sys
+import os
 from moduler.fileOperations import addLine, fetch_config
 
 
@@ -12,8 +14,8 @@ def update_fstab(mount_string, mount_points, fstab):
     :param fstab: ref til wdmycloud partitioner
     :return:
     """
+    line = ''
     try:
-        line = ''
         for key in fstab:
             line = f'{fstab[key]} {mount_points[key]} {mount_string}\n'
             addLine('/etc/fstab', line)

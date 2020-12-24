@@ -2,13 +2,11 @@
 # -*- coding: utf-8 -*-
 # script som samler de enkelte del og foretages den samlede installation på Kubuntu
 #
-# Inden scriptet runnes oprettes i mappen infile filen -env med password til wdmycloud
-#
-import sys, os, shutil
+import sys
+import os
 from moduler.fileOperations import fetch_config
 from moduler.apt_update import apt_update
 from moduler.install_programs import install_programs
-from moduler.download_file import fetch_file
 
 configs = ''
 
@@ -19,6 +17,7 @@ filename = '../config/config.ini'
 try:
     configs = fetch_config(filename)
 except Exception as err:
+    print(err)
     sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
@@ -26,6 +25,7 @@ else:
 try:
     apt_update()
 except Exception as err:
+    print(err)
     sys.exit('Der opstod fejl ved opdatering af systemet med apt update')
 else:
     print('apt-get update og apt-get upgrade udført')
@@ -36,7 +36,7 @@ try:
     install_programs(programs, options)
     install_programs(programs, options)
 except Exception as err:
+    print(err)
     sys.exit('Der opstod fejl ved installation af ekstra software')
 else:
     print('apt-get installation af ekstra software udført')
-

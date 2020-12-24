@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-import sys
+# -*- coding: utf-8 -*-
 # Installation og konfiguration af Nginx med php-fpm
 
 import sys
@@ -14,7 +14,7 @@ def install_nginx(configs):
     options = configs['Common']['install_options']
     program = 'nginx'
     try:
-        if not is_installed('nginx'):
+        if not is_installed(program):
             res = install_program(program, options)
             if not res:
                 sys.exit(f'Installation af {program} er fejlet')
@@ -25,7 +25,6 @@ def install_nginx(configs):
     try:
         tmpl = 'nginx-ubuntu.jinja'
         php_version = configs['Common']['php-version']
-        program = 'nginx'
         create_site_config(tmpl, project_path, php_version)
     except Exception as err:
         print(err)
@@ -67,4 +66,3 @@ def create_site_config(tmpl, project_path, php_version):
     except Exception as err:
         print(err)
         sys.exit(f'Kan ikke generere default nginx site')
-

@@ -1,7 +1,8 @@
-#!../venv/bin/python
+# -*- coding: utf-8 -*
 #
-import sys, os, shlex, subprocess
-from moduler.fileOperations import fetch_config
+import sys
+import shlex
+import subprocess
 
 
 def usermod(user, group, options=''):
@@ -19,15 +20,6 @@ def usermod(user, group, options=''):
         if res.returncode:
             raise Exception
     except Exception as err:
-        print()
+        print(err)
         sys.exit(res.stderr.decode('UTF-8'))
     print(res.stdout.decode('UTF-8'))
-
-
-if __name__ == '__main__':
-    if os.geteuid() != 0:
-        sys.exit('scriptet skal udføres med root adgang')
-
-    user = fetch_config('../config/config.ini')['Common']['user']
-    usermod(user, 'docker')
-    usermod(user, 'vboxusers')

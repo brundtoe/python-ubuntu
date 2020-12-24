@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 import os
-from os.path import isfile, join
-
 import sys
 import shutil
 from moduler.fileOperations import addLine
@@ -21,17 +19,17 @@ def user_profile(configs):
     bindir = f'/home/{user}/bin/'
     imagedir = f'{bindir}/images'
     if not os.path.exists(imagedir):
-        os.mkdirs(imagedir, 0o755)
+        os.makedirs(imagedir, 0o755, exist_ok=True)
         change_owner(bindir, user)
 
     programsdir = f'/home/{user}/programs'
     if not os.path.exists(programsdir):
-        os.mkdir(programsdir, 0o755)
+        os.makedirs(programsdir, 0o755, exist_ok=True)
         shutil.chown(programsdir, user, user)
 
     local_bindir = f'/home/{user}/.local/bin'
     if not os.path.exists(local_bindir):
-        os.mkdir(local_bindir, 0o755)
+        os.makedirs(local_bindir, 0o755, exist_ok=True)
         shutil.chown(local_bindir, user, user)
 
     src_dir = f'{project_path}/assets/images'

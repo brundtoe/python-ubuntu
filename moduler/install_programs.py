@@ -1,9 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-import sys
+# -*- coding: utf-8 -*-
 #
-import sys, os, shlex
+import sys
+import shlex
 import subprocess
-from moduler.fileOperations import fetch_config
 
 
 def is_installed(program):
@@ -47,13 +46,3 @@ def install_programs(programs, options):
             sys.exit(f'Installation af {pgm} er fejlet')
         else:
             print('programmet', pgm, 'er installeret')
-
-
-if __name__ == '__main__':
-    if os.geteuid() != 0:
-        sys.exit('Scritet skal udføres  med root access')
-    print('script install_programs')
-    configs = fetch_config('../config/config.ini')
-    programs = configs['programs']
-    options = configs['Common']['install_options']
-    install_programs(programs, options)

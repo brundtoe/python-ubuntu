@@ -25,7 +25,8 @@ def install_vbox(configs):
         repo_key = "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
         try:
             install_repo(repo_key, program, sources_string)
-        except Exception:
+        except Exception as err:
+            print(err)
             sys.exit(f'{program} repository er ikke installeret')
         else:
             print(f'{program} repository er installeret')
@@ -38,7 +39,8 @@ def install_vbox(configs):
         install_program(f'virtualbox-{vbox_version}', options)
         usermod(user, 'vboxusers')
         print('Installation af Virtualbox er afsluttet')
-    except Exception:
+    except Exception as err:
+        print(err)
         print('Kunne ikke opdatere systemet med Virtualbox')
 
     vbox_ext_pack = configs['Common']['vbox_ext_pack']

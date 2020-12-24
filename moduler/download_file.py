@@ -1,10 +1,12 @@
+# -*- coding: utf-8 -*-
+#
 from urllib.request import urlopen
 from shutil import copyfileobj, copyfile
 from tempfile import NamedTemporaryFile
 import os
 
-def fetch_file(url, outfile):
 
+def fetch_file(url, outfile):
     try:
         with urlopen(url) as fsrc, NamedTemporaryFile(delete=False) as fdst:
             copyfileobj(fsrc, fdst)
@@ -12,6 +14,7 @@ def fetch_file(url, outfile):
         copyfile(fdst.name, outfile)
         os.remove(fdst.name)
     except Exception as err:
+        print(err)
         raise os.error
     else:
         return True

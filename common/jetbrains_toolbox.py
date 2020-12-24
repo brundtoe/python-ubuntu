@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-import sys
+# -*- coding: utf-8 -*-
 #
 # installation af jetBrains ToolBox
 from os import path

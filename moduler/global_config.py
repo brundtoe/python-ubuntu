@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-import sys
+# -*- coding: utf-8 -*-
 """
 Dette module anvendes til at foretage den indledende konfiguration 
 
@@ -18,12 +18,11 @@ from moduler.fileOperations import addLine
 
 
 def global_config(configs):
-
     # timezone opdateres
     timezone = configs['Common']['timezone']
     try:
         cmd = shlex.split(f'timedatectl set-timezone {timezone}')
-        res = run(cmd)
+        run(cmd)
     except OSError as err:
         print(err)
         sys.exit(f'Der opstod fejl ved set-timezone {timezone}')
@@ -31,8 +30,8 @@ def global_config(configs):
         print(f'timezone er sat til {timezone}')
 
     # Tilføj max watches for filer
+    filename = '/etc/sysctl.d/40-max_user_watches.conf'
     try:
-        filename = '/etc/sysctl.d/40-max_user_watches.conf'
         max_watches = 'fs.inotify.max_user_watches = 524288\n'
         addLine(filename, max_watches)
     except OSError as err:
@@ -58,4 +57,3 @@ def global_config(configs):
         sys.exit(f'Der opstod fejl ved opdatering af environment med PLATFORM')
     else:
         print("/etc/profile.d/editor.sh opdateret med export EDITOR='vim'")
-

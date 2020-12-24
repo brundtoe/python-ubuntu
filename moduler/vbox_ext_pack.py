@@ -40,7 +40,7 @@ def is_vbox_installed(ext_version):
         print(f'cheking-ext_version-{ext_version}')
         cmd = shlex.split('VBoxManage --version')
         res = subprocess.run(cmd, stdout=subprocess.PIPE)
-        version = re.search('^\d+\.\d+\.\d+', res.stdout.decode('UTF-8'))
+        version = re.search(r'^\d+\.\d+\.\d+', res.stdout.decode('UTF-8'))
         if version.group(0) == ext_version:
             return True
         else:

@@ -1,4 +1,8 @@
-import sys, os, shutil
+# -*- coding: utf-8 -*-
+#
+import sys
+import os
+import shutil
 import requests
 import subprocess
 
@@ -35,7 +39,7 @@ def download_file(url):
                 fd.write(chunk)
         return outfile
     except Exception as err:
-        print('err')
+        print(err)
         sys.exit(f'Download fra {url} er fejlet')
 
 
@@ -51,14 +55,15 @@ def addLine(filename, text):
     return True
 
 
-def fetch_archive(url, user, program, version, format='gztar'):
+def fetch_archive(url, user, program, version, zip_format='gztar'):
     print(url)
     try:
         outfile = download_file(url)
         unpackedfile = f'/home/{user}/programs'
-        shutil.unpack_archive(outfile, unpackedfile, format)
+        shutil.unpack_archive(outfile, unpackedfile, zip_format)
 
     except Exception as err:
+        print(err)
         sys.exit(f'Download af {program} version {version} er fejlet\n')
     else:
         print(f'programmet {program} version {version} er downloded og pakket ud')
@@ -73,8 +78,8 @@ def install_dpkg(url, version):
                 fd.write(chunk)
         subprocess.run(['dpkg', '-i', outfile])
     except Exception as err:
-        print(f'Download og installation af Vagrant version {version} er fejlet')
         print(err)
+        print(f'Download og installation af Vagrant version {version} er fejlet')
         exit(1)
     else:
         print(f'Vagrant {version} er installeret')

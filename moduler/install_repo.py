@@ -1,8 +1,9 @@
-#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
 import sys
 import subprocess
 from moduler.fileOperations import download_file
+
 
 def install_repo(url, program, content):
     """
@@ -15,6 +16,7 @@ def install_repo(url, program, content):
     try:
         repokey_install(url)
     except Exception as err:
+        print(err)
         sys.exit(f'Repository key for {program} kan ikke installeres')
 
     try:

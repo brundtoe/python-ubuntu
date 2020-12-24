@@ -30,7 +30,8 @@ def install_nodejs(configs):
         outfile = f'/etc/apt/sources.list.d/nodesource.list'
         addLine(outfile, code)
         addLine(outfile, source)
-    except Exception:
+    except Exception as err:
+        print(err)
         print('kunne ikke registrere node.js repository')
     else:
         print('Installerede node.js repository')
@@ -42,5 +43,6 @@ def install_nodejs(configs):
         programs = "express-generator json-server nodemon pm2"
         cmd = shlex.split(f"npm install -g {programs}")
         subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    except Exception:
+    except Exception as err:
+        print(err)
         print('Kunne ikke opdatere systemet med nodejs og globalemoduler')

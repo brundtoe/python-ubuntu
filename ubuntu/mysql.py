@@ -21,7 +21,7 @@ def install_mysql(configs):
             print('Installation af mysql')
             apt_update()
             options = configs['Common']['install_options']
-            install_program('mysql-server', options )
+            install_program('mysql-server', options)
             install_program('libmysqlclient', options)
     except Exception as err:
         print(err)
@@ -30,7 +30,7 @@ def install_mysql(configs):
     try:
         if not my_cnf_exists(user):
             print('mysql secure installation')
-            secure_installation()
+            secure_installation(project_path)
     except Exception as err:
         print(err)
         print('Kan ikke udføre secure installation')
@@ -72,4 +72,3 @@ def secure_installation(project_path):
     except Exception as err:
         print(err)
         sys.exit('Kan ikke udføre MySQL Secure installation')
-

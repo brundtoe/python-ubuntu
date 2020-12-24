@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-import sys
+# -*- coding: utf-8 -*-
 #
 import os, shutil
 import requests

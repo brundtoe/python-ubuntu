@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-import sys
-#
+# -*- coding: utf-8 -*-
 # Installation af smartgit
 #
 from moduler.fileOperations import fetch_archive

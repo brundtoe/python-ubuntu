@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-import os
-import sys
+
 from moduler.utilities import get_username, is_active, service_action
 
 

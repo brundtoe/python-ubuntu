@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-import sys
+# -*- coding: utf-8 -*-
 # Installation og konfiguration af Apache
 
 import sys
@@ -12,7 +12,6 @@ from moduler.basis_web import copy_web
 def install_apache(configs):
     print('Installation af Apache Webserver')
     project_path = configs['Common']['project_path']
-    version = configs['Common']['php-version']
     try:
         programs = configs['apache.install']
         options = configs['Common']['install_options']
@@ -65,4 +64,3 @@ def install_apache(configs):
     except Exception as err:
         print(err)
         sys.exit('Kan ikke disable Apache')
-

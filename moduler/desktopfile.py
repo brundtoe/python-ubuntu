@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-import sys
+# -*- coding: utf-8 -*-
 #
 import sys
 from jinja2 import Environment, FileSystemLoader
-from moduler.fileOperations import fetch_config
 
 
 def create_desktop_file(program,project_path, tmpl, user, version = None):
@@ -28,11 +27,3 @@ def create_desktop_file(program,project_path, tmpl, user, version = None):
         print(err)
         sys.exit(f'Kan ikke generere desktopfile for {program}')
 
-if __name__ == '__main__':
-    configs = fetch_config('../config/config.ini')
-    programs = configs['desktop.items']
-    user = configs['Common']['user']
-    for item in programs:
-        program = programs[item]
-        tmpl = f'{program}.jinja'
-        create_desktop_file(program, tmpl, user)
