@@ -15,7 +15,7 @@ from moduler.vbox_ext_pack import install_vbox_ext_pack
 
 def install_vbox(configs):
 
-    if path.exists('/etc/apt/sources.list.d/virtualbox.list'):
+    if not path.exists('/etc/apt/sources.list.d/virtualbox.list'):
         print('Virtualbox repository installeres')
 
         # lsb_release er første del af release navnet *lsb_release -sc*
