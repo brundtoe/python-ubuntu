@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # installation af Postman
-
+from os import path
 from moduler.fileOperations import fetch_archive
 from moduler.desktopfile import create_desktop_file
 
@@ -15,11 +15,14 @@ def install_postman(configs):
 
     # https://www.postman.com/downloads/release-notes
     version = configs['Common']['postman']
-    # url = "https://dl.pstmn.io/download/version/${Common:postman}/linux64"
-    url = "https://dl.pstmn.io/download/latest/linux64"
+    filename = f'Postman-{version}.tar.gz'
+    if path.exists(f'/tmp/{filename}'):
+        print(f'Postman version {version} er installeret')
+        return
+    url = f"https://dl.pstmn.io/download/latest/linux"
     user = configs['Common']['user']
     program = 'Postman'
-    fetch_archive(url, user, program, version)
+    fetch_archive(url, user, program, version, filename=filename)
 
     tmpl = f'{program}.jinja'
     project_path = configs['Common']['project_path']
