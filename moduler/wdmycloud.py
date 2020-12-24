@@ -10,7 +10,7 @@ import os
 import shutil
 from string import Template
 
-from moduler.fileOperations import fetch_config, addLine
+from moduler.fileOperations import fetch_config, add_line
 from moduler.add_mountpoints import add_mountpoints
 from moduler.install_programs import install_program
 
@@ -55,7 +55,7 @@ def update_wdmycloud(configs):
         with open(filename_wdmycloud) as src_file:
             for line in src_file:
                 tm = Template(line)
-                addLine(filename, tm.substitute(user=user))
+                add_line(filename, tm.substitute(user=user))
     except OSError as err:
         print(err)
         sys.exit('Der opstod fejl ved opdatering af wdmycloud')

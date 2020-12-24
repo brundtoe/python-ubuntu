@@ -8,7 +8,7 @@ import subprocess
 from os import path
 
 from moduler.apt_update import apt_update
-from moduler.fileOperations import addLine
+from moduler.fileOperations import add_line
 from moduler.install_programs import install_program
 from moduler.install_repo import repokey_install
 
@@ -28,8 +28,8 @@ def install_nodejs(configs):
         code = f'deb {repo_nodejs}\n'
         source = f'deb-src {repo_nodejs}\n'
         outfile = f'/etc/apt/sources.list.d/nodesource.list'
-        addLine(outfile, code)
-        addLine(outfile, source)
+        add_line(outfile, code)
+        add_line(outfile, source)
     except Exception as err:
         print(err)
         print('kunne ikke registrere node.js repository')

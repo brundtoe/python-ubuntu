@@ -14,7 +14,7 @@ import sys
 import shlex
 from subprocess import run
 
-from moduler.fileOperations import addLine
+from moduler.fileOperations import add_line
 
 
 def global_config(configs):
@@ -33,7 +33,7 @@ def global_config(configs):
     filename = '/etc/sysctl.d/40-max_user_watches.conf'
     try:
         max_watches = 'fs.inotify.max_user_watches = 524288\n'
-        addLine(filename, max_watches)
+        add_line(filename, max_watches)
     except OSError as err:
         print(err)
         sys.exit(f'Der opstod fejl ved opdatering af {filename}')
@@ -42,7 +42,7 @@ def global_config(configs):
 
     # set PLATFORM=VAGRANT
     try:
-        addLine('/etc/environment', 'PLATFORM=VAGRANT')
+        add_line('/etc/environment', 'PLATFORM=VAGRANT')
     except OSError as err:
         print(err)
         sys.exit(f'Der opstod fejl ved opdatering af environment med PLATFORM')
@@ -51,7 +51,7 @@ def global_config(configs):
 
     # set default editor
     try:
-        addLine('/etc/profile.d/editor.sh', "export EDITOR='vim'")
+        add_line('/etc/profile.d/editor.sh', "export EDITOR='vim'")
     except OSError as err:
         print(err)
         sys.exit(f'Der opstod fejl ved opdatering af environment med PLATFORM')

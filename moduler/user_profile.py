@@ -3,7 +3,7 @@
 import os
 import sys
 import shutil
-from moduler.fileOperations import addLine
+from moduler.fileOperations import add_line
 from moduler.utilities import change_owner, copy_dir
 
 
@@ -46,7 +46,7 @@ def user_profile(configs):
     try:
         user = configs['Common']['user']
         ps1 = r'PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ "'
-        addLine(f'/home/{user}/.bashrc', ps1)
+        add_line(f'/home/{user}/.bashrc', ps1)
     except OSError as err:
         print(err)
         sys.exit(f'Der opstod fejl ved opdatering af bashrc med PS1')

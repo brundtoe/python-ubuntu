@@ -5,7 +5,7 @@ import os
 import shutil
 import requests
 import subprocess
-
+from moduler.exceptions import AddLineFileNotFound
 from configparser import ConfigParser, ExtendedInterpolation
 
 
@@ -21,7 +21,7 @@ def fetch_config(filename):
     return config
 
 
-def isFound(filename, text):
+def is_found(filename, text):
     """Find en linje som begynder med text"""
     with open(filename) as file:
         for line in file:
@@ -46,15 +46,14 @@ def download_file(url, filename=None):
         sys.exit(f'Download fra {url} er fejlet')
 
 
-def addLine(filename, text):
+def add_line(filename, text):
     """Tilføj en linje til en fil hvis den ikke allerede findes"""
     if os.path.exists(filename):
-        if isFound(filename, text):
+        if is_found(filename, text):
             # print(f"{text} er allered defineret in {filename}")
             return False
     with open(filename, 'a') as file:
         file.write(text)
-        # print(f'filen {filename} er nu opdateret med {text}')
     return True
 
 

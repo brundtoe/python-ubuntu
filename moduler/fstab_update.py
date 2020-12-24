@@ -3,7 +3,7 @@
 #
 import sys
 import os
-from moduler.fileOperations import addLine, fetch_config
+from moduler.fileOperations import add_line, fetch_config
 
 
 def update_fstab(mount_string, mount_points, fstab):
@@ -18,7 +18,7 @@ def update_fstab(mount_string, mount_points, fstab):
     try:
         for key in fstab:
             line = f'{fstab[key]} {mount_points[key]} {mount_string}\n'
-            addLine('/etc/fstab', line)
+            add_line('/etc/fstab', line)
     except Exception as err:
         print(err)
         sys.exit(f'Kan ikke opette {line} i /etc/fstab')

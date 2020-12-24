@@ -7,7 +7,7 @@ Oprettelse af mount points og fstab for ekstra diske
 import os
 import sys
 
-from moduler.fileOperations import addLine
+from moduler.fileOperations import add_line
 from moduler.add_mountpoints import add_mountpoints
 
 
@@ -31,7 +31,7 @@ def update_extradiske(configs):
         with open(filename_extradiske) as src_file:
             for line in src_file:
                 if disk_exists(line):
-                    addLine(filename, line)
+                    add_line(filename, line)
     except OSError as err:
         print(err)
         sys.exit('Kan ikke tilføje ekstra diske')

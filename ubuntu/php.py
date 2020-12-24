@@ -6,7 +6,7 @@ import os
 import shutil
 import shlex
 import subprocess
-from moduler.fileOperations import addLine
+from moduler.fileOperations import add_line
 from moduler.sha256sum import hash_file
 from moduler.install_programs import install_programs
 from moduler.download_file import fetch_file
@@ -111,7 +111,7 @@ def config_php_ini(php_components, project_path, version):
 def config_php_fpm(version):
     fpm_pool = f"/etc/php/{version}/fpm/pool.d/www.conf"
     platform = "env[PLATFORM] = VAGRANT"
-    addLine(fpm_pool, platform)
+    add_line(fpm_pool, platform)
     print(f'{fpm_pool} er opdateret')
     cmd = shlex.split(f'systemctl restart php{version}-fpm')
     subprocess.run(cmd)

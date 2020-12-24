@@ -4,7 +4,7 @@
 import sys
 import shlex
 import subprocess
-from moduler.fileOperations import addLine
+from moduler.fileOperations import add_line
 from moduler.install_programs import install_programs
 from moduler.basis_web import copy_web
 
@@ -38,7 +38,7 @@ def install_apache(configs):
 
     try:
         print('Apache konfigureres med PLATFORM=VAGRANT')
-        addLine('/etc/apache2/envvars', 'export PLATFORM=VAGRANT')
+        add_line('/etc/apache2/envvars', 'export PLATFORM=VAGRANT')
     except Exception as err:
         print(err)
         sys.exit('Kan ikke opdatere /etc/apache2/envvars')
