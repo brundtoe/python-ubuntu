@@ -30,10 +30,13 @@ def isFound(filename, text):
     return False
 
 
-def download_file(url):
+def download_file(url, filename=None):
     try:
         req = requests.get(url, allow_redirects=True, stream=True)
-        outfile = f'/tmp/{url.split("/")[-1]}'
+        if filename:
+            outfile = f'/tmp/{filename}'
+        else:
+            outfile = f'/tmp/{url.split("/")[-1]}'
         with open(outfile, 'wb') as fd:
             for chunk in req.iter_content(chunk_size=8192):
                 fd.write(chunk)
@@ -55,10 +58,10 @@ def addLine(filename, text):
     return True
 
 
-def fetch_archive(url, user, program, version, zip_format='gztar'):
+def fetch_archive(url, user, program, version, filename=None, zip_format='gztar'):
     print(url)
     try:
-        outfile = download_file(url)
+        outfile = download_file(url, filename)
         unpackedfile = f'/home/{user}/programs'
         shutil.unpack_archive(outfile, unpackedfile, zip_format)
 
