@@ -48,6 +48,10 @@ def install_php(configs):
 
 
 def install_composer(url, sha256url, project_path, user):
+    dest = f'/home/{user}/.local/bin/composer'
+    if os.path.exists(dest):
+        print('Composer er allerede installeret')
+        return
     print('funktionen install_composer er kaldt')
     composerfile = f'{project_path}/outfile/composer'
     try:
@@ -76,7 +80,7 @@ def install_composer(url, sha256url, project_path, user):
             exit(1)
     try:
         # kopier til /home/{user}/.local/bin
-        dest = f'/home/{user}/.local/bin/composer'
+
         print(f'Kopierer composer til {dest} ')
         shutil.copy(composerfile, dest)
         os.chmod(dest, 0o755)
