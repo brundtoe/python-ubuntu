@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Installation af smartgit
 #
+from os import path
 from moduler.fileOperations import fetch_archive
 from moduler.desktopfile import create_desktop_file
 
@@ -14,8 +15,12 @@ def install_smartgit(configs):
     """
     # https://www.syntevo.com/smartgit/download/
     version = configs['Common']['smartgit']
+    filename = f'smartgit-linux-{version}.tar.gz'
+    if path.exists(f'/tmp/{filename}'):
+        print(f'SmartGit version {version} er installet')
+        return
     # url_deb = f"https://www.syntevo.com/downloads/smartgit/smartgit-{version}.deb"
-    url = f"https://www.syntevo.com/downloads/smartgit/smartgit-linux-{version}.tar.gz"
+    url = f"https://www.syntevo.com/downloads/smartgit/{filename}"
     user = configs['Common']['user']
     program = 'SmartGit'
     fetch_archive(url, user, program, version)
