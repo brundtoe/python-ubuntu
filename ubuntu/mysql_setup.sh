@@ -18,20 +18,6 @@ mysql --user="root" --password="${MYSQL_PASSWD}" -e "GRANT ALL PRIVILEGES ON *.*
 
 service mysql restart
 
-echo "Configure user homestead"
-mysql --user="root" --password="${MYSQL_PASSWD}" -e "CREATE USER 'homestead'@'0.0.0.0' IDENTIFIED BY '${MYSQL_PASSWD}';"
-mysql --user="root" --password="${MYSQL_PASSWD}" -e "CREATE USER 'homestead'@'%' IDENTIFIED BY '${MYSQL_PASSWD}';"
-mysql --user="root" --password="${MYSQL_PASSWD}" -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'0.0.0.0' WITH GRANT OPTION;"
-mysql --user="root" --password="${MYSQL_PASSWD}" -e "GRANT ALL PRIVILEGES ON *.* TO 'homestead'@'%' WITH GRANT OPTION;"
-mysql --user="root" --password="${MYSQL_PASSWD}" -e "FLUSH PRIVILEGES;"
-
-echo "Opretter databaserne homestead bookstore og mystore"
-mysql --user="root" --password="${MYSQL_PASSWD}" -e "CREATE DATABASE homestead character set UTF8mb4 collate utf8mb4_bin;"
-mysql --user="root" --password="${MYSQL_PASSWD}" -e "CREATE DATABASE bookstore character set UTF8mb4 collate utf8mb4_bin;"
-mysql --user="root" --password="${MYSQL_PASSWD}" -e "CREATE DATABASE mystore character set UTF8mb4 collate utf8mb4_bin;"
-
-echo "opdaterer my.cnf"
-
 cat > /root/.my.cnf <<EOL
 [client]
 user = homestead

@@ -11,6 +11,7 @@ import subprocess
 from moduler.fileOperations import fetch_config
 from moduler.apt_update import apt_update
 from moduler.install_programs import install_program
+from common.mysql_data import create_db_users
 
 
 def install_mysql(configs):
@@ -39,11 +40,16 @@ def install_mysql(configs):
     mysql_passwd = fetch_config(filename_env)['Common']['mysql_passwd']
     try:
         if not my_cnf_exists(user):
-            print('Bruger- og databaseoprettelse')
-            create_db_user(user, project_path, mysql_passwd)
+            print('MySQL konfiguration')
+            mysql_setup(user, project_path, mysql_passwd)
     except Exception as err:
         print(err)
         sys.exit('Kan ikke opdatere mysql users')
+
+    try:
+        create_db_users(configs)
+    except OSError:
+        print('Databse og user oprettelse fejlede')
 
     print('mysql installeret')
 
@@ -56,7 +62,7 @@ def my_cnf_exists(user):
         return False
 
 
-def create_db_user(user, project_path, mysql_passwd):
+def mysql_setup(user, project_path, mysql_passwd):
     print('Opdaterer mysql users')
     user_script = f'{project_path}/ubuntu/mysql_setup.sh'
     cmd = shlex.split(f'{user_script} {mysql_passwd} {user}')
