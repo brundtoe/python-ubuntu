@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Installation af Virtualbox
+# Installation af MySQL
 #
 
 import os
