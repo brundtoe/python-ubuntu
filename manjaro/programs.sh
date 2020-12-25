@@ -23,6 +23,7 @@ vim
 tmux
 cifs-utils
 lsb-release
+openssh
 gnupg
 unzip
 sqlite
