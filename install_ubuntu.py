@@ -25,7 +25,7 @@ from ubuntu.virtualbox import install_vbox
 menu = """Menu for systeminstallation og opdateringer
 ===========================================
 \t1)  Update user profile
-\t2)  Global configruation
+\t2)  Global configuration
 \t3)  Mount WD My Cloud
 \t4)  Update extra diske
 \t5)  Install basis software
