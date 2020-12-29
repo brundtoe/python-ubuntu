@@ -12,8 +12,11 @@ Installation af VirtualBox på Manjaro Host
 ==========================================
 Find den aktuelle linux kerne::
 
-    mhdw-kernel -li
+    mhwd-kernel -li
 
+I script anvendes::
+
+   mhwd-kernel -li | grep '^\s*\* linux' | awk -F' ' '{print $2}'
 
 Installation med linux58::
 
