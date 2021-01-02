@@ -1,6 +1,8 @@
 # Installation og konfiguration af Ubuntu
 
-Enkeltstående scripts til brug ved konfiguration af et Ubuntu eller Kubuntu image.
+scriptet install_ubuntu.py anvendes til installation på ubuntu
+
+Der er enkeltstående scripts til brug ved installation på Manjaro.
 
 ## Forbered installationen
 
