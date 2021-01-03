@@ -7,6 +7,24 @@ import shlex
 import subprocess
 
 
+def install_packages(configs):
+    programs = configs['manjaro.programs']
+    try:
+        cmd = shlex.split('pacman -Syu --noconfirm')
+        subprocess.run(cmd)
+    except OSError as err:
+        print(err)
+        sys.exit('Systemopdatering fejlede')
+
+    try:
+        install_programs(programs)
+    except OSError as err:
+        print(err)
+        sys.exit('Der opstod fejl ved installation af base software')
+    else:
+        print('pacman installation af base software udført')
+
+
 def install_programs(programs):
     """
     Installer et antal programmer
@@ -49,19 +67,3 @@ def install_program(program):
     return res.returncode == 0
 
 
-def install_packages(configs):
-    programs = configs['manjaro.programs']
-    try:
-        cmd = shlex.split('pacman -Syu --noconfirm')
-        subprocess.run(cmd)
-    except OSError as err:
-        print(err)
-        sys.exit('Systemopdatering fejlede')
-
-    try:
-        install_programs(programs)
-    except OSError as err:
-        print(err)
-        sys.exit('Der opstod fejl ved installation af base software')
-    else:
-        print('pacman installation af base software udført')
