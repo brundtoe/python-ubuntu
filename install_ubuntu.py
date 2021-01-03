@@ -26,9 +26,9 @@ menu = """Menu for systeminstallation og opdateringer
 ===========================================
 \t1)  Update user profile
 \t2)  Global configuration
-\t3)  Mount WD My Cloud
-\t4)  Update extra diske
-\t5)  Install basis software
+\t3)  Install basis software
+\t4)  Mount WD My Cloud
+\t5)  Update extra diske
 \t6)  Node.js
 \t7)  MongoDB
 \t8)  PHP incl. Composer
@@ -50,9 +50,9 @@ Desktop programmer til fysisk host
 switcher = {
     1: user_profile,
     2: global_config,
-    3: update_wdmycloud,
-    4: update_extradiske,
-    5: install_packages,
+    3: install_packages,
+    4: update_wdmycloud,
+    5: update_extradiske,
     6: install_nodejs,
     7: install_mongodb,
     8: install_php,

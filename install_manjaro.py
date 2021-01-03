@@ -6,15 +6,20 @@ import sys
 from moduler.fileOperations import fetch_config
 
 from moduler.user_profile import user_profile
+from moduler.global_config import global_config
+from moduler.manjaro import install_packages
+from moduler.wdmycloud import update_wdmycloud
+from moduler.extra_diske import update_extradiske
+
 
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
 \t1)  Update user profile
 \t2)  Global configuration
-\t3)  Mount WD My Cloud
-\t4)  Update extra diske
-\t5)  Install basis software
+\t3)  Install basis software
+\t4)  Mount WD My Cloud
+\t5)  Update extra diske
 \t6)  Node.js
 \t7)  MongoDB
 \t8)  PHP incl. Composer
@@ -35,7 +40,10 @@ Desktop programmer til fysisk host
 """
 switcher = {
     1: user_profile,
-
+    2: global_config,
+    3: install_packages;
+    4: update_wdmycloud,
+    5: update_extradiske
 }
 
 
