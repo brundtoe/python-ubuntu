@@ -10,7 +10,7 @@ from moduler.global_config import global_config
 from manjaro.packages import install_packages
 from moduler.wdmycloud import update_wdmycloud
 from moduler.extra_diske import update_extradiske
-
+from manjaro.nodejs import install_nodejs
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -42,7 +42,8 @@ switcher = {
     2: global_config,
     3: install_packages,
     4: update_wdmycloud,
-    5: update_extradiske
+    5: update_extradiske,
+    6: install_nodejs
 }
 
 
