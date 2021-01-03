@@ -6,12 +6,6 @@ import sys
 import shlex
 import subprocess
 
-programs = [
-    'dkms',
-    'linux-headers',
-    'perl'
-]
-
 
 def install_programs(programs):
     """
@@ -24,6 +18,7 @@ def install_programs(programs):
         if not pgm:
             pgm = program
         if is_installed(pgm):
+            print(f'{pgm} allerede installeret')
             continue
         res = install_program(pgm)
         if not res:
@@ -49,13 +44,13 @@ def install_program(program):
     :param program: programnavn
     :return: True hvis installationen er udført ellers False
     """
-    cmd = shlex.split(f"pacman -Su --noconfirm {program}")
+    cmd = shlex.split(f"pacman -S --noconfirm {program}")
     res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return res.returncode == 0
 
 
 def install_packages(configs):
-    programs = configs['programs']
+    programs = configs['manjaro.programs']
     try:
         cmd = shlex.split('pacman -Syu --noconfirm')
         subprocess.run(cmd)
