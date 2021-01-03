@@ -7,10 +7,9 @@ from moduler.fileOperations import fetch_config
 
 from moduler.user_profile import user_profile
 from moduler.global_config import global_config
-from moduler.manjaro import install_packages
+from manjaro.packages import install_packages
 from moduler.wdmycloud import update_wdmycloud
 from moduler.extra_diske import update_extradiske
-
 
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
@@ -41,7 +40,7 @@ Desktop programmer til fysisk host
 switcher = {
     1: user_profile,
     2: global_config,
-    3: install_packages;
+    3: install_packages,
     4: update_wdmycloud,
     5: update_extradiske
 }
