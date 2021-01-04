@@ -2,7 +2,6 @@
 #
 #
 import os
-import sys
 import shlex
 from subprocess import run
 
@@ -17,7 +16,7 @@ def install_mongodb(configs):
         print('På Ubuntu skal installationen foretages fra systemmenuen')
         return
 
-    if path.exists('/etc/apt/sources.list.d/mongodb.list'):
+    if os.path.exists('/etc/apt/sources.list.d/mongodb.list'):
         print('MongoDB er allerede installereet')
         return
 
@@ -25,7 +24,6 @@ def install_mongodb(configs):
 
     cmd = shlex.split('sudo pacman -Syu --needed base-devel')
     run(cmd)
-    if run.statuscode != 0:
+    if run.returncode != 0:
         print('Systemopdatering fejlede')
         return
-    
