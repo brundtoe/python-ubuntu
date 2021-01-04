@@ -11,6 +11,7 @@ from manjaro.packages import install_packages
 from moduler.wdmycloud import update_wdmycloud
 from moduler.extra_diske import update_extradiske
 from manjaro.nodejs import install_nodejs
+from manjaro.php import install_php
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -20,20 +21,19 @@ menu = """Manjaro Menu for systeminstallation og opdateringer
 \t4)  Mount WD My Cloud
 \t5)  Update extra diske
 \t6)  Node.js
-\t7)  MongoDB
-\t8)  PHP incl. Composer
-\t9)  Apache2 med libapache2-mod-php
-\t10) Nginx
-\t11) MySQL
-\t12) Docker
-\t13) Flip http web server
+\t7)  PHP incl. Composer
+\t8)  Apache2 med libapache2-mod-php
+\t9) Nginx
+\t10) MySQL
+\t11) Docker
+\t12) Flip http web server
 ===========================================
 Desktop programmer til fysisk host
 ===========================================
-\t14) Vagrant
-\t15) Packer
-\t16) Virtualbox
-\t17) Google Chrome
+\t13) Vagrant
+\t14) Packer
+\t15) Virtualbox
+\t16) Google Chrome
 ===========================================
 \t99) I do not know, Exit!
 """
@@ -43,7 +43,8 @@ switcher = {
     3: install_packages,
     4: update_wdmycloud,
     5: update_extradiske,
-    6: install_nodejs
+    6: install_nodejs,
+    7: install_php
 }
 
 
