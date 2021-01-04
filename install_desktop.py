@@ -10,6 +10,7 @@ from common.nosqlbooster import install_nosqlbooster
 from common.postman import install_postman
 from common.smartgit import install_smartgit
 from common.sshkeys import create_sshkeys
+from manjaro.mongodb import install_mongodb
 
 menu = """Menu for desktop installation og opdateringer
 =============================================
@@ -19,6 +20,7 @@ menu = """Menu for desktop installation og opdateringer
 \t4)  Postman
 \t5)  SmartGit
 \t6)  SSH key
+\t7)  MongoDB på Manjaro og Archlinux
 =============================================
 \t99) I do not know, Exit!
 """
@@ -28,7 +30,8 @@ switcher = {
     3: install_nosqlbooster,
     4: install_postman,
     5: install_smartgit,
-    6: create_sshkeys
+    6: create_sshkeys,
+    7: install_mongodb
 }
 
 
