@@ -107,5 +107,9 @@ if __name__ == "__main__":
         sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
     else:
         print(f'Konfigurationsfilen {filename} er indlæst')
+    
+    distro = configuration['Common']['distribution']
+    if distro != 'ubuntu':
+        sys.exit(f'På {distro} skal installationen foretages med install_manjaro.py')
 
     show_menu(configuration)

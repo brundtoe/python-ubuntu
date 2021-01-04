@@ -23,7 +23,9 @@ def install_mongodb(configs):
     project_path = configs['Common']['project_path']
 
     cmd = shlex.split('sudo pacman -Syu --needed base-devel')
-    run(cmd)
-    if run.returncode != 0:
+    res = run(cmd)
+    if res.returncode != 0:
         print('Systemopdatering fejlede')
         return
+
+    
