@@ -12,6 +12,7 @@ from moduler.wdmycloud import update_wdmycloud
 from moduler.extra_diske import update_extradiske
 from manjaro.nodejs import install_nodejs
 from manjaro.php import install_php
+from manjaro.apache import install_apache
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -22,8 +23,8 @@ menu = """Manjaro Menu for systeminstallation og opdateringer
 \t5)  Update extra diske
 \t6)  Node.js
 \t7)  PHP incl. Composer
-\t8)  Apache2 med libapache2-mod-php
-\t9) Nginx
+\t8)  Http web server
+\t9)  Nginx
 \t10) MySQL
 \t11) Docker
 \t12) Flip http web server
@@ -44,7 +45,8 @@ switcher = {
     4: update_wdmycloud,
     5: update_extradiske,
     6: install_nodejs,
-    7: install_php
+    7: install_php,
+    8: install_apache
 }
 
 
