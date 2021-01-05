@@ -19,6 +19,7 @@ from manjaro.docker import install_docker
 from manjaro.vagrant import install_vagrant
 from manjaro.packer import install_packer
 from manjaro.chromium import install_chromium
+from manjaro.mysql import install_mysql
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -54,6 +55,7 @@ switcher = {
     7: install_php,
     8: install_apache,
     9: install_nginx,
+    10: install_mysql,
     11: install_docker,
     12: flip_server,
     13: install_vagrant,
