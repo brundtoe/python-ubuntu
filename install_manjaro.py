@@ -20,6 +20,7 @@ from manjaro.vagrant import install_vagrant
 from manjaro.packer import install_packer
 from manjaro.chromium import install_chromium
 from manjaro.mysql import install_mysql
+from manjaro.virtualbox import install_virtualbox
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -60,6 +61,7 @@ switcher = {
     12: flip_server,
     13: install_vagrant,
     14: install_packer,
+    15: install_virtualbox,
     16: install_chromium
 }
 
