@@ -26,6 +26,9 @@ def create_db_users(configs):
 
     # generer sql script fra en template
 
+    run(['mariadb-secure-installation'], shell=True)
+    return
+
     env_config = fetch_config(f'{project_path}/config/.env_develop')
     mysql_passwd = env_config['Common']['mysql_passwd']
     athlon38_passwd = env_config['Common']['athlon38_passwd']
