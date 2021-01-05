@@ -43,21 +43,6 @@ def install_mysql(configs):
         print(f'Opdatering af {mysql_server_config_file} fejlede')
 
     run(['systemctl','start',mysql_daemon])
-    env_config = fetch_config(f'{project_path}/config/.env_develop')
-    mysql_passwd = env_config['Common']['mysql_passwd']
-    print(f'Mysql secure installation med {mysql_passwd}')
-    run(['mariadb-secure-installation'], shell=True)
-    run(['systemctl','restart',mysql_daemon])
-    return
-    sql_file = f'{project_path}/config/mysql_secure.sql'
-    try:
-        env_config = fetch_config(f'{project_path}/config/.env_develop')
-        mysql_passwd = env_config['Common']['mysql_passwd']
-        with open(sql_file) as file:
-            proc = Popen(f'mysql -u root -p{mysql_passwd}', shell=True, stdin=file,
-                         stdout=PIPE, stderr=PIPE, universal_newlines=True)
-            proc.communicate()
-    except OSError as err:
-        print(err)
 
-    
+    create_db_users(configs)
+
