@@ -16,6 +16,9 @@ from manjaro.apache import install_apache
 from manjaro.nginx import install_nginx
 from moduler.flip_server import flip_server
 from manjaro.docker import install_docker
+from manjaro.vagrant import install_vagrant
+from manjaro.packer import install_packer
+from manjaro.chromium import install_chromium
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -52,7 +55,10 @@ switcher = {
     8: install_apache,
     9: install_nginx,
     11: install_docker,
-    12: flip_server
+    12: flip_server,
+    13: install_vagrant,
+    14: install_packer,
+    16: install_chromium
 }
 
 
