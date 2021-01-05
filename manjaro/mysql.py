@@ -18,7 +18,7 @@ def install_mysql(configs):
     project_path = configs['Common']['project_path']
     mysql_daemon = 'mariadb'
     mysql_server_config_file = '/etc/my.cnf.d/server.cnf'
-    mysql_install_db = shlex.split('mysql --user=mysql --basedir=/usr --datadir=/var/lib/mysql')
+    mysql_install_db = shlex.split('mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql')
 
 
     if os.path.exists('/usr/lib/systemd/system/mysql.service'):
@@ -27,9 +27,8 @@ def install_mysql(configs):
         try:
             print('Installation af MariaDB')
             install_program('mariadb')
-            subprocess.run(['systemctl','enable',mysql_daemon])
             subprocess.run(mysql_install_db)
-            subprocess.run(['systemctl','start',mysql_daemon])
+            subprocess.run(['systemctl','enable',mysql_daemon])
         except Exception as err:
             print(err)
             sys.exit('Kan ikke installere MariaDB')
@@ -42,4 +41,5 @@ def install_mysql(configs):
     except OSError as err:
         print(f'Opdatering af {mysql_server_config_file} fejlede')
 
-    
+    subprocess.run(['systemctl','start',mysql_daemon])
+
