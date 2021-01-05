@@ -13,6 +13,7 @@ from moduler.extra_diske import update_extradiske
 from manjaro.nodejs import install_nodejs
 from manjaro.php import install_php
 from manjaro.apache import install_apache
+from manjaro.nginx import install_nginx
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -46,7 +47,8 @@ switcher = {
     5: update_extradiske,
     6: install_nodejs,
     7: install_php,
-    8: install_apache
+    8: install_apache,
+    9: install_nginx
 }
 
 

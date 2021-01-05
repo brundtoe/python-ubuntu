@@ -1,0 +1,73 @@
+#
+# Default server configuration
+#
+
+  # doctrine26 og samples
+  server {
+      listen 80;
+      listen localhost;
+      #listen [::]:80 default_server;
+
+      root /var/www/html;
+
+      # Add index.php to the list if you are using PHP
+      index index.html index.htm index.nginx-debian.html index.php;
+
+      server_name _;
+
+      location / {
+      # First attempt to serve request as file, then
+      # as directory, then fall back to displaying a 404.
+      try_files $uri $uri/ =404;
+      }
+
+      # pass PHP Scripts til /bookstore
+      location /bookstore/ {
+          alias /var/www/html/doctrine26/bookstore/web/public/;
+          location ~  .*\.php$ {
+              include fastcgi_params;
+              fastcgi_param SCRIPT_FILENAME $request_filename;
+              fastcgi_pass unix:{{unix_socket}};
+          }
+      }
+      location /customers/ {
+          alias 	/var/www/html/doctrine26/customers/web/public/;
+          location ~ .*\.php$ {
+              include fastcgi_params;
+              fastcgi_param  SCRIPT_FILENAME $request_filename;
+              fastcgi_pass unix:{{unix_socket}};
+          }
+      }
+      location /sqlite/ {
+          alias 	/var/www/html/doctrine26/sqlite/web/public/;
+          location ~ .*\.php$ {
+              include fastcgi_params;
+              fastcgi_param  SCRIPT_FILENAME $request_filename;
+              fastcgi_pass unix:{{unix_socket}};
+          }
+      }
+      location /samples {
+          root /var/www/html/websites/htdocs/;
+          location ~ /samples.*\.php$ {
+              include fastcgi_params;
+              fastcgi_param  SCRIPT_FILENAME $request_filename;
+              fastcgi_pass unix:{{unix_socket}};
+          }
+      }
+      # pass PHP scripts to FastCGI server
+      #
+      location ~ \.php$ {
+          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          include fastcgi_params;
+          fastcgi_pass unix:{{unix_socket}};
+      }
+
+      # deny access to .htaccess files, if Apache's document root
+      # concurs with nginx's one
+      #
+      location ~ /\.ht {
+      deny all;
+      }
+  }
+
+
