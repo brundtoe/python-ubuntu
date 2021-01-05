@@ -28,20 +28,12 @@ def install_mysql(configs):
         try:
             print('Installation af MariaDB')
             install_program('mariadb')
-            run(mysql_install_db, shell=True)
-            run(['systemctl','enable',mysql_daemon])
+            run(mysql_install_db)
         except Exception as err:
             print(err)
             sys.exit('Kan ikke installere MariaDB')
 
-    try:
-        add_line(mysql_server_config_file,'default_password_lifetime = 0')
-        regexp = 's/\#bind-address.*=.*/bind-address = 0.0.0.0/'
-        cmd = shlex.split(f"sed -i '{regexp}' {mysql_server_config_file}")
-        run(cmd)
-    except OSError as err:
-        print(f'Opdatering af {mysql_server_config_file} fejlede')
-
+    run(['systemctl','enable',mysql_daemon])
     run(['systemctl','start',mysql_daemon])
 
     create_db_users(configs)
