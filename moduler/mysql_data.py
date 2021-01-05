@@ -24,10 +24,10 @@ def create_db_users(configs):
         print(err)
         sys.exit('Kald af pgrep mysql fejlede - tjek om mariadb kører')
 
-    # generer sql script fra en template
 
     run(['mysql_secure_installation'], shell=True)
 
+    # generer sql script fra en template
     env_config = fetch_config(f'{project_path}/config/.env_develop')
     mysql_passwd = env_config['Common']['mysql_passwd']
     athlon38_passwd = env_config['Common']['athlon38_passwd']

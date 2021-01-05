@@ -7,10 +7,10 @@ import os
 import sys
 import shlex
 import shutil
-from subprocess import run, Popen, PIPE
-from moduler.fileOperations import fetch_config, add_line
+from subprocess import run
+from moduler.fileOperations import fetch_config
 from manjaro.packages import install_program
-from common.mysql_data import create_db_users
+from moduler.mysql_data import create_db_users
 
 
 def install_mysql(configs):
@@ -18,7 +18,6 @@ def install_mysql(configs):
     user = configs['Common']['user']
     project_path = configs['Common']['project_path']
     mysql_daemon = 'mariadb'
-    mysql_server_config_file = '/etc/my.cnf.d/server.cnf'
     mysql_install_db = shlex.split('mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql')
 
 
