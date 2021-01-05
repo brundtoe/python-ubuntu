@@ -14,6 +14,7 @@ from manjaro.nodejs import install_nodejs
 from manjaro.php import install_php
 from manjaro.apache import install_apache
 from manjaro.nginx import install_nginx
+from moduler.flip_server import flip_server
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -48,7 +49,8 @@ switcher = {
     6: install_nodejs,
     7: install_php,
     8: install_apache,
-    9: install_nginx
+    9: install_nginx,
+    12: flip_server
 }
 
 
