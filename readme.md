@@ -1,43 +1,58 @@
 # Installation og konfiguration af Ubuntu
 
-scriptet install_ubuntu.py anvendes til installation på ubuntu
+Projektet indeholder scripts til brug ved installation af software på Debina og archLinux distributioner.
 
-Der er enkeltstående scripts til brug ved installation på Manjaro.
+Repositoriet clones fra::
+
+    https://github.com/brundtoe/python-demo.git
 
 ## Forbered installationen
 
-- Der oprettes i mappen **infile** filen **.env.develop** med password til**wdmycloud**
-- filen **infile/config.ini** her opdateres alle elementer i afsnittene 
+Der oprettes i mappen **config** filen **.env.develop**::
+
+    cd config
+    cp env.template .env.develop
+
+Opdater med de relevante passwords
+
+
+Filen **config/config.ini** her opdateres alle elementer i afsnittene 
 
     - Common (her findes parametre som anvendes i de efterfølgende afsnit)
     - ekstra.programs
+    - manjaro-programs
 
 ## Python requirements
 
-requirements.local.txt anvendes for installationsscripts og installeres i det lokale environment
+Følgende skal være installeret::
 
-requirements-global.txt anvnedes til Sphix kompilering af dokumentationen
-
-## Struktur
-
-mappen:
-
-- config konfigurationsfiler
-- common scripts som anvendes til installation på Kubuntu og Manjaro
-- manjaro scripts til installation på Manjaro
-- moduler scripts, der importeres som moduler i øvrige scripts mapper
-- source scripts til installation på Kubuntu/Ubuntu
-- devops indeholder gamle bash scripts
-- outfile er demoscripts output directory
+    python3-pip
+    python3-setuptools
+    python3-venv
+    cd python-demo
+    pip3 install -r requirements-global.txt
+    python3 -m venv venv
+    source venv/bin/activate
+    pip3 install -r requirements-local.txt
+    python3 setup.py develop
 
 ## Installationen
 
-Forudsætning
-    Vejledningen om aktivering af det virtuelle environment samt registrering af modulerne skal udføres, ellers fejler installationen  
+På Ubuntu anvendes::
 
-Detaljer fremgår af dokumentationen i mappen docs
+    cd python-demo
+    sudo ./install_ubuntu.py
 
-- source/installation.rst for Kubuntu
-- source/manjaro.rst for Manjaro
+På Manjaro/Archlinux anvendes::
 
+    cd python-demo
+    sudo ./install_manjaro.py
+
+En række programmer, som kun anvendes på instanser med en desktop GUI:
+
+    ./install_desktop.py
+
+## Programmer, der kan installeres
+
+Programmerne fremgår af menuerne som vises i installationsscriptene.
 

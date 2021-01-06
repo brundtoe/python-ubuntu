@@ -2,18 +2,13 @@
 #
 
 # from os import path
-# import sys
-from moduler.exceptions import AddLineFileNotFound
-# from moduler.fileOperations import add_line
+import sys
+import platform
+import os
 
-from subprocess import run
+ver = platform.release()
+print(ver)
+print(ver[0:1] + ver[2:3])
 
-try:
-    res = run(['ls'], capture_output=True)
-except FileNotFoundError as err:
-    print(err)
-    raise AddLineFileNotFound('olsen')
-except AddLineFileNotFound as err:
-    print(err)
-else:
-    print(f'subprocess call succeeds. {res.stdout}')
+print(platform.linux_distribution())
+
