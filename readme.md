@@ -22,19 +22,26 @@ Filen **config/config.ini** her opdateres alle elementer i afsnittene
     - ekstra.programs
     - manjaro-programs
 
-## Python requirements
+    
+## software requirements
 
-Følgende skal være installeret::
+Et af de tre scripts:
 
-    python3-pip
-    python3-setuptools
-    python3-venv
-    cd python-demo
-    pip3 install -r requirements-global.txt
-    python3 -m venv venv
-    source venv/bin/activate
-    pip3 install -r requirements-local.txt
-    python3 setup.py develop
+- before_archlinux.sh
+- before_manjaro.sh
+- before_ubuntu.sh
+
+udføres for at installere og konfigurere forudsætningerne for installationen af softwarepakker med Python
+
+Det virtuelle environment opbygges:
+
+```
+sudo pip install -r requirements-global.txt        
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements-local.txt
+python setup.py develop
+```
 
 ## Installationen
 
