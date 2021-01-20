@@ -41,6 +41,9 @@ def install_programs(programs, options):
             pgm = program
         if is_installed(pgm):
             continue
+        #fix for Debian
+        if pgm in ['lsb-core']:
+            continue
         res = install_program(pgm, options)
         if not res:
             sys.exit(f'Installation af {pgm} er fejlet')
