@@ -3,12 +3,7 @@
 
 # from os import path
 import sys
-import platform
 import os
 
-ver = platform.release()
-print(ver)
-print(ver[0:1] + ver[2:3])
-
-print(platform.linux_distribution())
-
+if sys.version[0:3] <= '3.8':
+    print(sys.version[0:3])
