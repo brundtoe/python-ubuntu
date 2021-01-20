@@ -40,7 +40,9 @@ def user_profile(configs):
     dest_dir = f'/home/{user}'
     copy_dir(src_dir, dest_dir, user)
 
-    shutil.copytree(src_dir, '/root', dirs_exist_ok=True)
+    if sys.version[0:3] >= '3.8':
+        shutil.copytree(src_dir, '/root', dirs_exist_ok=True)
+        print("shutil.copytree")
 
     # set command prompt PS1
     try:
