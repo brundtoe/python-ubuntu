@@ -11,6 +11,7 @@ apt-get install -y \
         build-essential \
         linux-headers-generic \
         dkms \
+        nfs-common \
         ssh \
         lsb-core \
         software-properties-common \

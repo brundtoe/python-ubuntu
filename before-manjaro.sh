@@ -11,6 +11,7 @@ pacman -S --noconfirm \
         make \
         perl \
         vim \
+        nfs-utils \
         git \
         openssh \        
         linux-headers \

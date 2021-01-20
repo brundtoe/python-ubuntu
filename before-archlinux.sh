@@ -12,6 +12,7 @@ pacman -Syu --noconfirm \
         make \
         perl \
         vim \
+        nfs-utils \
         openssh \
         linux-headers \
         python-pip \
