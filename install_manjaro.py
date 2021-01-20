@@ -2,6 +2,7 @@
 
 import os
 import sys
+import distro
 from moduler.fileOperations import fetch_config
 
 from moduler.user_profile import user_profile
@@ -105,8 +106,8 @@ if __name__ == "__main__":
     else:
         print(f'Konfigurationsfilen {filename} er indlæst')
 
-    distro = configuration['Common']['distribution']
-    if distro == 'ubuntu':
+    distro = distro.linux_distribution()[0]
+    if distro not in ['Arch Linux', 'Manjaro Linux']:
         sys.exit(f'På {distro} skal installationen foretages med install_ubuntu.py')
 
     show_menu(configuration)

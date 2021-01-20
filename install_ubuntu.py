@@ -2,6 +2,7 @@
 
 import os
 import sys
+import distro
 from moduler.extra_diske import update_extradiske
 from moduler.fileOperations import fetch_config
 from moduler.flip_server import flip_server
@@ -107,8 +108,8 @@ if __name__ == "__main__":
     else:
         print(f'Konfigurationsfilen {filename} er indlæst')
     
-    distro = configuration['Common']['distribution']
-    if distro != 'ubuntu':
+    distro = distro.linux_distribution()[0]
+    if distro != 'Ubuntu':
         sys.exit(f'På {distro} skal installationen foretages med install_manjaro.py')
 
     show_menu(configuration)
