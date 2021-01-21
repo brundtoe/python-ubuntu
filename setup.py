@@ -11,7 +11,8 @@ setup(
     author_email='brundtoe@outlook.dk',
     install_requires=[
         'requests == 2.25.1',
-        'Jinja2 == 2.11.2'
+        'Jinja2 == 2.11.2',
+        'distro == 1.5.0'
     ],
     packages=find_packages(include=['source', 'ubuntu', 'manjaro', 'common',  'moduler']),
 )
