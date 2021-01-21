@@ -12,6 +12,7 @@ from moduler.wdmycloud import update_wdmycloud
 from moduler.extra_diske import update_extradiske
 from manjaro.nodejs import install_nodejs
 from manjaro.php import install_php
+from manjaro.mongodb import install_mongodb
 from manjaro.apache import install_apache
 from manjaro.nginx import install_nginx
 from moduler.flip_server import flip_server
@@ -30,19 +31,20 @@ menu = """Manjaro Menu for systeminstallation og opdateringer
 \t4)  Mount WD My Cloud
 \t5)  Update extra diske
 \t6)  Node.js
-\t7)  PHP incl. Composer
-\t8)  Http web server
-\t9)  Nginx
-\t10) MySQL
-\t11) Docker
-\t12) Flip http web server
+\t7)  MongoDB
+\t8)  PHP incl. Composer
+\t9)  Http web server
+\t10) Nginx
+\t11) MySQL
+\t12) Docker
+\t13) Flip http web server
 ===========================================
 Desktop programmer til fysisk host
 ===========================================
-\t13) Vagrant
-\t14) Packer
-\t15) Virtualbox
-\t16) Google Chrome
+\t14) Vagrant
+\t15) Packer
+\t16) Virtualbox
+\t17) Google Chrome
 ===========================================
 \t99) I do not know, Exit!
 """
@@ -53,16 +55,17 @@ switcher = {
     4: update_wdmycloud,
     5: update_extradiske,
     6: install_nodejs,
-    7: install_php,
-    8: install_apache,
-    9: install_nginx,
-    10: install_mysql,
-    11: install_docker,
-    12: flip_server,
-    13: install_vagrant,
-    14: install_packer,
-    15: install_virtualbox,
-    16: install_chromium
+    7: install_mongodb,
+    8: install_php,
+    9: install_apache,
+    10: install_nginx,
+    11: install_mysql,
+    12: install_docker,
+    13: flip_server,
+    14: install_vagrant,
+    15: install_packer,
+    16: install_virtualbox,
+    17: install_chromium
 }
 
 
