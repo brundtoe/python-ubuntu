@@ -32,8 +32,7 @@ def install_mysql(configs):
             print(err)
             sys.exit('Kan ikke installere mysql')
 
-    run(['systemctl','enable',mysql_daemon])
-    run(['systemctl','start',mysql_daemon])
+    subprocess.run(['systemctl', 'enable', mysql_daemon])
+    subprocess.run(['systemctl', 'start', mysql_daemon])
 
     create_db_users(configs)
-

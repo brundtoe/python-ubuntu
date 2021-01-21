@@ -6,20 +6,18 @@
 import os
 import sys
 import shlex
-import shutil
+# import shutil
 from subprocess import run
-from moduler.fileOperations import fetch_config
+# from moduler.fileOperations import fetch_config
 from manjaro.packages import install_program
 from moduler.mysql_data import create_db_users
 
 
 def install_mysql(configs):
-
     user = configs['Common']['user']
     project_path = configs['Common']['project_path']
     mysql_daemon = 'mariadb'
     mysql_install_db = shlex.split('mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql')
-
 
     if os.path.exists('/usr/lib/systemd/system/mysql.service'):
         print('MariaDB er allerede installeret')
@@ -32,8 +30,7 @@ def install_mysql(configs):
             print(err)
             sys.exit('Kan ikke installere MariaDB')
 
-    run(['systemctl','enable',mysql_daemon])
-    run(['systemctl','start',mysql_daemon])
+    run(['systemctl', 'enable', mysql_daemon])
+    run(['systemctl', 'start', mysql_daemon])
 
     create_db_users(configs)
-
