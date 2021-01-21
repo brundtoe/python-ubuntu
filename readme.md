@@ -1,6 +1,6 @@
 # Installation og konfiguration af Ubuntu
 
-Projektet indeholder scripts til brug ved installation af software på Debina og archLinux distributioner.
+Projektet indeholder scripts til brug ved installation af software på Debian og archLinux distributioner.
 
 Repositoriet clones fra::
 

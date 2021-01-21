@@ -109,8 +109,8 @@ if __name__ == "__main__":
     else:
         print(f'Konfigurationsfilen {filename} er indlæst')
 
-    distro = distro.linux_distribution()[0]
-    if distro not in ['Arch Linux', 'Manjaro Linux']:
+    distrib = distro.linux_distribution()[0]
+    if distrib not in ['Arch Linux', 'Manjaro Linux']:
         sys.exit(f'På {distro} skal installationen foretages med install_ubuntu.py')
 
     show_menu(configuration)

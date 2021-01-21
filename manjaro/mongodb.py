@@ -3,6 +3,7 @@
 #
 import os
 import shlex
+import distro
 from subprocess import run
 
 
@@ -10,10 +11,9 @@ def install_mongodb(configs):
     if os.geteuid() == 0:
         print('MongoDB kan ikke installeres med root access')
         return
-
-    distro = configs['Common']['distribution']
-    if distro == 'ubuntu':
-        print('På Ubuntu skal installationen foretages fra systemmenuen')
+    distrib = distro.linux_distribution()[0]
+    if distrib in ['Ubuntu', 'Debian GNU/Linux']:
+        print('På Ubuntu/Debian skal installationen foretages fra systemmenuen')
         return
 
     if os.path.exists('/lib/systemd/system/mongodb.service'):
