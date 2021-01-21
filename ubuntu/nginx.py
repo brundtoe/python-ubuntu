@@ -23,7 +23,7 @@ def install_nginx(configs):
         sys.exit('Kan ikke installere Nginx')
 
     try:
-        tmpl = 'nginx-ubuntu.jinja'
+        tmpl = '000-nginx.jinja'
         php_version = configs['Common']['php-version']
         create_site_config(tmpl, project_path, php_version)
     except Exception as err:
@@ -54,13 +54,19 @@ def install_nginx(configs):
 
 
 def create_site_config(tmpl, project_path, php_version):
+
+    print(tmpl)
+    print(project_path)
+    print(php_version)
+
     try:
         file_loader = FileSystemLoader(f'{project_path}/templates')
         env = Environment(loader=file_loader)
         template = env.get_template(tmpl)
         outfile = '/etc/nginx/sites-available/default'
-        output = template.render(php_version=php_version)
-        # print(output)
+        unix_socket = f'/var/run/php/php{php_version}-fpm.sock'
+        output = template.render(unix_socket=unix_socket)
+        print(output)
         with open(outfile, 'wt') as fout:
             fout.write(output)
     except Exception as err:
