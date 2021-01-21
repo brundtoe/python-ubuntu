@@ -10,7 +10,7 @@ from moduler.fileOperations import add_line
 from moduler.sha256sum import hash_file
 from moduler.install_programs import install_programs
 from moduler.download_file import fetch_file
-from moduler.xdebug_ini import create_xdebug_ini
+from moduler.xdebug_ini import create_xdebug_3_ini
 
 
 def install_php(configs):
@@ -25,11 +25,24 @@ def install_php(configs):
     options = configs['Common']['install_options']
     install_programs(programs, options)
 
+    print('Installation af Xdebug version 3')
+    xdebug_version = configs['Common']['xdebug_version']
+    try:
+        install_pecl = shlex.split('pecl install xdebug')
+        subprocess.run(install_pecl)
+        update_pecl = shlex.split('pecl channel-update pecl.php.net')
+        subprocess.run(update_pecl)
+        install_xdebug = shlex.split(f'pecl install xdebug-{xdebug_version}')
+        subprocess.run(install_xdebug)
+    except OSError as err:
+        print(err)
+        sys.exit('Installation af xdebug fejlede')
+
     print('konfiguration af XDebug')
     version = configs['Common']['php-version']
-    xdebug_host = configs['Common']['xdebug-host']
-    dstfile = f'/etc/php/{version}/mods-available/xdebug.ini'
-    create_xdebug_ini('xdebug.jinja', project_path, dstfile, xdebug_host)
+    xdebug_client_host = configs['Common']['xdebug_client_host']
+    dstfile = f'/etc/php/{version}/fpm/conf.d/20-xdebug.ini'
+    create_xdebug_3_ini('xdebug_3.jinja', project_path, dstfile, xdebug_client_host)
 
     print('Konfiguration af php.ini')
     php_components = ['cli', 'cgi', 'fpm']
@@ -48,12 +61,12 @@ def install_php(configs):
 
 
 def install_composer(url, sha256url, project_path, user):
-    dest = f'/home/{user}/.local/bin/composer'
+    dest = '/usr/local/bin/composer'
     if os.path.exists(dest):
         print('Composer er allerede installeret')
         return
     print('funktionen install_composer er kaldt')
-    composerfile = f'{project_path}/outfile/composer'
+    composerfile = '/tmp/composer'
     try:
         fetch_file(url, composerfile)
         print('composer filen er hentet')
@@ -65,7 +78,7 @@ def install_composer(url, sha256url, project_path, user):
     # Der skal være to mellemrum før composer.phar
     composer_hash = f'{hash_file(composerfile)}  composer.phar'
 
-    sha256file = f'{project_path}/outfile/composerSha256'
+    sha256file = '/tmp/composerSha256'
     try:
         fetch_file(sha256url, sha256file)
         with open(sha256file) as fin:
@@ -83,8 +96,6 @@ def install_composer(url, sha256url, project_path, user):
 
         print(f'Kopierer composer til {dest} ')
         shutil.copy(composerfile, dest)
-        os.chmod(dest, 0o755)
-        shutil.chown(dest, user, user)
         os.remove(composerfile)
         os.remove(sha256file)
     except Exception as err:
