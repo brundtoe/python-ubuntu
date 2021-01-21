@@ -51,7 +51,7 @@ def change_owner(path, user):
         sys.exit('Kan ikke ændre rettighederne')
 
 
-def copy_dir(src_dir, dest_dir, user):
+def copy_dir(src_dir, dest_dir, user='root'):
     onlyfiles = [f for f in os.listdir(src_dir) if isfile(join(src_dir, f))]
     for file in onlyfiles:
         src = join(src_dir, file)

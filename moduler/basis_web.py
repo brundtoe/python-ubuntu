@@ -6,6 +6,7 @@
 import sys
 import shutil
 from jinja2 import Environment, FileSystemLoader
+from moduler.utilities import copy_dir
 
 
 def city_files(configs, project_path):
@@ -31,7 +32,7 @@ def copy_web(configs,  dest):
     project_path = configs['Common']['project_path']
     try:
         city_files(configs, project_path)
-        shutil.copytree(f'{project_path}/assets/web', dest, dirs_exist_ok=True)
+        copy_dir(f'{project_path}/assets/web', dest, 'root')
     except Exception as err:
         print(err)
         sys.exit(f'kan ikke kopiere til {dest}')

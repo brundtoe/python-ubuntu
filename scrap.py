@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 #
 
-# from os import path
-import sys
 import os
+from os.path import isfile, join
 
-if sys.version[0:3] <= '3.8':
-    print(sys.version[0:3])
+def copy_dir(src_dir, dest_dir, user='root'):
+    onlyfiles = [f for f in os.listdir(src_dir) if isfile(join(src_dir, f))]
+    for file in onlyfiles:
+        src = join(src_dir, file)
+        dest = join(dest_dir, file)
+#        shutil.copy(src, dest)
+#        shutil.chown(dest, user, user)
+        print(src, dest)
+
+copy_dir('assets/web','/var/www/html')
