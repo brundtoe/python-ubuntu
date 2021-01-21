@@ -6,6 +6,7 @@ import subprocess
 from moduler.install_programs import install_program, is_installed
 from jinja2 import Environment, FileSystemLoader
 from moduler.basis_web import copy_web
+from moduler.site_conf_nginx import create_site_config
 
 
 def install_nginx(configs):
@@ -24,8 +25,12 @@ def install_nginx(configs):
 
     try:
         tmpl = '000-nginx.jinja'
+        server_dir = '/etc/apache2'
         php_version = configs['Common']['php-version']
-        create_site_config(tmpl, project_path, php_version)
+        site_file = 'default'
+        unix_socket = f'/var/run/php/php{php_version}-fpm.sock'
+        create_site_config(project_path, server_dir, tmpl, site_file, unix_socket)
+
     except Exception as err:
         print(err)
         sys.exit(f'Kan ikke opdatere definitionen af nginx default site')
@@ -51,24 +56,3 @@ def install_nginx(configs):
     except Exception as err:
         print(err)
         sys.exit('Kan ikke standse Nginx')
-
-
-def create_site_config(tmpl, project_path, php_version):
-
-    print(tmpl)
-    print(project_path)
-    print(php_version)
-
-    try:
-        file_loader = FileSystemLoader(f'{project_path}/templates')
-        env = Environment(loader=file_loader)
-        template = env.get_template(tmpl)
-        outfile = '/etc/nginx/sites-available/default'
-        unix_socket = f'/var/run/php/php{php_version}-fpm.sock'
-        output = template.render(unix_socket=unix_socket)
-        print(output)
-        with open(outfile, 'wt') as fout:
-            fout.write(output)
-    except Exception as err:
-        print(err)
-        sys.exit(f'Kan ikke generere default nginx site')
