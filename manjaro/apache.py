@@ -8,7 +8,7 @@ import shutil
 import subprocess
 from moduler.basis_web import copy_web
 from moduler.fileOperations import add_line
-from jinja2 import Environment, FileSystemLoader
+from moduler.site_conf_apache import create_site_conf
 
 
 def install_apache(configs):
@@ -44,7 +44,8 @@ def install_apache(configs):
     if not os.path.exists(f"{apache_dir}/sites-enabled"):
         os.makedirs(f"{apache_dir}/sites-enabled",  0o755, exist_ok=True)
 
-    create_site_conf(project_path, apache_dir, 'httpd')
+    tmpl = '000-apache.jinja'
+    create_site_conf(project_path, apache_dir, tmpl, 'httpd')
 
     dest = '/var/www/html'
     if not os.path.exists(f"{dest}"):
@@ -78,21 +79,3 @@ def config_httpd(project_path, apache_dir, apache_conf):
 
     add_line(apache_conf, 'Include conf/extra/php-fpm.conf')
     add_line(apache_conf, 'Include sites-enabled/*.conf')
-
-
-def create_site_conf(project_path, apache_dir, app_user):
-
-    file_loader = FileSystemLoader(f'{project_path}/templates')
-    env = Environment(loader=file_loader)
-
-    template = env.get_template('000-apache.jinja')
-    output = template.render(app_user=app_user)
-    # print(output)
-    outfile = f'{apache_dir}/sites-available/000-default.conf'
-    with open(outfile, 'wt') as fout:
-        fout.write(output)
-
-    if os.path.exists(f'{apache_dir}/sites-enabled/000-default.conf'):
-        os.unlink(f'{apache_dir}/sites-enabled/000-default.conf')
-    os.symlink(f'{apache_dir}/sites-available/000-default.conf',
-               f'{apache_dir}/sites-enabled/000-default.conf')

@@ -7,6 +7,7 @@ import subprocess
 from moduler.fileOperations import add_line
 from moduler.install_programs import install_programs
 from moduler.basis_web import copy_web
+from moduler.site_conf_apache import create_site_conf
 
 
 def install_apache(configs):
@@ -42,6 +43,10 @@ def install_apache(configs):
     except Exception as err:
         print(err)
         sys.exit('Kan ikke opdatere /etc/apache2/envvars')
+
+    apache_dir = "/etc/apache2"
+    tmpl = '000-apache.jinja'
+    create_site_conf(project_path, apache_dir, tmpl, 'apache2')
 
     dest = '/var/www/html'
     try:
