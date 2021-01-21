@@ -28,8 +28,6 @@ def install_php(configs):
     print('Installation af Xdebug version 3')
     xdebug_version = configs['Common']['xdebug_version']
     try:
-        install_pecl = shlex.split('pecl install xdebug')
-        subprocess.run(install_pecl)
         update_pecl = shlex.split('pecl channel-update pecl.php.net')
         subprocess.run(update_pecl)
         install_xdebug = shlex.split(f'pecl install xdebug-{xdebug_version}')

@@ -25,7 +25,7 @@ def install_nginx(configs):
 
     try:
         tmpl = '000-nginx.jinja'
-        server_dir = '/etc/apache2'
+        server_dir = '/etc/nginx'
         php_version = configs['Common']['php-version']
         site_file = 'default'
         unix_socket = f'/var/run/php/php{php_version}-fpm.sock'

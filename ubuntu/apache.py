@@ -8,7 +8,7 @@ from moduler.fileOperations import add_line
 from moduler.install_programs import install_programs
 from moduler.basis_web import copy_web
 from moduler.site_conf_apache import create_site_conf
-
+from moduler.xdebug_ini import create_xdebug_3_ini
 
 def install_apache(configs):
     print('Installation af Apache Webserver')
@@ -47,6 +47,12 @@ def install_apache(configs):
     apache_dir = "/etc/apache2"
     tmpl = '000-apache.jinja'
     create_site_conf(project_path, apache_dir, tmpl, 'apache2')
+
+    print('konfiguration af XDebug')
+    version = configs['Common']['php-version']
+    xdebug_client_host = configs['Common']['xdebug_client_host']
+    dstfile = f'/etc/php/{version}/apache2/conf.d/20-xdebug.ini'
+    create_xdebug_3_ini('xdebug_3.jinja', project_path, dstfile, xdebug_client_host)
 
     dest = '/var/www/html'
     try:
