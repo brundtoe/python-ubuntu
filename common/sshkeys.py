@@ -29,7 +29,7 @@ def create_sshkeys(configs):
     else:
         os.chdir(f'/home/{user}/.ssh')
         run('ssh-keygen', shell=True, check=True)
-        change_owner(ssh_dir, user)
+        change_owner(ssh_dir, user, user)
         os.chmod(f'{ssh_dir}/id_rsa', 0o600)
         os.chmod(f'{ssh_dir}/id_rsa.pub', 0o644)
         if distro == 'manjaro':

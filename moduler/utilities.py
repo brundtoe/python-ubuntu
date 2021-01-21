@@ -31,21 +31,22 @@ def service_action(action, service):
     return res.returncode == 0
 
 
-def change_owner(path, user):
+def change_owner(path, user, group):
     """
     Ændrer rettigheder rekursivt for et directory
     :param path: Absolut path til directory
     :param user: user som skal have rettighederne
     :return: void
     """
+    shutil.chown(path, user, group)
     try:
         for root, dirs, files in os.walk(path):
             for momo in dirs:
                 dirname = os.path.join(root, momo)
-                shutil.chown(dirname, user, user)
+                shutil.chown(dirname, user, group)
             for file in files:
                 filename = os.path.join(root, file)
-                shutil.chown(filename, user, user)
+                shutil.chown(filename, user, group)
     except Exception as err:
         print(err)
         sys.exit('Kan ikke ændre rettighederne')

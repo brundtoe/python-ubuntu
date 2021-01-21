@@ -20,7 +20,7 @@ def user_profile(configs):
     imagedir = f'{bindir}/images'
     if not os.path.exists(imagedir):
         os.makedirs(imagedir, 0o755, exist_ok=True)
-        change_owner(bindir, user)
+        change_owner(bindir, user, user)
 
     programsdir = f'/home/{user}/programs'
     if not os.path.exists(programsdir):
@@ -30,6 +30,7 @@ def user_profile(configs):
     local_bindir = f'/home/{user}/.local/bin'
     if not os.path.exists(local_bindir):
         os.makedirs(local_bindir, 0o755, exist_ok=True)
+        shutil.chown(f'/home/{user}/.local', user, user)
         shutil.chown(local_bindir, user, user)
 
     src_dir = f'{project_path}/assets/images'
