@@ -5,7 +5,7 @@ import sys
 import shlex
 from subprocess import run
 from .packages import install_programs
-from moduler.xdebug_ini import create_xdebug_ini
+from moduler.xdebug_ini import create_xdebug_3_ini
 from moduler.fileOperations import add_line
 
 
@@ -30,9 +30,9 @@ def install_php(configs):
         print('pacman installation af base software udført')
 
     print('konfiguration af XDebug')
-    xdebug_host = configs['Common']['xdebug-host']
+    xdebug_client_host = configs['Common']['xdebug_client_host']
     dstfile = '/etc/php/conf.d/xdebug.ini'
-    create_xdebug_ini('xdebug.jinja', project_path, dstfile, xdebug_host)
+    create_xdebug_3_ini('xdebug_3.jinja', project_path, dstfile, xdebug_client_host)
 
     config_php_ini(project_path)
     config_php_fpm()
