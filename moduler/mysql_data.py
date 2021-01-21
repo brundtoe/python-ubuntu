@@ -17,7 +17,7 @@ def create_db_users(configs):
     project_path = configs['Common']['project_path']
 
     try:
-        name_db_active = 'pgrep mariadb' if (distrib in ['Arch Linux', 'Manjaro Linux']) else 'pgrep mysql'
+        name_db_active = 'pgrep mysql' if (distrib in ['Ubuntu', 'Debian GNU/Linux']) else 'pgrep mariadb'
         print('name_db_active', name_db_active)
         db_server_active = shlex.split(name_db_active)
         run(db_server_active, check=True)
