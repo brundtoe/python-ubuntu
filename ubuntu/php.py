@@ -61,7 +61,7 @@ def install_php(configs):
 
 
 def install_composer(url, sha256url, project_path, user):
-    dest = '/usr/local/bin/composer'
+    dest = f'/home/{user}/.local/bin/composer'
     if os.path.exists(dest):
         print('Composer er allerede installeret')
         return
@@ -96,6 +96,8 @@ def install_composer(url, sha256url, project_path, user):
 
         print(f'Kopierer composer til {dest} ')
         shutil.copy(composerfile, dest)
+        os.chmod(dest, 0o755)
+        shutil.chown(dest, user, user)
         os.remove(composerfile)
         os.remove(sha256file)
     except Exception as err:
