@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 #
 
-from moduler.utilities import get_username, is_active, service_action
+import pwd
+from moduler.utilities import is_active, service_action
 
 
 def flip_server(configs):
     print("Flip http webserver")
-    user_name = get_username('33')
+    user_name = pwd.getpwuid(1000).pw_name
     try:
         if user_name == 'www-data':
             service = 'apache2'
