@@ -23,6 +23,7 @@ from manjaro.chromium import install_chromium
 from manjaro.mysql import install_mysql
 from manjaro.virtualbox import install_virtualbox
 from moduler.nfsServer import install_nfsserver
+from moduler.secure_ssh import secure_ssh_server
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -47,6 +48,7 @@ Desktop programmer til fysisk host
 \t16) Virtualbox
 \t17) Google Chrome
 \t18) Network File server
+\t19) Secure SSH server
 ===========================================
 \t99) I do not know, Exit!
 """
@@ -68,7 +70,8 @@ switcher = {
     15: install_packer,
     16: install_virtualbox,
     17: install_chromium,
-    18: install_nfsserver
+    18: install_nfsserver,
+    19: secure_ssh_server
 }
 
 

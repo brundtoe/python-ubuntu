@@ -22,6 +22,7 @@ from ubuntu.php import install_php
 from ubuntu.vagrant import install_vagrant
 from ubuntu.virtualbox import install_vbox
 from moduler.nfsServer import install_nfsserver
+from moduler.secure_ssh import secure_ssh_server
 
 menu = """Menu for systeminstallation og opdateringer
 ===========================================
@@ -46,6 +47,7 @@ Desktop programmer til fysisk host
 \t16) Virtualbox
 \t17) Google Chrome
 \t18) Network File server
+\t19) Secure SSH server
 ===========================================
 \t99) I do not know, Exit!
 """
@@ -67,7 +69,8 @@ switcher = {
     15: install_packer,
     16: install_vbox,
     17: install_chrome,
-    18: install_nfsserver
+    18: install_nfsserver,
+    19: secure_ssh_server
 }
 
 
