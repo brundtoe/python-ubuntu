@@ -13,11 +13,11 @@ from moduler.fileOperations import fetch_config
 
 
 def create_db_users(configs):
-    distrib = distro.linux_distribution()[0]
+    distrib = distro.linux_distribution(full_distribution_name=False)[0]
     project_path = configs['Common']['project_path']
 
     try:
-        name_db_active = 'pgrep mysql' if (distrib in ['Ubuntu', 'Debian GNU/Linux']) else 'pgrep mariadb'
+        name_db_active = 'pgrep mysql' if (distrib in ['ubuntu', 'debian']) else 'pgrep mariadb'
         print('name_db_active', name_db_active)
         db_server_active = shlex.split(name_db_active)
         run(db_server_active, check=True)

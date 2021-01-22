@@ -13,7 +13,7 @@ from moduler.fileOperations import fetch_config
 
 def create_sshkeys(configs):
     user = configs['Common']['user']
-    distrib = distro.linux_distribution()[0]
+    distrib = distro.linux_distribution(full_distribution_name=False)[0]
     ssh_dir = f'/home/{user}/.ssh'
     try:
         if not os.path.exists(ssh_dir):
@@ -32,7 +32,7 @@ def create_sshkeys(configs):
         change_owner(ssh_dir, user, user)
         os.chmod(f'{ssh_dir}/id_rsa', 0o600)
         os.chmod(f'{ssh_dir}/id_rsa.pub', 0o644)
-        if distrib in ['Arch Linux', 'Manjaro Linux']:
+        if distrib in ['arch', 'manjaro']:
             run('eval $(ssh-agent)', shell=True, check=True)
         output = run(['ssh-add', 'id_rsa'])
         print(output)

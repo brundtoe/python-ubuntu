@@ -108,8 +108,8 @@ if __name__ == "__main__":
     else:
         print(f'Konfigurationsfilen {filename} er indlæst')
     
-    distrib = distro.linux_distribution()[0]
-    if distrib not in ['Ubuntu', 'Debian GNU/Linux']:
+    distrib = distro.linux_distribution(full_distribution_name=False)[0]
+    if distrib not in ['ubuntu', 'debian']:
         sys.exit(f'På {distro} skal installationen foretages med install_manjaro.py')
 
     show_menu(configuration)

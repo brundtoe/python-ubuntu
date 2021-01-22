@@ -18,12 +18,12 @@ def install_mongodb(configs):
     if path.exists('/usr/lib/systemd/system/mongod.service'):
         print('MongoDB er allerede installeret')
         return
-    distrib = distro.linux_distribution()[0]
+    distrib = distro.linux_distribution(full_distribution_name=False)[0]
     project_path = configs['Common']['project_path']
     # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
     mongodb_release = configs['Common']['mongodb_release']
     repo_key = f"https://www.mongodb.org/static/pgp/server-{mongodb_release}.asc"
-    if distrib == 'Ubuntu':
+    if distrib == 'ubuntu':
         lsb_mongodb_ubuntu = configs['Common']['lsb_mongodb_ubuntu']
         release = f"ubuntu {lsb_mongodb_ubuntu}/mongodb-org/{mongodb_release}"
         sources_string = f"deb [ arch=amd64 ] https://repo.mongodb.org/apt/{release} multiverse"
