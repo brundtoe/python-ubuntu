@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-
+import os
 import sys
-import platform
 from moduler.fileOperations import fetch_config
-import distro
+import pwd
 
 configs = ''
 filename = 'config/config.ini'
@@ -16,8 +15,4 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
-#installNfsserver(configs)
-print(platform.node())
-print(platform.machine())
-print(platform.uname())
-print(distro.info())
+print(pwd.getpwuid(33).pw_name)

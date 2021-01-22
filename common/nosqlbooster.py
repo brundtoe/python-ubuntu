@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-import os, shutil
+import os
+import shutil
 import requests
+import pwd
 from moduler.desktopfile import create_desktop_file
 
 
@@ -16,7 +18,7 @@ def install_nosqlbooster(configs):
     nosql_major = configs['Common']['nosql-major']
     down_file = f'nosqlbooster4mongo-{version}.AppImage'
     url = f"https://nosqlbooster.com/s3/download/releasesv{nosql_major}/{down_file}"
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     app_path = f'/home/{user}/Applications'
     if os.path.exists(f'{app_path}/{down_file}'):
         print(f'NoSQLBooster version {version} er installeret')

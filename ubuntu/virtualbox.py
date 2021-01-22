@@ -4,6 +4,7 @@
 #
 
 import sys
+import pwd
 from os import path
 
 from moduler.apt_update import apt_update
@@ -33,7 +34,7 @@ def install_vbox(configs):
 
     options = configs['Common']['install_options']
     vbox_version = configs['Common']['vbox_version']
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     try:
         apt_update()
         install_program(f'virtualbox-{vbox_version}', options)

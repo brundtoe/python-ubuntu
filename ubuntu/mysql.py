@@ -7,6 +7,7 @@ import os
 import sys
 import shlex
 import shutil
+import pwd
 import subprocess
 import distro
 from moduler.fileOperations import fetch_config
@@ -16,7 +17,7 @@ from moduler.mysql_data import create_db_users
 
 
 def install_mysql(configs):
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     project_path = configs['Common']['project_path']
     distrib = distro.linux_distribution(full_distribution_name=False)[0]
     mysql_daemon = 'mysql' if distrib == 'ubuntu' else 'mariadb'

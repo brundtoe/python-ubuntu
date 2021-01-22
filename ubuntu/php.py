@@ -3,6 +3,7 @@
 
 import sys
 import os
+import pwd
 import shutil
 import shlex
 import subprocess
@@ -54,7 +55,7 @@ def install_php(configs):
     print('Installation af Composer')
     url = configs['composer']['repo']
     sha256url = configs['composer']['sha256']
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     install_composer(url, sha256url, project_path, user)
 
 

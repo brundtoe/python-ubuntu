@@ -2,13 +2,14 @@
 #
 #
 from subprocess import run
+import pwd
 from manjaro.packages import install_program
 from moduler.vagrant_plugin import vagrant_plugins
 
 
 def install_vagrant(configs):
     print('Installation af Vagrant ...')
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     try:
         install_program('vagrant')
         vagrant_plugins(configs)

@@ -4,13 +4,14 @@
 import sys
 import shlex
 from subprocess import run
+import pwd
 from manjaro.packages import install_program
 from moduler.groups import usermod
 
 
 def install_docker(configs):
     print('Installation af Docker ...')
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     try:
         install_program('docker')
         install_program('docker-compose')

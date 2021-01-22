@@ -7,12 +7,13 @@ import sys
 import os
 import shutil
 import distro
+import pwd
 from subprocess import run, Popen, PIPE
 from moduler.utilities import change_owner
 from moduler.fileOperations import fetch_config
 
 def create_sshkeys(configs):
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     distrib = distro.linux_distribution(full_distribution_name=False)[0]
     ssh_dir = f'/home/{user}/.ssh'
     try:

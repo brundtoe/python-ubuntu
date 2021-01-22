@@ -2,6 +2,7 @@
 #
 import shlex
 from subprocess import run
+import pwd
 from manjaro.packages import install_program
 from moduler.groups import usermod
 from moduler.vbox_ext_pack import install_vbox_ext_pack
@@ -10,7 +11,7 @@ def install_virtualbox(configs):
 
     print('Installation af Virtualbox ...')
     project_path = configs['Common']['project_path']
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     linux_kernel = configs['Common']['manjaro_kernel']
     host_modules = f'linux{linux_kernel}-virtualbox-host-modules'
     

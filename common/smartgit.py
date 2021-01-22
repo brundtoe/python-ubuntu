@@ -2,6 +2,7 @@
 # Installation af smartgit
 #
 from os import path
+import pwd
 from moduler.fileOperations import fetch_archive
 from moduler.desktopfile import create_desktop_file
 
@@ -21,7 +22,7 @@ def install_smartgit(configs):
         return
     # url_deb = f"https://www.syntevo.com/downloads/smartgit/smartgit-{version}.deb"
     url = f"https://www.syntevo.com/downloads/smartgit/{filename}"
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     program = 'SmartGit'
     fetch_archive(url, user, program, version)
 

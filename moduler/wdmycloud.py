@@ -7,6 +7,7 @@ Oprettelse af mount points, credentials og fstab for wdmycloud
 
 import sys
 import os
+import pwd
 import shutil
 from string import Template
 
@@ -17,7 +18,7 @@ from moduler.install_programs import install_program
 
 def update_credentials(configs):
     try:
-        user = configs['Common']['user']
+        user = pwd.getpwuid(1000).pw_name
         project_path = configs['Common']['project_path']
         filename_env = f'{project_path}/config/.env_develop'
         password = fetch_config(filename_env)['Common']['password']
@@ -38,7 +39,7 @@ def update_wdmycloud(configs):
     filename = '/etc/fstab'
     try:
         mount_points = configs['mount.points']
-        user = configs['Common']['user']
+        user = pwd.getpwuid(1000).pw_name
         filename_wdmycloud = configs['Common']['filename_wdmycloud']
         add_mountpoints(user, mount_points)
         update_credentials(configs)

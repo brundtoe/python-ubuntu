@@ -7,6 +7,7 @@ import shlex
 import os
 import subprocess
 import time
+import pwd
 from moduler.desktopfile import create_desktop_file
 
 
@@ -21,7 +22,7 @@ def install_freefilesync(configs):
     filename = f"FreeFileSync_{version}_Linux.tar.gz"
     url = f"https://freefilesync.org/download/{filename}"
     down_file = f'/tmp/{filename}'
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     outfile = f'/home/{user}/programs'
     num_tries = 1
     max_tries = 3

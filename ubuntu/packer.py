@@ -3,6 +3,7 @@
 # installation af Packer
 import re
 import shlex
+import pwd
 from os import chown, chmod
 from shutil import move
 from subprocess import run, PIPE
@@ -19,7 +20,7 @@ def install_packer(configs):
     # https://packer.io/
     version = configs['Common']['packer']
     url = f"https://releases.hashicorp.com/packer/{version}/packer_{version}_linux_amd64.zip"
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     program = 'Packer'
     findes = None
     packer_file = f'/home/{user}/.local/bin/packer'

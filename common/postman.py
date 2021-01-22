@@ -2,6 +2,7 @@
 #
 # installation af Postman
 from os import path
+import pwd
 from moduler.fileOperations import fetch_archive
 from moduler.desktopfile import create_desktop_file
 
@@ -20,7 +21,7 @@ def install_postman(configs):
         print(f'Postman version {version} er installeret')
         return
     url = f"https://dl.pstmn.io/download/latest/linux"
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     program = 'Postman'
     fetch_archive(url, user, program, version, filename=filename)
 

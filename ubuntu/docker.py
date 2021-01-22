@@ -4,6 +4,7 @@
 #
 
 import sys
+import pwd
 from os import path, chmod
 
 from moduler.apt_update import apt_update
@@ -32,7 +33,7 @@ def install_docker(configs):
         print(f'{program} repository er installeret')
 
     options = configs['Common']['install_options']
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     try:
         apt_update()
         programs = {'docker-ce': '', 'docker-ce-cli': '', 'containerd.io': ''}

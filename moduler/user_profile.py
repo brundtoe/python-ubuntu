@@ -2,6 +2,7 @@
 #
 import os
 import sys
+import pwd
 import shutil
 from moduler.fileOperations import add_line
 from moduler.utilities import change_owner, copy_dir
@@ -14,7 +15,7 @@ def user_profile(configs):
     :param configs:
     :return:
     """
-    user = configs['Common']['user']
+    user = pwd.getpwuid(1000).pw_name
     project_path = configs['Common']['project_path']
     bindir = f'/home/{user}/bin/'
     imagedir = f'{bindir}/images'
@@ -45,7 +46,7 @@ def user_profile(configs):
 
     # set command prompt PS1
     try:
-        user = configs['Common']['user']
+        user = pwd.getpwuid(1000).pw_name
         ps1 = r'PS1="\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ "'
         add_line(f'/home/{user}/.bashrc', ps1)
     except OSError as err:

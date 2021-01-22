@@ -6,6 +6,7 @@ Oprettelse af mount points og fstab for ekstra diske
 
 import os
 import sys
+import pwd
 
 from moduler.fileOperations import add_line
 from moduler.add_mountpoints import add_mountpoints
@@ -24,7 +25,7 @@ def disk_exists(disk_entry):
 def update_extradiske(configs):
     filename = '/etc/fstab'
     try:
-        user = configs['Common']['user']
+        user = pwd.getpwuid(1000).pw_name
         mount_points = configs[configs['Common']['host']]
         add_mountpoints(user, mount_points)
         filename_extradiske = configs['Common']['filename_extradiske']
