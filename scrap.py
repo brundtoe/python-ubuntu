@@ -1,16 +1,23 @@
 # -*- coding: utf-8 -*-
 #
 
-import os
-from os.path import isfile, join
+import sys
+import platform
+from moduler.fileOperations import fetch_config
+import distro
 
-def copy_dir(src_dir, dest_dir, user='root'):
-    onlyfiles = [f for f in os.listdir(src_dir) if isfile(join(src_dir, f))]
-    for file in onlyfiles:
-        src = join(src_dir, file)
-        dest = join(dest_dir, file)
-#        shutil.copy(src, dest)
-#        shutil.chown(dest, user, user)
-        print(src, dest)
+configs = ''
+filename = 'config/config.ini'
+try:
+    configs = fetch_config(filename)
+except Exception as err:
+    print(err)
+    sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
+else:
+    print(f'Konfigurationsfilen {filename} er indlæst')
 
-copy_dir('assets/web','/var/www/html')
+#installNfsserver(configs)
+print(platform.node())
+print(platform.machine())
+print(platform.uname())
+print(distro.info())

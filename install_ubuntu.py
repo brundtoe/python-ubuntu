@@ -21,6 +21,7 @@ from ubuntu.packer import install_packer
 from ubuntu.php import install_php
 from ubuntu.vagrant import install_vagrant
 from ubuntu.virtualbox import install_vbox
+from moduler.nfsServer import install_nfsserver
 
 menu = """Menu for systeminstallation og opdateringer
 ===========================================
@@ -44,6 +45,7 @@ Desktop programmer til fysisk host
 \t15) Packer
 \t16) Virtualbox
 \t17) Google Chrome
+\t18) Network File server
 ===========================================
 \t99) I do not know, Exit!
 """
@@ -64,7 +66,8 @@ switcher = {
     14: install_vagrant,
     15: install_packer,
     16: install_vbox,
-    17: install_chrome
+    17: install_chrome,
+    18: install_nfsserver
 }
 
 
@@ -110,6 +113,6 @@ if __name__ == "__main__":
     
     distrib = distro.linux_distribution(full_distribution_name=False)[0]
     if distrib not in ['ubuntu', 'debian']:
-        sys.exit(f'På {distro} skal installationen foretages med install_manjaro.py')
+        sys.exit(f'På {distrib} skal installationen foretages med install_manjaro.py')
 
     show_menu(configuration)

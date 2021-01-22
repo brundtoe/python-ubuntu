@@ -22,6 +22,7 @@ from manjaro.packer import install_packer
 from manjaro.chromium import install_chromium
 from manjaro.mysql import install_mysql
 from manjaro.virtualbox import install_virtualbox
+from moduler.nfsServer import install_nfsserver
 
 menu = """Manjaro Menu for systeminstallation og opdateringer
 ===========================================
@@ -45,6 +46,7 @@ Desktop programmer til fysisk host
 \t15) Packer
 \t16) Virtualbox
 \t17) Google Chrome
+\t18) Network File server
 ===========================================
 \t99) I do not know, Exit!
 """
@@ -65,7 +67,8 @@ switcher = {
     14: install_vagrant,
     15: install_packer,
     16: install_virtualbox,
-    17: install_chromium
+    17: install_chromium,
+    18: install_nfsserver
 }
 
 
@@ -111,6 +114,6 @@ if __name__ == "__main__":
 
     distrib = distro.linux_distribution(full_distribution_name=False)[0]
     if distrib not in ['arch', 'manjaro']:
-        sys.exit(f'På {distro} skal installationen foretages med install_ubuntu.py')
+        sys.exit(f'På {distrib} skal installationen foretages med install_ubuntu.py')
 
     show_menu(configuration)
