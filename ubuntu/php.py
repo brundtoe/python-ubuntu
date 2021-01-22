@@ -111,7 +111,7 @@ def config_php_ini(php_components, project_path, version):
         ini_file = f'/etc/php/{version}/{component}/php.ini'
         print(ini_file)
         try:
-            cmd = shlex.split(f'sed -i -f {conf} {ini_file}')
+            cmd = shlex.split(f'sed -Ei -f {conf} {ini_file}')
             subprocess.run(cmd)
         except Exception as err:
             print(err)

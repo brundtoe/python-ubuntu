@@ -65,7 +65,7 @@ def config_httpd(project_path, apache_dir, apache_conf):
     ini_file = '/etc/php/php.ini'
     print(ini_file)
     try:
-        cmd = shlex.split(f'sed -i -f {conf} {apache_conf}')
+        cmd = shlex.split(f'sed -Ei -f {conf} {apache_conf}')
         subprocess.run(cmd)
     except Exception as err:
         print(err)

@@ -31,7 +31,7 @@ def install_apache(configs):
 
     try:
         print('Apache konfigureres apache2.conf')
-        cmd = shlex.split(f'sed -i -f {project_path}/config/apache2.conf /etc/apache2/apache2.conf')
+        cmd = shlex.split(f'sed -Ei -f {project_path}/config/apache2.conf /etc/apache2/apache2.conf')
         subprocess.run(cmd)
     except Exception as err:
         print(err)

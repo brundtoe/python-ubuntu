@@ -43,7 +43,7 @@ def config_php_ini(project_path):
     ini_file = '/etc/php/php.ini'
     print(ini_file)
     try:
-        cmd = shlex.split(f'sed -i -f {conf} {ini_file}')
+        cmd = shlex.split(f'sed -Ei -f {conf} {ini_file}')
         run(cmd)
     except Exception as err:
         print(err)
