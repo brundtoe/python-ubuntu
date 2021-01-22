@@ -3,7 +3,7 @@
 import os
 import sys
 from moduler.fileOperations import fetch_config
-import pwd
+
 
 configs = ''
 filename = 'config/config.ini'
@@ -15,4 +15,8 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
-print(pwd.getpwuid(33).pw_name)
+shares = configs['nfs.share']
+
+for key in shares:
+    print(shares[key])
+
