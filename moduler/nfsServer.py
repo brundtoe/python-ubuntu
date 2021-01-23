@@ -15,7 +15,7 @@ def config_nfsserver(shares, network):
     try:
         for key in shares:
             if os.path.exists(shares[key]):
-                add_line('/etc/exports', f'{shares[key]} {network}')
+                add_line('/etc/exports', f'{shares[key]} {network}\n')
             else:
                 print(f'share {shares[key]} findes ikke')
     except OSError as err:
