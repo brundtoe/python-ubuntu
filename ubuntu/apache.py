@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Installation og konfiguration af Apache
 
+import os
 import sys
 import shlex
 import subprocess
@@ -50,13 +51,19 @@ def install_apache(configs):
 
     print('konfiguration af XDebug')
     version = configs['Common']['php-version']
+    php_path = f"/etc/php/{version}"
     xdebug_client_host = configs['Common']['xdebug_client_host']
-    dstfile = f'/etc/php/{version}/apache2/conf.d/20-xdebug.ini'
-    create_xdebug_3_ini('xdebug_3.jinja', project_path, dstfile, xdebug_client_host)
+    dstfile = f'{php_path}/mods-available/xdebug.ini'
+    if not os.path.exists(dstfile):
+        create_xdebug_3_ini('xdebug_3.jinja', project_path, dstfile, xdebug_client_host)
+    if os.path.exists(f'{php_path}/apache2/conf.d/20-xdebug.ini'):
+        os.unlink(f'{php_path}/apache2/conf.d/20-xdebug.ini')
+    os.symlink(f'{php_path}/mods-available/xdebug.ini',
+               f'{php_path}/apache2/conf.d/20-xdebug.ini')
 
     dest = '/var/www/html'
+    print('Basis website kopieres til /var/www/html')
     try:
-        print('Basis website kopieres til /var/www/html')
         copy_web(configs, dest)
     except Exception as err:
         print(err)
