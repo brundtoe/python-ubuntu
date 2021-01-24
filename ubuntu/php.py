@@ -27,21 +27,7 @@ def install_php(configs):
     install_programs(programs, options)
 
     print('Installation af Xdebug version 3')
-    xdebug_version = configs['Common']['xdebug_version']
-    try:
-        update_pecl = shlex.split('pecl channel-update pecl.php.net')
-        subprocess.run(update_pecl)
-        install_xdebug = shlex.split(f'pecl install xdebug-{xdebug_version}')
-        subprocess.run(install_xdebug)
-    except OSError as err:
-        print(err)
-        sys.exit('Installation af xdebug fejlede')
-
-    print('konfiguration af XDebug')
-    version = configs['Common']['php-version']
-    xdebug_client_host = configs['Common']['xdebug_client_host']
-    dstfile = f'/etc/php/{version}/fpm/conf.d/20-xdebug.ini'
-    create_xdebug_3_ini('xdebug_3.jinja', project_path, dstfile, xdebug_client_host)
+    install_xdebug(configs)
 
     print('Konfiguration af php.ini')
     php_components = ['cli', 'cgi', 'fpm']
@@ -56,10 +42,36 @@ def install_php(configs):
     url = configs['composer']['repo']
     sha256url = configs['composer']['sha256']
     user = pwd.getpwuid(1000).pw_name
-    install_composer(url, sha256url, project_path, user)
+    install_composer(url, sha256url, user)
 
 
-def install_composer(url, sha256url, project_path, user):
+def install_xdebug(configs):
+    project_path = configs['Common']['project_path']
+    xdebug_version = configs['Common']['xdebug_version']
+    try:
+        update_pecl = shlex.split('pecl channel-update pecl.php.net')
+        subprocess.run(update_pecl)
+        install_xdebug = shlex.split(f'pecl install xdebug-{xdebug_version}')
+        subprocess.run(install_xdebug)
+    except OSError as err:
+        print(err)
+        sys.exit('Installation af xdebug fejlede')
+
+    print('konfiguration af XDebug')
+    version = configs['Common']['php-version']
+    php_path = f"/etc/php/{version}"
+    xdebug_client_host = configs['Common']['xdebug_client_host']
+    dstfile = f'{php_path}/mods-available/xdebug.ini'
+    create_xdebug_3_ini('xdebug_3.jinja', project_path, dstfile, xdebug_client_host)
+
+    for php_component in ['cli', 'cgi', 'fpm']:
+        if os.path.exists(f'{php_path}/{php_component}/conf.d/20-xdebug.ini'):
+            os.unlink(f'{php_path}/{php_component}/conf.d/20-xdebug.ini')
+        os.symlink(f'{php_path}/mods-available/xdebug.ini',
+                   f'{php_path}/{php_component}/conf.d/20-xdebug.ini')
+
+
+def install_composer(url, sha256url, user):
     dest = f'/home/{user}/.local/bin/composer'
     if os.path.exists(dest):
         print('Composer er allerede installeret')
@@ -105,7 +117,6 @@ def install_composer(url, sha256url, project_path, user):
 
 
 def config_php_ini(php_components, project_path, version):
-
     conf = f'{project_path}/config/php_config.ini'
     for component in php_components:
         ini_file = f'/etc/php/{version}/{component}/php.ini'
