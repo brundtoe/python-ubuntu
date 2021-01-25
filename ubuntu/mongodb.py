@@ -24,13 +24,14 @@ def install_mongodb(configs):
     mongodb_release = configs['Common']['mongodb_release']
     repo_key = f"https://www.mongodb.org/static/pgp/server-{mongodb_release}.asc"
     if distrib == 'ubuntu':
-        lsb_mongodb_ubuntu = configs['Common']['lsb_mongodb_ubuntu']
-        release = f"ubuntu {lsb_mongodb_ubuntu}/mongodb-org/{mongodb_release}"
-        sources_string = f"deb [ arch=amd64 ] https://repo.mongodb.org/apt/{release} multiverse"
+        distro_ubuntu = configs['Common']['lsb_mongodb_ubuntu']
+        release = f"ubuntu {distro_ubuntu}"
+        repo_component = 'multiverse'
     else:
-        lsb_mongodb_debian = configs['Common']['lsb_mongodb_debian']
-        release = f"debian {lsb_mongodb_debian}/mongodb-org/{mongodb_release}"
-        sources_string = f"deb https://repo.mongodb.org/apt/{release} main"
+        distro_debian = configs['Common']['lsb_mongodb_debian']
+        release = f"debian {distro_debian}"
+        repo_component = 'main'
+    sources_string = f"deb https://repo.mongodb.org/apt/{release}/mongodb-org/{mongodb_release} {repo_component}"
     program = 'mongodb'
     try:
         install_repo(repo_key, program, sources_string)
