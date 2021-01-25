@@ -12,6 +12,7 @@ from moduler.download_file import fetch_file
 from moduler.groups import usermod
 from moduler.install_programs import install_programs
 from moduler.install_repo import install_repo
+import distro
 
 
 def install_docker(configs):
@@ -19,11 +20,11 @@ def install_docker(configs):
         print('Docker er allerede installeret')
         return
     # https://docs.docker.com/install/linux/docker-ce/ubuntu/
-    repo_key = "https://download.docker.com/linux/ubuntu/gpg"
     program = "docker"
-    lts_release = configs['Common']['lts_release']
-    sources_string = f"deb https://download.docker.com/linux/ubuntu {lts_release} stable"
-
+    distrib = distro.linux_distribution(full_distribution_name=False)[0]
+    release = distro.linux_distribution()[2]
+    repo_key = f"https://download.docker.com/linux/{distrib}/gpg"
+    sources_string = f"deb https://download.docker.com/linux/{distrib} {release} stable"
     try:
         install_repo(repo_key, program, sources_string)
     except Exception as err:
