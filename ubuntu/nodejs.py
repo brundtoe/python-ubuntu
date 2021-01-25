@@ -11,17 +11,17 @@ from moduler.apt_update import apt_update
 from moduler.fileOperations import add_line
 from moduler.install_programs import install_program
 from moduler.install_repo import repokey_install
-
+import distro
 
 def install_nodejs(configs):
 
     if path.exists('/etc/apt/sources.list.d/nodesource.list'):
-        print('Node.js er allerede installereet')
+        print('Node.js er allerede installeret')
         return
     version = configs['Common']['nodejs_release']
-    distro = configs['Common']['lts_release']
+    distrib = distro.linux_distribution()[2]
     repo_key = "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-    repo_nodejs = f"https://deb.nodesource.com/node_{version} {distro} main"
+    repo_nodejs = f"https://deb.nodesource.com/node_{version} {distrib} main"
 
     try:
         repokey_install(repo_key)
