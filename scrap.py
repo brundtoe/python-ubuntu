@@ -8,8 +8,8 @@ from moduler.fileOperations import fetch_config, add_line
 import distro
 
 configs = ''
-filename = 'config/config.ini'
-#filename = '/home/projects/sourcecode/python-demo/config/config.ini'
+#filename = 'config/config.ini'
+filename = '/home/projects/sourcecode/python-demo/config/config.ini'
 try:
     configs = fetch_config(filename)
 except Exception as err:
