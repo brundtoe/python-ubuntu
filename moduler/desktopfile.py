@@ -4,12 +4,14 @@ import sys
 from jinja2 import Environment, FileSystemLoader
 
 
-def create_desktop_file(program,project_path, tmpl, user, version = None):
+def create_desktop_file(program, project_path, tmpl, user, version=None):
     """
     Opret en desktop fil på baggrund af en Jinja template
     :param program: Programmet som skal have en desktop file
+    :param project_path root for python-demo
     :param tmpl:    Den anvendte template
     :param user:    user konto hvor desktop file skal placeres
+    :param version: programversion
     :return:        void
     """
     try:
@@ -26,4 +28,3 @@ def create_desktop_file(program,project_path, tmpl, user, version = None):
     except Exception as err:
         print(err)
         sys.exit(f'Kan ikke generere desktopfile for {program}')
-

@@ -27,4 +27,3 @@ def secure_ssh_server(configs):
         sys.exit(f'Exception Kan ikke opdatere {sshd_config_file}')
     else:
         print('Securing ssh server afsluttet')
-

@@ -3,8 +3,6 @@
 #
 import os
 import sys
-import shlex
-import shutil
 from subprocess import run
 from jinja2 import Environment, FileSystemLoader
 from manjaro.packages import install_program
@@ -13,11 +11,10 @@ from moduler.site_conf_nginx import create_site_config
 
 
 def install_nginx(configs):
-
     try:
         install_program('nginx')
-        run(['systemctl','disable', 'nginx'])
-        run(['systemctl','stop', 'nginx'])
+        run(['systemctl', 'disable', 'nginx'])
+        run(['systemctl', 'stop', 'nginx'])
     except OSError as err:
         print(err)
         print('Kunne ikke installere Nginx')
@@ -39,8 +36,7 @@ def install_nginx(configs):
     create_web_site(configs, doc_root)
 
 
-def create_server_conf(project_path, templ, outfile, app_user, enable_modules='' ):
-
+def create_server_conf(project_path, templ, outfile, app_user, enable_modules=''):
     file_loader = FileSystemLoader(f'{project_path}/templates')
     env = Environment(loader=file_loader)
 
@@ -53,7 +49,7 @@ def create_server_conf(project_path, templ, outfile, app_user, enable_modules=''
 
 def create_web_site(configs, dest):
     if not os.path.exists(f"{dest}"):
-        os.makedirs(f"{dest}",  0o755, exist_ok=True)
+        os.makedirs(f"{dest}", 0o755, exist_ok=True)
 
     try:
         print('Basis website kopieres til /var/www/html')

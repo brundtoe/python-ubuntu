@@ -5,7 +5,6 @@
 
 import sys
 from os import path
-import distro
 import shlex
 from shutil import copyfile
 import subprocess

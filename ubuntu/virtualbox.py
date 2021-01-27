@@ -6,7 +6,6 @@
 import sys
 import pwd
 from os import path
-import distro
 from moduler.apt_update import apt_update
 from moduler.groups import usermod
 from moduler.install_programs import install_program

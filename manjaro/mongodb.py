@@ -3,7 +3,6 @@
 #
 import os
 import shlex
-import distro
 from subprocess import run
 
 
@@ -39,7 +38,7 @@ def install_mongodb(configs):
                 f'git clone https://aur.archlinux.org/mongodb-bin.git {mongo_bin_dir}')
             run(cmd)
         os.chdir(mongo_bin_dir)
-        res = run(['makepkg', '-si'])
+        run(['makepkg', '-si'])
     except OSError as err:
         print(err)
         print('Installation af MongoDB fra mongodb-bin fejlede')

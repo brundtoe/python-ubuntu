@@ -6,16 +6,12 @@
 import os
 import sys
 import shlex
-import pwd
 from subprocess import run
-from moduler.configuration import fetch_config
 from manjaro.packages import install_program
 from moduler.mysql_data import create_db_users
 
 
 def install_mysql(configs):
-    user = pwd.getpwuid(1000).pw_name
-    project_path = configs['Common']['project_path']
     mysql_daemon = 'mariadb'
     mysql_install_db = shlex.split('mariadb-install-db --user=mysql --basedir=/usr --datadir=/var/lib/mysql')
 

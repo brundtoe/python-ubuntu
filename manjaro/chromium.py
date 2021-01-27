@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 #
 #
-from subprocess import run
+
 from manjaro.packages import install_program
+
 
 def install_chromium(configs):
     print('Installation af Chromium ...')
@@ -15,4 +16,3 @@ def install_chromium(configs):
         return
     else:
         print('Afsluttet installation af Chromium')
-

@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 #
-import sys
-import shlex
-from subprocess import run
 import pwd
 from manjaro.packages import install_program
 from moduler.groups import usermod

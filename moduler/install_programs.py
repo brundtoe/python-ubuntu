@@ -41,7 +41,7 @@ def install_programs(programs, options):
             pgm = program
         if is_installed(pgm):
             continue
-        #fix for Debian
+        # fix for Debian
         if pgm in ['lsb-core']:
             continue
         res = install_program(pgm, options)

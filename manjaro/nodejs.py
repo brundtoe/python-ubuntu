@@ -7,6 +7,7 @@ import shlex
 import subprocess
 from .packages import install_program
 
+
 def install_nodejs(configs):
     pgm = configs['Common']['nodejs_arch_lts']
     try:
@@ -29,4 +30,3 @@ def install_nodejs(configs):
         except OSError as err:
             print(err)
             sys.exit(f'Kunne ikke installere node modulet {node_module}')
-    

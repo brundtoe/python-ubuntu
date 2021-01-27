@@ -6,11 +6,10 @@
 import sys
 import os
 import shutil
-import distro
 import pwd
-from subprocess import run, Popen, PIPE
+from subprocess import run
 from moduler.utilities import change_owner
-from moduler.configuration import fetch_config
+
 
 def create_sshkeys(configs):
     user = pwd.getpwuid(1000).pw_name
@@ -37,4 +36,3 @@ def create_sshkeys(configs):
             run('eval $(ssh-agent)', shell=True, check=True)
         output = run(['ssh-add', 'id_rsa'])
         print(output)
-

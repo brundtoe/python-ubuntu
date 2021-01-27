@@ -27,6 +27,7 @@ def change_owner(path, user, group):
     Ændrer rettigheder rekursivt for et directory
     :param path: Absolut path til directory
     :param user: user som skal have rettighederne
+    :param group: group som skal have rettighederne
     :return: void
     """
     shutil.chown(path, user, group)

@@ -4,7 +4,6 @@
 #
 
 import sys
-import platform
 from jinja2 import Environment, FileSystemLoader
 from moduler.utilities import copy_dir
 

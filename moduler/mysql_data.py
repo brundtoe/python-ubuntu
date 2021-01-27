@@ -6,7 +6,6 @@ MySQL Import af mysql data
 import os
 import sys
 import shlex
-import distro
 from subprocess import run, PIPE, Popen
 from jinja2 import Environment, FileSystemLoader
 from moduler.configuration import fetch_config

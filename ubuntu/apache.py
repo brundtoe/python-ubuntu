@@ -11,6 +11,7 @@ from moduler.basis_web import copy_web
 from moduler.site_conf_apache import create_site_conf
 from moduler.xdebug_ini import create_xdebug_3_ini
 
+
 def install_apache(configs):
     print('Installation af Apache Webserver')
     project_path = configs['Common']['project_path']

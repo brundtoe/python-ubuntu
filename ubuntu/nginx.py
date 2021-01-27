@@ -4,7 +4,6 @@
 import sys
 import subprocess
 from moduler.install_programs import install_program, is_installed
-from jinja2 import Environment, FileSystemLoader
 from moduler.basis_web import copy_web
 from moduler.site_conf_nginx import create_site_config
 

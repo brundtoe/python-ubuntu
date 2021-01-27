@@ -13,7 +13,6 @@ from string import Template
 from moduler.configuration import fetch_config
 from moduler.fileOperations import add_line
 from moduler.add_mountpoints import add_mountpoints
-from moduler.install_programs import install_program
 
 
 def update_credentials(configs):

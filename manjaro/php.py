@@ -37,6 +37,7 @@ def install_php(configs):
     config_php_ini(project_path)
     config_php_fpm()
 
+
 def config_php_ini(project_path):
 
     conf = f'{project_path}/config/php_manjaro.ini'

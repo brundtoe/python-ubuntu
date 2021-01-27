@@ -11,7 +11,7 @@ from moduler.apt_update import apt_update
 from moduler.fileOperations import add_line
 from moduler.install_programs import install_program
 from moduler.install_repo import repokey_install
-import distro
+
 
 def install_nodejs(configs):
 

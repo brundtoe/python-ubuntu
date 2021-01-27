@@ -12,7 +12,6 @@ from moduler.download_file import fetch_file
 from moduler.groups import usermod
 from moduler.install_programs import install_programs
 from moduler.install_repo import install_repo
-import distro
 
 
 def install_docker(configs):

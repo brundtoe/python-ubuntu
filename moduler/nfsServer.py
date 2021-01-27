@@ -3,7 +3,6 @@
 # Install and configure SSH server
 #
 import os
-import distro
 import subprocess
 import shlex
 from moduler.install_programs import install_program
@@ -52,5 +51,3 @@ def install_nfsserver(configs):
         subprocess.run(shlex.split('systemctl restart nfs-kernel-server'))
     else:
         subprocess.run(shlex.split('systemctl restart nfs-server'))
-
-

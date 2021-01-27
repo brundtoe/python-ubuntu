@@ -2,8 +2,6 @@
 
 #
 import sys
-import os
-from moduler.configuration import fetch_config
 from moduler.fileOperations import add_line
 
 

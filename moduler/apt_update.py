@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 import sys
-import os
 from subprocess import run
 
 
@@ -20,4 +19,3 @@ def apt_update():
     except Exception as err:
         print(err)
         sys.exit('Kan ikke opdatere systemet')
-

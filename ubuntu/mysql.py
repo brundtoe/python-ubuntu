@@ -5,12 +5,8 @@
 
 import os
 import sys
-import shlex
-import shutil
 import pwd
 import subprocess
-import distro
-from moduler.configuration import fetch_config
 from moduler.apt_update import apt_update
 from moduler.install_programs import install_program
 from moduler.mysql_data import create_db_users
