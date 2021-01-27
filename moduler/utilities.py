@@ -17,6 +17,12 @@ def get_host_info():
     release = distro.codename().lower()
     return {'distro': distrib, 'release': release, 'hostname': platform.node()}
 
+def update_config(configs):
+    host_info = get_host_info()
+    configs['Common']['distro'] = host_info['distro']
+    configs['Common']['release'] = host_info['release']
+    configs['Common']['hostname'] = host_info['hostname']
+    return configs
 
 def is_active(service):
     cmd = shlex.split(f'systemctl is-active {service}')

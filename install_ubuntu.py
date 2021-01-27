@@ -2,7 +2,7 @@
 
 import os
 import sys
-from moduler.utilities import get_host_info
+from moduler.utilities import update_config
 from moduler.extra_diske import update_extradiske
 from moduler.fileOperations import fetch_config
 from moduler.flip_server import flip_server
@@ -24,7 +24,7 @@ from ubuntu.virtualbox import install_vbox
 from moduler.nfsServer import install_nfsserver
 from moduler.secure_ssh import secure_ssh_server
 
-menu = """Menu for systeminstallation og opdateringer
+menu = """
 ===========================================
 \t1)  Update user profile
 \t2)  Global configuration
@@ -83,6 +83,8 @@ def show_menu(configs):
     go_on = True
     while option in range(1, len(switcher)) or go_on:
         os.system('clear')
+        hostname = configs['Common']['hostname']
+        print(f'{hostname.title()} Menu for systeminstallation og opdateringer')
         print(menu)
         selection = input("Vælg en funktion: ")
         try:
@@ -109,10 +111,7 @@ if __name__ == "__main__":
     try:
         configuration = fetch_config(filename)
         configuration['Common']['project_path'] = os.path.dirname(os.path.realpath(__file__))
-        host_info = get_host_info()
-        configuration['Common']['distro'] = host_info['distro']
-        configuration['Common']['release'] = host_info['release']
-        configuration['Common']['hostname'] = host_info['hostname']
+        configs = update_config(configuration)
 
     except Exception as err:
         print(err)
@@ -120,8 +119,8 @@ if __name__ == "__main__":
     else:
         print(f'Konfigurationsfilen {filename} er indlæst')
     
-    distro = configuration['Common']['distro']
+    distro = configs['Common']['distro']
     if distro not in ['ubuntu', 'debian']:
         sys.exit(f'På {distro} skal installationen foretages med install_manjaro.py')
 
-    show_menu(configuration)
+    show_menu(configs)

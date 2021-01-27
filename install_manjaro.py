@@ -2,7 +2,7 @@
 
 import os
 import sys
-from moduler.utilities import get_host_info
+from moduler.utilities import update_config
 from moduler.fileOperations import fetch_config
 
 from moduler.user_profile import user_profile
@@ -25,7 +25,7 @@ from manjaro.virtualbox import install_virtualbox
 from moduler.nfsServer import install_nfsserver
 from moduler.secure_ssh import secure_ssh_server
 
-menu = """Manjaro Menu for systeminstallation og opdateringer
+menu = """
 ===========================================
 \t1)  Update user profile
 \t2)  Global configuration
@@ -84,6 +84,8 @@ def show_menu(configs):
     go_on = True
     while option in range(1, len(switcher)) or go_on:
         os.system('clear')
+        hostname = configs['Common']['hostname']
+        print(f'{hostname.title()} Menu for systeminstallation og opdateringer')
         print(menu)
         selection = input("Vælg en funktion: ")
         try:
@@ -110,18 +112,15 @@ if __name__ == "__main__":
     try:
         configuration = fetch_config(filename)
         configuration['Common']['project_path'] = os.path.dirname(os.path.realpath(__file__))
-        host_info = get_host_info()
-        configuration['Common']['distro'] = host_info['distro']
-        configuration['Common']['release'] = host_info['release']
-        configuration['Common']['hostname'] = host_info['hostname']
+        configs = update_config(configuration)
     except Exception as err:
         print(err)
         sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
     else:
         print(f'Konfigurationsfilen {filename} er indlæst')
 
-    distro = configuration['Common']['distro']
+    distro = configs['Common']['distro']
     if distro not in ['archlinux', 'manjaro']:
         sys.exit(f'På {distro} skal installationen foretages med install_ubuntu.py')
 
-    show_menu(configuration)
+    show_menu(configs)

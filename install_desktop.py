@@ -2,7 +2,7 @@
 
 import os
 import sys
-from moduler.utilities import get_host_info
+from moduler.utilities import update_config
 from moduler.fileOperations import fetch_config
 from common.freefilesync import install_freefilesync
 from common.jetbrains_toolbox import install_jetbrains_toolbox
@@ -12,7 +12,7 @@ from common.smartgit import install_smartgit
 from common.sshkeys import create_sshkeys
 from manjaro.mongodb import install_mongodb
 
-menu = """Menu for desktop installation og opdateringer
+menu = """
 =============================================
 \t1)  FreefileSync
 \t2)  JetBrains Toolbox
@@ -44,6 +44,8 @@ def show_menu(configs):
     go_on = True
     while option in range(1, len(switcher)) or go_on:
         os.system('clear')
+        hostname = configs['Common']['hostname']
+        print(f'{hostname.title()} Menu for systeminstallation og opdateringer')
         print(menu)
         selection = input("Vælg en funktion: ")
         try:
@@ -70,10 +72,7 @@ if __name__ == "__main__":
     try:
         configuration = fetch_config(filename)
         configuration['Common']['project_path'] = os.path.dirname(os.path.realpath(__file__))
-        host_info = get_host_info()
-        configuration['Common']['distro'] = host_info['distro']
-        configuration['Common']['release'] = host_info['release']
-        configuration['Common']['hostname'] = host_info['hostname']
+        configs = update_config(configuration)
 
     except Exception as err:
         print(err)
@@ -81,4 +80,4 @@ if __name__ == "__main__":
     else:
         print(f'Konfigurationsfilen {filename} er indlæst')
 
-    show_menu(configuration)
+    show_menu(configs)

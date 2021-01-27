@@ -7,7 +7,7 @@ import shlex
 from moduler.fileOperations import fetch_config, add_line
 import distro
 import platform
-from moduler.utilities import get_host_info
+from moduler.utilities import update_config
 
 configs = ''
 # filename = 'config/config.ini'
@@ -21,14 +21,8 @@ except Exception as err:
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
-
-
-
 configs['Common']['project_path'] = os.path.dirname(os.path.realpath(__file__))
-host_info = get_host_info()
-configs['Common']['distro'] = host_info['distro']
-configs['Common']['release'] = host_info['release']
-configs['Common']['hostname'] = host_info['hostname']
+update_config(configs)
 print(configs['Common']['project_path'])
 print(configs['Common']['distro'])
 print(configs['Common']['release'])
