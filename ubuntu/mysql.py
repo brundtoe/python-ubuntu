@@ -19,7 +19,7 @@ from moduler.mysql_data import create_db_users
 def install_mysql(configs):
     user = pwd.getpwuid(1000).pw_name
     project_path = configs['Common']['project_path']
-    distrib = distro.linux_distribution(full_distribution_name=False)[0]
+    distrib = configs['Common']['distro']
     mysql_daemon = 'mysql' if distrib == 'ubuntu' else 'mariadb'
 
     if os.path.exists(f'/usr/lib/systemd/system/{mysql_daemon}.service'):

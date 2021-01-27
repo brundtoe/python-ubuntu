@@ -21,8 +21,8 @@ def install_docker(configs):
         return
     # https://docs.docker.com/install/linux/docker-ce/ubuntu/
     program = "docker"
-    distrib = distro.linux_distribution(full_distribution_name=False)[0]
-    release = distro.linux_distribution()[2]
+    distrib = configs['Common']['distro']
+    release = configs['Common']['release']
     repo_key = f"https://download.docker.com/linux/{distrib}/gpg"
     sources_string = f"deb https://download.docker.com/linux/{distrib} {release} stable"
     try:

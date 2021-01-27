@@ -19,9 +19,9 @@ def install_nodejs(configs):
         print('Node.js er allerede installeret')
         return
     version = configs['Common']['nodejs_release']
-    distrib = distro.linux_distribution()[2]
+    release = configs['Common']['release']
     repo_key = "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-    repo_nodejs = f"https://deb.nodesource.com/node_{version} {distrib} main"
+    repo_nodejs = f"https://deb.nodesource.com/node_{version} {release} main"
 
     try:
         repokey_install(repo_key)

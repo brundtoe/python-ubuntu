@@ -14,7 +14,7 @@ from moduler.configuration import fetch_config
 
 def create_sshkeys(configs):
     user = pwd.getpwuid(1000).pw_name
-    distrib = distro.linux_distribution(full_distribution_name=False)[0]
+    distrib = configs['Common']['distro']
     ssh_dir = f'/home/{user}/.ssh'
     try:
         if not os.path.exists(ssh_dir):

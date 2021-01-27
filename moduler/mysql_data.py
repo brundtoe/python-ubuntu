@@ -13,7 +13,7 @@ from moduler.configuration import fetch_config
 
 
 def create_db_users(configs):
-    distrib = distro.linux_distribution(full_distribution_name=False)[0]
+    distrib = configs['Common']['distro']
     project_path = configs['Common']['project_path']
 
     try:

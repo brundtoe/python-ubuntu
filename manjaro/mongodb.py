@@ -11,7 +11,7 @@ def install_mongodb(configs):
     if os.geteuid() == 0:
         print('MongoDB kan ikke installeres med root access')
         return
-    distrib = distro.linux_distribution(full_distribution_name=False)[0]
+    distrib = configs['Common']['distro']
     if distrib in ['ubuntu', 'debian']:
         print('På Ubuntu/Debian skal installationen foretages fra systemmenuen')
         return

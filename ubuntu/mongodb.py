@@ -18,7 +18,7 @@ def install_mongodb(configs):
     if path.exists('/usr/lib/systemd/system/mongod.service'):
         print('MongoDB er allerede installeret')
         return
-    distrib = distro.linux_distribution(full_distribution_name=False)[0]
+    distrib = configs['Common']['distro']
     project_path = configs['Common']['project_path']
     # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
     mongodb_release = configs['Common']['mongodb_release']

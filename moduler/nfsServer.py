@@ -31,7 +31,7 @@ def install_nfsserver(configs):
         print('Kan ikke installeres på virtuelle maskiner')
         return 0
     options = configs['Common']['install_options']
-    distrib = distro.linux_distribution(full_distribution_name=False)[0]
+    distrib = configs['Common']['distro']
 
     try:
         if distrib in ['ubuntu', 'debian']:

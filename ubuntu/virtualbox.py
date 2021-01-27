@@ -18,7 +18,7 @@ def install_vbox(configs):
 
     if not path.exists('/etc/apt/sources.list.d/virtualbox.list'):
         print('Virtualbox repository installeres')
-        release = distro.linux_distribution()[2]
+        release = configs['Common']['release']
         sources_string = f"deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian {release} contrib"
         program = 'virtualbox'
         repo_key = "https://www.virtualbox.org/download/oracle_vbox_2016.asc"
