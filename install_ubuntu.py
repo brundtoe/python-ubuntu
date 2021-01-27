@@ -2,7 +2,7 @@
 
 import os
 import sys
-from moduler.utilities import update_config
+from moduler.configuration import update_config
 from moduler.extra_diske import update_extradiske
 from moduler.fileOperations import fetch_config
 from moduler.flip_server import flip_server

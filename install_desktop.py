@@ -2,7 +2,7 @@
 
 import os
 import sys
-from moduler.utilities import update_config
+from moduler.configuration import update_config
 from moduler.fileOperations import fetch_config
 from common.freefilesync import install_freefilesync
 from common.jetbrains_toolbox import install_jetbrains_toolbox
