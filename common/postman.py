@@ -13,7 +13,7 @@ def install_postman(configs):
     :param configs: parametre fra config.ini
     :return: void
     """
-
+    print('Installation af Postman')
     # https://www.postman.com/downloads/release-notes
     version = configs['Common']['postman']
     filename = f'Postman-{version}.tar.gz'
@@ -28,5 +28,4 @@ def install_postman(configs):
     tmpl = f'{program}.jinja'
     project_path = configs['Common']['project_path']
     create_desktop_file(program, project_path, tmpl, user)
-
-
+    print('Afsluttet Installation af Pstman')

@@ -83,3 +83,4 @@ def install_apache(configs):
     except Exception as err:
         print(err)
         sys.exit('Kan ikke disable Apache')
+    print('Installation af Apache Webserver')

@@ -18,6 +18,7 @@ def install_packer(configs):
     :return: void
     """
     # https://packer.io/
+    print('Installation af Packer')
     version = configs['Common']['packer']
     url = f"https://releases.hashicorp.com/packer/{version}/packer_{version}_linux_amd64.zip"
     user = pwd.getpwuid(1000).pw_name
@@ -37,6 +38,6 @@ def install_packer(configs):
         move(f'/home/{user}/programs/packer', packer_file)
         chown(packer_file, 1000, 1000)
         chmod(packer_file, 0o755)
-        print('Packer er installeret')
+        print('Afsluttet installation af Packer')
     else:
         print('Packer er allerede installeret')

@@ -18,6 +18,7 @@ def install_nodejs(configs):
     if path.exists('/etc/apt/sources.list.d/nodesource.list'):
         print('Node.js er allerede installeret')
         return
+    print('Installation af Node.js')
     version = configs['Common']['nodejs_release']
     release = configs['Common']['release']
     repo_key = "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
@@ -46,3 +47,4 @@ def install_nodejs(configs):
     except Exception as err:
         print(err)
         print('Kunne ikke opdatere systemet med nodejs og globalemoduler')
+    print('Afsluttet installation af Node.js')

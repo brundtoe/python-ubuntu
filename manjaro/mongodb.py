@@ -19,6 +19,7 @@ def install_mongodb(configs):
         print('MongoDB er allerede installereet')
     #    return
 
+    print('Installation af MongoDB')
     cmd = shlex.split('sudo pacman -Syu --needed base-devel')
     res = run(cmd)
     if res.returncode != 0:
@@ -66,3 +67,4 @@ def install_mongodb(configs):
 
     cmd = shlex.split('sudo systemctl start mongodb')
     run(cmd)
+    print('Afsluttet Installation af MongoDB')

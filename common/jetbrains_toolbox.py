@@ -15,6 +15,7 @@ def install_jetbrains_toolbox(configs):
     """
     # https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux
 
+    print('Installation af JetBrains ToolBox')
     version = configs['Common']['jetbrains-toolbox']
     down_file = f'jetbrains-toolbox-{version}.tar.gz'
     if path.exists(f'/tmp/{down_file}'):
@@ -31,3 +32,4 @@ def install_jetbrains_toolbox(configs):
     tmpl = f'{program}.jinja'
     project_path = configs['Common']['project_path']
     create_desktop_file(program, project_path, tmpl, user)
+    print('Afsluttet Installation af JetBrains ToolBox')

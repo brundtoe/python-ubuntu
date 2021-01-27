@@ -55,3 +55,4 @@ def install_nginx(configs):
     except Exception as err:
         print(err)
         sys.exit('Kan ikke standse Nginx')
+    print('Afsluttet installation af Nginx')

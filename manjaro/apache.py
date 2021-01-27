@@ -12,6 +12,7 @@ from moduler.site_conf_apache import create_site_conf
 
 
 def install_apache(configs):
+    print('Installation af Http Webserver Apache')
     project_path = configs['Common']['project_path']
     try:
         cmd = shlex.split('pacman -Syu --noconfirm')
@@ -57,6 +58,7 @@ def install_apache(configs):
     except Exception as err:
         print(err)
         sys.exit(f'kan ikke kopiere basis_web til {dest}')
+    print('Afsluttet Installation af Http Webserver Apache')
 
 
 def config_httpd(project_path, apache_dir, apache_conf):

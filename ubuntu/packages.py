@@ -7,6 +7,7 @@ from moduler.install_programs import install_programs
 
 
 def install_packages(configs):
+    print('Installaton af sw packages')
     try:
         apt_update()
     except OSError as err:
@@ -23,4 +24,4 @@ def install_packages(configs):
         print(err)
         sys.exit('Der opstod fejl ved installation af base software')
     else:
-        print('apt-get installation af base software udført')
+        print('Afsluttet apt-get installation af base software')

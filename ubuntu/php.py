@@ -43,7 +43,7 @@ def install_php(configs):
     sha256url = configs['composer']['sha256']
     user = pwd.getpwuid(1000).pw_name
     install_composer(url, sha256url, user)
-
+    print('Afsluttet installation af PHP moduler')
 
 def install_xdebug(configs):
     project_path = configs['Common']['project_path']

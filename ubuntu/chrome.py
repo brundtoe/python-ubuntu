@@ -12,6 +12,7 @@ from moduler.install_repo import install_repo
 
 
 def install_chrome(configs):
+    print('Installation af Google Chrome')
     if os.path.exists('/etc/apt/sources.list.d/google-chrome.list'):
         print('Google-chrome er allerede installeret')
         return
@@ -34,4 +35,5 @@ def install_chrome(configs):
         print(f'{program} installeret')
     except Exception as err:
         print(err)
-        print(f'Installationen af {program} fejlede')
+        sys.exit(f'Installationen af {program} fejlede')
+    print('Installation af Google Chrome')

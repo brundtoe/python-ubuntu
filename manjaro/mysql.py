@@ -18,6 +18,7 @@ def install_mysql(configs):
     if os.path.exists('/usr/lib/systemd/system/mysql.service'):
         print('MariaDB er allerede installeret')
     else:
+        print('Installation af MariaDB')
         try:
             print('Installation af MariaDB')
             install_program('mariadb')
@@ -30,3 +31,4 @@ def install_mysql(configs):
     run(['systemctl', 'start', mysql_daemon])
 
     create_db_users(configs)
+    print('Afsluttet Installation af MariaDB')

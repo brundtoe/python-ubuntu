@@ -11,6 +11,7 @@ from moduler.site_conf_nginx import create_site_config
 
 
 def install_nginx(configs):
+    print('Installation af Nginx')
     try:
         install_program('nginx')
         run(['systemctl', 'disable', 'nginx'])
@@ -34,6 +35,7 @@ def install_nginx(configs):
 
     doc_root = '/var/www/html'
     create_web_site(configs, doc_root)
+    print('Afsluttet Installation af Nginx')
 
 
 def create_server_conf(project_path, templ, outfile, app_user, enable_modules=''):

@@ -10,7 +10,7 @@ from moduler.fileOperations import add_line
 
 
 def install_php(configs):
-
+    print('Installation af PHP, Xdebug og Composer')
     programs = configs['manjaro.php']
     project_path = configs['Common']['project_path']
     try:

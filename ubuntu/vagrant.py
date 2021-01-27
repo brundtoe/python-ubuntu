@@ -27,5 +27,6 @@ def install_vagrant(configs):
     if findes is None:
         install_dpkg(url, version)
         vagrant_plugins(configs)
+        print('Afsluttet installation af Vagrant')
     else:
         print('Vagrant er allerede installeret')

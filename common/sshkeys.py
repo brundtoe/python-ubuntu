@@ -36,3 +36,4 @@ def create_sshkeys(configs):
             run('eval $(ssh-agent)', shell=True, check=True)
         output = run(['ssh-add', 'id_rsa'])
         print(output)
+    print('afsluttet oprettelse af ssh key')

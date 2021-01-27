@@ -18,6 +18,7 @@ def install_docker(configs):
     if path.exists('/etc/apt/sources.list.d/docker.list'):
         print('Docker er allerede installeret')
         return
+    print('Installation af Docker')
     # https://docs.docker.com/install/linux/docker-ce/ubuntu/
     program = "docker"
     distrib = configs['Common']['distro']

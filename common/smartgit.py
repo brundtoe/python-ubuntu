@@ -15,6 +15,7 @@ def install_smartgit(configs):
     :return: void
     """
     # https://www.syntevo.com/smartgit/download/
+    print('Installation af SmartGit')
     version = configs['Common']['smartgit']
     filename = f'smartgit-linux-{version}.tar.gz'
     if path.exists(f'/tmp/{filename}'):
@@ -29,3 +30,4 @@ def install_smartgit(configs):
     tmpl = f'{program}.jinja'
     project_path = configs['Common']['project_path']
     create_desktop_file(program, project_path, tmpl, user)
+    print('Afsluttet Installation af SmartGit')

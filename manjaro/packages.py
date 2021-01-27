@@ -8,6 +8,7 @@ import subprocess
 
 
 def install_packages(configs):
+    print('Installation af Archlinux/Manjaro packages')
     programs = configs['manjaro.programs']
     try:
         cmd = shlex.split('pacman -Syu --noconfirm')
@@ -22,7 +23,7 @@ def install_packages(configs):
         print(err)
         sys.exit('Der opstod fejl ved installation af base software')
     else:
-        print('pacman installation af base software udført')
+        print('Afsluttet installation af base software')
 
 
 def install_programs(programs):

@@ -17,6 +17,7 @@ def install_freefilesync(configs):
     :param configs: configparser fra config/config.ini
     :return: void
     """
+    print('Installation af FreeFileSync')
     # https://freefilesync.org/download.php
     version = configs['Common']['freefilesync']
     filename = f"FreeFileSync_{version}_Linux.tar.gz"
@@ -43,6 +44,7 @@ def install_freefilesync(configs):
         print(f'Download forsøg {num_tries} fejlede')
         time.sleep(10)
         num_tries += 1
+    print('Afsluttet Installation af FreeFileSync')
 
 
 def unpack_freefilesync(down_file, outfile):

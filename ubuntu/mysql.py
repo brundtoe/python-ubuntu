@@ -21,8 +21,8 @@ def install_mysql(configs):
     if os.path.exists(f'/usr/lib/systemd/system/{mysql_daemon}.service'):
         print('MySQL er allerede installeret')
     else:
+        print('Installation af mysql')
         try:
-            print('Installation af mysql')
             apt_update()
             options = configs['Common']['install_options']
             install_program(f'{mysql_daemon}-server', options)
@@ -34,3 +34,4 @@ def install_mysql(configs):
     subprocess.run(['systemctl', 'start', mysql_daemon])
 
     create_db_users(configs)
+    print('Afsluttet installation af MySQL')
