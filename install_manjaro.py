@@ -2,7 +2,7 @@
 
 import os
 import sys
-from moduler.configuration import update_config, fetch_config
+from moduler.configuration import get_config
 
 from moduler.user_profile import user_profile
 from moduler.global_config import global_config
@@ -106,17 +106,9 @@ if __name__ == "__main__":
     if os.geteuid() != 0:
         sys.exit('Scriptet skal udføres med root access')
 
-    configuration = ''
+    project_path = os.path.dirname(os.path.realpath(__file__))
     filename = 'config/config.ini'
-    try:
-        configuration = fetch_config(filename)
-        configuration['Common']['project_path'] = os.path.dirname(os.path.realpath(__file__))
-        configs = update_config(configuration)
-    except Exception as err:
-        print(err)
-        sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
-    else:
-        print(f'Konfigurationsfilen {filename} er indlæst')
+    configs = get_config(project_path, filename)
 
     distro = configs['Common']['distro']
     if distro not in ['archlinux', 'manjaro']:

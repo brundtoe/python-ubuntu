@@ -3,6 +3,7 @@
 # indlæsning af konfigruationsoplysninger
 #
 import os
+import sys
 import re
 import distro
 import platform
@@ -49,3 +50,17 @@ def fetch_config(filename):
     except Exception as err:
         print(err)
     return config
+
+
+def get_config(project_path, filename):
+
+    try:
+        configuration = fetch_config(f'{project_path}/{filename}')
+        configuration['Common']['project_path'] = project_path
+        configs = update_config(configuration)
+    except Exception as err:
+        print(err)
+        sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
+    else:
+        print(f'Konfigurationsfilen {filename} er indlæst')
+        return configs
