@@ -21,8 +21,3 @@ def apt_update():
         print(err)
         sys.exit('Kan ikke opdatere systemet')
 
-
-if __name__ == "__main__":
-    if os.geteuid() != 0:
-        sys.exit('Scriptet skal udføres med root access')
-    apt_update()

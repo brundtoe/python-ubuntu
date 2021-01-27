@@ -50,11 +50,3 @@ def update_wdmycloud(configs):
     except OSError as err:
         print(err)
         sys.exit('Der opstod fejl ved opdatering af wdmycloud')
-
-
-if __name__ == '__main__':
-    if os.geteuid() != 0:
-        sys.exit('Scriptet skal udføres  med root access')
-    print('Konfiguration af wdmycloud')
-    configs = fetch_config('../config/config.ini')
-    update_wdmycloud(configs)

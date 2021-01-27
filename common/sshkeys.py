@@ -38,7 +38,3 @@ def create_sshkeys(configs):
         output = run(['ssh-add', 'id_rsa'])
         print(output)
 
-
-if __name__ == "__main__":
-    configs = fetch_config('../config/config.ini')
-    create_sshkeys(configs)
