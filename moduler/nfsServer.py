@@ -25,8 +25,8 @@ def config_nfsserver(shares, network):
 
 def install_nfsserver(configs):
     print('network file server installeres')
-    host_type = configs['Common']['host']
-    if host_type == 'virtual.local':
+    virtual = configs['Common']['virtualization']
+    if virtual in ['oracle', 'vmware']:
         print('Kan ikke installeres på virtuelle maskiner')
         return 0
     options = configs['Common']['install_options']
