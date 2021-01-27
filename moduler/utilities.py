@@ -7,6 +7,15 @@ import sys
 import shlex
 import shutil
 import subprocess
+import distro
+import platform
+
+
+def get_host_info():
+    distrib = distro.linux_distribution(full_distribution_name=False)[0]
+    distrib = 'archlinux' if distrib == 'arch' else distrib
+    release = distro.codename().lower()
+    return {'distro': distrib, 'release': release, 'hostname': platform.node()}
 
 
 def is_active(service):

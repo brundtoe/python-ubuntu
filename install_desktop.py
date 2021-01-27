@@ -2,6 +2,7 @@
 
 import os
 import sys
+from moduler.utilities import get_host_info
 from moduler.fileOperations import fetch_config
 from common.freefilesync import install_freefilesync
 from common.jetbrains_toolbox import install_jetbrains_toolbox
@@ -65,10 +66,15 @@ if __name__ == "__main__":
         sys.exit('Scriptet må ikke udføres med root access')
 
     configuration = ''
-    # filename = f'{os.path.dirname(__file__)}/config/config.ini'
     filename = 'config/config.ini'
     try:
         configuration = fetch_config(filename)
+        configuration['Common']['project_path'] = os.path.dirname(os.path.realpath(__file__))
+        host_info = get_host_info()
+        configuration['Common']['distro'] = host_info['distro']
+        configuration['Common']['release'] = host_info['release']
+        configuration['Common']['hostname'] = host_info['hostname']
+
     except Exception as err:
         print(err)
         sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')

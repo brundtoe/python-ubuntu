@@ -2,7 +2,7 @@
 
 import os
 import sys
-import distro
+from moduler.utilities import get_host_info
 from moduler.extra_diske import update_extradiske
 from moduler.fileOperations import fetch_config
 from moduler.flip_server import flip_server
@@ -108,14 +108,20 @@ if __name__ == "__main__":
     filename = 'config/config.ini'
     try:
         configuration = fetch_config(filename)
+        configuration['Common']['project_path'] = os.path.dirname(os.path.realpath(__file__))
+        host_info = get_host_info()
+        configuration['Common']['distro'] = host_info['distro']
+        configuration['Common']['release'] = host_info['release']
+        configuration['Common']['hostname'] = host_info['hostname']
+
     except Exception as err:
         print(err)
         sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
     else:
         print(f'Konfigurationsfilen {filename} er indlæst')
     
-    distrib = distro.linux_distribution(full_distribution_name=False)[0]
-    if distrib not in ['ubuntu', 'debian']:
-        sys.exit(f'På {distrib} skal installationen foretages med install_manjaro.py')
+    distro = configuration['Common']['distro']
+    if distro not in ['ubuntu', 'debian']:
+        sys.exit(f'På {distro} skal installationen foretages med install_manjaro.py')
 
     show_menu(configuration)
