@@ -4,7 +4,7 @@
 #
 import sys
 import os
-from moduler.fileOperations import fetch_config
+from moduler.configuration import fetch_config
 from moduler.apt_update import apt_update
 from moduler.install_programs import install_programs
 

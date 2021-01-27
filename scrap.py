@@ -4,10 +4,10 @@ import os
 import sys
 import subprocess
 import shlex
-from moduler.fileOperations import fetch_config, add_line
+from moduler.fileOperations import add_line
 import distro
 import platform
-from moduler.utilities import update_config
+from moduler.configuration import update_config, fetch_config
 
 configs = ''
 # filename = 'config/config.ini'

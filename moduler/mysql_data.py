@@ -9,7 +9,7 @@ import shlex
 import distro
 from subprocess import run, PIPE, Popen
 from jinja2 import Environment, FileSystemLoader
-from moduler.fileOperations import fetch_config
+from moduler.configuration import fetch_config
 
 
 def create_db_users(configs):

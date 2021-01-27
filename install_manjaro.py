@@ -2,8 +2,7 @@
 
 import os
 import sys
-from moduler.configuration import update_config
-from moduler.fileOperations import fetch_config
+from moduler.configuration import update_config, fetch_config
 
 from moduler.user_profile import user_profile
 from moduler.global_config import global_config

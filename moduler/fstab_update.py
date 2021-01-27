@@ -3,7 +3,8 @@
 #
 import sys
 import os
-from moduler.fileOperations import add_line, fetch_config
+from moduler.configuration import fetch_config
+from moduler.fileOperations import add_line
 
 
 def update_fstab(mount_string, mount_points, fstab):

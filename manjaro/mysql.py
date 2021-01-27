@@ -8,7 +8,7 @@ import sys
 import shlex
 import pwd
 from subprocess import run
-# from moduler.fileOperations import fetch_config
+from moduler.configuration import fetch_config
 from manjaro.packages import install_program
 from moduler.mysql_data import create_db_users
 

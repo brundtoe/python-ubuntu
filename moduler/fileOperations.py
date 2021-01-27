@@ -5,20 +5,6 @@ import os
 import shutil
 import requests
 import subprocess
-from moduler.exceptions import AddLineFileNotFound
-from configparser import ConfigParser, ExtendedInterpolation
-
-
-def fetch_config(filename):
-    config = ConfigParser(interpolation=ExtendedInterpolation())
-    if not os.path.exists(filename):
-        print(f'Kan ikke læse konfiguationsfilen {filename}')
-        exit(1)
-    try:
-        config.read(filename)
-    except Exception as err:
-        print(err)
-    return config
 
 
 def is_found(filename, text):

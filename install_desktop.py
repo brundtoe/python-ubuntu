@@ -2,8 +2,7 @@
 
 import os
 import sys
-from moduler.configuration import update_config
-from moduler.fileOperations import fetch_config
+from moduler.configuration import update_config, fetch_config
 from common.freefilesync import install_freefilesync
 from common.jetbrains_toolbox import install_jetbrains_toolbox
 from common.nosqlbooster import install_nosqlbooster

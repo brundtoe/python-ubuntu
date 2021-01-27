@@ -2,9 +2,8 @@
 
 import os
 import sys
-from moduler.configuration import update_config
+from moduler.configuration import update_config, fetch_config
 from moduler.extra_diske import update_extradiske
-from moduler.fileOperations import fetch_config
 from moduler.flip_server import flip_server
 from moduler.global_config import global_config
 from moduler.wdmycloud import update_wdmycloud

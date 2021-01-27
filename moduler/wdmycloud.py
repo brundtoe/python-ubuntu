@@ -10,8 +10,8 @@ import os
 import pwd
 import shutil
 from string import Template
-
-from moduler.fileOperations import fetch_config, add_line
+from moduler.configuration import fetch_config
+from moduler.fileOperations import add_line
 from moduler.add_mountpoints import add_mountpoints
 from moduler.install_programs import install_program
 

@@ -10,7 +10,7 @@ import distro
 import pwd
 from subprocess import run, Popen, PIPE
 from moduler.utilities import change_owner
-from moduler.fileOperations import fetch_config
+from moduler.configuration import fetch_config
 
 def create_sshkeys(configs):
     user = pwd.getpwuid(1000).pw_name
