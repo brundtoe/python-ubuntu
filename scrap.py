@@ -4,8 +4,7 @@ import os
 import sys
 import subprocess
 import shlex
-from moduler.fileOperations import add_line
-import distro
+import re
 import platform
 from moduler.configuration import update_config, fetch_config
 
@@ -15,15 +14,12 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 filename = f'{dir_path}/config/config.ini'
 try:
     configs = fetch_config(filename)
+    configs['Common']['project_path'] = os.path.dirname(os.path.realpath(__file__))
+    update_config(configs)
 except Exception as err:
     print(err)
     sys.exit(f'Konfigurationsfilen {filename} kan ikke læses')
 else:
     print(f'Konfigurationsfilen {filename} er indlæst')
 
-configs['Common']['project_path'] = os.path.dirname(os.path.realpath(__file__))
-update_config(configs)
-print(configs['Common']['project_path'])
-print(configs['Common']['distro'])
-print(configs['Common']['release'])
-print(configs['Common']['hostname'])
+print(configs['Common']['virtualization'])
