@@ -2,7 +2,7 @@
 #
 # Installation af Virtualbox
 #
-
+import os
 import sys
 from jinja2 import Environment, FileSystemLoader
 from moduler.utilities import copy_dir
@@ -35,3 +35,9 @@ def copy_web(configs,  dest):
     except Exception as err:
         print(err)
         sys.exit(f'kan ikke kopiere til {dest}')
+
+
+def create_web_site(configs, dest):
+    if not os.path.exists(f"{dest}"):
+        os.makedirs(f"{dest}", 0o755, exist_ok=True)
+        copy_web(configs, dest)

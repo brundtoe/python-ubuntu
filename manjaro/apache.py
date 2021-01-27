@@ -9,6 +9,7 @@ import subprocess
 from moduler.basis_web import copy_web
 from moduler.fileOperations import add_line
 from moduler.site_conf_apache import create_site_conf
+from moduler.basis_web import create_web_site
 
 
 def install_apache(configs):
@@ -48,16 +49,8 @@ def install_apache(configs):
     tmpl = '000-apache.jinja'
     create_site_conf(project_path, apache_dir, tmpl, 'httpd')
 
-    dest = '/var/www/html'
-    if not os.path.exists(f"{dest}"):
-        os.makedirs(f"{dest}",  0o755, exist_ok=True)
-
-    try:
-        print('Basis website kopieres til /var/www/html')
-        copy_web(configs, dest)
-    except Exception as err:
-        print(err)
-        sys.exit(f'kan ikke kopiere basis_web til {dest}')
+    doc_root = '/var/www/html'
+    create_web_site(configs, doc_root)
     print('Afsluttet Installation af Http Webserver Apache')
 
 

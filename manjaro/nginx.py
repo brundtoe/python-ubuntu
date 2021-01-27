@@ -6,7 +6,7 @@ import sys
 from subprocess import run
 from jinja2 import Environment, FileSystemLoader
 from manjaro.packages import install_program
-from moduler.basis_web import copy_web
+from moduler.basis_web import create_web_site
 from moduler.site_conf_nginx import create_site_config
 
 
@@ -49,13 +49,3 @@ def create_server_conf(project_path, templ, outfile, app_user, enable_modules=''
         fout.write(output)
 
 
-def create_web_site(configs, dest):
-    if not os.path.exists(f"{dest}"):
-        os.makedirs(f"{dest}", 0o755, exist_ok=True)
-
-    try:
-        print('Basis website kopieres til /var/www/html')
-        copy_web(configs, dest)
-    except Exception as err:
-        print(err)
-        sys.exit(f'kan ikke kopiere basis_web til {dest}')
