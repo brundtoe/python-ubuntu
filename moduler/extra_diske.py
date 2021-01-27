@@ -26,7 +26,9 @@ def update_extradiske(configs):
     filename = '/etc/fstab'
     try:
         user = pwd.getpwuid(1000).pw_name
-        mount_points = configs[configs['Common']['host']]
+        host = configs['Common']['hostname']
+        section = host if host in ['komplett', 'esprimo'] else 'other'
+        mount_points = configs[section]
         add_mountpoints(user, mount_points)
         filename_extradiske = configs['Common']['filename_extradiske']
         with open(filename_extradiske) as src_file:

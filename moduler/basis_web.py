@@ -15,7 +15,7 @@ def city_files(configs, project_path):
         env = Environment(loader=file_loader)
 
         template = env.get_template('cities.jinja')
-        inventory_hostname = configs['Common']['host']
+        inventory_hostname = configs['Common']['hostname']
         cities = ['Randers', 'Holstebro', 'Jyllinge', 'Roskilde', 'Holbæk']
         output = template.render(cities=cities, inventory_hostname=inventory_hostname)
         # print(output)
