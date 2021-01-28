@@ -11,16 +11,21 @@ from moduler.site_conf_nginx import create_site_config
 
 
 def install_nginx(configs):
-    print('Installation af Nginx')
-    try:
-        install_program('nginx')
-        run(['systemctl', 'disable', 'nginx'])
-        run(['systemctl', 'stop', 'nginx'])
-    except OSError as err:
-        print(err)
-        print('Kunne ikke installere Nginx')
-        return
 
+    if not os.path.exists('/usr/lib/systemd/system/nginx.service'):
+        print('Installation af Nginx')
+        try:
+            install_program('nginx')
+            run(['systemctl', 'disable', 'nginx'])
+            run(['systemctl', 'stop', 'nginx'])
+        except OSError as err:
+            print(err)
+            print('Kunne ikke installere Nginx')
+            return
+    else:
+        print('Nginx er allerede installeret')
+
+    print('Nginx konfigureres')
     server_dir = '/etc/nginx'
     project_path = configs['Common']['project_path']
     templ = 'nginx.conf.jinja'
