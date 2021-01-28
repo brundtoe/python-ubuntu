@@ -21,7 +21,7 @@ from manjaro.packer import install_packer
 from manjaro.chromium import install_chromium
 from manjaro.mysql import install_mysql
 from manjaro.virtualbox import install_virtualbox
-from moduler.nfsServer import install_nfsserver
+from moduler.nfsServer import install_nfs_server
 from moduler.secure_ssh import secure_ssh_server
 
 menu = """
@@ -69,7 +69,7 @@ switcher = {
     15: install_packer,
     16: install_virtualbox,
     17: install_chromium,
-    18: install_nfsserver,
+    18: install_nfs_server,
     19: secure_ssh_server
 }
 

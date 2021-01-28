@@ -9,7 +9,7 @@ from moduler.install_programs import install_program
 from moduler.fileOperations import add_line
 
 
-def config_nfsserver(shares, network):
+def config_nfs_server(shares, network):
     print('Network File Server konfigureres')
     try:
         for key in shares:
@@ -23,7 +23,7 @@ def config_nfsserver(shares, network):
         return 0
 
 
-def install_nfsserver(configs):
+def install_nfs_server(configs):
     print('network file server installeres')
     virtual = configs['Common']['virtualization']
     if virtual in ['oracle', 'vmware']:
@@ -35,17 +35,18 @@ def install_nfsserver(configs):
     try:
         if distrib in ['ubuntu', 'debian']:
             install_program('nfs-kernel-server', options)
-        elif distrib in ['arch', 'manjaro']:
-            subprocess.run(shlex.split(f"pacman -S --noconfirm nfs-utils"))
+        elif distrib in ['archlinux', 'manjaro']:
+            subprocess.run(shlex.split(f"pacman -S --noconfirm --needed nfs-utils"))
         else:
             print(f'Distributionen {distrib} er ikke implementeret')
+            return 0
     except OSError as err:
         print(err)
         return 0
 
     shares = configs['nfs.share']
     network = configs['Common']['nfs_allow']
-    config_nfsserver(shares, network)
+    config_nfs_server(shares, network)
 
     if distrib in ['ubuntu', 'debian']:
         subprocess.run(shlex.split('systemctl restart nfs-kernel-server'))

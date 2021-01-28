@@ -20,7 +20,7 @@ from ubuntu.packer import install_packer
 from ubuntu.php import install_php
 from ubuntu.vagrant import install_vagrant
 from ubuntu.virtualbox import install_vbox
-from moduler.nfsServer import install_nfsserver
+from moduler.nfsServer import install_nfs_server
 from moduler.secure_ssh import secure_ssh_server
 
 menu = """
@@ -68,7 +68,7 @@ switcher = {
     15: install_packer,
     16: install_vbox,
     17: install_chrome,
-    18: install_nfsserver,
+    18: install_nfs_server,
     19: secure_ssh_server
 }
 
