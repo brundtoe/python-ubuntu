@@ -18,20 +18,18 @@ def install_mongodb(configs):
         print('MongoDB er allerede installeret')
         return
     print('Installation af MongoDB')
-    distrib = configs['Common']['distro']
     project_path = configs['Common']['project_path']
     # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
     mongodb_release = configs['Common']['mongodb_release']
     repo_key = f"https://www.mongodb.org/static/pgp/server-{mongodb_release}.asc"
+    distrib = configs['Common']['distro']
+    release = configs['Common']['release']
+    distrib_release = f'{distrib} {release}'
     if distrib == 'ubuntu':
-        distro_ubuntu = configs['Common']['lsb_mongodb_ubuntu']
-        release = f"ubuntu {distro_ubuntu}"
         repo_component = 'multiverse'
     else:
-        distro_debian = configs['Common']['lsb_mongodb_debian']
-        release = f"debian {distro_debian}"
         repo_component = 'main'
-    sources_string = f"deb https://repo.mongodb.org/apt/{release}/mongodb-org/{mongodb_release} {repo_component}"
+    sources_string = f"deb https://repo.mongodb.org/apt/{distrib_release}/mongodb-org/{mongodb_release} {repo_component}"
     program = 'mongodb'
     try:
         install_repo(repo_key, program, sources_string)

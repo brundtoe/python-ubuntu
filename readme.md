@@ -22,6 +22,11 @@ Filen **config/config.ini** her opdateres alle elementer i afsnittene
     - ekstra.programs
     - manjaro-programs
 
+**Important**
+
+> Installationen anvender moduler/configuration.py get_host_info() til at finde info om host distribution, lsb_release.
+> 
+> Det forudsætter at der altid anvendes en lts version af ubuntu hhv debian, idet virtualbox, mongodb m.fl. kun frigives til lst versionerne og sources.list indeholder denne oplysning.
     
 ## software requirements
 
