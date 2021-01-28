@@ -63,7 +63,7 @@ def install_program(program):
     :param program: programnavn
     :return: True hvis installationen er udført ellers False
     """
-    cmd = shlex.split(f"pacman -S --noconfirm {program}")
+    cmd = shlex.split(f"pacman -S --noconfirm --needed {program}")
     res = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     return res.returncode == 0
 
