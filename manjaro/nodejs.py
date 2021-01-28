@@ -5,13 +5,16 @@
 import sys
 import shlex
 import subprocess
-from .packages import install_program
+from .packages import install_program, is_installed
 
 
 def install_nodejs(configs):
+
     pgm = configs['Common']['nodejs_arch_lts']
+    if is_installed(pgm):
+        print(f'pgm er allerede installeret')
+        return
     try:
-        install_program(pgm)
         install_program('npm')
     except OSError as err:
         print(err)
