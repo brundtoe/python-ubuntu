@@ -16,8 +16,8 @@ def install_mongodb(configs):
         return
 
     if os.path.exists('/lib/systemd/system/mongodb.service'):
-        print('MongoDB er allerede installereet')
-    #    return
+        print('MongoDB er allerede installeret')
+        return
 
     print('Installation af MongoDB')
     cmd = shlex.split('sudo pacman -Syu --needed base-devel')
