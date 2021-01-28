@@ -13,19 +13,20 @@ def install_postman(configs):
     :param configs: parametre fra config.ini
     :return: void
     """
-    print('Installation af Postman')
     # https://www.postman.com/downloads/release-notes
     version = configs['Common']['postman']
     filename = f'Postman-{version}.tar.gz'
-    if path.exists(f'/tmp/{filename}'):
-        print(f'Postman version {version} er installeret')
-        return
-    url = f"https://dl.pstmn.io/download/latest/linux"
     user = pwd.getpwuid(1000).pw_name
+    if path.exists(f'/home/{user}/programs/Postman'):
+        print(f'Postman version {version} er allerede installeret')
+        return
+
+    print('Installation af Postman')
+    url = f"https://dl.pstmn.io/download/latest/linux"
     program = 'Postman'
     fetch_archive(url, user, program, version, filename=filename)
 
     tmpl = f'{program}.jinja'
     project_path = configs['Common']['project_path']
     create_desktop_file(program, project_path, tmpl, user)
-    print('Afsluttet Installation af Pstman')
+    print('Afsluttet Installation af Postman')
