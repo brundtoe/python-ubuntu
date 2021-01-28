@@ -2,11 +2,16 @@
 #
 #
 import pwd
-from manjaro.packages import install_program
+from manjaro.packages import install_program, is_installed
 from moduler.groups import usermod
 
 
 def install_docker(configs):
+
+    if is_installed('docker'):
+        print('Docker er allerede installeret')
+        return
+
     print('Installation af Docker ...')
     user = pwd.getpwuid(1000).pw_name
     try:
