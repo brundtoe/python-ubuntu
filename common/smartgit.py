@@ -18,12 +18,12 @@ def install_smartgit(configs):
     print('Installation af SmartGit')
     version = configs['Common']['smartgit']
     filename = f'smartgit-linux-{version}.tar.gz'
-    if path.exists(f'/tmp/{filename}'):
-        print(f'SmartGit version {version} er installet')
+    user = pwd.getpwuid(1000).pw_name
+    if path.exists(f'/home/{user}/programs/smartgit'):
+        print(f'SmartGit version {version} er allerede installet')
         return
     # url_deb = f"https://www.syntevo.com/downloads/smartgit/smartgit-{version}.deb"
     url = f"https://www.syntevo.com/downloads/smartgit/{filename}"
-    user = pwd.getpwuid(1000).pw_name
     program = 'SmartGit'
     fetch_archive(url, user, program, version)
 
