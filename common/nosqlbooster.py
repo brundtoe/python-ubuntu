@@ -13,7 +13,6 @@ def install_nosqlbooster(configs):
     :param configs: konfigurationsfilen config.ini
     :return: void
     """
-    print('Installation af NoSQL Booster ')
     version = configs['Common']['nosqlbooster']
     nosql_major = configs['Common']['nosql-major']
     down_file = f'nosqlbooster4mongo-{version}.AppImage'
@@ -23,6 +22,8 @@ def install_nosqlbooster(configs):
     if os.path.exists(f'{app_path}/{down_file}'):
         print(f'NoSQLBooster version {version} er installeret')
         return
+
+    print('Installation af NoSQL Booster ')
     try:
         if not os.path.exists(app_path):
             os.makedirs(app_path)
