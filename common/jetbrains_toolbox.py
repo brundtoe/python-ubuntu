@@ -15,15 +15,16 @@ def install_jetbrains_toolbox(configs):
     """
     # https://www.jetbrains.com/toolbox-app/download/download-thanks.html?platform=linux
 
-    print('Installation af JetBrains ToolBox')
     version = configs['Common']['jetbrains-toolbox']
-    down_file = f'jetbrains-toolbox-{version}.tar.gz'
-    if path.exists(f'/tmp/{down_file}'):
-        print('JetBrains toolbox er installeret')
+    program_folder = f'jetbrains-toolbox-{version}'
+    down_file = f'{program_folder}.tar.gz'
+    user = pwd.getpwuid(1000).pw_name
+    if path.exists(f'/home/{user}/programs/{program_folder}'):
+        print('JetBrains toolbox er allerede installeret')
         return
+    print('Installation af JetBrains ToolBox')
     url = f"https://download.jetbrains.com/toolbox/{down_file}"
     # sha256 = "https://download.jetbrains.com/toolbox/jetbrains-toolbox-{version}.tar.gz.sha256"
-    user = pwd.getpwuid(1000).pw_name
     program = 'JetBrains Toolbox'
 
     fetch_archive(url, user, program, version)
