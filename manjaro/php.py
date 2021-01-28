@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-
+from os import path
 import sys
 import shlex
 from subprocess import run
@@ -10,24 +10,21 @@ from moduler.fileOperations import add_line
 
 
 def install_php(configs):
-    print('Installation af PHP, Xdebug og Composer')
-    programs = configs['manjaro.php']
-    project_path = configs['Common']['project_path']
-    try:
-        cmd = shlex.split('pacman -Syu --noconfirm')
-        run(cmd)
-    except OSError as err:
-        print(err)
-        sys.exit('Systemopdatering fejlede')
 
-    try:
-        install_programs(programs)
-    except OSError as err:
-        print(err)
-        print('Der opstod fejl ved installation af php packages software')
-        return
-    else:
-        print('pacman installation af base software udført')
+    project_path = configs['Common']['project_path']
+    if not path.exists('/usr/lib/systemd/system/php-fpm.service'):
+        print('Installation af PHP, Xdebug og Composer')
+        programs = configs['manjaro.php']
+        try:
+            cmd = shlex.split('pacman -Syu --noconfirm')
+            run(cmd)
+            install_programs(programs)
+        except OSError as err:
+            print(err)
+            print('Der opstod fejl ved installation af php packages software')
+            return
+        else:
+            print('pacman installation af base software udført')
 
     print('konfiguration af XDebug')
     xdebug_client_host = configs['Common']['xdebug_client_host']
