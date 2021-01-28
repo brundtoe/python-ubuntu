@@ -27,8 +27,9 @@ def install_freefilesync(configs):
     outfile = f'/home/{user}/programs'
     num_tries = 1
     max_tries = 3
-
-    if os.path.exists(down_file):
+    program_folder = f'/home/{user}/programs/FreeFileSync'
+    print(program_folder)
+    if os.path.exists(program_folder):
         print(f'FreefileSync version {version} er installeret')
         return
     while num_tries <= max_tries:
