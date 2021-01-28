@@ -2,12 +2,16 @@
 #
 from subprocess import run
 import pwd
-from manjaro.packages import install_program
+from manjaro.packages import install_program, is_installed
 from moduler.groups import usermod
 from moduler.vbox_ext_pack import install_vbox_ext_pack
 
 
 def install_virtualbox(configs):
+
+    if is_installed('virtualbox'):
+        print('Virtualbox er allerede installeret')
+        return
 
     print('Installation af Virtualbox ...')
     user = pwd.getpwuid(1000).pw_name
