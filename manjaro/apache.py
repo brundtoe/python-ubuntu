@@ -13,28 +13,24 @@ from moduler.basis_web import create_web_site
 
 
 def install_apache(configs):
-    print('Installation af Http Webserver Apache')
+
     project_path = configs['Common']['project_path']
-    try:
-        cmd = shlex.split('pacman -Syu --noconfirm')
-        subprocess.run(cmd)
-    except OSError as err:
-        print(err)
-        sys.exit('Systemopdatering fejlede')
-
-    try:
-        cmd = shlex.split('pacman -S --noconfirm apache')
-        subprocess.run(cmd)
-        # cmd = shlex.split(systemctl disable httpd)
-        # cmd = shlex.split(systemctl stop httpd)
-        subprocess.run(['systemctl', 'disable', 'httpd'])
-        subprocess.run(['systemctl', 'stop', 'httpd'])
-    except OSError as err:
-        print(err)
-        sys.exit('Der opstod fejl ved installation af Apache http webserver')
+    if not os.path.exists('/usr/lib/systemd/system/httpd.service'):
+        print('Installation af Http Webserver Apache')
+        try:
+            subprocess.run(shlex.split('pacman -Syu --noconfirm'))
+            subprocess.run(shlex.split('pacman -S --noconfirm --needed apache'))
+            subprocess.run(['systemctl', 'disable', 'httpd'])
+            subprocess.run(['systemctl', 'stop', 'httpd'])
+        except OSError as err:
+            print(err)
+            sys.exit('Der opstod fejl ved installation af Apache http webserver')
+        else:
+            print('pacman installation af Apache http webserver udført')
     else:
-        print('pacman installation af Apache http webserver udført')
+        print('Httpd Webserver er allerede installeret')
 
+    print('Konfiguration af http webserver')
     apache_dir = "/etc/httpd"
     apache_conf = f"{apache_dir}/conf/httpd.conf"
 
