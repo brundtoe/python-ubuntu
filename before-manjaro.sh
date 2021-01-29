@@ -14,7 +14,7 @@ if !  [[ $OS == "manjaro" ]]; then
   exit 1
 fi
 
-pacman-mirrors --country Germany,France,Denmark,Sweden,Belgium,United_Kingdom
+pacman-mirrors --country Germany,France,Denmark,Sweden,Belgium
 pacman -Syyu --noconfirm
 
 installPackages() {
@@ -29,8 +29,11 @@ installPackages() {
   done
 }
 
-packages=(gcc
+packages=(base-devel
+gcc
 dkms
+gtk2
+gtkmm
 make
 perl
 vim
@@ -45,12 +48,13 @@ python-virtualenv
 
 installPackages "${packages[@]}"
 
-pacman -S base-devel --needed --noconfirm
-
-pip install -r requirements-global.txt
+virtualization=$(hostnamectl | grep Virtualization | awk '{print tolower($2)}')
 
 sed -Ei 's/^(#?)(PasswordAuthentication)(\s*no)/\2 yes/' /etc/ssh/sshd_config        
 systemctl enable sshd
 systemctl start sshd
-        
+
+mkdir -p /nfs/{ansible-demo,bash-demo,python-demo}
+
+
 echo "Installerede basis programmer"        

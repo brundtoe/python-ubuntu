@@ -45,8 +45,8 @@ installPackages "${packages[@]}"
 
 pacman -S base-devel --needed --noconfirm
 
-pip install -r requirements-global.txt
-      
+virtualization=$(hostnamectl | grep Virtualization | awk '{print tolower($2)}')
+
 sed -Ei 's/^(#?)(PasswordAuthentication)(\s*no)/\2 yes/' /etc/ssh/sshd_config        
 systemctl enable sshd
 systemctl start sshd

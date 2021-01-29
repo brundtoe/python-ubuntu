@@ -47,6 +47,8 @@ packages=(build-essential
 
 installPackages "${packages[@]}"
 
+
+
 if [ "$OS" == "ubuntu" ]; then
   packages=(lsb-core linux-headers-generic)
   installPackages "${packages[@]}"
@@ -54,13 +56,16 @@ else
   installPackages "lsb-release"
 fi
 
+virtualization=$(hostnamectl | grep Virtualization | awk '{print tolower($2)}')
 
-pip3 install -r requirements-global.txt
+if [ "$virtualization" == "vmware" ]; then
+  apt install -y open-vm-tools-desktop
+fi
 
 sed -Ei 's/^(#?)(PasswordAuthentication)(\s*no)/\2 yes/' /etc/ssh/sshd_config        
 systemctl enable ssh
 systemctl start ssh
 
-apt-get update
+mkdir -p /nfs/{ansible-demo,bash-demo,python-demo}
 
-echo "Installerede basis programmer"        
+echo "Installerede basis programmer"
