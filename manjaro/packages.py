@@ -25,6 +25,14 @@ def install_packages(configs):
     else:
         print('Afsluttet installation af base software')
 
+    try:
+        subprocess.run(shlex.split('systemctl enable sshd'))
+        subprocess.run(shlex.split('systemctl start sshd'))
+        subprocess.run(shlex.split('systemctl enable nfs-utils'))
+    except OSError as err:
+        print(err)
+        sys.exit('Start af sshd og enabling af nfs-server fejlede')
+
 
 def install_programs(programs):
     """
